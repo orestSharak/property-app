@@ -48,6 +48,7 @@ const lightTokens = {
   surface5: '#D9D9D9',
   surface6: '#FEC640',
   surface7: '#FAFAFA',
+  surface6Light: '#ffdf94',
 
   surfaceAlert: '#DB0404',
   surfaceInfo: '#00CFFF',
@@ -89,6 +90,7 @@ const lightTokens = {
   separator: '#D9D9D9',
   disabled: '#eee',
   gradient: `linear-gradient(180deg, #A5A5A5 0%, #3F3F3F 75.48%)`,
+  boxShadow: `0 4px 24px rgba(0, 0, 0, 0.08)`,
 } as const
 
 const darkTokens = {

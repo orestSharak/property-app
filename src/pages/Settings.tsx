@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { updateProfile } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { Card } from '../components/base/Card/Card'
-import { TextArea } from '../components/base/TextArea/TextArea'
+import { Input } from '../components/base/Input/Input'
+import { Select } from '../components/base/Select/Select'
 
 function Settings() {
   const { currentUser } = useAuth()
@@ -11,6 +11,8 @@ function Settings() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+
+  const [value, setValue] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -43,22 +45,35 @@ function Settings() {
     <div>
       <h2>Welcome! Please set your name.</h2>
       <form onSubmit={handleSubmit} style={{ width: '600px', padding: '20px' }}>
-        <Card date={1749321187579}>
-          <div style={{ width: '400px' }}>
-            <TextArea
-              id="displayName"
-              label="Full name"
-              hideLabel
-              value={name}
-              placeholder="Type a note"
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-          <button type="submit" disabled={loading || !name.length}>
-            {loading ? 'Saving...' : 'Save Name'}
-          </button>
-        </Card>
+        <div style={{ width: '400px' }}>
+          <Input
+            id="displayName"
+            label="Full name"
+            value={name}
+            required
+            error={!name.length ? 'Name is required' : undefined}
+            placeholder="Type a full name"
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <Select
+          id="city"
+          label="City"
+          hideLabel
+          value={value}
+          onChange={setValue}
+          placeholder="Select a city"
+          options={[
+            { value: 'ny', label: 'New York' },
+            { value: 'la', label: 'Los Angeles' },
+            { value: 'sf', label: 'San Francisco' },
+            { value: 'ldn', label: 'London' },
+          ]}
+        />
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        <button type="submit" disabled={loading || !name.length}>
+          {loading ? 'Saving...' : 'Save Name'}
+        </button>
       </form>
     </div>
   )
