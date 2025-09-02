@@ -1,4 +1,8 @@
 {
+  "app": {
+    "title": "Gestione immobiliare"
+  },
+
   "navbar": {
     "it": "IT",
     "en": "EN",

@@ -1,4 +1,8 @@
 {
+  "app": {
+   "title": "Properties management"
+  },
+
   "navbar": {
     "it": "IT",
     "en": "EN",

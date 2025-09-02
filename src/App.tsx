@@ -1,5 +1,6 @@
+import { useEffect } from 'react'
 import { HashRouter, Route, Routes } from 'react-router-dom'
-
+import { useTranslation } from 'react-i18next'
 import { AuthProvider } from './context/AuthContext'
 import PrivateRoute from './components/PrivateRoute'
 import Login from './pages/Login'
@@ -15,6 +16,12 @@ import { ThemeProvider } from './context/ThemeContext'
 import ErrorBoundary from './components/ErrorBoundary'
 
 function App() {
+  const { t } = useTranslation()
+
+  useEffect(() => {
+    document.title = t('app>title')
+  }, [t])
+
   return (
     <ErrorBoundary>
       <HashRouter>
