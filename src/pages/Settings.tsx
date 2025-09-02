@@ -1,4 +1,3 @@
-// src/pages/SetNamePage.js
 import React, { useState } from 'react'
 import { updateProfile } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
@@ -43,10 +42,11 @@ function Settings() {
     <div>
       <h2>Welcome! Please set your name.</h2>
       <form onSubmit={handleSubmit}>
-        <div style={{ width: '400px', padding: '20px' }}>
+        <div style={{ width: '700px', padding: '20px' }}>
           <Input
             id="displayName"
             label="Full name"
+            //direction="inline"
             type="text"
             required
             value={name}

@@ -28,7 +28,8 @@ const spacing = {
   md: '16px',
   lg: '20px',
   xl: '24px',
-  xxl: '32px',
+  xxl: '36px',
+  xxxl: '48px',
 } as const
 
 const radius = {

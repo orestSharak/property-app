@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components'
+import { InputDirection } from './Input.types'
 
 export const IconContainer = styled.div`
   position: absolute;
-  top: ${({ theme }) => theme.spacing.lg};
-  bottom: 0;
+  top: ${({ theme }) => theme.spacing.sm};
   right: ${({ theme }) => theme.spacing.sm};
   left: auto;
   display: flex;
@@ -17,12 +17,18 @@ export const IconContainer = styled.div`
   }
 `
 
-export const Label = styled.label<{ disabled?: boolean }>`
+export const Label = styled.label<{ disabled?: boolean; $direction: InputDirection }>`
+  width: 100px;
   margin-bottom: ${(p) => p.theme.spacing.xxs};
-  color: ${({ disabled, theme }) =>
-    disabled ? theme.colors.disabled : theme.colors.textSecondary};
+  color: ${({ disabled, theme, $direction }) =>
+    disabled
+      ? theme.colors.disabled
+      : $direction
+        ? theme.colors.textStrong
+        : theme.colors.textSecondary};
   display: block;
-  font-size: ${(p) => p.theme.fontSize.xs};
+  font-size: ${({ theme, $direction }) =>
+    $direction === 'inline' ? theme.fontSize.md : theme.fontSize.xs};
   font-weight: ${(p) => p.theme.fontWeight.normal};
 `
 
@@ -43,8 +49,23 @@ export const HintText = styled.div`
   margin-top: ${(p) => p.theme.spacing.xxs};
 `
 
-export const InputWrap = styled.div`
+export const InputWrap = styled.div<{ $direction: InputDirection }>`
+  ${({ $direction }) =>
+    $direction === 'overline'
+      ? css`
+          flex-direction: column;
+        `
+      : css`
+          flex-direction: row;
+          align-items: baseline;
+          gap: ${(p) => p.theme.spacing.xxxl};
+        `}
   display: flex;
+`
+
+export const InputContainer = styled.div`
+  display: flex;
+  width: 100%;
   flex-direction: column;
   position: relative;
   margin-bottom: ${(p) => p.theme.spacing.md};
