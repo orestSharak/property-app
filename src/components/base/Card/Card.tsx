@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react'
+import { FC, JSX, PropsWithChildren } from 'react'
 import { useTranslation } from 'react-i18next'
 import { formatTimestamp } from '../../../utils/utils'
 import { DateWrapper, CardContainer, CardHeaderRow, StyledLink } from './Card.styles'
@@ -33,7 +33,7 @@ const Card: FC<PropsWithChildren<CardProps>> = ({
     <>
       {date && (
         <DateWrapper>
-          <time dateTime={date}>{formatTimestamp(date)}</time>
+          <time dateTime={formatTimestamp(date)}>{formatTimestamp(date)}</time>
         </DateWrapper>
       )}
       <CardContainer
