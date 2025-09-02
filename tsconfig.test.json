@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "types": ["vitest/globals", "vite/client", "@testing-library/jest-dom"],
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "target": "ESNext"
+  },
+  "include": ["src/**/*.test.ts", "src/**/*.test.tsx", "src/setupTests.ts", "src/vitest.d.ts"]
+}

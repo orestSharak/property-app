@@ -1,0 +1,72 @@
+{
+  "navbar": {
+    "it": "IT",
+    "en": "EN",
+    "logIn": "Log In",
+    "logOut": "Log Out",
+    "dashboard": "Dashboard",
+    "properties": "Properties",
+    "cities": "Cities",
+    "settings": "Settings"
+  },
+
+  "pages": {
+    "pageNotFound": "Oops! Page not found",
+
+    "logIn": {
+      "logIn": "Log In",
+      "failedLogIn": "Failed to log in"
+    },
+
+    "cities": {
+      "listOfCities": "List of cities:",
+      "cityHasNotAdded": "City has not been added",
+      "noCities": "No cities",
+      "updateCity": "Update city",
+      "addCity": "Add city"
+    },
+
+    "properties": {
+      "listOfProperties": "List of properties:",
+      "noProperties": "No properties",
+      "updateProperty": "Update property",
+      "addProperty": "Add property",
+      "propertyHasNotAdded": "Property has not been added"
+    },
+
+    "dashboard": {
+      "listOfProperties": "List of properties:",
+      "noProperties": "No properties"
+    }
+  },
+
+  "table": {
+    "name": "Name",
+    "actions": "Actions",
+    "address": "Address"
+  },
+
+  "form": {
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "position": "Position",
+    "address": "Address",
+    "cityName": "City name",
+    "imageUrl": "Image url"
+  },
+
+  "citySelect": {
+    "all": "All",
+    "selectCity": "Select a city:",
+    "loadingCities": "Loading cities...",
+    "noCities": "No cities"
+  },
+
+  "actions": {
+    "update": "Update",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "add": "Add"
+  }
+}
