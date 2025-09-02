@@ -73,5 +73,9 @@
     "delete": "Elimina",
     "cancel": "Annulla",
     "add": "Aggiungi"
+  },
+
+  "card": {
+    "seeDetails": "Vedi i dettagli"
   }
 }

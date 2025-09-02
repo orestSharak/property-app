@@ -3,6 +3,7 @@ import { updateProfile } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { Input } from '../components/base/Input/Input'
+import { Card } from '../components/base/Card/Card'
 
 function Settings() {
   const { currentUser } = useAuth()
@@ -41,24 +42,26 @@ function Settings() {
   return (
     <div>
       <h2>Welcome! Please set your name.</h2>
-      <form onSubmit={handleSubmit}>
-        <div style={{ width: '700px', padding: '20px' }}>
-          <Input
-            id="displayName"
-            label="Full name"
-            //direction="inline"
-            type="text"
-            required
-            value={name}
-            error={!name.length ? 'Name is required' : undefined}
-            placeholder="Type full name"
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit" disabled={loading || !name.length}>
-          {loading ? 'Saving...' : 'Save Name'}
-        </button>
+      <form onSubmit={handleSubmit} style={{ width: '600px', padding: '20px' }}>
+        <Card date={1749321187579}>
+          <div style={{ width: '400px' }}>
+            <Input
+              id="displayName"
+              label="Full name"
+              //direction="inline"
+              type="text"
+              required
+              value={name}
+              error={!name.length ? 'Name is required' : undefined}
+              placeholder="Type full name"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+          <button type="submit" disabled={loading || !name.length}>
+            {loading ? 'Saving...' : 'Save Name'}
+          </button>
+        </Card>
       </form>
     </div>
   )

@@ -72,5 +72,9 @@
     "delete": "Delete",
     "cancel": "Cancel",
     "add": "Add"
+  },
+
+  "card": {
+    "seeDetails": "See details"
   }
 }

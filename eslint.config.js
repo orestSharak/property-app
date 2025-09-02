@@ -19,6 +19,7 @@ export default defineConfig([
         ecmaVersion: 'latest',
         sourceType: 'module',
         ecmaFeatures: { jsx: true },
+        project: ['./tsconfig.json'],
       },
       globals: {
         ...globals.browser,
