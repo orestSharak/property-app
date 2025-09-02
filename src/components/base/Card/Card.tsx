@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from 'react'
-import { DateWrapper, CardContainer, CardHeaderRow, StyledLink } from './Card.styles'
 import { useTranslation } from 'react-i18next'
 import { formatTimestamp } from '../../../utils/utils'
+import { DateWrapper, CardContainer, CardHeaderRow, StyledLink } from './Card.styles'
 
 type CardProps = {
   header?: string
