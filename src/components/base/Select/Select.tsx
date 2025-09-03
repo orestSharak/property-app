@@ -1,11 +1,11 @@
 import React, {
-  useRef,
-  useState,
-  useImperativeHandle,
-  useEffect,
   forwardRef,
   KeyboardEvent,
   ReactNode,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
 } from 'react'
 import ChevronIcon from '../../../assets/icons/chevron-icon.svg'
 import {
@@ -15,10 +15,10 @@ import {
   ErrorText,
   HintText,
   IconContainer,
-  SelectContainer,
-  SelectWrapper,
   Label,
   LabelStar,
+  SelectContainer,
+  SelectWrapper,
   StyledButton,
 } from './Select.styles'
 import { Option, SelectDirection } from './Select.types'
@@ -165,12 +165,14 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
     // Close on outside click
     useEffect(() => {
       if (!open) return
+
       function onClick(e: MouseEvent) {
         if (selectRef.current && !selectRef.current.contains(e.target as Node)) {
           setOpen(false)
           setHighlighted(null)
         }
       }
+
       window.addEventListener('mousedown', onClick)
       return () => window.removeEventListener('mousedown', onClick)
     }, [open])

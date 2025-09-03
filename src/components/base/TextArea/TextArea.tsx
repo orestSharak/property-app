@@ -2,11 +2,11 @@ import { forwardRef, TextareaHTMLAttributes } from 'react'
 import {
   ErrorText,
   HintText,
-  TextAreaContainer,
-  TextAreaWrapper,
   Label,
   LabelStar,
   StyledTextArea,
+  TextAreaContainer,
+  TextAreaWrapper,
 } from './TextAreat.styles'
 
 type TextAreaProps = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> & {

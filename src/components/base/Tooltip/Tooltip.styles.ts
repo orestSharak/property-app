@@ -49,6 +49,7 @@ export const TooltipArrow = styled.div<{ $placement: TooltipPlacement }>`
   width: ${(p) => p.theme.spacing.xl};
   height: ${(p) => p.theme.spacing.sm};
   overflow: hidden;
+
   ${({ $placement }) =>
     $placement === 'top'
       ? css`

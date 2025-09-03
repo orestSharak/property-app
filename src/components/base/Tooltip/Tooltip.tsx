@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, PropsWithChildren } from 'react'
+import React, { PropsWithChildren, useEffect, useRef, useState } from 'react'
 import { TooltipArrow, TooltipPopover, TooltipWrapper } from './Tooltip.styles'
 import { TooltipPlacement } from './Tooltip.types'
 
@@ -80,6 +80,7 @@ const Tooltip = ({
   function onPopoverEnter() {
     setPopoverActive(true)
   }
+
   function onPopoverLeave() {
     setPopoverActive(false)
   }

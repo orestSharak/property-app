@@ -16,7 +16,7 @@ export const CardContainer = styled.div<{ hasTopContent: boolean }>`
   border-radius: ${(p) => p.theme.radius.lg};
   padding: ${(p) => (p.hasTopContent ? p.theme.spacing.xs : p.theme.spacing.xl)}
     ${(p) => p.theme.spacing.xl} ${(p) => p.theme.spacing.xl};
-  background: ${(p) => p.theme.colors.backgroundPrimary};
+  background: ${(p) => p.theme.colors.surface1};
 `
 
 export const CardHeaderRow = styled.div<{ $hasLinkOnly?: boolean }>`

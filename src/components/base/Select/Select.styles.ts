@@ -53,8 +53,7 @@ export const StyledButton = styled.button<{
   padding: ${(p) => `0 ${p.theme.spacing.xxl} 0 ${p.theme.spacing.sm}`};
   background: ${({ disabled, theme }) =>
     disabled ? theme.colors.disabled : theme.colors.surface1};
-  border: 1px solid
-    ${({ hasError, theme }) => (hasError ? theme.colors.borderAlert : theme.colors.borderPrimary)};
+  border: 1px solid ${({ hasError, theme }) => (hasError ? theme.colors.borderAlert : theme.colors.borderPrimary)};
   border-radius: ${(p) => p.theme.radius.md};
   outline: none;
   font-size: ${(p) => p.theme.radius.md}
@@ -71,9 +70,8 @@ export const StyledButton = styled.button<{
     outline: none;
     border-color: ${({ hasError, theme }) =>
       hasError ? theme.colors.borderAlert : theme.colors.borderPrimary};
-    box-shadow: 0 0 0 2px
-      ${({ hasError, theme }) =>
-        hasError ? theme.colors.boxShadowAlert : theme.colors.boxShadowInfo};
+    box-shadow: 0 0 0 2px ${({ hasError, theme }) =>
+      hasError ? theme.colors.boxShadowAlert : theme.colors.boxShadowInfo};
   }
 
   &:disabled {
@@ -161,7 +159,6 @@ export const DropItem = styled.li<{
         background: ${theme.colors.surface6Light};
       }
     `}
-
   &[aria-selected='true'] {
     background: ${(p) => p.theme.colors.surface6};
   }

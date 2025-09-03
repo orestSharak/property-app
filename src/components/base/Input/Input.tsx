@@ -1,4 +1,4 @@
-import { forwardRef, InputHTMLAttributes, HTMLInputTypeAttribute, ReactNode } from 'react'
+import { forwardRef, HTMLInputTypeAttribute, InputHTMLAttributes, ReactNode } from 'react'
 import {
   ErrorText,
   HintText,
