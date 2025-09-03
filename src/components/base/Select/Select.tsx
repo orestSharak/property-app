@@ -70,7 +70,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
       options,
       value,
       onChange,
-      placeholder = 'Select...',
+      placeholder,
     },
     ref,
   ) => {
@@ -98,6 +98,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
     // Keyboard handling
     function handleKeyDown(e: KeyboardEvent<HTMLButtonElement>) {
       if (disabled) return
+
       if (e.key === 'ArrowDown') {
         e.preventDefault()
         if (!open) {

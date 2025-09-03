@@ -39,6 +39,11 @@ const radius = {
   lg: '20px',
 } as const
 
+const orderLevel = {
+  selectDropdown: 20,
+  tooltip: 999,
+} as const
+
 const lightTokens = {
   // Surface colors (for backgrounds)
   surface1: '#ffffff',
@@ -90,7 +95,8 @@ const lightTokens = {
   separator: '#D9D9D9',
   disabled: '#eee',
   gradient: `linear-gradient(180deg, #A5A5A5 0%, #3F3F3F 75.48%)`,
-  boxShadow: `0 4px 24px rgba(0, 0, 0, 0.08)`,
+  boxShadow1: `0 4px 24px rgba(0, 0, 0, 0.08)`,
+  boxShadow2: `0 6px 20px rgba(10, 20, 50, 0.16)`,
 } as const
 
 const darkTokens = {
@@ -137,20 +143,22 @@ const darkTokens = {
   gradient: `linear-gradient(180deg, #161616 0%, #000000 75.48%)`,
 } as const
 
-export const LightPalette = {
-  colors: lightTokens,
+const commonValues = {
   spacing,
   radius,
   fontSize,
   fontWeight,
+  orderLevel,
+}
+
+export const LightPalette = {
+  colors: lightTokens,
+  ...commonValues,
 }
 
 export const DarkPalette = {
   colors: darkTokens,
-  spacing,
-  radius,
-  fontSize,
-  fontWeight,
+  ...commonValues,
 }
 
 export const themes = {

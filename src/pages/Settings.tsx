@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { Input } from '../components/base/Input/Input'
 import { Select } from '../components/base/Select/Select'
+import { Tooltip } from '../components/base/Tooltip/Tooltip'
 
 function Settings() {
   const { currentUser } = useAuth()
@@ -71,9 +72,15 @@ function Settings() {
           ]}
         />
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit" disabled={loading || !name.length}>
-          {loading ? 'Saving...' : 'Save Name'}
-        </button>
+        <Tooltip
+          id={'some id'}
+          content="Test text abit longer th othe text is long and long agiin "
+          placement="top"
+        >
+          <button type="submit" disabled={loading || !name.length}>
+            {loading ? 'Saving...' : 'Save Name'}
+          </button>
+        </Tooltip>
       </form>
     </div>
   )

@@ -74,7 +74,6 @@ export const StyledButton = styled.button<{
     box-shadow: 0 0 0 2px
       ${({ hasError, theme }) =>
         hasError ? theme.colors.boxShadowAlert : theme.colors.boxShadowInfo};
-    z-index: 2;
   }
 
   &:disabled {
@@ -82,12 +81,6 @@ export const StyledButton = styled.button<{
     color: ${(p) => p.theme.colors.textNeutral};
     cursor: not-allowed;
   }
-
-  ${({ $open }) =>
-    $open &&
-    css`
-      z-index: 3;
-    `}
 `
 
 export const DisplayText = styled.span<{ selected?: boolean; disabled?: boolean }>`
@@ -135,11 +128,11 @@ export const DropList = styled.ul`
   position: absolute;
   left: 0;
   top: calc(100% + 3px);
-  z-index: 20;
+  z-index: ${(p) => p.theme.orderLevel.selectDropdown};
   background: ${(p) => p.theme.colors.surface1};
   border: 1px solid ${({ theme }) => theme.colors.borderPrimary};
   border-radius: ${(p) => p.theme.radius.md};
-  box-shadow: ${(p) => p.theme.colors.boxShadow};
+  box-shadow: ${(p) => p.theme.colors.boxShadow1};
 `
 
 export const DropItem = styled.li<{
