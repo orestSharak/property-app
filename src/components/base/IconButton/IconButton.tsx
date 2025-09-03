@@ -13,10 +13,7 @@ export type IconButtonProps = {
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
 const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
-  (
-    { icon, title: title, color = 'black', disabled = false, size = 'sm', className, ...rest },
-    ref,
-  ) => {
+  ({ icon, title: title, color, disabled = false, size = 'sm', className, ...rest }, ref) => {
     return (
       <Tooltip id={'icon-button-tooltip'} content={title} placement="top">
         <StyledIconButton

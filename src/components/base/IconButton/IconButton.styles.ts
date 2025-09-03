@@ -41,8 +41,8 @@ export const StyledIconButton = styled.button<{
   }
 
   path {
-    ${({ $color }) => css`
-      fill: ${$color};
+    ${({ $color, theme }) => css`
+      fill: ${$color ? $color : theme.colors.surface3};
     `}
   }
 `
