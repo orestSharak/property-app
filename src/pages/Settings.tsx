@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { Input } from '../components/base/Input/Input'
 import { Select } from '../components/base/Select/Select'
-import { IconButton } from '../components/base/IconButton/IconButton'
-import DeleteIcon from '../assets/icons/delete-icon.svg'
+import { Button } from '../components/base/Button/Button'
 
 function Settings() {
   const { currentUser } = useAuth()
@@ -73,14 +72,9 @@ function Settings() {
           ]}
         />
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit" disabled={loading || !name.length}>
-          {loading ? 'Saving...' : 'Save Name'}
-        </button>
-        <IconButton
-          icon={<DeleteIcon />}
-          title="Settings"
-          onClick={() => console.log('Settings clicked')}
-        />
+        <Button type="submit" disabled={loading || !name.length} size="xl" variant="primary">
+          {loading ? 'Saving...' : 'Save'}
+        </Button>
       </form>
     </div>
   )

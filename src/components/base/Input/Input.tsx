@@ -22,6 +22,49 @@ type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> & {
   slotEnd?: ReactNode
 }
 
+/**
+ * `Input` is a flexible and accessible text input component.
+ * It supports various states like `disabled` and `error`, includes optional hint text, and can display an icon or other element at the end of the input field.
+ *
+ * @param {object} props - The component props.
+ * @param {string} props.id - A unique ID for the input, required for accessibility.
+ * @param {string} props.label - The label text for the input.
+ * @param {'inline' | 'overline'} [props.direction='overline'] - Defines the layout of the label and the input field.
+ * @param {boolean} [props.hideLabel=false] - If `true`, the label is visually hidden but remains accessible to screen readers.
+ * @param {string} [props.hint] - A hint text displayed below the input.
+ * @param {string} [props.error] - An error message displayed below the input.
+ * @param {HTMLInputTypeAttribute} [props.type='text'] - The type of the input element (e.g., 'text', 'password', 'email').
+ * @param {boolean} [props.required] - If `true`, a required indicator (`*`) is displayed next to the label.
+ * @param {boolean} [props.disabled] - If `true`, the input is disabled and non-interactive.
+ * @param {React.ReactNode} [props.slotEnd] - An optional element to display at the end of the input field.
+ * @param {Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>} rest - All other standard HTML input attributes.
+ * @param {React.Ref<HTMLInputElement>} ref - A ref to the underlying HTML input element.
+ * @returns {JSX.Element} The rendered Input component.
+ *
+ * @example
+ * // A standard text input with a label
+ * <Input id="name" label="Full Name" />
+ *
+ * @example
+ * // An email input with hint and error messages
+ * <Input
+ * id="email"
+ * label="Email Address"
+ * type="email"
+ * hint="Enter a valid email"
+ * error="Please use the correct format"
+ * />
+ *
+ * @example
+ * // A password input with a slot for an icon and inline label
+ * <Input
+ * id="password"
+ * label="Password"
+ * type="password"
+ * direction="inline"
+ * slotEnd={<LockIcon />}
+ * />
+ */
 const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {

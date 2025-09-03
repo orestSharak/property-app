@@ -55,6 +55,28 @@ function getSelectedOrFirstEnabledIdx(arr: Option[], value?: string) {
   return getFirstEnabledIdx(arr) ?? 0
 }
 
+/**
+ * `Select` component is a fully-featured, accessible dropdown select.
+ * It supports keyboard navigation, custom styling, and various states like disabled and error.
+ *
+ * @param {SelectProps} props - The component's props.
+ * @param {React.Ref<HTMLDivElement>} ref - A ref to the main wrapper div element.
+ * @returns {JSX.Element} The rendered Select component.
+ *
+ * @example
+ * <Select
+ * id="city-select"
+ * label="Select a City"
+ * options={[
+ * { value: 'ny', label: 'New York' },
+ * { value: 'la', label: 'Los Angeles' },
+ * { value: 'sf', label: 'San Francisco' },
+ * { value: 'ldn', label: 'London' },
+ * ]}
+ * value="ny"
+ * onChange={(value) => console.log(value)}
+ * />
+ */
 const Select = forwardRef<HTMLDivElement, SelectProps>(
   (
     {

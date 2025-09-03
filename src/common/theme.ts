@@ -57,10 +57,11 @@ const lightTokens = {
   surface4: '#1F1F1F',
   surface5: '#D9D9D9',
   surface6: '#FEC640',
-  surface7: '#FAFAFA',
   surface6Light: '#ffdf94',
+  surface7: '#FAFAFA',
 
   surfaceAlert: '#DB0404',
+  surfaceAlertStrong: '#ba0505',
   surfaceInfo: '#00CFFF',
   surfacePink: '#F011D6',
 
@@ -80,6 +81,9 @@ const lightTokens = {
   textOnSurface3: '#D9D9D9',
   textOnSurface4: '#545454',
   textOnSurface7: '#818181',
+  textOnSurface2: '#ffffff',
+  textOnSurface1: '#000000',
+  textOnSurfaceAlert: '#ffffff',
 
   iconOnSurface3: '#D9D9D9',
   iconOnSurface4: '#797979',
@@ -89,7 +93,6 @@ const lightTokens = {
   borderSecondary: '#D1CECE',
   borderStrong: '#222222',
   borderIntense: '#000000',
-
   borderAlert: '#DB0404',
 
   // Box shadows

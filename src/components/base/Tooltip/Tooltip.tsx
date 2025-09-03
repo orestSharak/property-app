@@ -11,6 +11,37 @@ type TooltipProps = {
   className?: string
 }
 
+/**
+ * `Tooltip` is a component that provides a contextual popover with information when a user hovers over or focuses on an element.
+ * It automatically handles visibility, positioning, and accessibility, making it a valuable tool for providing extra details without cluttering the UI.
+ *
+ * @param  props - The component's props.
+ * @param  props.content - The text content to be displayed inside the tooltip popover.
+ * @param  props.id - A unique ID for the tooltip. This is crucial for accessibility, as it links the trigger element to the popover via `aria-describedby`.
+ * @param  [props.placement='top'] - The position of the tooltip relative to its child element.
+ * @param  [props.disabled] - If `true`, the tooltip will not be shown on hover or focus.
+ * @param  [props.hideDelay=90] - The delay in milliseconds before the tooltip hides after the user stops hovering. This prevents the tooltip from flickering when moving the cursor between the trigger and the tooltip.
+ * @param  [props.className] - Optional CSS class for custom styling.
+ * @param  props.children - The single child element that will trigger the tooltip.
+ * @returns - The rendered Tooltip component.
+ *
+ * @example
+ * // A basic tooltip on a button
+ * <Tooltip content="Click to submit" id="submit-tooltip">
+ * <button>Submit</button>
+ * </Tooltip>
+ *
+ * @example
+ * // A tooltip with a different placement and a longer hide delay
+ * <Tooltip
+ * content="This is an informational message."
+ * id="info-tooltip"
+ * placement="right"
+ * hideDelay={200}
+ * >
+ * <span tabIndex={0}>i</span>
+ * </Tooltip>
+ */
 const Tooltip = ({
   content,
   children,
