@@ -200,7 +200,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
             ref={buttonRef}
             id={id}
             type="button"
-            hasError={!!error}
+            $hasError={!!error}
             disabled={disabled}
             aria-haspopup="listbox"
             aria-expanded={open}
@@ -242,7 +242,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
                   aria-selected={opt.value === value}
                   aria-disabled={opt.disabled}
                   selected={opt.value === value}
-                  highlighted={idx === highlighted}
+                  $highlighted={idx === highlighted}
                   disabled={opt.disabled}
                   onClick={() => handleOptionClick(idx)}
                   onMouseEnter={() => setHighlighted(idx)}

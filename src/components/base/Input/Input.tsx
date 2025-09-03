@@ -56,11 +56,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         )}
         <InputContainer>
           <StyledInput
-            slotEnd={!!slotEnd}
+            $hasSlotEnd={!!slotEnd}
             ref={ref}
             id={id}
             type={type}
-            hasError={!!error}
+            $hasError={!!error}
             required={required}
             disabled={disabled}
             aria-invalid={!!error || undefined}

@@ -72,20 +72,20 @@ export const InputContainer = styled.div`
 `
 
 export const StyledInput = styled.input<{
-  hasError?: boolean
-  slotEnd?: boolean
+  $hasError?: boolean
+  $hasSlotEnd?: boolean
 }>`
   width: 100%;
   min-width: 300px;
   height: 40px;
-  padding: ${({ slotEnd, theme }) =>
-    slotEnd
+  padding: ${({ $hasSlotEnd, theme }) =>
+    $hasSlotEnd
       ? css`
           ${theme.spacing.sm} ${theme.spacing.xxl} ${theme.spacing.sm} ${theme.spacing.sm}
         `
       : theme.spacing.sm};
   border: 1px solid
-    ${({ hasError, theme }) => (hasError ? theme.colors.borderAlert : theme.colors.borderPrimary)};
+    ${({ $hasError, theme }) => ($hasError ? theme.colors.borderAlert : theme.colors.borderPrimary)};
   border-radius: ${(p) => p.theme.radius.md};
   background: ${(p) => p.theme.colors.surface1};
   color: ${(p) => p.theme.colors.textMain};
@@ -97,11 +97,11 @@ export const StyledInput = styled.input<{
   &:focus-visible,
   &:focus-within {
     outline: none;
-    border-color: ${({ hasError, theme }) =>
-      hasError ? theme.colors.borderAlert : theme.colors.borderPrimary};
+    border-color: ${({ $hasError, theme }) =>
+      $hasError ? theme.colors.borderAlert : theme.colors.borderPrimary};
     box-shadow: 0 0 0 2px
-      ${({ hasError, theme }) =>
-        hasError ? theme.colors.boxShadowAlert : theme.colors.boxShadowInfo};
+      ${({ $hasError, theme }) =>
+        $hasError ? theme.colors.boxShadowAlert : theme.colors.boxShadowInfo};
   }
 
   &:disabled,

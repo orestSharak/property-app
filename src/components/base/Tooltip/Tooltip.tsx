@@ -27,6 +27,7 @@ const Tooltip = ({
 
   // Tooltip is visible when trigger or tooltip is hovered/focused
   const computedVisible = !disabled && (triggerActive || popoverActive)
+  const length = content.length
 
   useEffect(() => {
     if (computedVisible) {
@@ -95,6 +96,7 @@ const Tooltip = ({
           aria-hidden={!visible}
           $placement={placement}
           $visible={visible}
+          $length={length}
           onMouseEnter={onPopoverEnter}
           onFocus={onPopoverEnter}
           onMouseLeave={onPopoverLeave}

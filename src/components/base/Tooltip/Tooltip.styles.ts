@@ -10,9 +10,9 @@ export const TooltipWrapper = styled.span`
 export const TooltipPopover = styled.div<{
   $placement: TooltipPlacement
   $visible: boolean
+  $length: number
 }>`
   max-width: 300px;
-  min-width: 120px;
   display: block;
   position: absolute;
   left: 50%;
@@ -27,7 +27,7 @@ export const TooltipPopover = styled.div<{
   pointer-events: ${({ $visible }) => ($visible ? 'auto' : 'none')};
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateX(-50%)
-    ${({ $placement }) => ($placement === 'top' ? 'translateY(-8px)' : 'translateY(8px)')};
+    ${({ $placement }) => ($placement === 'top' ? 'translateY(0)' : 'translateY(0)')};
   ${({ $placement }) =>
     $placement === 'top'
       ? css`
@@ -38,6 +38,11 @@ export const TooltipPopover = styled.div<{
           top: 100%;
           margin-top: ${(p) => p.theme.spacing.sm};
         `}
+  ${({ $length }) =>
+    $length > 15 &&
+    css`
+      min-width: 120px;
+    `}
   padding: ${(p) => `${p.theme.spacing.xs} ${p.theme.spacing.sm}`};
   white-space: pre-line;
 `

@@ -20,6 +20,11 @@ const fontSize = {
   xxxl: '2.5rem',
 } as const
 
+const iconSize = {
+  sm: '18px',
+  md: '22px',
+} as const
+
 const spacing = {
   xxxs: '2px',
   xxs: '4px',
@@ -147,6 +152,7 @@ const commonValues = {
   spacing,
   radius,
   fontSize,
+  iconSize,
   fontWeight,
   orderLevel,
 }

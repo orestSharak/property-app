@@ -42,7 +42,7 @@ export const SelectContainer = styled.div`
 `
 
 export const StyledButton = styled.button<{
-  hasError?: boolean
+  $hasError?: boolean
   disabled?: boolean
   $open?: boolean
 }>`
@@ -53,7 +53,7 @@ export const StyledButton = styled.button<{
   padding: ${(p) => `0 ${p.theme.spacing.xxl} 0 ${p.theme.spacing.sm}`};
   background: ${({ disabled, theme }) =>
     disabled ? theme.colors.disabled : theme.colors.surface1};
-  border: 1px solid ${({ hasError, theme }) => (hasError ? theme.colors.borderAlert : theme.colors.borderPrimary)};
+  border: 1px solid ${({ $hasError, theme }) => ($hasError ? theme.colors.borderAlert : theme.colors.borderPrimary)};
   border-radius: ${(p) => p.theme.radius.md};
   outline: none;
   font-size: ${(p) => p.theme.radius.md}
@@ -68,10 +68,10 @@ export const StyledButton = styled.button<{
   &:focus-visible,
   &:focus-within {
     outline: none;
-    border-color: ${({ hasError, theme }) =>
-      hasError ? theme.colors.borderAlert : theme.colors.borderPrimary};
-    box-shadow: 0 0 0 2px ${({ hasError, theme }) =>
-      hasError ? theme.colors.boxShadowAlert : theme.colors.boxShadowInfo};
+    border-color: ${({ $hasError, theme }) =>
+      $hasError ? theme.colors.borderAlert : theme.colors.borderPrimary};
+    box-shadow: 0 0 0 2px ${({ $hasError, theme }) =>
+      $hasError ? theme.colors.boxShadowAlert : theme.colors.boxShadowInfo};
   }
 
   &:disabled {
@@ -134,19 +134,19 @@ export const DropList = styled.ul`
 `
 
 export const DropItem = styled.li<{
-  highlighted?: boolean
+  $highlighted?: boolean
   selected?: boolean
   disabled?: boolean
 }>`
   padding: ${(p) => `${p.theme.spacing.xs} ${p.theme.spacing.sm}`};
-  color: ${({ highlighted, disabled, theme }) =>
+  color: ${({ $highlighted, disabled, theme }) =>
     disabled
       ? theme.colors.textSecondary
-      : highlighted
+      : $highlighted
         ? theme.colors.textStrong
         : theme.colors.textStrong};
-  background: ${({ highlighted, disabled, theme }) =>
-    disabled ? theme.colors.disabled : highlighted ? theme.colors.surface6Light : 'transparent'};
+  background: ${({ $highlighted, disabled, theme }) =>
+    disabled ? theme.colors.disabled : $highlighted ? theme.colors.surface6Light : 'transparent'};
   font-weight: ${({ selected, theme }) =>
     selected ? theme.fontWeight.semibold : theme.fontWeight.normal};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
