@@ -68,5 +68,11 @@
   },
   "modal": {
     "closeModal": "Close modal"
+  },
+  "input": {
+    "passwordToggle": {
+      "hide": "Hide password",
+      "show": "Show password"
+    }
   }
 }

@@ -68,5 +68,11 @@
   },
   "modal": {
     "closeModal": "Chiudi modale"
+  },
+  "input": {
+    "passwordToggle": {
+      "hide": "Nascondi password",
+      "show": "Mostra password"
+    }
   }
 }
