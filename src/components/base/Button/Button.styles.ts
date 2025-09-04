@@ -38,8 +38,9 @@ const getButtonVariantStyles = (variant: ButtonVariant, theme: AppTheme) => {
         border-color: ${theme.colors.borderStrong};
 
         &:hover:not(:disabled) {
-          background-color: ${theme.colors.surface5};
+          background-color: ${theme.colors.surface7};
           border-color: ${theme.colors.borderIntense};
+          color: ${theme.colors.textSecondary};
         }
       `
     case 'warning':

@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext'
 import { Input } from '../components/base/Input/Input'
 import { Select } from '../components/base/Select/Select'
 import { Button } from '../components/base/Button/Button'
+import { Modal } from '../components/base/Modal/Modal'
 
 function Settings() {
   const { currentUser } = useAuth()
@@ -14,6 +15,12 @@ function Settings() {
   const navigate = useNavigate()
 
   const [value, setValue] = useState('')
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+
+  const handleDelete = () => {
+    alert('Item has been deleted!')
+    setIsDeleteModalOpen(false)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -76,6 +83,28 @@ function Settings() {
           {loading ? 'Saving...' : 'Save'}
         </Button>
       </form>
+      <Button variant="primary" onClick={() => setIsDeleteModalOpen(true)}>
+        Delete
+      </Button>
+
+      {/* --- Delete Confirmation Modal --- */}
+      <Modal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        title="Delete"
+        size="sm"
+        primaryButton={{
+          label: 'Delete',
+          onClick: handleDelete,
+          variant: 'primary',
+        }}
+        secondaryButton={{
+          label: 'Cancel',
+          onClick: () => setIsDeleteModalOpen(false),
+        }}
+      >
+        <p>Are you sure you want to delete this city/client/property?</p>
+      </Modal>
     </div>
   )
 }

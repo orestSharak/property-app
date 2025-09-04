@@ -2,7 +2,6 @@
   "app": {
     "title": "Gestione immobiliare"
   },
-
   "navbar": {
     "it": "IT",
     "en": "EN",
@@ -13,16 +12,12 @@
     "cities": "Città",
     "settings": "Impostazioni"
   },
-
   "pages": {
     "pageNotFound": "Ops! Pagina non trovata",
-
     "logIn": {
       "logIn": "Accedi",
-
       "failedLogIn": "Accesso non riuscito"
     },
-
     "cities": {
       "listOfCities": "Elenco delle città:",
       "cityHasNotAdded": "La città non è stata aggiunta",
@@ -30,7 +25,6 @@
       "updateCity": "Aggiorna città",
       "addCity": "Aggiungi città"
     },
-
     "properties": {
       "listOfProperties": "Elenco delle proprietà:",
       "noProperties": "Nessuna proprietà",
@@ -38,19 +32,16 @@
       "addProperty": "Aggiungi proprietà",
       "propertyHasNotAdded": "La proprietà non è stata aggiunta"
     },
-
     "dashboard": {
       "listOfProperties": "Elenco delle proprietà:",
       "noProperties": "Nessuna proprietà"
     }
   },
-
   "table": {
     "name": "Nome",
     "actions": "Azioni",
     "address": "Indirizzo"
   },
-
   "form": {
     "email": "Email",
     "password": "Password",
@@ -60,22 +51,22 @@
     "cityName": "Nome città",
     "imageUrl": "URL immagine"
   },
-
   "citySelect": {
     "all": "Tutte",
     "selectCity": "Seleziona una città:",
     "loadingCities": "Caricamento città...",
     "noCities": "Nessuna città"
   },
-
   "actions": {
     "update": "Aggiorna",
     "delete": "Elimina",
     "cancel": "Annulla",
     "add": "Aggiungi"
   },
-
   "card": {
     "seeDetails": "Vedi i dettagli"
+  },
+  "modal": {
+    "closeModal": "Chiudi modale"
   }
 }

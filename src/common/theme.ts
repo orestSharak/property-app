@@ -1,3 +1,5 @@
+export const sidebarWidth = '212px'
+
 const fontWeight = {
   hairline: '100',
   thin: '200',
@@ -42,11 +44,13 @@ const radius = {
   sm: '6px',
   md: '10px',
   lg: '20px',
+  round: '50%',
 } as const
 
 const orderLevel = {
   selectDropdown: 20,
   tooltip: 999,
+  modalBackdrop: 1000,
 } as const
 
 const lightTokens = {
@@ -102,9 +106,11 @@ const lightTokens = {
   // Other tokens
   separator: '#D9D9D9',
   disabled: '#eee',
-  gradient: `linear-gradient(180deg, #A5A5A5 0%, #3F3F3F 75.48%)`,
   boxShadow1: `0 4px 24px rgba(0, 0, 0, 0.08)`,
   boxShadow2: `0 6px 20px rgba(10, 20, 50, 0.16)`,
+  boxShadow3: `0 4px 20px rgba(0, 0, 0, 0.15)`,
+  gradientShadow: `linear-gradient(to bottom, rgba(30, 30, 30, 0.7) 0%, rgba(10, 10, 10, 0.85) 100%
+);`,
 } as const
 
 const darkTokens = {
