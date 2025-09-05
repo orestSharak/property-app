@@ -8,6 +8,10 @@ import { Button } from '../components/base/Button/Button'
 import { Modal } from '../components/base/Modal/Modal'
 import { Card } from '../components/base/Card/Card'
 import { Map } from '../components/Map/Map'
+import mapSurface from '../assets/map-surface.png'
+import lightHouse from '../assets/light-house.png'
+import darkHouse from '../assets/dark-house.png'
+import { useTheme } from '../context/ThemeContext'
 
 function Settings() {
   const { currentUser } = useAuth()
@@ -15,7 +19,7 @@ function Settings() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
-
+  const { toggleTheme, themeMode } = useTheme()
   const [value, setValue] = useState('')
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
 
@@ -103,7 +107,46 @@ function Settings() {
           />
         </Card>
       </div>
-
+      <Button size="sm" onClick={toggleTheme}>
+        Change
+      </Button>
+      <div
+        style={{
+          margin: 'auto',
+          width: 700,
+          height: 400,
+          position: 'relative',
+        }}
+      >
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            backgroundImage: `url(${mapSurface})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            position: 'absolute',
+            filter: themeMode === 'dark' ? `brightness(0.5)` : `brightness(1)`,
+            zIndex: 1,
+            transition: 'filter 0.5s',
+          }}
+        />
+        <div
+          style={{
+            zIndex: 2,
+            width: 612,
+            height: 350,
+            position: 'absolute',
+            top: 40,
+            left: -120,
+            content: '',
+            backgroundImage: `url(${themeMode === 'light' ? lightHouse : darkHouse})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'contain',
+            transition: `background-image 0.5s`,
+          }}
+        />
+      </div>
       {/* --- Delete Confirmation Modal --- */}
       <Modal
         isOpen={isDeleteModalOpen}

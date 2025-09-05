@@ -1,9 +1,9 @@
-import { createContext, PropsWithChildren, useState, useContext } from 'react'
-import { ThemeProvider as StyledThemeProvider, DefaultTheme } from 'styled-components'
+import { createContext, PropsWithChildren, useContext, useState } from 'react'
+import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { themes } from '../common/theme'
 
 interface IThemeContext {
-  theme: DefaultTheme
+  themeMode: string
   toggleTheme: () => void
 }
 
@@ -27,7 +27,7 @@ export function ThemeProvider({ children }: PropsWithChildren) {
   const theme = themes[themeMode]
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ themeMode, toggleTheme }}>
       <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
     </ThemeContext.Provider>
   )

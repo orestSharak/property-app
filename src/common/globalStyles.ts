@@ -105,6 +105,7 @@ const GlobalStyle = createGlobalStyle`
     outline: none;
   }
 
+
   // hide a leaflet logo attribute 
   .leaflet-control-attribution {
     display: none;

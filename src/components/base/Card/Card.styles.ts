@@ -28,11 +28,11 @@ export const Title = styled.h3`
   margin-left: ${(p) => p.theme.spacing.xl};
 `
 
-export const CardContainer = styled.div<{ hasContent: boolean; compact?: boolean }>`
+export const CardContainer = styled.div<{ $hasContent: boolean; $compact?: boolean }>`
   border: 1px solid ${(p) => p.theme.colors.borderPrimary};
   border-radius: ${(p) => p.theme.radius.lg};
-  padding: ${({ hasContent, compact, theme }) =>
-    compact ? theme.spacing.xs : hasContent ? theme.spacing.xs : theme.spacing.xl};
+  padding: ${({ $hasContent, $compact, theme }) =>
+    $compact ? theme.spacing.xs : $hasContent ? theme.spacing.xs : theme.spacing.xl};
   background: ${(p) => p.theme.colors.surface1};
 `
 
@@ -52,9 +52,9 @@ export const StyledLink = styled(Link)`
   text-align: right;
 `
 
-export const ChildWrapper = styled.div<{ hasList?: boolean }>`
-  ${({ hasList }) =>
-    hasList
+export const ChildWrapper = styled.div<{ $hasList?: boolean }>`
+  ${({ $hasList }) =>
+    $hasList
       ? css`
           display: flex;
           flex-direction: column;

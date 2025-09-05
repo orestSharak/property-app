@@ -80,14 +80,14 @@ const Card: FC<PropsWithChildren<CardProps>> = ({
           {date && <Date dateTime={formatTimestamp(date)}>{formatTimestamp(date)}</Date>}
         </TopContainer>
       )}
-      <CardContainer hasContent={hasContent} aria-labelledby={labelledBy} compact={compact}>
+      <CardContainer $hasContent={hasContent} aria-labelledby={labelledBy} $compact={compact}>
         {hasContent && (
           <CardHeaderRow $hasLinkOnly={hasLinkOnly}>
             {header && <div id={headerId}>{header}</div>}
             {link && <StyledLink to={link}>{t('card>seeDetails')}</StyledLink>}
           </CardHeaderRow>
         )}
-        <ChildWrapper hasList={hasList}>{children}</ChildWrapper>
+        <ChildWrapper $hasList={hasList}>{children}</ChildWrapper>
       </CardContainer>
     </Wrapper>
   )
