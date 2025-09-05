@@ -1,20 +1,37 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-export const DateWrapper = styled.div`
+export const Wrapper = styled.div<{ width?: number }>`
+  width: ${({ width }) => (width ? `${width}px` : '100%')};
+`
+
+export const TopContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: flex-end;
   margin-bottom: ${(p) => p.theme.spacing.xxs};
+`
+
+export const Date = styled.time`
   margin-right: ${(p) => p.theme.spacing.xl};
   color: ${(p) => p.theme.colors.textNeutral};
   font-size: ${(p) => p.theme.fontSize.sm};
   font-weight: ${(p) => p.theme.fontWeight.semibold};
+  margin-left: auto;
 `
 
-export const CardContainer = styled.div<{ hasTopContent: boolean }>`
+export const Title = styled.h3`
+  color: ${(p) => p.theme.colors.textMain};
+  font-size: ${(p) => p.theme.fontSize.lg};
+  font-weight: ${(p) => p.theme.fontWeight.bold};
+  margin-bottom: 0;
+  margin-left: ${(p) => p.theme.spacing.xl};
+`
+
+export const CardContainer = styled.div<{ hasContent: boolean }>`
   border: 1px solid ${(p) => p.theme.colors.borderPrimary};
   border-radius: ${(p) => p.theme.radius.lg};
-  padding: ${(p) => (p.hasTopContent ? p.theme.spacing.xs : p.theme.spacing.xl)}
+  padding: ${(p) => (p.hasContent ? p.theme.spacing.xs : p.theme.spacing.xl)}
     ${(p) => p.theme.spacing.xl} ${(p) => p.theme.spacing.xl};
   background: ${(p) => p.theme.colors.surface1};
 `
