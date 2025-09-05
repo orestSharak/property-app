@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import houseIconUrl from '../assets/icons/house-icon.png'
 
 const GlobalStyle = createGlobalStyle`
   /*
@@ -50,6 +51,7 @@ const GlobalStyle = createGlobalStyle`
   p {
     text-wrap: pretty;
   }
+
   h1, h2, h3, h4, h5, h6 {
     text-wrap: balance;
   }
@@ -57,8 +59,55 @@ const GlobalStyle = createGlobalStyle`
   /*
     10. Create a root stacking context
   */
+  #root {
+    min-height: 100vh;
+  }
+
   #root, #__next {
     isolation: isolate;
+  }
+
+  /*
+   A styles for a Leaflet Markers
+  */
+  .house-marker {
+    background-image: url(${houseIconUrl});
+    background-size: ${(p) => p.theme.spacing.lg};
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 44px !important; // to rewrite a value from Leaflet
+    height: 44px !important; // to rewrite a value from Leaflet
+    border-radius: ${(p) => p.theme.radius.round};
+    transition: all 0.2s;
+  }
+
+  .house-marker:hover {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  .marker-color-news {
+    background-color: ${(p) => p.theme.colors.surfacePink};
+  }
+
+  .marker-color-contract {
+    background-color: ${(p) => p.theme.colors.surfaceInfo};
+  }
+
+  .marker-color-default {
+    background-color: ${(p) => p.theme.colors.surface2};
+  }
+
+  .house-marker:focus,
+  .leaflet-control-zoom-in:focus,
+  .leaflet-control-zoom-out:focus {
+    box-shadow: 0 0 0 4px ${(p) => p.theme.colors.boxShadowInfo};
+    outline: none;
+  }
+
+  // hide a leaflet logo attribute 
+  .leaflet-control-attribution {
+    display: none;
   }
 `
 export default GlobalStyle

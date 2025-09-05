@@ -1,3 +1,5 @@
+import { MarkerData, Status } from '../common/types'
+
 /**
  * Converts a Unix timestamp to a human-readable date string.
  * @param timestamp - Unix timestamp in milliseconds.
@@ -42,4 +44,41 @@ export function getGoogleDriveImageUrl(driveLink: string | undefined, size?: num
 
   const sizeParam = size && size > 0 ? `&sz=w${size}` : ''
   return `https://drive.google.com/thumbnail?id=${fileId}${sizeParam}`
+}
+
+/**
+ * Transforms an array of marker objects by converting the string `'lat,lng'` position
+ * into an object with numeric `lat` and `lng` properties.
+ *
+ * @param markers - Array of objects each containing:
+ * - `id`: string
+ * - `position`: string in the format `'lat,lng'`
+ * - `label`: string
+ * - `status`: Status
+ *
+ * Example input:
+ * [
+ *   { id: '1', position: '52.5,13.4', label: 'A', status: 'active' }
+ * ]
+ *
+ * Example output:
+ * [
+ *   { id: '1', position: { lat: 52.5, lng: 13.4 }, label: 'A', status: 'active' }
+ * ]
+ */
+export function prepareMarkers(markers: MarkerData[]): {
+  id: string
+  position: { lat: number; lng: number }
+  label: string
+  status: Status
+}[] {
+  if (!Array.isArray(markers)) return []
+
+  return markers.map((item) => ({
+    ...item,
+    position: {
+      lat: Number(item.position.split(',')[0]),
+      lng: Number(item.position.split(',')[1]),
+    },
+  }))
 }

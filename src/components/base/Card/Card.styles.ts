@@ -28,11 +28,11 @@ export const Title = styled.h3`
   margin-left: ${(p) => p.theme.spacing.xl};
 `
 
-export const CardContainer = styled.div<{ hasContent: boolean }>`
+export const CardContainer = styled.div<{ hasContent: boolean; compact?: boolean }>`
   border: 1px solid ${(p) => p.theme.colors.borderPrimary};
   border-radius: ${(p) => p.theme.radius.lg};
-  padding: ${(p) => (p.hasContent ? p.theme.spacing.xs : p.theme.spacing.xl)}
-    ${(p) => p.theme.spacing.xl} ${(p) => p.theme.spacing.xl};
+  padding: ${({ hasContent, compact, theme }) =>
+    compact ? theme.spacing.xs : hasContent ? theme.spacing.xs : theme.spacing.xl};
   background: ${(p) => p.theme.colors.surface1};
 `
 

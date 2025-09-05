@@ -28,13 +28,13 @@ export type User = {
   email: string
 }
 
-export enum Status {
-  // eslint-disable-next-line
-  DEFAULT = 'default',
-  // eslint-disable-next-line no-unused-vars
-  NEWS = 'news',
-  // eslint-disable-next-line no-unused-vars
-  CONTRACT = 'contract',
+export type Status = 'default' | 'news' | 'contract'
+
+export type MarkerData = {
+  id: string
+  position: string
+  label: string
+  status: Status
 }
 
 export type AppTheme = typeof LightPalette

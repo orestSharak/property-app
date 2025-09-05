@@ -18,11 +18,11 @@ export const Label = styled.span`
 export const Value = styled.span<{ variant: Status }>`
   color: ${({ theme, variant }) => {
     switch (variant) {
-      case Status.NEWS:
+      case 'news':
         return theme.colors.textInfo
-      case Status.CONTRACT:
+      case 'contract':
         return theme.colors.textPink
-      case Status.DEFAULT:
+      case 'default':
       default:
         return theme.colors.textMain
     }

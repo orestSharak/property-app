@@ -22,6 +22,7 @@ type CardProps = {
   ariaLabelledBy?: string
   width?: number
   hasList?: boolean
+  compact?: boolean
 }
 
 /**
@@ -62,6 +63,7 @@ const Card: FC<PropsWithChildren<CardProps>> = ({
   ariaLabelledBy,
   width,
   hasList = false,
+  compact = false,
 }) => {
   const { t } = useTranslation()
 
@@ -78,7 +80,7 @@ const Card: FC<PropsWithChildren<CardProps>> = ({
           {date && <Date dateTime={formatTimestamp(date)}>{formatTimestamp(date)}</Date>}
         </TopContainer>
       )}
-      <CardContainer hasContent={hasContent} aria-labelledby={labelledBy}>
+      <CardContainer hasContent={hasContent} aria-labelledby={labelledBy} compact={compact}>
         {hasContent && (
           <CardHeaderRow $hasLinkOnly={hasLinkOnly}>
             {header && <div id={headerId}>{header}</div>}
