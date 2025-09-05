@@ -4,6 +4,7 @@ import { formatTimestamp } from '../../../utils/utils'
 import {
   CardContainer,
   CardHeaderRow,
+  ChildWrapper,
   Date,
   StyledLink,
   Title,
@@ -20,6 +21,7 @@ type CardProps = {
   as?: keyof JSX.IntrinsicElements
   ariaLabelledBy?: string
   width?: number
+  hasList?: boolean
 }
 
 /**
@@ -33,6 +35,7 @@ type CardProps = {
  * @param  [props.link] - The URL for the "See details" link, which is displayed in the header.
  * @param  [props.date] - A Unix timestamp to display a formatted date above the card.
  * @param  [props.as='div'] - The HTML element type to render the card container as (e.g., 'div', 'section', 'article').
+ * @param  [props.hasList=false] - A boolean flag to apply specific styles when the children are a list.
  * @param  [props.ariaLabelledBy] - The ID of the element that labels the card, for accessibility.
  * @param  props.children - The content to be rendered inside the card container.
  * @example
@@ -58,6 +61,7 @@ const Card: FC<PropsWithChildren<CardProps>> = ({
   as = 'div',
   ariaLabelledBy,
   width,
+  hasList = false,
 }) => {
   const { t } = useTranslation()
 
@@ -81,7 +85,7 @@ const Card: FC<PropsWithChildren<CardProps>> = ({
             {link && <StyledLink to={link}>{t('card>seeDetails')}</StyledLink>}
           </CardHeaderRow>
         )}
-        {children}
+        <ChildWrapper hasList={hasList}>{children}</ChildWrapper>
       </CardContainer>
     </Wrapper>
   )

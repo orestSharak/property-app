@@ -6,6 +6,9 @@ import { Input } from '../components/base/Input/Input'
 import { Select } from '../components/base/Select/Select'
 import { Button } from '../components/base/Button/Button'
 import { Modal } from '../components/base/Modal/Modal'
+import { Card } from '../components/base/Card/Card'
+import { InfoRow } from '../components/InfoRow/InfoRow'
+import { Status } from '../common/types'
 
 function Settings() {
   const { currentUser } = useAuth()
@@ -86,6 +89,21 @@ function Settings() {
       <Button variant="primary" onClick={() => setIsDeleteModalOpen(true)}>
         Delete
       </Button>
+      <Card width={400} hasList>
+        {[
+          {
+            label: 'Name',
+            value:
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.',
+          },
+          { label: 'City', value: 'Wroclaw' },
+          { label: 'Email', value: 'john.doe@example.com' },
+          { label: 'Role', value: 'Administrator' },
+          { label: 'Status', value: 'New', valueVariant: Status.NEWS },
+        ].map((item) => (
+          <InfoRow key={item.label} {...item} />
+        ))}
+      </Card>
 
       {/* --- Delete Confirmation Modal --- */}
       <Modal

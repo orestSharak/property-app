@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div<{ width?: number }>`
   width: ${({ width }) => (width ? `${width}px` : '100%')};
@@ -50,4 +50,15 @@ export const CardHeaderRow = styled.div<{ $hasLinkOnly?: boolean }>`
 export const StyledLink = styled(Link)`
   width: 120px;
   text-align: right;
+`
+
+export const ChildWrapper = styled.div<{ hasList?: boolean }>`
+  ${({ hasList }) =>
+    hasList
+      ? css`
+          display: flex;
+          flex-direction: column;
+          gap: ${(p) => p.theme.spacing.lg};
+        `
+      : undefined}
 `
