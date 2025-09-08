@@ -110,5 +110,49 @@ const GlobalStyle = createGlobalStyle`
   .leaflet-control-attribution {
     display: none;
   }
+
+  .leaflet-popup {
+    background: ${({ theme }) => theme.colors.surface1};
+    border-radius: ${(p) => p.theme.radius.md};
+    box-shadow: ${(p) => p.theme.colors.boxShadow4}
+  }
+
+  .leaflet-popup-tip, .leaflet-popup-tip-container {
+    display: none;
+  }
+
+  .leaflet-popup-content {
+    margin: 0;
+    padding: 0;
+    min-width: 280px;
+  }
+
+  /* Example: override close button */
+
+  .leaflet-popup-close-button {
+    top: ${(p) => p.theme.spacing.md} !important;
+    right: ${(p) => p.theme.spacing.md} !important;
+  }
+
+  .leaflet-popup-close-button > span {
+    color: ${({ theme }) => theme.colors.textNeutral};
+    width: ${(p) => p.theme.spacing.xl};
+    height: ${(p) => p.theme.spacing.xl};
+    font-size: ${(p) => p.theme.fontSize.xl};
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .leaflet-popup-close-button > span:hover {
+    color: ${(p) => p.theme.colors.textSecondary};
+  }
+
+  .leaflet-popup-close-button:focus,
+  .leaflet-popup-close-button:focus-visible {
+    border-radius: ${(p) => p.theme.radius.round};
+    border-color: ${(p) => p.theme.colors.boxShadowInfo};
+    box-shadow: 0 0 0 2px ${(p) => p.theme.colors.boxShadowInfo};
+    outline: none;
+  }
 `
 export default GlobalStyle

@@ -95,13 +95,28 @@ function Settings() {
       <div style={{ margin: 40, padding: 40 }}>
         <Card width={588} compact>
           <Map
+            showPopup
             height={260}
             markers={[
               {
                 id: '1',
                 position: '51.110829023797024, 17.031042982059372',
-                label: 'Test',
+                label: 'Bastion Sakwowy 26/2',
                 status: 'news',
+                clientId: '123',
+                clientFullName: 'Alessandro Curti',
+                clientEmail: 'test@test.com',
+                clientPhone: '+39 122 232 224',
+              },
+              {
+                id: '2',
+                position: '51.11082209281771, 17.034261672805634',
+                label: 'Wesola 212/2',
+                status: 'default',
+                clientId: '123',
+                clientFullName: 'Alessandro Curti',
+                clientEmail: 'test@test.com',
+                clientPhone: '+39 122 232 224',
               },
             ]}
           />

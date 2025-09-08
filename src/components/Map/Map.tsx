@@ -1,24 +1,49 @@
 import { Marker, TileLayer, ZoomControl } from 'react-leaflet'
 import L from 'leaflet'
+import React, { useState } from 'react'
 import { Container, LeafletStyle } from './Map.styles'
 import { prepareMarkers } from '../../utils/utils'
-import { Status } from '../../common/types'
 import { MAP_LIGHT_PALETTE_URL } from '../../common/constants'
 import { useTheme } from '../../context/ThemeContext'
-
-type MarkerProps = {
-  id: string
-  position: string
-  label: string
-  status: Status
-}
+import { Popup } from './Popup/Popup'
+import { MarkerData } from '../../common/types'
 
 type MapProps = {
   height: number
-  markers: MarkerProps[]
+  markers: MarkerData[]
+  showPopup?: boolean
 }
 
-export const Map = ({ height, markers }: MapProps) => {
+/**
+ * `Map` is a React component that renders an interactive map using the Leaflet library.
+ * It displays custom markers and, optionally, a popup with details when a marker is clicked.
+ *
+ * @param height - The height of the map container in pixels.
+ * @param markers - An array of marker data objects to be displayed on the map.
+ * @param showPopup - If `true`, a popup with marker details will appear when a marker is clicked.
+ *
+ * @example
+ * // A map displaying a set of markers with popups enabled
+ * <Map
+ * height={500}
+ * markers={[
+ * { id: 1, label: 'Location 1', position: { lat: 51.505, lng: -0.09 }, status: 'active' },
+ * { id: 2, label: 'Location 2', position: { lat: 51.51, lng: -0.1 }, status: 'completed' },
+ * ]}
+ * showPopup={true}
+ * />
+ *
+ * @example
+ * // A map displaying markers without popups
+ * <Map
+ * height={400}
+ * markers={[
+ * { id: 1, label: 'Store A', position: { lat: 51.505, lng: -0.09 }, status: 'active' },
+ * ]}
+ * />
+ */
+export const Map = ({ height, markers, showPopup = false }: MapProps) => {
+  const [activeMarker, setActiveMarker] = useState(null)
   const { themeMode } = useTheme()
   const normalizedMarkers = prepareMarkers(markers)
 
@@ -49,7 +74,14 @@ export const Map = ({ height, markers }: MapProps) => {
               position={marker.position}
               icon={dynamicMarkerIcon}
               aria-label={marker.label}
-            ></Marker>
+              aria-haspopup="dialog"
+              aria-expanded={activeMarker?.id === marker.id}
+              eventHandlers={{
+                click: () => setActiveMarker(marker),
+              }}
+            >
+              {showPopup && <Popup marker={marker} />}
+            </Marker>
           )
         })}
       </Container>

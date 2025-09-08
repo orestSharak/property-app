@@ -1,4 +1,4 @@
-import { MarkerData, Status } from '../common/types'
+import { MarkerData, MarkerDataFull } from '../common/types'
 
 /**
  * Converts a Unix timestamp to a human-readable date string.
@@ -66,12 +66,7 @@ export function getGoogleDriveImageUrl(driveLink: string | undefined, size?: num
  *   { id: '1', position: { lat: 52.5, lng: 13.4 }, label: 'A', status: 'active' }
  * ]
  */
-export function prepareMarkers(markers: MarkerData[]): {
-  id: string
-  position: { lat: number; lng: number }
-  label: string
-  status: Status
-}[] {
+export function prepareMarkers(markers: MarkerData[]): MarkerDataFull[] {
   if (!Array.isArray(markers)) return []
 
   return markers.map((item) => ({

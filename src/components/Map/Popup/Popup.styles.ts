@@ -1,0 +1,32 @@
+import styled from 'styled-components'
+import { Popup } from 'react-leaflet'
+
+export const StyledPopup = styled(Popup)`
+  background-color: ${(p) => p.theme.colors.surface1};
+  box-shadow: ${(p) => p.theme.colors.boxShadow3};
+  display: flex;
+  flex-direction: column;
+`
+
+export const PopupHeader = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: ${(p) => `${p.theme.spacing.md} ${p.theme.spacing.xl}`};
+  border-bottom: 1px solid ${(p) => p.theme.colors.borderPrimary};
+`
+
+export const PopupTitle = styled.h2`
+  margin: ${(p) => `${p.theme.spacing.xxs} ${p.theme.spacing.xl} 0 0`};
+  color: ${(p) => p.theme.colors.textStrong};
+  font-size: ${(p) => p.theme.fontSize.md};
+  font-weight: ${(p) => p.theme.fontWeight.semibold};
+`
+export const PopupBody = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: ${(p) => p.theme.spacing.sm};
+  padding: ${(p) => p.theme.spacing.lg};
+  overflow-y: auto;
+`

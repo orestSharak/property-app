@@ -34,7 +34,15 @@ export type MarkerData = {
   id: string
   position: string
   label: string
+  clientId: string
+  clientFullName: string
+  clientEmail: string
+  clientPhone?: string
   status: Status
+}
+
+export type MarkerDataFull = Omit<MarkerData, 'position'> & {
+  position: { lat: number; lng: number }
 }
 
 export type AppTheme = typeof LightPalette

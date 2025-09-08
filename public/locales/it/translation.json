@@ -69,6 +69,12 @@
   "modal": {
     "closeModal": "Chiudi modale"
   },
+  "popup": {
+    "client": "Cliente",
+    "clientEmail": "E-mail del cliente",
+    "clientPhone": "Telefono del cliente",
+    "status": "Stato"
+  },
   "input": {
     "passwordToggle": {
       "hide": "Nascondi password",
