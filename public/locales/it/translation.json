@@ -40,7 +40,8 @@
   "table": {
     "name": "Nome",
     "actions": "Azioni",
-    "address": "Indirizzo"
+    "address": "Indirizzo",
+    "noResult": "Nessun risultato trovato"
   },
   "form": {
     "email": "Email",

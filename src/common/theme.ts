@@ -63,6 +63,8 @@ const lightTokens = {
   surface6: '#FEC640',
   surface6Light: '#ffdf94',
   surface7: '#FAFAFA',
+  surface8: '#f6f6f6',
+  surface9: '#fdfdfd',
 
   surfaceAlert: '#DB0404',
   surfaceAlertStrong: '#ba0505',
@@ -170,6 +172,7 @@ const darkTokens = {
   boxShadow1: `0 4px 24px rgba(0, 0, 0, 0.4)`, // Shadow becomes a bit more pronounced
   boxShadow2: `0 6px 20px rgba(0, 0, 0, 0.3)`,
   boxShadow3: `0 4px 20px rgba(0, 0, 0, 0.35)`,
+  boxShadow4: `0 4px 6px rgba(0, 0, 0, 0.05)`,
   gradientShadow: `linear-gradient(to top, rgba(200, 200, 200, 0.7) 0%, rgba(100, 100, 100, 0.85) 100%
 );`,
 } as const

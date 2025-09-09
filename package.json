@@ -12,6 +12,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@tanstack/react-table": "^8.21.3",
     "bootstrap": "^5.3.6",
     "firebase": "^11.8.1",
     "i18next": "^25.2.1",

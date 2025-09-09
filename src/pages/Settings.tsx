@@ -12,6 +12,7 @@ import mapSurface from '../assets/map-surface.png'
 import lightHouse from '../assets/light-house.png'
 import darkHouse from '../assets/dark-house.png'
 import { useTheme } from '../context/ThemeContext'
+import Table from '../components/Table/Table'
 
 function Settings() {
   const { currentUser } = useAuth()
@@ -180,6 +181,8 @@ function Settings() {
       >
         <p>Are you sure you want to delete this city/client/property?</p>
       </Modal>
+
+      <Table />
     </div>
   )
 }
