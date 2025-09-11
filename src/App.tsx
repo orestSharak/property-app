@@ -14,6 +14,7 @@ import Settings from './pages/Settings'
 import { ThemeProvider } from './context/ThemeContext'
 import ErrorBoundary from './components/ErrorBoundary'
 import Properties from './pages/Properties/PropertiesPage'
+import PropertyDetailsPage from './pages/Property/PropertyDetailsPage'
 
 function App() {
   const { t } = useTranslation()
@@ -51,6 +52,14 @@ function App() {
                 element={
                   <PrivateRoute>
                     <Properties />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/properties/:id"
+                element={
+                  <PrivateRoute>
+                    <PropertyDetailsPage />
                   </PrivateRoute>
                 }
               />

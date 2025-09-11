@@ -12,6 +12,8 @@ type ActionsCellRendererProps = {
   noView?: boolean
   handleDelete: () => void
   handleEdit: () => void
+  // eslint-disable-next-line no-unused-vars
+  handleView?: (id: string) => void
 }
 
 const ActionsCellRenderer = ({
@@ -19,17 +21,18 @@ const ActionsCellRenderer = ({
   noView,
   handleEdit,
   handleDelete,
+  handleView,
 }: ActionsCellRendererProps) => {
   const { t } = useTranslation()
   if (!id) return EMPTY_VALUE
 
   return (
     <Wrapper>
-      {!noView && (
+      {!noView && handleView && (
         <IconButton
           icon={<ViewIcon />}
           title={t('table>cellRenderer>actions>view')}
-          onClick={() => console.log('View', id)}
+          onClick={() => handleView(id)}
         />
       )}
       <IconButton

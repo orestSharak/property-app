@@ -14,10 +14,14 @@ export const columnDefinition: (
   handleEdit: () => void,
   // eslint-disable-next-line no-unused-vars
   handleDelete: () => void,
+  // eslint-disable-next-line no-unused-vars
+  handleView?: (id: string) => void,
 ) => ColumnDef<Properties, any>[] = (
   t: TFunction,
   handleEdit: () => void,
   handleDelete: () => void,
+  // eslint-disable-next-line no-unused-vars
+  handleView?: (id: string) => void,
 ) => [
   columnHelper.accessor('city', {
     id: 'city',
@@ -63,6 +67,7 @@ export const columnDefinition: (
         id={info.getValue()}
         handleEdit={handleEdit}
         handleDelete={handleDelete}
+        handleView={handleView}
       />
     ),
     enableSorting: false,

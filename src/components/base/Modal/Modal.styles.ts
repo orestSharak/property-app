@@ -67,6 +67,10 @@ export const ModalHeader = styled.header`
   align-items: center;
   padding: ${(p) => `${p.theme.spacing.md} ${p.theme.spacing.xl}`};
   border-bottom: 1px solid ${(p) => p.theme.colors.borderPrimary};
+
+  &:focus-visible {
+    outline: none;
+  }
 `
 
 export const ModalTitle = styled.h2`
@@ -95,8 +99,8 @@ export const CloseButton = styled.button`
     color: ${(p) => p.theme.colors.textSecondary};
   }
 
-  &:focus-visible,
-  &:focus-within {
+  &:focus,
+  &:focus-visible {
     border-color: ${(p) => p.theme.colors.boxShadowInfo};
     box-shadow: 0 0 0 2px ${(p) => p.theme.colors.boxShadowInfo};
     outline: none;

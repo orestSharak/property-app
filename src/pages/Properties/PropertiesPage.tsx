@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import React, { memo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useGerProperties } from '../../hooks/useGetProperties'
 import { columnDefinition } from './columnDefinition'
 import { Modal } from '../../components/base/Modal/Modal'
@@ -7,6 +8,7 @@ import TableLayout from '../../layout/TableLayout'
 
 const PropertiesPage = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const { properties } = useGerProperties()
   const [addMode, setAddMode] = useState(false)
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
@@ -15,30 +17,33 @@ const PropertiesPage = () => {
 
   const counter = properties?.length
 
-  const handleDelete = () => {
-    setOpenDeleteModal(false)
+  // view
+  const handleView = (id: string) => {
+    navigate(`/properties/${id}`)
   }
-
-  const handleEdit = () => {
-    setOpenAddEditModal(false)
-  }
-
+  //add
   const handleAdd = () => {
     setOpenAddEditModal(false)
     setAddMode(false)
   }
-
-  const handleOpenDeleteModal = () => {
-    setOpenDeleteModal(true)
-  }
-
-  const handleOpenEditModal = () => {
-    setOpenAddEditModal(true)
-  }
-
   const handleOpenAddModal = () => {
     setAddMode(true)
     setOpenAddEditModal(true)
+  }
+  // edit
+  const handleEdit = () => {
+    setOpenAddEditModal(false)
+  }
+  const handleOpenEditModal = () => {
+    setOpenAddEditModal(true)
+  }
+  // delete
+  const handleDelete = () => {
+    setOpenDeleteModal(false)
+  }
+
+  const handleOpenDeleteModal = () => {
+    setOpenDeleteModal(true)
   }
 
   return (
@@ -50,7 +55,12 @@ const PropertiesPage = () => {
         setGlobalFilter={setGlobalFilter}
         handleOpenAdd={handleOpenAddModal}
         data={properties}
-        columnDefinition={columnDefinition(t, handleOpenEditModal, handleOpenDeleteModal)}
+        columnDefinition={columnDefinition(
+          t,
+          handleOpenEditModal,
+          handleOpenDeleteModal,
+          handleView,
+        )}
       />
 
       {/* --- Delete Modal --- */}
