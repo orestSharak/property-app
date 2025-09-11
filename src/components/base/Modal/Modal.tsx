@@ -34,7 +34,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
   ({ isOpen, onClose, title, size = 'sm', children, primaryButton, secondaryButton }, ref) => {
     const { t } = useTranslation()
     const modalRef = useRef<HTMLDivElement>(null)
-    const closeButtonRef = useRef<HTMLButtonElement>(null)
+    const headerRef = useRef<HTMLButtonElement>(null)
 
     const handleKeyDown = useCallback(
       (event: KeyboardEvent) => {
@@ -64,8 +64,8 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
 
         // Manually focus the close button when the modal opens
         // This is the key change to ensure the close button is the first element to receive focus.
-        if (closeButtonRef.current) {
-          closeButtonRef.current.focus()
+        if (headerRef.current) {
+          headerRef.current.focus()
         }
       } else {
         document.body.style.overflow = ''
@@ -93,7 +93,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
           aria-labelledby="modal-title"
           onClick={(e) => e.stopPropagation()} // Prevents closing on modal body click
         >
-          <ModalHeader ref={closeButtonRef} tabIndex={0}>
+          <ModalHeader ref={headerRef} tabIndex={0}>
             <ModalTitle id="modal-title">{title}</ModalTitle>
             <CloseButton onClick={onClose} aria-label={t('modal>closeModal')}>
               &times;
