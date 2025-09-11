@@ -54,11 +54,15 @@
       }
     }
   },
+  "layout": {
+    "table": {
+      "search": "Cerca",
+      "add": "Aggiungi"
+    }
+  },
   "properties": {
     "table": {
       "title": "Proprietà",
-      "search": "Cerca",
-      "add": "Aggiungi",
       "city": "Città",
       "address": "Indirizzo",
       "clientName": "Nome del cliente",
@@ -70,6 +74,7 @@
       "cancel": "Annulla",
       "sureWantDelete": "Sei sicuro di voler eliminare questa proprietà?",
       "edit": "Modifica",
+      "add": "Aggiungi",
       "loading": "Caricamento in corso...",
       "addProperty": "Aggiungi proprietà",
       "editProperty": "Modifica proprietà"

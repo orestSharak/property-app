@@ -6,6 +6,7 @@ type HeaderProps = {
   title: string
   count?: number
   size?: Size
+  hideCount?: boolean
 }
 
 /**
@@ -14,17 +15,18 @@ type HeaderProps = {
  * @param {object} props - The component's props.
  * @param {string} [props.title] - The title text to display.
  * @param {number} [props.count] - An optional numerical value to show next to the title.
+ * @param {boolean} [props.hideCount] - An optional boolean to hide the count.
  * @param {'sm' | 'md' | 'lg'} [props.size='lg'] - The size of the title text.
  *
  * @example
  * // A header with a title and a count
  * <Header title="Cities" count={12} />
  */
-function _Header({ title, count, size = 'lg' }: HeaderProps) {
+function _Header({ title, count = 0, size = 'lg', hideCount }: HeaderProps) {
   return (
     <Container>
       <Title $size={size}>{title}</Title>
-      {count && <Count>{count}</Count>}
+      {!hideCount && <Count>{count}</Count>}
     </Container>
   )
 }

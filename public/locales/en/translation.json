@@ -54,11 +54,15 @@
       }
     }
   },
+  "layout": {
+    "table": {
+      "search": "Search",
+      "add": "Add"
+    }
+  },
   "properties": {
     "table": {
       "title": "Properties",
-      "search": "Search",
-      "add": "Add",
       "city": "City",
       "address": "Address",
       "clientName": "Client name",
@@ -70,6 +74,7 @@
       "cancel": "Cancel",
       "sureWantDelete": "Are you sure you want to delete this property?",
       "edit": "Edit",
+      "add": "Add",
       "loading": "Loading...",
       "addProperty": "Add property",
       "editProperty": "Edit property"

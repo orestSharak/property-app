@@ -1,14 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import React, { memo, useState } from 'react'
 import { useGerProperties } from '../../hooks/useGetProperties'
-import Table from '../../components/Table/Table'
 import { columnDefinition } from './columnDefinition'
-import { TopContainer, TopSection, Wrapper } from './PropertiesPage.styles'
-import { Header } from '../../components/Header/Header'
-import { Input } from '../../components/base/Input/Input'
-import SearchIcon from '../../assets/icons/search-icon.svg'
-import { Button } from '../../components/base/Button/Button'
 import { Modal } from '../../components/base/Modal/Modal'
+import TableLayout from '../../layout/TableLayout'
 
 const PropertiesPage = () => {
   const { t } = useTranslation()
@@ -47,30 +42,15 @@ const PropertiesPage = () => {
   }
 
   return (
-    <Wrapper>
-      <TopContainer>
-        <Header title={t('properties>table>title')} count={counter ?? 0} />
-        <TopSection>
-          <Input
-            minWidth={390}
-            id="seacrhProperties"
-            label={t('properties>table>search')}
-            hideLabel
-            value={globalFilter}
-            slotEnd={<SearchIcon />}
-            placeholder={t('properties>table>search')}
-            onChange={(e) => setGlobalFilter(e.target.value)}
-          />
-          <Button variant="primary" size="sm" onClick={handleOpenAddModal}>
-            {t('properties>table>add')}
-          </Button>
-        </TopSection>
-      </TopContainer>
-      <Table
-        data={properties ?? []}
-        columns={columnDefinition(t, handleOpenEditModal, handleOpenDeleteModal)}
+    <>
+      <TableLayout
+        title={t('properties>table>title')}
+        count={counter}
         globalFilter={globalFilter}
         setGlobalFilter={setGlobalFilter}
+        handleOpenAdd={handleOpenAddModal}
+        data={properties}
+        columnDefinition={columnDefinition(t, handleOpenEditModal, handleOpenDeleteModal)}
       />
 
       {/* --- Delete Modal --- */}
@@ -116,7 +96,7 @@ const PropertiesPage = () => {
       >
         <span>{'Some filed will be added'}</span>
       </Modal>
-    </Wrapper>
+    </>
   )
 }
 
