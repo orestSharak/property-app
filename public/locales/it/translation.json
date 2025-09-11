@@ -41,7 +41,39 @@
     "name": "Nome",
     "actions": "Azioni",
     "address": "Indirizzo",
-    "noResult": "Nessun risultato trovato"
+    "noResult": "Nessun risultato trovato",
+    "cellRenderer": {
+      "actions": {
+        "view": "Visualizza",
+        "edit": "Modifica",
+        "delete": "Elimina"
+      },
+      "text": {
+        "contract": "Contratto",
+        "news": "Notizie"
+      }
+    }
+  },
+  "properties": {
+    "table": {
+      "title": "Proprietà",
+      "search": "Cerca",
+      "add": "Aggiungi",
+      "city": "Città",
+      "address": "Indirizzo",
+      "clientName": "Nome del cliente",
+      "clientEmail": "Email del cliente",
+      "phoneOfClient": "Telefono del cliente",
+      "status": "Stato",
+      "actions": "Azioni",
+      "delete": "Elimina",
+      "cancel": "Annulla",
+      "sureWantDelete": "Sei sicuro di voler eliminare questa proprietà?",
+      "edit": "Modifica",
+      "loading": "Caricamento in corso...",
+      "addProperty": "Aggiungi proprietà",
+      "editProperty": "Modifica proprietà"
+    }
   },
   "form": {
     "email": "Email",

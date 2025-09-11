@@ -107,6 +107,10 @@ export const ModalBody = styled.div`
   flex: 1;
   padding: ${(p) => p.theme.spacing.lg};
   overflow-y: auto;
+  color: ${(p) => p.theme.colors.textMain};
+  font-size: ${(p) => p.theme.fontSize.md};
+  font-style: normal;
+  font-weight: ${(p) => p.theme.fontWeight.normal};
 `
 
 export const ModalFooter = styled.footer`

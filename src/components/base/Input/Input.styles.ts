@@ -63,20 +63,21 @@ export const InputWrap = styled.div<{ $direction: InputDirection }>`
   display: flex;
 `
 
-export const InputContainer = styled.div`
+export const InputContainer = styled.div<{ $hasError?: boolean }>`
   display: flex;
   width: 100%;
   flex-direction: column;
   position: relative;
-  margin-bottom: ${(p) => p.theme.spacing.md};
+  margin-bottom: ${({ $hasError, theme }) => ($hasError ? theme.spacing.md : undefined)};
 `
 
 export const StyledInput = styled.input<{
   $hasError?: boolean
   $hasSlotEnd?: boolean
+  $minWidth?: number
 }>`
   width: 100%;
-  min-width: 300px;
+  min-width: ${({ $minWidth }) => ($minWidth ? `${$minWidth}px` : '300px')};
   height: 40px;
   padding: ${({ $hasSlotEnd, theme }) =>
     $hasSlotEnd

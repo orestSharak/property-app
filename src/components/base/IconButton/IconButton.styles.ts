@@ -16,6 +16,7 @@ export const StyledIconButton = styled.button<{
   cursor: ${({ $disabled }) => ($disabled ? 'not-allowed' : 'pointer')};
   opacity: ${({ $disabled }) => ($disabled ? 0.5 : 1)};
   transition: all 0.2s;
+  min-width: ${({ theme }) => theme.spacing.xxl};
 
   &:hover,
   &:focus-visible,

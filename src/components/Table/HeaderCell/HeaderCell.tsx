@@ -24,7 +24,7 @@ export function HeaderCell({ header }: { header: any }) {
   return (
     <TableHeaderCell
       tabIndex={0}
-      canSort={header.column.getCanSort()}
+      $canSort={header.column.getCanSort()}
       size={header.column.columnDef.size as number}
       onKeyDown={handleKeyDown}
       onClick={header.column.getCanSort() ? header.column.getToggleSortingHandler() : undefined}

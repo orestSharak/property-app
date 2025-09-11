@@ -11,6 +11,10 @@ export type Properties = {
   cityPosition: string
   city: string
   imageUrl?: string
+  clientName: string
+  clientEmail: string
+  clientPhoneNumber: string
+  status: Status
 }
 
 export type City = {

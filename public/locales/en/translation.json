@@ -41,7 +41,39 @@
     "name": "Name",
     "actions": "Actions",
     "address": "Address",
-    "noResult": "No results found"
+    "noResult": "No results found",
+    "cellRenderer": {
+      "actions": {
+        "view": "View",
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "text": {
+        "contract": "Contract",
+        "news": "News"
+      }
+    }
+  },
+  "properties": {
+    "table": {
+      "title": "Properties",
+      "search": "Search",
+      "add": "Add",
+      "city": "City",
+      "address": "Address",
+      "clientName": "Client name",
+      "clientEmail": "Client email",
+      "phoneOfClient": "Phone of client",
+      "status": "Status",
+      "actions": "Actions",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "sureWantDelete": "Are you sure you want to delete this property?",
+      "edit": "Edit",
+      "loading": "Loading...",
+      "addProperty": "Add property",
+      "editProperty": "Edit property"
+    }
   },
   "form": {
     "email": "Email",

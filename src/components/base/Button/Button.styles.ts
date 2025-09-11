@@ -82,7 +82,7 @@ export const StyledButton = styled.button<{
   font-weight: ${(p) => p.theme.fontWeight.medium};
   border-radius: ${(p) => p.theme.radius.md};
   transition: all 0.3s;
-  padding: ${(p) => `${p.theme.spacing.sm} ${p.theme.spacing.xxs}`};
+  padding: ${(p) => `${p.theme.spacing.xs} ${p.theme.spacing.xxs}`};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 
   ${({ $variant, theme }) => getButtonVariantStyles($variant, theme)}

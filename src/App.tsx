@@ -6,7 +6,6 @@ import PrivateRoute from './components/PrivateRoute'
 import Login from './pages/Login'
 import PageNotFound from './pages/PageNotFound'
 import NavbarComponent from './components/NavbarComponent'
-import PropertiesPage from './pages/PropertiesPage'
 import Dashboard from './pages/Dashboard'
 import CitiesPage from './pages/CitiesPage'
 import GlobalStyles from './common/globalStyles'
@@ -14,6 +13,7 @@ import './App.css'
 import Settings from './pages/Settings'
 import { ThemeProvider } from './context/ThemeContext'
 import ErrorBoundary from './components/ErrorBoundary'
+import Properties from './pages/Properties/PropertiesPage'
 
 function App() {
   const { t } = useTranslation()
@@ -50,7 +50,7 @@ function App() {
                 path="/properties"
                 element={
                   <PrivateRoute>
-                    <PropertiesPage />
+                    <Properties />
                   </PrivateRoute>
                 }
               />

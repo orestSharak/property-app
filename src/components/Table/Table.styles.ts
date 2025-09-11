@@ -1,15 +1,11 @@
 import styled from 'styled-components'
 
-export const TableContainer = styled.div`
-  width: 100%;
-  padding: ${(p) => p.theme.spacing.lg};
-`
-
 export const StyledTable = styled.table`
   width: 100%;
   border-radius: ${(p) => p.theme.radius.md};
   box-shadow: ${(p) => p.theme.colors.boxShadow4};
   display: flex;
+  overflow: hidden;
   flex-direction: column;
 `
 export const HeaderRow = styled.tr`
@@ -18,7 +14,7 @@ export const HeaderRow = styled.tr`
   display: flex;
 `
 
-export const TableRow = styled.tr<{ isOdd: boolean }>`
+export const TableRow = styled.tr<{ $isOdd: boolean }>`
   border-bottom: 1px solid ${(p) => p.theme.colors.borderPrimary};
   display: flex;
 
@@ -30,8 +26,8 @@ export const TableRow = styled.tr<{ isOdd: boolean }>`
     border-bottom: none;
   }
 
-  background-color: ${({ isOdd, theme }) =>
-    isOdd ? theme.colors.surface7 : theme.colors.surface9};
+  background-color: ${({ $isOdd, theme }) =>
+    $isOdd ? theme.colors.surface7 : theme.colors.surface1};
 `
 
 export const TableBody = styled.tbody`
@@ -42,7 +38,7 @@ export const TableBody = styled.tbody`
 
 export const TableDataCell = styled.td<{ size?: number }>`
   flex: ${({ size }) => (size ? size : '1 0 180px')};
-  padding: ${(p) => `${p.theme.spacing.xxs} ${p.theme.spacing.md}`};
+  padding: ${(p) => `${p.theme.spacing.sm} ${p.theme.spacing.md}`};
   margin-bottom: 1px; // for a focus box shadow
   font-weight: ${(p) => p.theme.fontWeight.medium};
   font-size: ${(p) => p.theme.fontSize.md};

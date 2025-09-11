@@ -30,6 +30,7 @@ type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> &
     error?: string
     type?: HTMLInputTypeAttribute
     slotEnd?: ReactNode
+    minWidth?: number
   }
 
 /**
@@ -43,6 +44,7 @@ type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> &
  * @param {boolean} [props.hideLabel=false] - If `true`, the label is visually hidden but remains accessible to screen readers.
  * @param {string} [props.hint] - A hint text displayed below the input.
  * @param {string} [props.error] - An error message displayed below the input.
+ * @param {string} [props.minWidth] - A minimal width for the input.
  * @param {HTMLInputTypeAttribute} [props.type='text'] - The type of the input element (e.g., 'text', 'password', 'email'). If the type is 'password', a toggle icon is automatically added to show/hide the password.
  * @param {boolean} [props.required] - If `true`, a required indicator (`*`) is displayed next to the label.
  * @param {boolean} [props.disabled] - If `true`, the input is disabled and non-interactive.
@@ -94,6 +96,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       required,
       disabled,
       slotEnd,
+      minWidth,
       hideLabel = false,
       passwordToggleIcons = {
         show: <EyeIcon />,
@@ -126,11 +129,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             {required && isOverlineDirection && <LabelStar aria-hidden="true">*</LabelStar>}
           </Label>
         )}
-        <InputContainer>
+        <InputContainer $hasError={!!error}>
           <StyledInput
             $hasSlotEnd={hasSlotEnd}
             ref={ref}
             id={id}
+            $minWidth={minWidth}
             type={inputType}
             $hasError={!!error}
             required={required}

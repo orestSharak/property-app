@@ -111,7 +111,7 @@ const lightTokens = {
   boxShadow1: `0 4px 24px rgba(0, 0, 0, 0.08)`,
   boxShadow2: `0 6px 20px rgba(10, 20, 50, 0.16)`,
   boxShadow3: `0 4px 20px rgba(0, 0, 0, 0.15)`,
-  boxShadow4: `0 2px 20px 0 rgba(0, 0, 0, 0.15)`,
+  boxShadow4: `0 0 2px 0 rgba(0, 0, 0, 0.15)`,
   gradientShadow: `linear-gradient(to bottom, rgba(30, 30, 30, 0.7) 0%, rgba(10, 10, 10, 0.85) 100%
 );`,
 } as const
