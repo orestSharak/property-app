@@ -1,37 +1,29 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 
-import { Properties } from '../common/types'
+import { Property } from '../common/types'
 import { getProperties } from '../api/properties'
 import { useAuth } from '../context/AuthContext'
 
-export function useGerProperties() {
-  const [properties, setProperties] = useState<Properties[] | null>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [isError, setError] = useState<boolean>(false)
+export function useGetProperties(city?: string | null) {
   const { currentUser } = useAuth()
 
-  const refetch = useCallback(
-    async (city?: string | null) => {
-      setIsLoading(true)
-      setError(false)
+  const {
+    data: properties,
+    isLoading,
+    isError,
+    isSuccess,
+    refetch,
+  } = useQuery<Property[]>({
+    queryKey: ['properties', currentUser.uid, city],
+    queryFn: () => getProperties(currentUser.uid, city),
+    enabled: !!currentUser.uid,
+  })
 
-      try {
-        const data = await getProperties(currentUser.uid, city)
-        setProperties(data)
-      } catch (e: any) {
-        setError(true)
-        setProperties(null)
-        throw new Error('Could not get properties', e)
-      } finally {
-        setIsLoading(false)
-      }
-    },
-    [currentUser],
-  )
-
-  useEffect(() => {
-    refetch()
-  }, [refetch])
-
-  return { properties, isLoading, isError, refetch }
+  return {
+    properties,
+    isLoading,
+    isSuccess,
+    isError,
+    refetch,
+  }
 }

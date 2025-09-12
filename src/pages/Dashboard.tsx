@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react'
-import { MapContainer, TileLayer, Marker, useMap, Popup } from 'react-leaflet'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
 import L, { LatLngLiteral } from 'leaflet'
 
 import 'leaflet/dist/leaflet.css'
 import { Container } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { useGerProperties } from '../hooks/useGetProperties'
+import { useGetProperties } from '../hooks/useGetProperties'
 import { CitySelect } from '../components/CitySelect'
 import BaseImage from '../components/BaseImage'
 import { useGerCities } from '../hooks/useGetCities'
@@ -60,12 +60,12 @@ function MapMover({ position, zoom }: { position: LatLngLiteral | null; zoom: nu
 export default function Dashboard() {
   const { t } = useTranslation()
 
-  const { properties, refetch } = useGerProperties()
+  const { properties, refetch } = useGetProperties()
   const { cities } = useGerCities()
   const [selectedCity, setSelectedCity] = useState<string>('')
 
   useEffect(() => {
-    refetch(selectedCity)
+    refetch()
   }, [refetch, selectedCity, t])
 
   const markers = useMemo(

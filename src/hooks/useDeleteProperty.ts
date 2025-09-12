@@ -1,29 +1,26 @@
-import { useState, useCallback } from 'react'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { deleteProperty } from '../api/properties'
-import { useGerProperties } from './useGetProperties'
 
 export function useDeleteProperty() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState(false)
-  const { refetch } = useGerProperties()
+  const queryClient = useQueryClient()
 
-  const deleteAction = useCallback(
-    async (id: string) => {
-      setIsLoading(true)
-      setIsError(false)
+  const { mutate, isPending, isError, isSuccess, error } = useMutation({
+    mutationFn: (id: string) => deleteProperty(id),
 
-      try {
-        await deleteProperty(id)
-        await refetch()
-      } catch (error: any) {
-        setIsError(true)
-        throw new Error('Delete property failed', error)
-      } finally {
-        setIsLoading(false)
-      }
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['properties'] })
     },
-    [refetch],
-  )
 
-  return { deleteProperty: deleteAction, isLoading, isError }
+    onError: (err) => {
+      console.error('Failed to delete property:', err)
+    },
+  })
+
+  return {
+    deleteProperty: mutate,
+    isPending,
+    isError,
+    isSuccess,
+    error,
+  }
 }

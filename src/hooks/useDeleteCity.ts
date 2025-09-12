@@ -1,23 +1,26 @@
-import { useState, useCallback } from 'react'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { deleteCity } from '../api/cities'
 
 export function useDeleteCity() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState(false)
+  const queryClient = useQueryClient()
 
-  const deleteAction = useCallback(async (id: string) => {
-    setIsLoading(true)
-    setIsError(false)
+  const { mutate, isPending, isError, isSuccess, error } = useMutation({
+    mutationFn: (id: string) => deleteCity(id),
 
-    try {
-      await deleteCity(id)
-    } catch (error) {
-      setIsError(true)
-      throw new Error('Delete city failed', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }, [])
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['cities'] })
+    },
 
-  return { deleteCity: deleteAction, isLoading, isError }
+    onError: (err) => {
+      console.error('Failed to delete city:', err)
+    },
+  })
+
+  return {
+    deleteCity: mutate,
+    isPending,
+    isError,
+    isSuccess,
+    error,
+  }
 }

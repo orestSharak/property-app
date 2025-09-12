@@ -1,24 +1,27 @@
-import { useState, useCallback } from 'react'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { City } from '../common/types'
 import { updateCity } from '../api/cities'
 
 export function useUpdateCity() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState(false)
+  const queryClient = useQueryClient()
 
-  const updateCityAction = useCallback(async (id: string, updates: City) => {
-    setIsLoading(true)
-    setIsError(false)
+  const { mutate, isPending, isError, isSuccess, error } = useMutation({
+    mutationFn: ({ id, updates }: { id: string; updates: City }) => updateCity(id, updates),
 
-    try {
-      await updateCity(id, updates)
-    } catch (error) {
-      setIsError(true)
-      throw error
-    } finally {
-      setIsLoading(false)
-    }
-  }, [])
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['cities'] })
+    },
 
-  return { updateCity: updateCityAction, isLoading, isError }
+    onError: (err) => {
+      console.error('Failed to update cities:', err)
+    },
+  })
+
+  return {
+    updateCity: mutate,
+    isPending,
+    isError,
+    isSuccess,
+    error,
+  }
 }

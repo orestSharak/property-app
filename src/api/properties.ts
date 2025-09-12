@@ -1,19 +1,19 @@
 import {
-  ref,
-  push,
-  get,
-  set,
-  remove,
-  query,
-  update,
-  orderByChild,
   equalTo,
+  get,
+  orderByChild,
+  push,
+  query,
+  ref,
+  remove,
+  set,
+  update,
 } from 'firebase/database'
 
 import { db } from '../firebase'
-import { Properties } from '../common/types'
+import { Property } from '../common/types'
 
-export async function getProperties(userId: string, city?: string | null): Promise<Properties[]> {
+export async function getProperties(userId: string, city?: string | null): Promise<Property[]> {
   const propertiesRef = ref(db, 'properties')
   const propertiesQuery = query(propertiesRef, orderByChild('userId'), equalTo(userId))
 
@@ -21,7 +21,7 @@ export async function getProperties(userId: string, city?: string | null): Promi
 
   if (!snapshot.exists()) return []
 
-  const allProps = Object.values(snapshot.val()) as Properties[]
+  const allProps = Object.values(snapshot.val()) as Property[]
 
   if (city) {
     return allProps.filter((prop: any) => prop.city === city)
@@ -49,7 +49,7 @@ export async function getProperties(userId: string, city?: string | null): Promi
   // }
 }
 
-export async function createProperty(property: Properties): Promise<void> {
+export async function createProperty(property: Property): Promise<void> {
   const propertiesRef = ref(db, 'properties')
   const newPropertyRef = push(propertiesRef)
   const propertyWithId = {
@@ -64,7 +64,7 @@ export async function deleteProperty(id: string): Promise<void> {
   await remove(propertyRef)
 }
 
-export async function updateProperty(id: string, updates: Partial<Properties>): Promise<void> {
+export async function updateProperty(id: string, updates: Partial<Property>): Promise<void> {
   const propertyRef = ref(db, `properties/${id}`)
   await update(propertyRef, updates)
 }

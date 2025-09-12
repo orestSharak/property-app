@@ -12,6 +12,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.87.4",
     "@tanstack/react-table": "^8.21.3",
     "bootstrap": "^5.3.6",
     "firebase": "^11.8.1",
@@ -25,6 +26,7 @@
     "react-i18next": "^15.5.2",
     "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.6.1",
+    "react-toastify": "^11.0.5",
     "styled-components": "^6.1.19",
     "vite-plugin-svgr": "^4.5.0"
   },

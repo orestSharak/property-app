@@ -15,6 +15,7 @@ import { ThemeProvider } from './context/ThemeContext'
 import ErrorBoundary from './components/ErrorBoundary'
 import Properties from './pages/Properties/PropertiesPage'
 import PropertyDetailsPage from './pages/Property/PropertyDetailsPage'
+import { Toast } from './components/Toast/Toast'
 
 function App() {
   const { t } = useTranslation()
@@ -29,6 +30,7 @@ function App() {
         <ThemeProvider>
           <AuthProvider>
             <GlobalStyles />
+            <Toast />
             <NavbarComponent />
             <Routes>
               <Route

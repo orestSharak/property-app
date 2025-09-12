@@ -49,6 +49,7 @@ const radius = {
 
 const orderLevel = {
   selectDropdown: 20,
+  toast: 100,
   tooltip: 999,
   modalBackdrop: 1000,
 } as const
@@ -104,6 +105,11 @@ const lightTokens = {
   // Box shadows
   boxShadowAlert: '#ffd6d4',
   boxShadowInfo: '#cce0fa',
+
+  // Toast
+  toastSuccess: '#008563',
+  toastError: '#de3030',
+  toastInfo: '#4e69f4',
 
   // Other tokens
   separator: '#D9D9D9',

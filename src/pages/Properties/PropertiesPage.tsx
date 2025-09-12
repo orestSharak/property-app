@@ -1,15 +1,16 @@
 import { useTranslation } from 'react-i18next'
 import React, { memo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useGerProperties } from '../../hooks/useGetProperties'
+import { useGetProperties } from '../../hooks/useGetProperties'
 import { columnDefinition } from './columnDefinition'
 import { Modal } from '../../components/base/Modal/Modal'
 import TableLayout from '../../layout/TableLayout'
 
 const PropertiesPage = () => {
   const { t } = useTranslation()
+
   const navigate = useNavigate()
-  const { properties } = useGerProperties()
+  const { properties } = useGetProperties()
   const [addMode, setAddMode] = useState(false)
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [openAddEditModal, setOpenAddEditModal] = useState(false)

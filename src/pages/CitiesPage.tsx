@@ -33,8 +33,8 @@ function CitiesPage() {
   }, [cities])
 
   const { deleteCity } = useDeleteCity()
-  const { createCity, isLoading: isLoadingCreate, isError } = useCreateCity()
-  const { updateCity, isLoading: isLoadingUpdate } = useUpdateCity()
+  const { createCity, isPending: isLoadingCreate, isError } = useCreateCity()
+  const { updateCity, isPending: isLoadingUpdate } = useUpdateCity()
 
   const formValues = useMemo(
     () => ({
@@ -84,45 +84,44 @@ function CitiesPage() {
     async (e) => {
       e.preventDefault()
 
-      await createCity(formValues)
-        .then(() => {
+      createCity(formValues, {
+        onSuccess: () => {
           refetch()
           setNameValue('')
           setPositionValue('')
-        })
-        .catch((e) => console.log('Failed create city: ', e.message))
+        },
+      })
     },
     [createCity, formValues, refetch],
   )
 
   const handleUpdate = useCallback(
-    async (e, id: string) => {
+    (e, id: string) => {
       e.preventDefault()
 
-      await updateCity(id, updateFormValues)
-        .then(() => {
-          setUpdate(false)
-          setUpdateName('')
-          setUpdatePositionValue('')
+      updateCity(
+        { id, updates: updateFormValues },
+        {
+          onSuccess: async () => {
+            setUpdate(false)
+            setUpdateName('')
+            setUpdatePositionValue('')
 
-          refetch()
-        })
-        .catch((e) => {
-          console.log('Update City failed message: ', e.message)
-        })
+            await refetch()
+          },
+        },
+      )
     },
     [refetch, updateFormValues, updateCity],
   )
 
   const handleDelete = useCallback(
     async (id: string) => {
-      await deleteCity(id)
-        .then(() => {
-          refetch()
-        })
-        .catch((e) => {
-          console.log('Delete City failed message: ', e.message)
-        })
+      deleteCity(id, {
+        onSuccess: async () => {
+          await refetch()
+        },
+      })
     },
     [deleteCity, refetch],
   )

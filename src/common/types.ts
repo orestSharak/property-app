@@ -1,6 +1,6 @@
 import { LightPalette } from './theme'
 
-export type Properties = {
+export type Property = {
   id?: string
   name: string
   address: string

@@ -1,24 +1,48 @@
-import { useState, useCallback } from 'react'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { updateProperty } from '../api/properties'
-import { Properties } from '../common/types'
+import { Property } from '../common/types'
 
 export function useUpdateProperty() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState(false)
+  const queryClient = useQueryClient()
 
-  const updatePropertyAction = useCallback(async (id: string, updates: Properties) => {
-    setIsLoading(true)
-    setIsError(false)
+  const { mutate, isPending, isError, isSuccess, error } = useMutation({
+    mutationFn: ({ id, updates }: { id: string; updates: Property }) => updateProperty(id, updates),
 
-    try {
-      await updateProperty(id, updates)
-    } catch (error) {
-      setIsError(true)
-      throw error
-    } finally {
-      setIsLoading(false)
-    }
-  }, [])
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['properties'] })
+    },
 
-  return { updateProperty: updatePropertyAction, isLoading, isError }
+    onError: (err) => {
+      console.error('Failed to update property:', err)
+    },
+  })
+
+  return {
+    updateProperty: mutate,
+    isPending,
+    isError,
+    isSuccess,
+    error,
+  }
 }
+
+// usage example
+//   updateProperty(
+//       { id: property.id, updates },
+//       {
+//
+//         onSuccess: () => {
+//            showToast({
+//             content: t('success'),
+//              status: 'success',
+//            });
+//         },
+//
+//         onError: (err) => {
+//            showToast({
+//              content: t('error'),
+//               status: 'error',
+//             });
+//         },
+//       }
+//     );

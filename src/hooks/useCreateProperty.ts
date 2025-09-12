@@ -1,24 +1,27 @@
-import { useState, useCallback } from 'react'
-import { Properties } from '../common/types'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { Property } from '../common/types'
 import { createProperty } from '../api/properties'
 
 export function useCreateProperty() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState(false)
+  const queryClient = useQueryClient()
 
-  const createPropertyAction = useCallback(async (property: Properties) => {
-    setIsLoading(true)
-    setIsError(false)
+  const { mutate, isPending, isError, isSuccess, error } = useMutation({
+    mutationFn: (property: Property) => createProperty(property),
 
-    try {
-      await createProperty(property)
-    } catch (error) {
-      setIsError(true)
-      throw new Error('Create property failed', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }, [])
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['properties'] })
+    },
 
-  return { createProperty: createPropertyAction, isLoading, isError }
+    onError: (err) => {
+      console.error('Failed to create property:', err)
+    },
+  })
+
+  return {
+    createProperty: mutate,
+    isPending,
+    isError,
+    isSuccess,
+    error,
+  }
 }

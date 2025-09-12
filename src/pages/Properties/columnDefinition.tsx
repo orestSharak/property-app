@@ -1,11 +1,11 @@
 import { ColumnDef, createColumnHelper } from '@tanstack/react-table'
 import React from 'react'
 import { TFunction } from 'i18next'
-import { Properties } from '../../common/types'
+import { Property } from '../../common/types'
 import TextCellRenderer from '../../components/Table/cellRenderer/Text/TextCellRenderer'
 import ActionsCellRenderer from '../../components/Table/cellRenderer/Actions/ActionsCellRenderer'
 
-const columnHelper = createColumnHelper<Properties>()
+const columnHelper = createColumnHelper<Property>()
 
 export const columnDefinition: (
   // eslint-disable-next-line no-unused-vars
@@ -16,7 +16,7 @@ export const columnDefinition: (
   handleDelete: () => void,
   // eslint-disable-next-line no-unused-vars
   handleView?: (id: string) => void,
-) => ColumnDef<Properties, any>[] = (
+) => ColumnDef<Property, any>[] = (
   t: TFunction,
   handleEdit: () => void,
   handleDelete: () => void,
