@@ -131,6 +131,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         )}
         <InputContainer $hasError={!!error}>
           <StyledInput
+            autoComplete="off"
             $hasSlotEnd={hasSlotEnd}
             ref={ref}
             id={id}

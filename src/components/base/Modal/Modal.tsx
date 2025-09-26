@@ -20,9 +20,10 @@ export type ModalProps = {
   children: React.ReactNode
   primaryButton?: {
     label: string
-    onClick: () => void
+    onClick?: () => void
     disabled?: boolean
     variant?: ModalButtonVariant
+    type?: 'submit' | 'button' | 'reset'
   }
   secondaryButton?: {
     label: string

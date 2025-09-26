@@ -1,10 +1,15 @@
 import { useTranslation } from 'react-i18next'
 import React, { memo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { FormProvider, useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useGetProperties } from '../../hooks/useGetProperties'
 import { columnDefinition } from './columnDefinition'
 import { Modal } from '../../components/base/Modal/Modal'
 import TableLayout from '../../layout/TableLayout'
+import { PropertyFormData } from '../../common/types'
+import { PropertyFromSchema } from '../../common/formSchema'
+import { AddEditPropertyForm } from './AddEditPropertyForm/AddEditPropertyForm'
 
 const PropertiesPage = () => {
   const { t } = useTranslation()
@@ -16,6 +21,14 @@ const PropertiesPage = () => {
   const [openAddEditModal, setOpenAddEditModal] = useState(false)
   const [globalFilter, setGlobalFilter] = useState<string>('')
 
+  const propertyForm = useForm<PropertyFormData>({
+    resolver: zodResolver(PropertyFromSchema),
+    defaultValues: { address: '', position: '', client: '', city: '', status: 'default' },
+    mode: 'onChange',
+  })
+
+  const { handleSubmit, reset } = propertyForm
+
   const counter = properties?.length
 
   // view
@@ -23,18 +36,11 @@ const PropertiesPage = () => {
     navigate(`/properties/${id}`)
   }
   //add
-  const handleAdd = () => {
-    setOpenAddEditModal(false)
-    setAddMode(false)
-  }
   const handleOpenAddModal = () => {
     setAddMode(true)
     setOpenAddEditModal(true)
   }
   // edit
-  const handleEdit = () => {
-    setOpenAddEditModal(false)
-  }
   const handleOpenEditModal = () => {
     setOpenAddEditModal(true)
   }
@@ -47,6 +53,18 @@ const PropertiesPage = () => {
     setOpenDeleteModal(true)
   }
 
+  const onSubmitAdd = (data: PropertyFormData) => {
+    console.log('Adding property:', data)
+    setOpenAddEditModal(false)
+    setAddMode(false)
+    reset()
+  }
+
+  const onSubmitEdit = (data: PropertyFormData) => {
+    console.log('Editing property:', data)
+    setOpenAddEditModal(false)
+  }
+  // handleSubmit(addMode ? onSubmitAdd : onSubmitEdit)
   return (
     <>
       <TableLayout
@@ -89,23 +107,29 @@ const PropertiesPage = () => {
         onClose={() => {
           setOpenAddEditModal(false)
           setAddMode(false)
+          reset()
         }}
         title={addMode ? t('properties>table>addProperty') : t('properties>table>editProperty')}
         size="lg"
         primaryButton={{
           label: addMode ? t('properties>table>add') : t('properties>table>edit'),
-          onClick: addMode ? handleAdd : handleEdit,
           variant: 'primary',
+          onClick: handleSubmit(addMode ? onSubmitAdd : onSubmitEdit),
         }}
         secondaryButton={{
           label: t('properties>table>cancel'),
           onClick: () => {
             setOpenAddEditModal(false)
             setAddMode(false)
+            reset()
           },
         }}
       >
-        <span>{'Some filed will be added'}</span>
+        <form onSubmit={handleSubmit(addMode ? onSubmitAdd : onSubmitEdit)}>
+          <FormProvider {...propertyForm}>
+            <AddEditPropertyForm />
+          </FormProvider>
+        </form>
       </Modal>
     </>
   )

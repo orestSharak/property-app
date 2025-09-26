@@ -10,13 +10,13 @@ export const SelectWrapper = styled.div<{ $direction: SelectDirection }>`
       : css`
           flex-direction: row;
           align-items: baseline;
-          gap: ${(p) => p.theme.spacing.xxxl};
+          gap: ${(p) => p.theme.spacing.xl};
         `}
   display: flex;
 `
 
 export const Label = styled.label<{ disabled?: boolean; $direction: SelectDirection }>`
-  width: 100px;
+  width: 155px;
   margin-bottom: ${(p) => p.theme.spacing.xxs};
   color: ${({ disabled, theme, $direction }) =>
     disabled
@@ -38,7 +38,6 @@ export const LabelStar = styled.span`
 export const SelectContainer = styled.div`
   position: relative;
   width: 100%;
-  margin-bottom: ${(p) => p.theme.spacing.md};
 `
 
 export const StyledButton = styled.button<{

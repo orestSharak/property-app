@@ -80,6 +80,22 @@
       "editProperty": "Edit property"
     }
   },
+  "propertyModal": {
+    "address": "Address",
+    "addressPlaceholder": "Type address",
+    "positionDetails": "Position details",
+    "positionPlaceholder": "Paste coordinates",
+    "isRequired": "Field is required",
+    "wrongPositionFormat": "Wrong format. Example: 51.12199, 17.04582",
+    "city": "City",
+    "selectCity": "Select city",
+    "client": "Client",
+    "selectClient": "Select client",
+    "status": "Status",
+    "selectStatus": "Select status",
+    "contract": "Contract",
+    "news": "News"
+  },
   "form": {
     "email": "Email",
     "password": "Password",

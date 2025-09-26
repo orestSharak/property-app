@@ -80,6 +80,22 @@
       "editProperty": "Modifica proprietà"
     }
   },
+  "propertyModal": {
+    "indirizzo": "Indirizzo",
+    "addressPlaceholder": "Digita l'indirizzo",
+    "positionPlaceholder": "Incolla coordinate",
+    "positionDetails": "Dettagli della posizione",
+    "isRequired": "Il campo è obbligatorio",
+    "wrongPositionFormat": "Formato errato. Esempio: 51.12199, 17.04582",
+    "city": "Città",
+    "selectCity": "Seleziona città",
+    "client": "Cliente",
+    "selectClient": "Seleziona cliente",
+    "status": "Stato",
+    "selectStatus": "Seleziona stato",
+    "contract": "Contratto",
+    "news": "Notizie"
+  },
   "form": {
     "email": "Email",
     "password": "Password",

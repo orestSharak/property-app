@@ -18,7 +18,7 @@ export const IconContainer = styled.div`
 `
 
 export const Label = styled.label<{ disabled?: boolean; $direction: InputDirection }>`
-  width: 100px;
+  width: 155px;
   margin-bottom: ${(p) => p.theme.spacing.xxs};
   color: ${({ disabled, theme, $direction }) =>
     disabled
@@ -58,7 +58,7 @@ export const InputWrap = styled.div<{ $direction: InputDirection }>`
       : css`
           flex-direction: row;
           align-items: baseline;
-          gap: ${(p) => p.theme.spacing.xxxl};
+          gap: ${(p) => p.theme.spacing.xl};
         `}
   display: flex;
 `
@@ -68,7 +68,6 @@ export const InputContainer = styled.div<{ $hasError?: boolean }>`
   width: 100%;
   flex-direction: column;
   position: relative;
-  margin-bottom: ${({ $hasError, theme }) => ($hasError ? theme.spacing.md : undefined)};
 `
 
 export const StyledInput = styled.input<{
@@ -93,6 +92,30 @@ export const StyledInput = styled.input<{
   font-size: ${(p) => p.theme.fontSize.sm};
   font-weight: ${(p) => p.theme.fontWeight.normal};
   transition: all 0.2s;
+
+  &::placeholder {
+    opacity: 0.55;
+    font-size: ${(p) => p.theme.fontSize.md};
+    color: ${(p) => p.theme.colors.textSecondary};
+  }
+
+  &::-webkit-input-placeholder {
+    opacity: 0.55;
+    font-size: ${(p) => p.theme.fontSize.md};
+    color: ${(p) => p.theme.colors.textSecondary};
+  }
+
+  &:-ms-input-placeholder {
+    opacity: 0.55;
+    font-size: ${(p) => p.theme.fontSize.md};
+    color: ${(p) => p.theme.colors.textSecondary};
+  }
+
+  &::-ms-input-placeholder {
+    opacity: 0.55;
+    font-size: ${(p) => p.theme.fontSize.md};
+    color: ${(p) => p.theme.colors.textSecondary};
+  }
 
   &:focus,
   &:focus-visible,

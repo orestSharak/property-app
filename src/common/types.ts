@@ -1,4 +1,6 @@
+import { z } from 'zod'
 import { LightPalette } from './theme'
+import { PropertyFromSchema } from './formSchema'
 
 export type Property = {
   id?: string
@@ -50,3 +52,5 @@ export type MarkerDataFull = Omit<MarkerData, 'position'> & {
 }
 
 export type AppTheme = typeof LightPalette
+
+export type PropertyFormData = z.infer<typeof PropertyFromSchema>
