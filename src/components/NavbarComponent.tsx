@@ -33,11 +33,11 @@ const NavbarComponent = () => {
     const currentLang = i18n.language
 
     if (currentLang === 'en') {
-      return t('navbar>it')
+      return t('sidebar>it')
     } else if (currentLang === 'it') {
-      return t('navbar>en')
+      return t('sidebar>en')
     } else {
-      return t('navbar>it')
+      return t('sidebar>it')
     }
   }
 
@@ -48,26 +48,26 @@ const NavbarComponent = () => {
           {currentUser && (
             <>
               <Nav.Link as={Link} to="/dashboard">
-                {t('navbar>dashboard')}
+                {t('sidebar>dashboard')}
               </Nav.Link>
               <Nav.Link as={Link} to="/properties">
-                {t('navbar>properties')}
+                {t('sidebar>properties')}
               </Nav.Link>
               <Nav.Link as={Link} to="/cities">
-                {t('navbar>cities')}
+                {t('sidebar>cities')}
               </Nav.Link>
               <Nav.Link as={Link} to="/settings">
-                {t('navbar>settings')}
+                {t('sidebar>settings')}
               </Nav.Link>
             </>
           )}
         </Nav>
         <Nav>
           {currentUser ? (
-            <Nav.Link onClick={handleLogOut}> {t('navbar>logOut')}</Nav.Link>
+            <Nav.Link onClick={handleLogOut}> {t('sidebar>logOut')}</Nav.Link>
           ) : (
             <Nav.Link as={Link} to="/login">
-              {t('navbar>logIn')}
+              {t('sidebar>logIn')}
             </Nav.Link>
           )}
         </Nav>

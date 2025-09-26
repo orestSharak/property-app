@@ -5,17 +5,16 @@ import { AuthProvider } from './context/AuthContext'
 import PrivateRoute from './components/PrivateRoute'
 import Login from './pages/Login'
 import PageNotFound from './pages/PageNotFound'
-import NavbarComponent from './components/NavbarComponent'
 import Dashboard from './pages/Dashboard'
 import CitiesPage from './pages/CitiesPage'
 import GlobalStyles from './common/globalStyles'
-import './App.css'
 import Settings from './pages/Settings'
 import { ThemeProvider } from './context/ThemeContext'
 import ErrorBoundary from './components/ErrorBoundary'
-import Properties from './pages/Properties/PropertiesPage'
+import PropertiesPage from './pages/Properties/PropertiesPage'
 import PropertyDetailsPage from './pages/Property/PropertyDetailsPage'
 import { Toast } from './components/Toast/Toast'
+import PageLayout from './layout/PageLayout/PageLayout'
 
 function App() {
   const { t } = useTranslation()
@@ -31,13 +30,14 @@ function App() {
           <AuthProvider>
             <GlobalStyles />
             <Toast />
-            <NavbarComponent />
             <Routes>
               <Route
                 path="/dashboard"
                 element={
                   <PrivateRoute>
-                    <Dashboard />
+                    <PageLayout>
+                      <Dashboard />
+                    </PageLayout>
                   </PrivateRoute>
                 }
               />
@@ -45,7 +45,9 @@ function App() {
                 path="/cities"
                 element={
                   <PrivateRoute>
-                    <CitiesPage />
+                    <PageLayout>
+                      <CitiesPage />
+                    </PageLayout>
                   </PrivateRoute>
                 }
               />
@@ -53,7 +55,9 @@ function App() {
                 path="/properties"
                 element={
                   <PrivateRoute>
-                    <Properties />
+                    <PageLayout>
+                      <PropertiesPage />
+                    </PageLayout>
                   </PrivateRoute>
                 }
               />
@@ -61,7 +65,9 @@ function App() {
                 path="/properties/:id"
                 element={
                   <PrivateRoute>
-                    <PropertyDetailsPage />
+                    <PageLayout>
+                      <PropertyDetailsPage />
+                    </PageLayout>
                   </PrivateRoute>
                 }
               />
@@ -69,7 +75,9 @@ function App() {
                 path="/settings"
                 element={
                   <PrivateRoute>
-                    <Settings />
+                    <PageLayout>
+                      <Settings />
+                    </PageLayout>
                   </PrivateRoute>
                 }
               />

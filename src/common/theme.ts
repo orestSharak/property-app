@@ -1,4 +1,4 @@
-export const sidebarWidth = '212px'
+export const sidebarWidth = '250px'
 
 const fontWeight = {
   hairline: '100',
@@ -37,6 +37,7 @@ const spacing = {
   xl: '24px',
   xxl: '36px',
   xxxl: '48px',
+  max: '72px',
 } as const
 
 const radius = {

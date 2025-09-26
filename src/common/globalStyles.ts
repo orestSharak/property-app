@@ -17,6 +17,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
+  html {
+    background-color: ${({ theme }) => theme.colors.surface3};
+  }
+
   /* 3. Enable keyword animations */
   @media (prefers-reduced-motion: no-preference) {
     html {
@@ -29,6 +33,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.5;
     /* 5. Improve text rendering */
     -webkit-font-smoothing: antialiased;
+    background-color: ${({ theme }) => theme.colors.surface3};
   }
 
   /* 6. Improve media defaults */
@@ -59,8 +64,8 @@ const GlobalStyle = createGlobalStyle`
   /*
     10. Create a root stacking context
   */
-  #root {
-    min-height: 100vh;
+  :root {
+    background-color: ${({ theme }) => theme.colors.surface3} !important;
   }
 
   #root, #__next {

@@ -23,10 +23,10 @@ const modalSizeStyles = (size: ModalSize, theme: AppTheme) => {
     case 'lg':
       return css`
         min-height: 280px;
-        height: calc(100vh - (${theme.spacing.md} + ${theme.spacing.md}));
+        height: calc(100vh - (${theme.spacing.sm} + ${theme.spacing.sm}));
         border-radius: ${theme.radius.md};
         margin-left: auto;
-        right: ${theme.spacing.sm};
+        right: ${theme.spacing.xxs};
         animation: ${fadeIn} 0.2s ease-out;
       `
     default:
@@ -36,14 +36,14 @@ const modalSizeStyles = (size: ModalSize, theme: AppTheme) => {
 
 export const StyledBackdrop = styled.div`
   position: fixed;
-  top: ${(p) => p.theme.spacing.xs};
+  top: ${(p) => p.theme.spacing.sm};
   left: ${sidebarWidth};
   width: ${(p) => `calc(100% - ${p.theme.spacing.xs} - ${sidebarWidth})`};
   height: ${(p) => `calc(100% - ${p.theme.spacing.md})`};
   z-index: ${(p) => p.theme.orderLevel.modalBackdrop};
-  border-radius: ${(p) => p.theme.radius.md};
+  border-radius: ${(p) => p.theme.radius.lg};
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
   background: ${(p) => p.theme.colors.gradientShadow};
   animation: ${fadeIn} 0.2s ease-out;

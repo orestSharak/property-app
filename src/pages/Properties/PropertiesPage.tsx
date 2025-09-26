@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useGetProperties } from '../../hooks/useGetProperties'
 import { columnDefinition } from './columnDefinition'
 import { Modal } from '../../components/base/Modal/Modal'
-import TableLayout from '../../layout/TableLayout'
+import TableLayout from '../../layout/TableLayout/TableLayout'
 import { PropertyFormData } from '../../common/types'
 import { PropertyFromSchema } from '../../common/formSchema'
 import { AddEditPropertyForm } from './AddEditPropertyForm/AddEditPropertyForm'
@@ -64,7 +64,7 @@ const PropertiesPage = () => {
     console.log('Editing property:', data)
     setOpenAddEditModal(false)
   }
-  // handleSubmit(addMode ? onSubmitAdd : onSubmitEdit)
+
   return (
     <>
       <TableLayout

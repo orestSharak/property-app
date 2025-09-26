@@ -2,11 +2,11 @@ import React, { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ColumnDef } from '@tanstack/react-table'
 import { TopContainer, TopSection, Wrapper } from './TableLayout.styles'
-import { Header } from '../components/Header/Header'
-import { Input } from '../components/base/Input/Input'
-import SearchIcon from '../assets/icons/search-icon.svg'
-import { Button } from '../components/base/Button/Button'
-import Table from '../components/Table/Table'
+import { Header } from '../../components/Header/Header'
+import { Input } from '../../components/base/Input/Input'
+import SearchIcon from '../../assets/icons/search-icon.svg'
+import { Button } from '../../components/base/Button/Button'
+import Table from '../../components/Table/Table'
 
 type TableLayoutProps = {
   title: string
