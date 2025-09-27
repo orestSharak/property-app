@@ -13,6 +13,7 @@ import MarkerIcon from '../../assets/icons/marker-icon.svg'
 import ClientsIcon from '../../assets/icons/clients-icon.svg'
 import PropertyIcon from '../../assets/icons/property-icon.svg'
 import GlobeIcon from '../../assets/icons/globe-icon.svg'
+import SettingsIcon from '../../assets/icons/settings-icon.svg'
 import { useAuth } from '../../context/AuthContext'
 import UserDetails from './UserDetails/UserDetails'
 
@@ -25,7 +26,7 @@ const Sidebar = () => {
     { name: t('sidebar>cities'), path: '/cities', icon: <MarkerIcon /> },
     { name: t('sidebar>clients'), path: '/clients', icon: <ClientsIcon /> },
     { name: t('sidebar>properties'), path: '/properties', icon: <PropertyIcon /> },
-    { name: t('sidebar>settings'), path: '/settings', icon: <PropertyIcon /> },
+    { name: t('sidebar>settings'), path: '/settings', icon: <SettingsIcon /> },
   ]
 
   const handleLanguageToggle = async () => {
