@@ -2,16 +2,15 @@ import styled from 'styled-components'
 
 export const MainWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: ${(p) => p.theme.spacing.xxxl};
+  gap: ${(p) => p.theme.spacing.max};
+  flex-wrap: wrap;
 `
 
 export const Wrapper = styled.div`
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: ${(p) => p.theme.spacing.max};
+  flex-direction: column;
+  gap: ${(p) => p.theme.spacing.xl};
+  flex: 1;
 `
 
 export const Container = styled.div`
@@ -33,10 +32,6 @@ export const ButtonSection = styled.div`
   align-items: center;
   gap: ${(p) => p.theme.spacing.sm};
   margin-left: auto;
-`
-export const CardWrapper = styled.div`
-  flex: 1;
-  min-width: 370px;
 `
 
 export const NotesWrapper = styled.div`

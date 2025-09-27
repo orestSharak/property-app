@@ -1,11 +1,10 @@
 import React, { memo, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   ButtonSection,
-  CardWrapper,
   Container,
   HeaderSection,
   MainWrapper,
@@ -40,7 +39,7 @@ const mockClientDetails = {
       id: '-OS4v86vbW4tQue7yzdY',
       position: '51.110829023797024, 17.031042982059372',
       label: 'Bastion Sakwowy 26/2',
-      status: 'default' as Status,
+      status: 'news' as Status,
       clientId: '123',
       clientFullName: 'Alessandro Curti',
       clientEmail: 'test@test.com',
@@ -129,7 +128,7 @@ const ClientDetailsPage = () => {
 
   return (
     <MainWrapper>
-      <Wrapper>
+      <div>
         <Container>
           <HeaderSection>
             <IconButton icon={<ArrowIcon />} title={t('clientDetails>back')} onClick={handleBack} />
@@ -158,25 +157,18 @@ const ClientDetailsPage = () => {
             <InfoRow label={t('clientDetails>phone')} value={mockClientDetails.phone} />
           </Card>
         </Container>
-        <CardWrapper>
-          {mockClientDetails.markers?.map((marker) => (
-            <Card key={marker.id} header={marker.label} link={`/properties/${marker.id}`}>
-              <Map height={260} markers={[marker]} />
-            </Card>
-          ))}
-        </CardWrapper>
-      </Wrapper>
-      <Wrapper>
         <Container>
-          <Header hideCount size="sm" title={t('clientDetails>notes')} />
           {!!mockClientDetails.notes.length && (
-            <NotesWrapper>
-              {mockClientDetails.notes.map((note) => (
-                <Card key={note.id} date={note.cratedAt}>
-                  {note.text}
-                </Card>
-              ))}
-            </NotesWrapper>
+            <>
+              <Header hideCount size="sm" title={t('clientDetails>notes')} />
+              <NotesWrapper>
+                {mockClientDetails.notes.map((note) => (
+                  <Card key={note.id} date={note.cratedAt}>
+                    {note.text}
+                  </Card>
+                ))}
+              </NotesWrapper>
+            </>
           )}
           <Header marginBottom={6} hideCount size="sm" title={t('clientDetails>addNote')} />
           <TextAreaWrapper>
@@ -192,6 +184,13 @@ const ClientDetailsPage = () => {
             </Button>
           </TextAreaWrapper>
         </Container>
+      </div>
+      <Wrapper>
+        {mockClientDetails.markers?.map((marker) => (
+          <Card key={marker.id} header={marker.label} link={`/properties/${marker.id}`}>
+            <Map height={260} markers={[marker]} />
+          </Card>
+        ))}
       </Wrapper>
       {/* --- Delete Modal --- */}
       <Modal
@@ -209,9 +208,11 @@ const ClientDetailsPage = () => {
           onClick: () => setOpenDeleteModal(false),
         }}
       >
-        {t('clientDetails>sureWantDelete', {
-          client: `${mockClientDetails.name} ${mockClientDetails.surname}`,
-        })}
+        <Trans
+          i18nKey="clientDetails>sureWantDelete"
+          values={{ client: `${mockClientDetails.name} ${mockClientDetails.surname}` }}
+          components={{ bold: <strong /> }}
+        />
       </Modal>
 
       {/* --- Edit Modal --- */}

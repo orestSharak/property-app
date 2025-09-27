@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -165,15 +165,17 @@ const PropertyDetailsPage = () => {
       </Wrapper>
       <Wrapper>
         <Container>
-          <Header hideCount size="sm" title={t('propertyDetails>notes')} />
           {!!mockPropertyDetails.notes.length && (
-            <NotesWrapper>
-              {mockPropertyDetails.notes.map((note) => (
-                <Card key={note.id} date={note.cratedAt}>
-                  {note.text}
-                </Card>
-              ))}
-            </NotesWrapper>
+            <>
+              <Header hideCount size="sm" title={t('propertyDetails>notes')} />
+              <NotesWrapper>
+                {mockPropertyDetails.notes.map((note) => (
+                  <Card key={note.id} date={note.cratedAt}>
+                    {note.text}
+                  </Card>
+                ))}
+              </NotesWrapper>
+            </>
           )}
           <Header marginBottom={6} hideCount size="sm" title={t('propertyDetails>addNote')} />
           <TextAreaWrapper>
@@ -230,7 +232,11 @@ const PropertyDetailsPage = () => {
           onClick: () => setOpenDeleteModal(false),
         }}
       >
-        {t('propertyDetails>sureWantDelete', { address: mockPropertyDetails.address })}
+        <Trans
+          i18nKey="propertyDetails>sureWantDelete"
+          values={{ address: mockPropertyDetails.address }}
+          components={{ bold: <strong /> }}
+        />
       </Modal>
 
       {/* --- Edit Modal --- */}
