@@ -100,7 +100,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
               &times;
             </CloseButton>
           </ModalHeader>
-          <ModalBody>{children}</ModalBody>
+          <ModalBody $size={size}>{children}</ModalBody>
           {(primaryButton || secondaryButton) && (
             <ModalFooter>
               {secondaryButton && (

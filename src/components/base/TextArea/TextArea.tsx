@@ -66,7 +66,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           <StyledTextArea
             ref={ref}
             id={id}
-            hasError={!!error}
+            $hasError={!!error}
             required={required}
             disabled={disabled}
             aria-invalid={!!error || undefined}

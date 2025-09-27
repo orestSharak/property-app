@@ -1,22 +1,13 @@
-import { memo } from 'react'
+import { memo, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Container, Label, Value } from './InfoRow.styles'
 import { Status } from '../../common/types'
+import { EMPTY_VALUE } from '../../common/constants'
 
 type InfoRowProps = {
   label: string
   value: string
   valueVariant?: Status
-}
-
-function _InfoRow(props: InfoRowProps) {
-  const { label, value, valueVariant } = props
-
-  return (
-    <Container>
-      <Label>{label}</Label>
-      <Value variant={valueVariant}>{value}</Value>
-    </Container>
-  )
 }
 
 /**
@@ -38,4 +29,25 @@ function _InfoRow(props: InfoRowProps) {
  * // Displaying a user's status with a success variant
  * <InfoRow label="Status" value="Active" valueVariant={Status.NEWS} />
  */
-export const InfoRow = memo(_InfoRow)
+const InfoRow = memo((props: InfoRowProps) => {
+  const { t } = useTranslation()
+
+  const { label, value, valueVariant } = props
+
+  const getValue = useCallback(() => {
+    if (!valueVariant) return value
+    if (value !== 'default') return t(`infoRow>${value}`)
+
+    return EMPTY_VALUE
+  }, [valueVariant, value, t])
+
+  return (
+    <Container>
+      <Label>{label}</Label>
+      <Value $variant={valueVariant}>{getValue()}</Value>
+    </Container>
+  )
+})
+
+InfoRow.displayName = 'InfoRow'
+export { InfoRow }

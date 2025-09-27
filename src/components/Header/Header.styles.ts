@@ -8,12 +8,12 @@ export const Container = styled.header`
   gap: 1rem;
 `
 
-export const Title = styled.h1<{ $size: Size }>`
+export const Title = styled.h1<{ $size: Size; $marginBottom?: number }>`
   color: ${(p) => p.theme.colors.textStrong};
-  font-size: ${({ $size, theme }) => ($size === 'lg' ? theme.fontSize.xl : theme.fontSize.md)};
+  font-size: ${({ $size, theme }) => ($size === 'lg' ? theme.fontSize.xl : theme.fontSize.lg)};
   font-weight: ${({ $size, theme }) =>
-    $size === 'lg' ? theme.fontWeight.semibold : theme.fontWeight.medium};
-  margin: 0;
+    $size === 'lg' ? theme.fontWeight.semibold : theme.fontWeight.bold};
+  margin: ${({ $marginBottom }) => ($marginBottom ? `0 0 ${$marginBottom}px 0` : 0)};
 `
 
 export const Count = styled.span`

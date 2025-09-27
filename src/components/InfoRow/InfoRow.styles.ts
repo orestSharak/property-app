@@ -15,9 +15,9 @@ export const Label = styled.span`
   min-width: 80px;
 `
 
-export const Value = styled.span<{ variant: Status }>`
-  color: ${({ theme, variant }) => {
-    switch (variant) {
+export const Value = styled.span<{ $variant: Status }>`
+  color: ${({ theme, $variant }) => {
+    switch ($variant) {
       case 'news':
         return theme.colors.textInfo
       case 'contract':

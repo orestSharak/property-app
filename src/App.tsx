@@ -15,6 +15,7 @@ import PropertiesPage from './pages/Properties/PropertiesPage'
 import PropertyDetailsPage from './pages/Property/PropertyDetailsPage'
 import { Toast } from './components/Toast/Toast'
 import PageLayout from './layout/PageLayout/PageLayout'
+import ClientDetailsPage from './pages/Client/ClientDetailsPage'
 
 function App() {
   const { t } = useTranslation()
@@ -67,6 +68,16 @@ function App() {
                   <PrivateRoute>
                     <PageLayout>
                       <PropertyDetailsPage />
+                    </PageLayout>
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/clients/:id"
+                element={
+                  <PrivateRoute>
+                    <PageLayout>
+                      <ClientDetailsPage />
                     </PageLayout>
                   </PrivateRoute>
                 }

@@ -30,6 +30,7 @@ export const HintText = styled.div`
 export const TextAreaWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `
 
 export const TextAreaContainer = styled.div`
@@ -40,8 +41,7 @@ export const TextAreaContainer = styled.div`
 `
 
 export const StyledTextArea = styled.textarea<{
-  hasError?: boolean
-  slotEnd?: boolean
+  $hasError?: boolean
 }>`
   min-height: 130px;
   width: 100%;
@@ -49,7 +49,7 @@ export const StyledTextArea = styled.textarea<{
   height: 40px;
   padding: ${({ theme }) => theme.spacing.sm};
   border: 1px solid
-    ${({ hasError, theme }) => (hasError ? theme.colors.borderAlert : theme.colors.borderPrimary)};
+    ${({ $hasError, theme }) => ($hasError ? theme.colors.borderAlert : theme.colors.borderPrimary)};
   border-radius: ${(p) => p.theme.radius.md};
   background: ${(p) => p.theme.colors.surface1};
   color: ${(p) => p.theme.colors.textMain};
@@ -61,11 +61,11 @@ export const StyledTextArea = styled.textarea<{
   &:focus-visible,
   &:focus-within {
     outline: none;
-    border-color: ${({ hasError, theme }) =>
-      hasError ? theme.colors.borderAlert : theme.colors.borderPrimary};
+    border-color: ${({ $hasError, theme }) =>
+      $hasError ? theme.colors.borderAlert : theme.colors.borderPrimary};
     box-shadow: 0 0 0 2px
-      ${({ hasError, theme }) =>
-        hasError ? theme.colors.boxShadowAlert : theme.colors.boxShadowInfo};
+      ${({ $hasError, theme }) =>
+        $hasError ? theme.colors.boxShadowAlert : theme.colors.boxShadowInfo};
   }
 
   &:disabled,

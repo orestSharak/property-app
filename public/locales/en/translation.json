@@ -82,6 +82,40 @@
       "editProperty": "Edit property"
     }
   },
+  "clientModal": {
+    "name": "Name",
+    "namePlaceholder": "Type name",
+    "surname": "Surname",
+    "surnamePlaceholder": "Type surname",
+    "address": "Address",
+    "addressPlaceholder": "Type address",
+    "isRequired": "Field is required",
+    "city": "City",
+    "selectCity": "Select city",
+    "email": "Email",
+    "emailPlaceholder": "Type email",
+    "phone": "Phone",
+    "phonePlaceholder": "Type phone number"
+  },
+  "clientDetails": {
+    "title": "Details of Client",
+    "back": "Back",
+    "edit": "Edit",
+    "delete": "Delete",
+    "address": "Address",
+    "city": "City",
+    "deleteClient": "Delete client",
+    "cancel": "Cancel",
+    "sureWantDelete": "Are you sure you want to delete this client: {{client}}?",
+    "editClient": "Edit client",
+    "clientDetails": "Client details",
+    "fullName": "Full name",
+    "email": "Email",
+    "phone": "Phone",
+    "addNote": "Add note",
+    "notes": "Notes",
+    "add": "Add"
+  },
   "propertyModal": {
     "address": "Address",
     "addressPlaceholder": "Type address",
@@ -95,6 +129,31 @@
     "selectClient": "Select client",
     "status": "Status",
     "selectStatus": "Select status",
+    "contract": "Contract",
+    "news": "News",
+    "positionError": "New city has been selected, please edit position"
+  },
+  "propertyDetails": {
+    "title": "Details of Property",
+    "back": "Back",
+    "edit": "Edit",
+    "delete": "Delete",
+    "address": "Address",
+    "city": "City",
+    "status": "Status",
+    "deleteProperty": "Delete property",
+    "cancel": "Cancel",
+    "sureWantDelete": "Are you sure you want to delete the property at address: {{address}}?",
+    "editProperty": "Edit property",
+    "clientDetails": "Client details",
+    "fullName": "Full name",
+    "email": "Email",
+    "phone": "Phone",
+    "addNote": "Add note",
+    "notes": "Notes",
+    "add": "Add"
+  },
+  "infoRow": {
     "contract": "Contract",
     "news": "News"
   },

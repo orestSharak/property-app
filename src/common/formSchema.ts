@@ -22,3 +22,14 @@ export const PropertyFromSchema = z.object({
     .string({ error: (issue) => issue.input === undefined && 'isRequired' })
     .min(1, 'isRequired'),
 })
+
+export const ClientFromSchema = z.object({
+  name: z.string().min(1, 'isRequired'),
+  surname: z.string().min(1, 'isRequired'),
+  city: z
+    .string({ error: (issue) => issue.input === undefined && 'isRequired' })
+    .min(1, 'isRequired'),
+  address: z.string().min(1, 'isRequired'),
+  email: z.email().min(1, 'isRequired'),
+  phone: z.string(),
+})

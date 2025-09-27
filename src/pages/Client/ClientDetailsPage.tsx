@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -12,7 +12,7 @@ import {
   NotesWrapper,
   TextAreaWrapper,
   Wrapper,
-} from './PropertyDetailsPage.styles'
+} from './ClientDetailsPage.styles'
 import { Header } from '../../components/Header/Header'
 import { IconButton } from '../../components/base/IconButton/IconButton'
 import ArrowIcon from '../../assets/icons/arrow-left-icon.svg'
@@ -20,28 +20,43 @@ import EditIcon from '../../assets/icons/pencil-icon.svg'
 import DeleteIcon from '../../assets/icons/delete-icon.svg'
 import { Card } from '../../components/base/Card/Card'
 import { InfoRow } from '../../components/InfoRow/InfoRow'
-import { PropertyFormData, Status } from '../../common/types'
+import { ClientFormData, Status } from '../../common/types'
 import { Map } from '../../components/Map/Map'
 import { Modal } from '../../components/base/Modal/Modal'
-import { AddEditPropertyForm } from '../Properties/AddEditPropertyForm/AddEditPropertyForm'
-import { PropertyFromSchema } from '../../common/formSchema'
+import { ClientFromSchema } from '../../common/formSchema'
 import { TextArea } from '../../components/base/TextArea/TextArea'
 import { Button } from '../../components/base/Button/Button'
+import { AddEditClientForm } from '../Clients/AddEditClientForm/AddEditClientForm'
 
-const mockPropertyDetails = {
+const mockClientDetails = {
+  name: 'Alessandro',
+  surname: 'Curti',
   address: 'ul. Powstancow Slaskich 12/87',
   city: 'Wroclaw',
-  status: 'contract',
-  markerDetails: {
-    id: '1',
-    position: '51.110829023797024, 17.031042982059372',
-    label: 'Bastion Sakwowy 26/2',
-    status: 'news' as Status,
-    clientId: '123',
-    clientFullName: 'Alessandro Curti',
-    clientEmail: 'test@test.com',
-    clientPhone: '+39 122 232 224',
-  },
+  email: 'test@test.com',
+  phone: '123122323',
+  markers: [
+    {
+      id: '-OS4v86vbW4tQue7yzdY',
+      position: '51.110829023797024, 17.031042982059372',
+      label: 'Bastion Sakwowy 26/2',
+      status: 'default' as Status,
+      clientId: '123',
+      clientFullName: 'Alessandro Curti',
+      clientEmail: 'test@test.com',
+      clientPhone: '+39 122 232 224',
+    },
+    {
+      id: '2',
+      position: '51.10672787447582, 17.034312448691953',
+      label: 'Wesola 3',
+      status: 'contract' as Status,
+      clientId: '123',
+      clientFullName: 'Alessandro Curti',
+      clientEmail: 'test@test.com',
+      clientPhone: '+39 122 232 224',
+    },
+  ],
   notes: [
     {
       id: '1',
@@ -61,38 +76,27 @@ const mockPropertyDetails = {
   ],
 }
 
-const PropertyDetailsPage = () => {
+const ClientDetailsPage = () => {
   const { t } = useTranslation()
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [openEditModal, setOpenEditModal] = useState(false)
   const [note, setNote] = useState('')
   const navigate = useNavigate()
 
-  const propertyForm = useForm<PropertyFormData>({
-    resolver: zodResolver(PropertyFromSchema),
+  const clientForm = useForm<ClientFormData>({
+    resolver: zodResolver(ClientFromSchema),
     defaultValues: {
-      address: mockPropertyDetails.address,
-      position: mockPropertyDetails.markerDetails.position,
-      client: mockPropertyDetails.markerDetails.clientFullName,
-      city: mockPropertyDetails.city,
-      status: mockPropertyDetails.status,
+      name: mockClientDetails.name,
+      surname: mockClientDetails.surname,
+      city: mockClientDetails.city,
+      address: mockClientDetails.address,
+      email: mockClientDetails.email,
+      phone: mockClientDetails.phone,
     },
     mode: 'onChange',
   })
 
-  const { handleSubmit, setError, watch, clearErrors } = propertyForm
-  const city = watch('city')
-
-  useEffect(() => {
-    if (city !== mockPropertyDetails.city) {
-      setError('position', {
-        type: 'custom',
-        message: 'positionError',
-      })
-    } else {
-      clearErrors('position')
-    }
-  }, [city, clearErrors, setError, t])
+  const { handleSubmit } = clientForm
 
   const handleBack = () => {
     navigate(-1)
@@ -108,8 +112,8 @@ const PropertyDetailsPage = () => {
     setOpenEditModal(true)
   }
 
-  const onSubmitEdit = (data: PropertyFormData) => {
-    console.log('Editing property:', data)
+  const onSubmitEdit = (data: ClientFormData) => {
+    console.log('Editing Client:', data)
     setOpenEditModal(false)
   }
 
@@ -119,7 +123,7 @@ const PropertyDetailsPage = () => {
 
   const handleNote = (note: string) => {
     console.log('note', note)
-    // TODO: add mutation for property notes array
+    // TODO: add mutation for client notes array
     setNote('')
   }
 
@@ -128,109 +132,86 @@ const PropertyDetailsPage = () => {
       <Wrapper>
         <Container>
           <HeaderSection>
-            <IconButton
-              icon={<ArrowIcon />}
-              title={t('propertyDetails>back')}
-              onClick={handleBack}
-            />
-            <Header hideCount title={t('propertyDetails>title')} />
+            <IconButton icon={<ArrowIcon />} title={t('clientDetails>back')} onClick={handleBack} />
+            <Header hideCount title={t('clientDetails>title')} />
             <ButtonSection>
               <IconButton
                 icon={<EditIcon />}
-                title={t('propertyDetails>edit')}
+                title={t('clientDetails>edit')}
                 onClick={handleEditModal}
               />
               <IconButton
                 icon={<DeleteIcon />}
-                title={t('propertyDetails>delete')}
+                title={t('clientDetails>delete')}
                 onClick={handleOpenDeleteModal}
               />
             </ButtonSection>
           </HeaderSection>
           <Card hasList>
-            <InfoRow label={t('propertyDetails>address')} value={mockPropertyDetails.address} />
-            <InfoRow label={t('propertyDetails>city')} value={mockPropertyDetails.city} />
             <InfoRow
-              label={t('propertyDetails>status')}
-              value={mockPropertyDetails.status}
-              valueVariant={mockPropertyDetails.status as Status}
+              label={t('clientDetails>fullName')}
+              value={`${mockClientDetails.name} ${mockClientDetails.surname}`}
             />
+            <InfoRow label={t('clientDetails>city')} value={mockClientDetails.city} />
+            <InfoRow label={t('clientDetails>address')} value={mockClientDetails.address} />
+            <InfoRow label={t('clientDetails>email')} value={mockClientDetails.email} />
+            <InfoRow label={t('clientDetails>phone')} value={mockClientDetails.phone} />
           </Card>
         </Container>
         <CardWrapper>
-          <Card compact>
-            <Map height={260} markers={[mockPropertyDetails.markerDetails]} />
-          </Card>
+          {mockClientDetails.markers?.map((marker) => (
+            <Card key={marker.id} header={marker.label} link={`/properties/${marker.id}`}>
+              <Map height={260} markers={[marker]} />
+            </Card>
+          ))}
         </CardWrapper>
       </Wrapper>
       <Wrapper>
         <Container>
-          <Header hideCount size="sm" title={t('propertyDetails>notes')} />
-          {!!mockPropertyDetails.notes.length && (
+          <Header hideCount size="sm" title={t('clientDetails>notes')} />
+          {!!mockClientDetails.notes.length && (
             <NotesWrapper>
-              {mockPropertyDetails.notes.map((note) => (
+              {mockClientDetails.notes.map((note) => (
                 <Card key={note.id} date={note.cratedAt}>
                   {note.text}
                 </Card>
               ))}
             </NotesWrapper>
           )}
-          <Header marginBottom={6} hideCount size="sm" title={t('propertyDetails>addNote')} />
+          <Header marginBottom={6} hideCount size="sm" title={t('clientDetails>addNote')} />
           <TextAreaWrapper>
             <TextArea
               value={note}
               onChange={(e) => setNote(e.target.value)}
               hideLabel
-              label={t('propertyDetails>addNote')}
+              label={t('clientDetails>addNote')}
               id="add-note"
             />
             <Button disabled={!note.length} size="md" onClick={() => handleNote(note)}>
-              {t('propertyDetails>add')}
+              {t('clientDetails>add')}
             </Button>
           </TextAreaWrapper>
         </Container>
-        <CardWrapper>
-          <Header
-            marginBottom={12}
-            hideCount
-            size="sm"
-            title={t('propertyDetails>clientDetails')}
-          />
-          <Card width={465} hasList>
-            <InfoRow
-              label={t('propertyDetails>fullName')}
-              value={mockPropertyDetails.markerDetails.clientFullName}
-            />
-            <InfoRow
-              label={t('propertyDetails>email')}
-              value={mockPropertyDetails.markerDetails.clientEmail}
-            />
-            {mockPropertyDetails.markerDetails.clientPhone && (
-              <InfoRow
-                label={t('propertyDetails>phone')}
-                value={mockPropertyDetails.markerDetails.clientPhone}
-              />
-            )}
-          </Card>
-        </CardWrapper>
       </Wrapper>
       {/* --- Delete Modal --- */}
       <Modal
         isOpen={openDeleteModal}
         onClose={() => setOpenDeleteModal(false)}
-        title={t('propertyDetails>deleteProperty')}
+        title={t('clientDetails>deleteClient')}
         size="sm"
         primaryButton={{
-          label: t('propertyDetails>delete'),
+          label: t('clientDetails>delete'),
           onClick: handleDelete,
           variant: 'warning',
         }}
         secondaryButton={{
-          label: t('propertyDetails>cancel'),
+          label: t('clientDetails>cancel'),
           onClick: () => setOpenDeleteModal(false),
         }}
       >
-        {t('propertyDetails>sureWantDelete', { address: mockPropertyDetails.address })}
+        {t('clientDetails>sureWantDelete', {
+          client: `${mockClientDetails.name} ${mockClientDetails.surname}`,
+        })}
       </Modal>
 
       {/* --- Edit Modal --- */}
@@ -239,23 +220,23 @@ const PropertyDetailsPage = () => {
         onClose={() => {
           setOpenEditModal(false)
         }}
-        title={t('propertyDetails>editProperty')}
+        title={t('clientDetails>editClient')}
         size="lg"
         primaryButton={{
-          label: t('propertyDetails>edit'),
+          label: t('clientDetails>edit'),
           variant: 'primary',
           onClick: handleSubmit(onSubmitEdit),
         }}
         secondaryButton={{
-          label: t('propertyDetails>cancel'),
+          label: t('clientDetails>cancel'),
           onClick: () => {
             setOpenEditModal(false)
           },
         }}
       >
         <form onSubmit={handleSubmit(onSubmitEdit)}>
-          <FormProvider {...propertyForm}>
-            <AddEditPropertyForm />
+          <FormProvider {...clientForm}>
+            <AddEditClientForm />
           </FormProvider>
         </form>
       </Modal>
@@ -263,4 +244,4 @@ const PropertyDetailsPage = () => {
   )
 }
 
-export default memo(PropertyDetailsPage)
+export default memo(ClientDetailsPage)

@@ -82,6 +82,40 @@
       "editProperty": "Modifica proprietà"
     }
   },
+  "clientModal": {
+    "name": "Nome",
+    "namePlaceholder": "Inserisci nome",
+    "surname": "Cognome",
+    "surnamePlaceholder": "Inserisci cognome",
+    "address": "Indirizzo",
+    "addressPlaceholder": "Inserisci indirizzo",
+    "isRequired": "Il campo è obbligatorio",
+    "city": "Città",
+    "selectCity": "Seleziona città",
+    "email": "Email",
+    "emailPlaceholder": "Inserisci email",
+    "phone": "Telefono",
+    "phonePlaceholder": "Inserisci numero di telefono"
+  },
+  "clientDetails": {
+    "title": "Dettagli del cliente",
+    "back": "Indietro",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "address": "Indirizzo",
+    "city": "Città",
+    "deleteClient": "Elimina cliente",
+    "cancel": "Annulla",
+    "sureWantDelete": "Sei sicuro di voler eliminare questo cliente: {{client}}?",
+    "editClient": "Modifica cliente",
+    "clientDetails": "Dettagli del cliente",
+    "fullName": "Nome completo",
+    "email": "Email",
+    "phone": "Telefono",
+    "addNote": "Aggiungi nota",
+    "notes": "Note",
+    "add": "Aggiungi"
+  },
   "propertyModal": {
     "indirizzo": "Indirizzo",
     "addressPlaceholder": "Digita l'indirizzo",
@@ -95,6 +129,31 @@
     "selectClient": "Seleziona cliente",
     "status": "Stato",
     "selectStatus": "Seleziona stato",
+    "contract": "Contratto",
+    "news": "Notizie",
+    "positionError": "È stata selezionata una nuova città, modifica la posizione"
+  },
+  "propertyDetails": {
+    "title": "Dettagli della proprietà",
+    "back": "Indietro",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "address": "Indirizzo",
+    "city": "Città",
+    "status": "Stato",
+    "deleteProperty": "Elimina proprietà",
+    "cancel": "Annulla",
+    "sureWantDelete": "Sei sicuro di voler eliminare la proprietà all'indirizzo: {{address}}?",
+    "editProperty": "Modifica proprietà",
+    "clientDetails": "Dati del cliente",
+    "fullName": "Nome completo",
+    "email": "Email",
+    "phone": "Telefono",
+    "addNote": "Aggiungi nota",
+    "notes": "Note",
+    "add": "Aggiungi"
+  },
+  "infoRow": {
     "contract": "Contratto",
     "news": "Notizie"
   },

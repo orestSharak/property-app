@@ -8,4 +8,6 @@ export const StyledMain = styled.main`
     ${sidebarWidth};
   border-radius: ${(p) => p.theme.radius.lg};
   overflow: auto;
+  padding: ${(p) => p.theme.spacing.max} ${(p) => p.theme.spacing.xxl} ${(p) => p.theme.spacing.xxl}
+    ${(p) => p.theme.spacing.xxl};
 `

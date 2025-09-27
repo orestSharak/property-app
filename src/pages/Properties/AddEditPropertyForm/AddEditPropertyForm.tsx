@@ -51,8 +51,8 @@ const AddEditPropertyForm = memo(() => {
             placeholder={t('propertyModal>selectClient')}
             error={fieldState.error?.message ? t(`propertyModal>${fieldState.error?.message}`) : ''}
             options={[
-              { value: 'one', label: 'Alssandro Curti' },
-              { value: 'two', label: 'Oreste Parmegano' },
+              { value: 'Alessandro Curti', label: 'Alessandro Curti' },
+              { value: 'Oreste Parmegano', label: 'Oreste Parmegano' },
             ]}
             {...field}
           />
@@ -69,10 +69,11 @@ const AddEditPropertyForm = memo(() => {
             placeholder={t('propertyModal>selectCity')}
             error={fieldState.error?.message ? t(`propertyModal>${fieldState.error?.message}`) : ''}
             options={[
-              { value: 'ny', label: 'New York' },
-              { value: 'la', label: 'Los Angeles' },
-              { value: 'sf', label: 'San Francisco' },
-              { value: 'ldn', label: 'London' },
+              { value: 'New York', label: 'New York' },
+              { value: 'Wroclaw', label: 'Wroclaw' },
+              { value: 'Los Angeles', label: 'Los Angeles' },
+              { value: 'San Francisco', label: 'San Francisco' },
+              { value: 'London', label: 'London' },
             ]}
             {...field}
           />
