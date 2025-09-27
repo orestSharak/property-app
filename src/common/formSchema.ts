@@ -30,6 +30,8 @@ export const ClientFromSchema = z.object({
     .string({ error: (issue) => issue.input === undefined && 'isRequired' })
     .min(1, 'isRequired'),
   address: z.string().min(1, 'isRequired'),
-  email: z.email().min(1, 'isRequired'),
+  email: z
+    .email({ error: (issue) => (issue.input === '' ? 'isRequired' : 'invalidEmail') })
+    .min(1, 'isRequired'),
   phone: z.string(),
 })

@@ -1,13 +1,13 @@
 import {
-  ref,
-  push,
-  get,
-  set,
-  remove,
-  query,
-  update,
-  orderByChild,
   equalTo,
+  get,
+  orderByChild,
+  push,
+  query,
+  ref,
+  remove,
+  set,
+  update,
 } from 'firebase/database'
 import { db } from '../firebase'
 import { City } from '../common/types'

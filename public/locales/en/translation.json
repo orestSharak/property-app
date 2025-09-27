@@ -82,6 +82,26 @@
       "editProperty": "Edit property"
     }
   },
+  "clients": {
+    "table": {
+      "title": "Clients",
+      "fullName": "Full name",
+      "city": "City",
+      "address": "Address",
+      "email": "Email",
+      "phone": "Phone number",
+      "actions": "Actions",
+      "delete": "Delete",
+      "deleteClient": "Delete client",
+      "cancel": "Cancel",
+      "sureWantDelete": "Are you sure you want to delete this client: <bold>{{client}}</bold>?",
+      "edit": "Edit",
+      "add": "Add",
+      "addClient": "Add client",
+      "editClient": "Edit client",
+      "loading": "Loading..."
+    }
+  },
   "clientModal": {
     "name": "Name",
     "namePlaceholder": "Type name",
@@ -90,6 +110,7 @@
     "address": "Address",
     "addressPlaceholder": "Type address",
     "isRequired": "Field is required",
+    "invalidEmail": "Not valid email format. Ex: test@test.com",
     "city": "City",
     "selectCity": "Select city",
     "email": "Email",

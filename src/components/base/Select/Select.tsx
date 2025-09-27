@@ -35,7 +35,6 @@ type SelectProps = {
   slotEnd?: ReactNode
   options: Option[]
   value?: string
-  // eslint-disable-next-line no-unused-vars
   onChange?: (value: string) => void
   placeholder?: string
 }

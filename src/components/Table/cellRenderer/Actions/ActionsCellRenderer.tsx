@@ -10,9 +10,8 @@ import ViewIcon from '../../../../assets/icons/eye-icon.svg'
 type ActionsCellRendererProps = {
   id?: string
   noView?: boolean
-  handleDelete: () => void
-  handleEdit: () => void
-  // eslint-disable-next-line no-unused-vars
+  handleDelete: (id: string) => void
+  handleEdit: (id: string) => void
   handleView?: (id: string) => void
 }
 
@@ -38,12 +37,12 @@ const ActionsCellRenderer = ({
       <IconButton
         icon={<EditIcon />}
         title={t('table>cellRenderer>actions>edit')}
-        onClick={handleEdit}
+        onClick={() => handleEdit(id)}
       />
       <IconButton
         icon={<DeleteIcon />}
         title={t('table>cellRenderer>actions>delete')}
-        onClick={handleDelete}
+        onClick={() => handleDelete(id)}
       />
     </Wrapper>
   )

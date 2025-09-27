@@ -82,6 +82,26 @@
       "editProperty": "Modifica proprietà"
     }
   },
+  "clients": {
+    "table": {
+      "title": "Clienti",
+      "fullName": "Nome completo",
+      "city": "Città",
+      "address": "Indirizzo",
+      "email": "Email",
+      "phone": "Numero di telefono",
+      "actions": "Azioni",
+      "delete": "Elimina",
+      "deleteClient": "Elimina cliente",
+      "cancel": "Annulla",
+      "sureWantDelete": "Sei sicuro di voler eliminare questo cliente: <bold>{{client}}</bold>?",
+      "edit": "Modifica",
+      "add": "Aggiungi",
+      "addClient": "Aggiungi cliente",
+      "editClient": "Modifica cliente",
+      "loading": "Caricamento in corso..."
+    }
+  },
   "clientModal": {
     "name": "Nome",
     "namePlaceholder": "Inserisci nome",
@@ -90,6 +110,7 @@
     "address": "Indirizzo",
     "addressPlaceholder": "Inserisci indirizzo",
     "isRequired": "Il campo è obbligatorio",
+    "invalidEmail": "Formato email non valido. Es: test@test.com",
     "city": "Città",
     "selectCity": "Seleziona città",
     "email": "Email",

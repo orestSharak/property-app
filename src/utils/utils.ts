@@ -77,3 +77,25 @@ export function prepareMarkers(markers: MarkerData[]): MarkerDataFull[] {
     },
   }))
 }
+
+/**
+ * Splits a full name string into a first name (or "name") and a surname (or "last name").
+ *
+ * This function handles null/undefined/empty input and deals with names
+ * that have multiple parts by treating the first word as the name and the rest as the surname.
+ *
+ * @param {string | undefined} fullName - The client's full name, e.g., "John Doe" or "Mary Anne Smith".
+ * @returns {{ name: string, surname: string }} An object containing the name and surname.
+ * If the input is invalid or empty, both fields will be an empty string.
+ */
+export function getClientNameAndSurname(fullName?: string) {
+  if (typeof fullName !== 'string' || !fullName || fullName.trim() === '') {
+    return { name: '', surname: '' }
+  }
+
+  const nameParts = fullName.trim().split(' ')
+  const name = nameParts[0]
+  const surname = nameParts.slice(1).join(' ')
+
+  return { name, surname }
+}

@@ -48,6 +48,7 @@ export default defineConfig([
       'prettier/prettier': 'error',
       'react/react-in-jsx-scope': 'off',
       'import/order': ['warn', { groups: ['builtin', 'external', 'internal'] }],
+      'no-unused-vars': 'off',
     },
   },
   {

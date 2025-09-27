@@ -12,7 +12,6 @@ type TableLayoutProps = {
   title: string
   count: number
   globalFilter: string
-  // eslint-disable-next-line no-unused-vars
   setGlobalFilter: (filter: string) => void
   handleOpenAdd: () => void
   data: any[]

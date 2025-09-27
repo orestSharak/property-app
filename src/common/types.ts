@@ -28,6 +28,18 @@ export type City = {
   createdAt: number
 }
 
+export type Client = {
+  id?: string
+  fullName: string
+  city: string
+  address: string
+  phone: string | null
+  email: string
+  createdAt: number
+  userEmail: string
+  userId: string
+}
+
 export type User = {
   displayName: string | null
   uid: string

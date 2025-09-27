@@ -1,9 +1,8 @@
-import { ReactNode, Component, ErrorInfo } from 'react'
+import { Component, ErrorInfo, ReactNode } from 'react'
 
 interface ErrorBoundaryProps {
   children: ReactNode
   fallback?: ReactNode
-  // eslint-disable-next-line no-unused-vars
   onError?: (error: Error, errorInfo: ErrorInfo) => void
 }
 
