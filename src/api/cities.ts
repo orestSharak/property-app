@@ -32,6 +32,19 @@ export async function createCity(property: City): Promise<void> {
   await set(newCityRef, cityWithId)
 }
 
+export async function getCityById(cityId: string): Promise<City | null> {
+  const cityRef = ref(db, `cities/${cityId}`)
+  const snapshot = await get(cityRef)
+
+  if (!snapshot.exists()) {
+    return null
+  }
+
+  const cityData = snapshot.val() as Omit<City, 'id'>
+
+  return { id: snapshot.key as string, ...cityData } as City
+}
+
 export async function deleteCity(id: string): Promise<void> {
   const cityRef = ref(db, `cities/${id}`)
   await remove(cityRef)

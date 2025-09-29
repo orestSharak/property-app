@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { LightPalette } from './theme'
-import { ClientFromSchema, PropertyFromSchema } from './formSchema'
+import { CityFromSchema, ClientFromSchema, PropertyFromSchema } from './formSchema'
 
 export type Property = {
   id?: string
@@ -87,3 +87,4 @@ export type AppTheme = typeof LightPalette
 
 export type PropertyFormData = z.infer<typeof PropertyFromSchema>
 export type ClientFormData = z.infer<typeof ClientFromSchema>
+export type CityFormData = z.infer<typeof CityFromSchema>

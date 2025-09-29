@@ -35,3 +35,14 @@ export const ClientFromSchema = z.object({
     .min(1, 'isRequired'),
   phone: z.string(),
 })
+
+export const CityFromSchema = z.object({
+  name: z.string().min(1, 'isRequired'),
+  position: z
+    .string()
+    .trim()
+    .min(1, 'isRequired')
+    .refine((val: string) => latLngPattern.test(val), {
+      message: 'wrongPositionFormat',
+    }),
+})

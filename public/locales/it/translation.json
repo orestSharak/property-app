@@ -198,6 +198,37 @@
     "adding": "Aggiunta in corso...",
     "loading": "Caricamento in corso..."
   },
+  "cities": {
+    "table": {
+      "title": "Città",
+      "name": "Nome",
+      "actions": "Azioni",
+      "delete": "Elimina",
+      "deleteCity": "Elimina città",
+      "cancel": "Annulla",
+      "sureWantDelete": "Sei sicuro di voler eliminare questa città: <bold>{{city}}</bold>?",
+      "edit": "Modifica",
+      "add": "Aggiungi",
+      "addCity": "Aggiungi città",
+      "editCity": "Modifica città"
+    }
+  },
+  "cityModal": {
+    "name": "Nome",
+    "namePlaceholder": "Digita nome",
+    "positionDetails": "Dettagli posizione",
+    "positionPlaceholder": "Incolla coordinate",
+    "isRequired": "Campo obbligatorio",
+    "wrongPositionFormat": "Formato errato. Esempio: 51.12199, 17.04582",
+    "toast": {
+      "successfullyAdded": "Città aggiunta correttamente",
+      "failedAdd": "Impossibile aggiungere città",
+      "successfullyUpdated": "Città aggiornata correttamente",
+      "failedUpdate": "Impossibile aggiornare città",
+      "successfullyDeleted": "Città eliminata correttamente",
+      "failedDelete": "Impossibile eliminare città"
+    }
+  },
   "infoRow": {
     "contract": "Contratto",
     "news": "Notizie"

@@ -198,6 +198,37 @@
     "adding": "Adding ...",
     "loading": "Loading ..."
   },
+  "cities": {
+    "table": {
+      "title": "Cities",
+      "name": "Name",
+      "actions": "Actions",
+      "delete": "Delete",
+      "deleteCity": "Delete city",
+      "cancel": "Cancel",
+      "sureWantDelete": "Are you sure you want to delete this city: <bold>{{city}}</bold>?",
+      "edit": "Edit",
+      "add": "Add",
+      "addCity": "Add city",
+      "editCity": "Edit city"
+    }
+  },
+  "cityModal": {
+    "name": "Name",
+    "namePlaceholder": "Type name",
+    "positionDetails": "Position details",
+    "positionPlaceholder": "Paste coordinates",
+    "isRequired": "Field is required",
+    "wrongPositionFormat": "Wrong format. Example: 51.12199, 17.04582",
+    "toast": {
+      "successfullyAdded": "City has been successfully added",
+      "failedAdd": "Failed to add city",
+      "successfullyUpdated": "City has been successfully updated",
+      "failedUpdate": "Failed to update city",
+      "successfullyDeleted": "City has been successfully deleted",
+      "failedDelete": "Failed to delete city"
+    }
+  },
   "infoRow": {
     "contract": "Contract",
     "news": "News"
