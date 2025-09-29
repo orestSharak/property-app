@@ -19,9 +19,9 @@ export const Value = styled.span<{ $variant: Status }>`
   color: ${({ theme, $variant }) => {
     switch ($variant) {
       case 'news':
-        return theme.colors.textInfo
-      case 'contract':
         return theme.colors.textPink
+      case 'contract':
+        return theme.colors.textInfo
       case 'default':
       default:
         return theme.colors.textMain

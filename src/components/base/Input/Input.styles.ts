@@ -17,15 +17,11 @@ export const IconContainer = styled.div`
   }
 `
 
-export const Label = styled.label<{ disabled?: boolean; $direction: InputDirection }>`
+export const Label = styled.label<{ $direction: InputDirection }>`
   width: 155px;
   margin-bottom: ${(p) => p.theme.spacing.xxs};
-  color: ${({ disabled, theme, $direction }) =>
-    disabled
-      ? theme.colors.disabled
-      : $direction
-        ? theme.colors.textStrong
-        : theme.colors.textSecondary};
+  color: ${({ theme, $direction }) =>
+    $direction ? theme.colors.textStrong : theme.colors.textSecondary};
   display: block;
   font-size: ${({ theme, $direction }) =>
     $direction === 'inline' ? theme.fontSize.md : theme.fontSize.xs};

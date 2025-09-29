@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { City } from '../common/types'
-import { createCity } from '../api/cities'
+import { City } from '../../common/types'
+import { createCity } from '../../api/cities'
 
 export function useCreateCity() {
   const queryClient = useQueryClient()

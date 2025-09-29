@@ -4,19 +4,19 @@ import { ClientFromSchema, PropertyFromSchema } from './formSchema'
 
 export type Property = {
   id?: string
-  name: string
   address: string
   createdAt: number
   userEmail: string
   userId: string
   position: string
-  cityPosition: string
   city: string
-  imageUrl?: string
-  clientName: string
+  cityId: string
+  clientId: string
+  clientFullName: string
   clientEmail: string
-  clientPhoneNumber: string
+  clientPhone?: string
   status: Status
+  notes?: Note[]
 }
 
 export type City = {
@@ -71,6 +71,11 @@ export type MarkerData = {
   clientEmail: string
   clientPhone?: string
   status: Status
+}
+
+export type Options = {
+  value: string
+  label: string
 }
 
 export type MarkerDataFull = Omit<MarkerData, 'position'> & {

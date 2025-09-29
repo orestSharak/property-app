@@ -5,10 +5,10 @@ import L, { LatLngLiteral } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { Container } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { useGetProperties } from '../hooks/useGetProperties'
+import { useGetProperties } from '../hooks/property/useGetProperties'
 import { CitySelect } from '../components/CitySelect'
 import BaseImage from '../components/BaseImage'
-import { useGerCities } from '../hooks/useGetCities'
+import { useGerCities } from '../hooks/city/useGetCities'
 import { defaultPosition } from '../common/constants'
 
 interface MarkerData {

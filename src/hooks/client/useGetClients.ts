@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
-import { Client } from '../common/types'
-import { useAuth } from '../context/AuthContext'
-import { getClients } from '../api/clients'
+import { Client } from '../../common/types'
+import { useAuth } from '../../context/AuthContext'
+import { getClients } from '../../api/clients'
 
 export function useGetClients() {
   const { currentUser } = useAuth()

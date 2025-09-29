@@ -5,10 +5,17 @@ import { Input } from '../../../components/base/Input/Input'
 import { Wrapper } from './AddEditPropertyForm.styles'
 import { Select } from '../../../components/base/Select/Select'
 import { EMPTY_VALUE } from '../../../common/constants'
+import { Options } from '../../../common/types'
 
-const AddEditPropertyForm = memo(() => {
+type AddEditPropertyFormProps = {
+  cities: Options[]
+  clients: Options[]
+}
+
+const AddEditPropertyForm = memo(({ cities, clients }: AddEditPropertyFormProps) => {
   const { t } = useTranslation()
-  const { control } = useFormContext()
+  const { control, watch } = useFormContext()
+  const selectedCity = watch('city')
 
   return (
     <Wrapper>
@@ -28,6 +35,22 @@ const AddEditPropertyForm = memo(() => {
       />
       <Controller
         control={control}
+        name="city"
+        render={({ field, fieldState }) => (
+          <Select
+            id="city"
+            direction="inline"
+            label={t('propertyModal>city')}
+            placeholder={t('propertyModal>selectCity')}
+            error={fieldState.error?.message ? t(`propertyModal>${fieldState.error?.message}`) : ''}
+            options={cities}
+            disabled={!cities.length}
+            {...field}
+          />
+        )}
+      />
+      <Controller
+        control={control}
         name="position"
         render={({ field, fieldState }) => (
           <Input
@@ -36,6 +59,7 @@ const AddEditPropertyForm = memo(() => {
             label={t('propertyModal>positionDetails')}
             error={fieldState.error?.message ? t(`propertyModal>${fieldState.error?.message}`) : ''}
             direction="inline"
+            disabled={!selectedCity}
             {...field}
           />
         )}
@@ -50,31 +74,8 @@ const AddEditPropertyForm = memo(() => {
             label={t('propertyModal>client')}
             placeholder={t('propertyModal>selectClient')}
             error={fieldState.error?.message ? t(`propertyModal>${fieldState.error?.message}`) : ''}
-            options={[
-              { value: 'Alessandro Curti', label: 'Alessandro Curti' },
-              { value: 'Oreste Parmegano', label: 'Oreste Parmegano' },
-            ]}
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name="city"
-        render={({ field, fieldState }) => (
-          <Select
-            id="city"
-            direction="inline"
-            label={t('propertyModal>city')}
-            placeholder={t('propertyModal>selectCity')}
-            error={fieldState.error?.message ? t(`propertyModal>${fieldState.error?.message}`) : ''}
-            options={[
-              { value: 'New York', label: 'New York' },
-              { value: 'Wroclaw', label: 'Wroclaw' },
-              { value: 'Los Angeles', label: 'Los Angeles' },
-              { value: 'San Francisco', label: 'San Francisco' },
-              { value: 'London', label: 'London' },
-            ]}
+            options={clients}
+            disabled={!clients.length}
             {...field}
           />
         )}

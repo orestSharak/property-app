@@ -11,7 +11,7 @@ import {
 } from 'firebase/database'
 
 import { db } from '../firebase'
-import { Client, Property } from '../common/types'
+import { Note, Property } from '../common/types'
 
 export async function getProperties(userId: string, city?: string | null): Promise<Property[]> {
   const propertiesRef = ref(db, 'properties')
@@ -49,6 +49,19 @@ export async function getProperties(userId: string, city?: string | null): Promi
   // }
 }
 
+export async function getPropertyById(propertyId: string): Promise<Property | null> {
+  const propertyRef = ref(db, `properties/${propertyId}`)
+  const snapshot = await get(propertyRef)
+
+  if (!snapshot.exists()) {
+    return null
+  }
+
+  const propertyData = snapshot.val() as Omit<Property, 'id'>
+
+  return { id: snapshot.key as string, ...propertyData } as Property
+}
+
 export async function createProperty(property: Property): Promise<void> {
   const propertiesRef = ref(db, 'properties')
   const newPropertyRef = push(propertiesRef)
@@ -59,16 +72,6 @@ export async function createProperty(property: Property): Promise<void> {
   await set(newPropertyRef, propertyWithId)
 }
 
-export async function createClient(client: Client): Promise<void> {
-  const clientsRef = ref(db, 'clients')
-  const newClientRef = push(clientsRef)
-  const clientWithId = {
-    ...client,
-    id: newClientRef.key,
-  }
-  await set(newClientRef, clientWithId)
-}
-
 export async function deleteProperty(id: string): Promise<void> {
   const propertyRef = ref(db, `properties/${id}`)
   await remove(propertyRef)
@@ -77,4 +80,27 @@ export async function deleteProperty(id: string): Promise<void> {
 export async function updateProperty(id: string, updates: Partial<Property>): Promise<void> {
   const propertyRef = ref(db, `properties/${id}`)
   await update(propertyRef, updates)
+}
+
+export async function addNoteToProperty(propertyId: string, noteText: string): Promise<void> {
+  const notesRef = ref(db, `properties/${propertyId}/notes`)
+  const newNoteRef = push(notesRef)
+  const newNoteId = newNoteRef.key
+
+  if (!newNoteId) {
+    throw new Error('Failed to generate a new key for the note.')
+  }
+
+  const newNote: Note = {
+    id: newNoteId,
+    cratedAt: Date.now(),
+    text: noteText,
+  }
+
+  await update(notesRef, {
+    [newNoteId]: newNote,
+  })
+
+  // ALTERNATIVE: Use set(newNoteRef, newNote) if you prefer 'set' over 'update'
+  // await set(newNoteRef, newNote);
 }

@@ -30,13 +30,13 @@ export const columnDefinition: (
     size: 2.5,
     cell: (info) => <TextCellRenderer title={info.getValue()} />,
   }),
-  columnHelper.accessor('clientName', {
+  columnHelper.accessor('clientFullName', {
     id: 'clientName',
-    header: t('properties>table>clientName'),
+    header: t('properties>table>clientFullName'),
     size: 2,
     cell: (info) => <TextCellRenderer title={info.getValue()} />,
   }),
-  columnHelper.accessor('clientPhoneNumber', {
+  columnHelper.accessor('clientPhone', {
     id: 'clientPhoneNumber',
     header: t('properties>table>phoneOfClient'),
     size: 2,

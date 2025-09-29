@@ -1,6 +1,6 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo, useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
@@ -27,64 +27,58 @@ import { AddEditPropertyForm } from '../Properties/AddEditPropertyForm/AddEditPr
 import { PropertyFromSchema } from '../../common/formSchema'
 import { TextArea } from '../../components/base/TextArea/TextArea'
 import { Button } from '../../components/base/Button/Button'
-
-const mockPropertyDetails = {
-  address: 'ul. Powstancow Slaskich 12/87',
-  city: 'Wroclaw',
-  status: 'contract',
-  markerDetails: {
-    id: '-OS5mLauNCRxW-aeLfJv',
-    position: '51.110829023797024, 17.031042982059372',
-    label: 'Bastion Sakwowy 26/2',
-    status: 'news' as Status,
-    clientId: '123',
-    clientFullName: 'Alessandro Curti',
-    clientEmail: 'test@test.com',
-    clientPhone: '+39 122 232 224',
-  },
-  notes: [
-    {
-      id: '1',
-      cratedAt: 1749244604897,
-      text: 'Curabitur faucibus rhoncus justo sed viverra. Sed maximus nibh sit amet nisl tempor placerat. Cras maximus ipsum at nibh luctus, eu feugiat neque tincidunt. Nulla facilisi. Aenean vitae porta leo. Nulla facilisi. In nunc enim, mollis eu fringilla ut, laoreet quis tortor. Fusce faucibus pharetra consequat. Proin fermentum pretium lacus vel iaculis.',
-    },
-    {
-      id: '2',
-      cratedAt: 1749313853695,
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur faucibus rhoncus justo sed viverra. Sed maximus nibh sit amet nisl tempor placerat. Cras maximus ipsum at nibh luctus, eu feugiat neque tincidunt. Nulla facilisi. Aenean vitae porta leo. Nulla facilisi. In nunc enim, mollis eu fringilla ut, laoreet quis tortor. Fusce faucibus pharetra consequat. Proin fermentum pretium lacus vel iaculis.',
-    },
-    {
-      id: '3',
-      cratedAt: 1749313853695,
-      text: 'Sed maximus nibh sit amet nisl tempor placerat. Cras maximus ipsum at nibh luctus, eu feugiat neque tincidunt. Nulla facilisi. Aenean vitae porta leo. Nulla facilisi. In nunc enim, mollis eu fringilla ut, laoreet quis tortor. Fusce faucibus pharetra consequat. Proin fermentum pretium lacus vel iaculis.',
-    },
-  ],
-}
+import { useAuth } from '../../context/AuthContext'
+import { useGetProperty } from '../../hooks/property/useGetProperty'
+import { useAddPropertyNote } from '../../hooks/property/useAddPropertyNote'
+import { useUpdateProperty } from '../../hooks/property/useUpdateProperty'
+import { useDeleteProperty } from '../../hooks/property/useDeleteProperty'
+import { useToast } from '../../hooks/useToast'
+import { useGetClients } from '../../hooks/client/useGetClients'
+import { useGerCities } from '../../hooks/city/useGetCities'
+import { getClientEmailAndPhone } from '../../utils/utils'
 
 const PropertyDetailsPage = () => {
   const { t } = useTranslation()
+  const { currentUser } = useAuth()
+  const navigate = useNavigate()
+  const { id } = useParams()
+  const { showToast } = useToast()
+
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [openEditModal, setOpenEditModal] = useState(false)
   const [note, setNote] = useState('')
-  const navigate = useNavigate()
+
+  const { property, isLoading } = useGetProperty(id)
+  const { updateProperty } = useUpdateProperty()
+  const { deleteProperty } = useDeleteProperty()
+  const { addPropertyNote, isPending: isAddingNote } = useAddPropertyNote()
+
+  const { clients } = useGetClients()
+  const { cities } = useGerCities()
+
+  const defaultFormValues = useMemo(
+    () => ({
+      address: '',
+      position: '',
+      client: '',
+      city: '',
+      status: 'default',
+    }),
+    [],
+  )
 
   const propertyForm = useForm<PropertyFormData>({
     resolver: zodResolver(PropertyFromSchema),
-    defaultValues: {
-      address: mockPropertyDetails.address,
-      position: mockPropertyDetails.markerDetails.position,
-      client: mockPropertyDetails.markerDetails.clientFullName,
-      city: mockPropertyDetails.city,
-      status: mockPropertyDetails.status,
-    },
+    defaultValues: defaultFormValues,
     mode: 'onChange',
   })
 
-  const { handleSubmit, setError, watch, clearErrors } = propertyForm
-  const city = watch('city')
+  const { email: userEmail, uid: userUid } = currentUser
+  const { handleSubmit, setError, watch, clearErrors, reset } = propertyForm
+  const selectedCity = watch('city')
 
   useEffect(() => {
-    if (city !== mockPropertyDetails.city) {
+    if (selectedCity !== property?.cityId) {
       setError('position', {
         type: 'custom',
         message: 'positionError',
@@ -92,36 +86,151 @@ const PropertyDetailsPage = () => {
     } else {
       clearErrors('position')
     }
-  }, [city, clearErrors, setError, t])
+  }, [selectedCity, clearErrors, property, setError])
+
+  useEffect(() => {
+    if (property) {
+      reset({
+        address: property?.address,
+        position: property?.position,
+        client: property?.clientId,
+        city: property?.cityId,
+        status: property?.status,
+      })
+    } else {
+      reset(defaultFormValues)
+    }
+  }, [cities, clients, defaultFormValues, property, reset])
 
   const handleBack = () => {
     navigate(-1)
   }
 
-  // delete
-  const handleDelete = () => {
-    setOpenDeleteModal(false)
-  }
-
-  // edit
+  // open edit modal
   const handleEditModal = () => {
     setOpenEditModal(true)
   }
 
-  const onSubmitEdit = (data: PropertyFormData) => {
-    console.log('Editing property:', data)
-    setOpenEditModal(false)
-  }
-
+  // open delete modal
   const handleOpenDeleteModal = () => {
     setOpenDeleteModal(true)
   }
 
-  const handleNote = (note: string) => {
-    console.log('note', note)
-    // TODO: add mutation for property notes array
+  const clientsOptions = useMemo(() => {
+    if (!clients) return []
+
+    return clients.map((client) => ({
+      value: client.id,
+      label: client.fullName,
+    }))
+  }, [clients])
+
+  const citiesOptions = useMemo(() => {
+    if (!cities) return []
+
+    return cities.map((city) => ({
+      value: city.id,
+      label: city.name,
+    }))
+  }, [cities])
+
+  const preparedPropertyData = (data: PropertyFormData, userUid: string, userEmail: string) => ({
+    address: data.address,
+    city: cities?.find((city) => city?.id === data.city).name,
+    cityId: data.city,
+    position: data.position,
+    status: data.status as Status,
+    clientFullName: clients?.find((client) => client?.id === data.client).fullName,
+    clientId: data.client,
+    clientEmail: getClientEmailAndPhone(clients, data.client).email,
+    clientPhone: getClientEmailAndPhone(clients, data.client).phone,
+    createdAt: property?.createdAt,
+    userEmail: userEmail,
+    userId: userUid,
+  })
+
+  const onSubmitEdit = (data: PropertyFormData) => {
+    const preparedValues = preparedPropertyData(data, userUid, userEmail)
+
+    updateProperty(
+      { id: id, updates: preparedValues },
+      {
+        onSuccess: async () => {
+          showToast({
+            content: t('clientModal>toast>successfullyUpdated'),
+            status: 'success',
+          })
+        },
+
+        onError: () => {
+          showToast({
+            content: t('clientModal>toast>failedUpdate'),
+            status: 'error',
+          })
+        },
+      },
+    )
+
+    setOpenEditModal(false)
+  }
+
+  const handleDelete = () => {
+    deleteProperty(id, {
+      onSuccess: () => {
+        handleBack()
+
+        showToast({
+          content: t('propertyModal>toast>successfullyDeleted'),
+          status: 'success',
+        })
+      },
+
+      onError: () => {
+        showToast({
+          content: t('propertyModal>toast>failedDelete'),
+          status: 'error',
+        })
+      },
+    })
+
+    setOpenDeleteModal(false)
+  }
+
+  const handleNote = (text: string) => {
+    if (!id || !text.trim()) return
+
+    addPropertyNote(
+      { propertyId: id, noteText: text },
+      {
+        onSuccess: async () => {
+          showToast({
+            content: t('propertyModal>toast>noteAddedSuccessfully'),
+            status: 'success',
+          })
+        },
+        onError: () => {
+          showToast({
+            content: t('propertyModal>toast>noteFailedToAdd'),
+            status: 'error',
+          })
+        },
+      },
+    )
     setNote('')
   }
+
+  const preparedMarkerDetails = () => ({
+    id: property?.id,
+    position: property?.position,
+    label: property?.address,
+    status: property?.status,
+    clientId: property?.clientId,
+    clientFullName: property?.clientFullName,
+    clientEmail: property?.clientEmail,
+    clientPhone: property?.clientPhone,
+  })
+
+  if (isLoading) return t('propertyDetails>loading')
 
   return (
     <MainWrapper>
@@ -148,28 +257,28 @@ const PropertyDetailsPage = () => {
             </ButtonSection>
           </HeaderSection>
           <Card hasList>
-            <InfoRow label={t('propertyDetails>address')} value={mockPropertyDetails.address} />
-            <InfoRow label={t('propertyDetails>city')} value={mockPropertyDetails.city} />
+            <InfoRow label={t('propertyDetails>address')} value={property?.address} />
+            <InfoRow label={t('propertyDetails>city')} value={property?.city} />
             <InfoRow
               label={t('propertyDetails>status')}
-              value={mockPropertyDetails.status}
-              valueVariant={mockPropertyDetails.status as Status}
+              value={property?.status}
+              valueVariant={property?.status as Status}
             />
           </Card>
         </Container>
         <CardWrapper>
           <Card compact>
-            <Map height={260} markers={[mockPropertyDetails.markerDetails]} />
+            <Map height={260} markers={[preparedMarkerDetails()]} />
           </Card>
         </CardWrapper>
       </Wrapper>
       <Wrapper>
         <Container>
-          {!!mockPropertyDetails.notes.length && (
+          {!!property?.notes && (
             <>
               <Header hideCount size="sm" title={t('propertyDetails>notes')} />
               <NotesWrapper>
-                {mockPropertyDetails.notes.map((note) => (
+                {Object.values(property?.notes)?.map((note) => (
                   <Card key={note.id} date={note.cratedAt}>
                     {note.text}
                   </Card>
@@ -186,8 +295,12 @@ const PropertyDetailsPage = () => {
               label={t('propertyDetails>addNote')}
               id="add-note"
             />
-            <Button disabled={!note.length} size="md" onClick={() => handleNote(note)}>
-              {t('propertyDetails>add')}
+            <Button
+              disabled={!note.length || isAddingNote}
+              size="md"
+              onClick={() => handleNote(note)}
+            >
+              {isAddingNote ? t('propertyDetails>adding') : t('propertyDetails>add')}
             </Button>
           </TextAreaWrapper>
         </Container>
@@ -199,19 +312,10 @@ const PropertyDetailsPage = () => {
             title={t('propertyDetails>clientDetails')}
           />
           <Card width={465} hasList>
-            <InfoRow
-              label={t('propertyDetails>fullName')}
-              value={mockPropertyDetails.markerDetails.clientFullName}
-            />
-            <InfoRow
-              label={t('propertyDetails>email')}
-              value={mockPropertyDetails.markerDetails.clientEmail}
-            />
-            {mockPropertyDetails.markerDetails.clientPhone && (
-              <InfoRow
-                label={t('propertyDetails>phone')}
-                value={mockPropertyDetails.markerDetails.clientPhone}
-              />
+            <InfoRow label={t('propertyDetails>fullName')} value={property?.clientFullName} />
+            <InfoRow label={t('propertyDetails>email')} value={property?.clientEmail} />
+            {property?.clientPhone && (
+              <InfoRow label={t('propertyDetails>phone')} value={property?.clientPhone} />
             )}
           </Card>
         </CardWrapper>
@@ -234,7 +338,7 @@ const PropertyDetailsPage = () => {
       >
         <Trans
           i18nKey="propertyDetails>sureWantDelete"
-          values={{ address: mockPropertyDetails.address }}
+          values={{ address: property?.address }}
           components={{ bold: <strong /> }}
         />
       </Modal>
@@ -261,7 +365,7 @@ const PropertyDetailsPage = () => {
       >
         <form onSubmit={handleSubmit(onSubmitEdit)}>
           <FormProvider {...propertyForm}>
-            <AddEditPropertyForm />
+            <AddEditPropertyForm clients={clientsOptions} cities={citiesOptions} />
           </FormProvider>
         </form>
       </Modal>

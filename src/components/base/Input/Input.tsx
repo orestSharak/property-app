@@ -124,7 +124,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <InputWrap $direction={direction}>
         {!hideLabel && (
-          <Label $direction={direction} htmlFor={id} disabled={disabled}>
+          <Label $direction={direction} htmlFor={id}>
             {label}
             {required && isOverlineDirection && <LabelStar aria-hidden="true">*</LabelStar>}
           </Label>

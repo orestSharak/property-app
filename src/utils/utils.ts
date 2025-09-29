@@ -99,3 +99,43 @@ export function getClientNameAndSurname(fullName?: string): { name: string; surn
 
   return { name, surname }
 }
+
+/**
+ * Returns the email and phone number of a selected client from a client list.
+ *
+ * Given an array of client objects and a selected client ID,
+ * this function finds the matching client and returns their email and phone.
+ * If the client is not found or inputs are undefined/null, returns default empty values.
+ *
+ * @param clients - Array of client objects, each with `id`, `email`, and optional `phone`.
+ * @param selectedClient - The ID of the client to retrieve contact info for.
+ * @returns An object containing the `email` (string) and `phone` (string or null).
+ *
+ * @example
+ * const clients = [
+ *   { id: '1', email: 'a@test.com', phone: '1234567' },
+ *   { id: '2', email: 'b@test.com' }
+ * ];
+ * getClientEmailAndPhone(clients, '1'); // { email: 'a@test.com', phone: '1234567' }
+ * getClientEmailAndPhone(clients, '2'); // { email: 'b@test.com', phone: null }
+ * getClientEmailAndPhone(clients, '3'); // { email: '', phone: null }
+ */
+export function getClientEmailAndPhone(
+  clients?: {
+    id?: string
+    email: string
+    phone?: string | null
+  }[],
+  selectedClient?: string,
+): { email: string; phone: string | null } {
+  if (!clients || !selectedClient) {
+    return { email: '', phone: null }
+  }
+
+  const client = clients.find((client) => client?.id === selectedClient)
+
+  return {
+    email: client.email,
+    phone: client.phone ?? null,
+  }
+}

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { Property } from '../common/types'
-import { createProperty } from '../api/properties'
+import { Property } from '../../common/types'
+import { createProperty } from '../../api/properties'
 
 export function useCreateProperty() {
   const queryClient = useQueryClient()

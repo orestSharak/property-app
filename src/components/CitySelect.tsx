@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useGerCities } from '../hooks/useGetCities'
+import { useGerCities } from '../hooks/city/useGetCities'
 
 type CitySelectProps = {
   selectedCity: string

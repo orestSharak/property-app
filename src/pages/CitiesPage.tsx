@@ -3,10 +3,10 @@ import { Alert, Button, Container, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '../context/AuthContext'
 import { City } from '../common/types'
-import { useGerCities } from '../hooks/useGetCities'
-import { useDeleteCity } from '../hooks/useDeleteCity'
-import { useCreateCity } from '../hooks/useCreateCity'
-import { useUpdateCity } from '../hooks/useUdateCity'
+import { useGerCities } from '../hooks/city/useGetCities'
+import { useDeleteCity } from '../hooks/city/useDeleteCity'
+import { useCreateCity } from '../hooks/city/useCreateCity'
+import { useUpdateCity } from '../hooks/city/useUdateCity'
 
 function CitiesPage() {
   const { t } = useTranslation()

@@ -1,4 +1,14 @@
-import { equalTo, get, orderByChild, push, query, ref, remove, update } from 'firebase/database'
+import {
+  equalTo,
+  get,
+  orderByChild,
+  push,
+  query,
+  ref,
+  remove,
+  set,
+  update,
+} from 'firebase/database'
 import { Client, Note } from '../common/types'
 import { db } from '../firebase'
 
@@ -23,6 +33,16 @@ export async function getClientById(clientId: string): Promise<Client | null> {
   const clientData = snapshot.val() as Omit<Client, 'id'>
 
   return { id: snapshot.key as string, ...clientData } as Client
+}
+
+export async function createClient(client: Client): Promise<void> {
+  const clientsRef = ref(db, 'clients')
+  const newClientRef = push(clientsRef)
+  const clientWithId = {
+    ...client,
+    id: newClientRef.key,
+  }
+  await set(newClientRef, clientWithId)
 }
 
 export async function updateClient(clientId: string, updates: Partial<Client>): Promise<void> {

@@ -67,14 +67,14 @@
       "title": "Proprietà",
       "city": "Città",
       "address": "Indirizzo",
-      "clientName": "Nome del cliente",
+      "clientFullName": "Nome completo del client",
       "clientEmail": "Email del cliente",
       "phoneOfClient": "Telefono del cliente",
       "status": "Stato",
       "actions": "Azioni",
       "delete": "Elimina",
       "cancel": "Annulla",
-      "sureWantDelete": "Sei sicuro di voler eliminare questa proprietà?",
+      "sureWantDelete": "Sei sicuro di voler eliminare la proprietà tramite l'indirizzo: <bold>{{address}}</bold>?",
       "edit": "Modifica",
       "add": "Aggiungi",
       "loading": "Caricamento in corso...",
@@ -94,7 +94,7 @@
       "delete": "Elimina",
       "deleteClient": "Elimina cliente",
       "cancel": "Annulla",
-      "sureWantDelete": "Sei sicuro di voler eliminare questo cliente: <bold>{{client}}</bold>?",
+      "sureWantDelete": "Sei sicuro di voler eliminare la proprietà tramite l'indirizzo: <bold>{{address}}</bold>?",
       "edit": "Modifica",
       "add": "Aggiungi",
       "addClient": "Aggiungi cliente",
@@ -164,7 +164,17 @@
     "selectStatus": "Seleziona stato",
     "contract": "Contratto",
     "news": "Notizie",
-    "positionError": "È stata selezionata una nuova città, modifica la posizione"
+    "positionError": "È stata selezionata una nuova città, modifica la posizione",
+    "toast": {
+      "successfullyAdded": "La proprietà è stata aggiunta correttamente",
+      "failedAdd": "Impossibile aggiungere la proprietà",
+      "successfullyUpdated": "La proprietà è stata aggiornata correttamente",
+      "failedUpdate": "Impossibile aggiornare la proprietà",
+      "successfullyDeleted": "La proprietà è stata eliminata correttamente",
+      "failedDelete": "Impossibile eliminare la proprietà",
+      "noteAddedSuccessfully": "La nota è stata aggiunta correttamente",
+      "noteFailedToAdd": "Impossibile aggiungere una nota"
+    }
   },
   "propertyDetails": {
     "title": "Dettagli della proprietà",
@@ -184,7 +194,9 @@
     "phone": "Telefono",
     "addNote": "Aggiungi nota",
     "notes": "Note",
-    "add": "Aggiungi"
+    "add": "Aggiungi",
+    "adding": "Aggiunta in corso...",
+    "loading": "Caricamento in corso..."
   },
   "infoRow": {
     "contract": "Contratto",

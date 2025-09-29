@@ -67,14 +67,14 @@
       "title": "Properties",
       "city": "City",
       "address": "Address",
-      "clientName": "Client name",
+      "clientFullName": "Client full name",
       "clientEmail": "Client email",
       "phoneOfClient": "Phone of client",
       "status": "Status",
       "actions": "Actions",
       "delete": "Delete",
       "cancel": "Cancel",
-      "sureWantDelete": "Are you sure you want to delete this property?",
+      "sureWantDelete": "Are you sure you want to delete property by address: <bold>{{address}}</bold>?",
       "edit": "Edit",
       "add": "Add",
       "loading": "Loading...",
@@ -147,7 +147,7 @@
     "notes": "Notes",
     "add": "Add",
     "adding": "Adding ...",
-    "loading": "Loading..."
+    "loading": "Loading ..."
   },
   "propertyModal": {
     "address": "Address",
@@ -164,7 +164,17 @@
     "selectStatus": "Select status",
     "contract": "Contract",
     "news": "News",
-    "positionError": "New city has been selected, please edit position"
+    "positionError": "New city has been selected, please edit position",
+    "toast": {
+      "successfullyAdded": "Property has been successfully added",
+      "failedAdd": "Failed to add property",
+      "successfullyUpdated": "Property has been successfully updated",
+      "failedUpdate": "Failed to update property",
+      "successfullyDeleted": "Property has been successfully deleted",
+      "failedDelete": "Failed to delete property",
+      "noteAddedSuccessfully": "Note has been successfully added",
+      "noteFailedToAdd": "Failed to add a note"
+    }
   },
   "propertyDetails": {
     "title": "Details of Property",
@@ -176,7 +186,7 @@
     "status": "Status",
     "deleteProperty": "Delete property",
     "cancel": "Cancel",
-    "sureWantDelete": "Are you sure you want to delete the property at address: <bold>{{address}}</bold>?",
+    "sureWantDelete": "Are you sure you want to delete property by address: <bold>{{address}}</bold>?",
     "editProperty": "Edit property",
     "clientDetails": "Client details",
     "fullName": "Full name",
@@ -184,7 +194,9 @@
     "phone": "Phone",
     "addNote": "Add note",
     "notes": "Notes",
-    "add": "Add"
+    "add": "Add",
+    "adding": "Adding ...",
+    "loading": "Loading ..."
   },
   "infoRow": {
     "contract": "Contract",

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
-import { City } from '../common/types'
-import { useAuth } from '../context/AuthContext'
-import { getCities } from '../api/cities'
+import { City } from '../../common/types'
+import { useAuth } from '../../context/AuthContext'
+import { getCities } from '../../api/cities'
 
 export function useGerCities() {
   const { currentUser } = useAuth()

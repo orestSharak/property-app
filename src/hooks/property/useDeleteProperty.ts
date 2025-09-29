@@ -1,23 +1,23 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { deleteClient } from '../api/clients'
+import { deleteProperty } from '../../api/properties'
 
-export function useDeleteClient() {
+export function useDeleteProperty() {
   const queryClient = useQueryClient()
 
   const { mutate, isPending, isError, isSuccess, error } = useMutation({
-    mutationFn: (id: string) => deleteClient(id),
+    mutationFn: (id: string) => deleteProperty(id),
 
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ['clients'] })
+      await queryClient.invalidateQueries({ queryKey: ['properties'] })
     },
 
     onError: (err) => {
-      console.error('Failed to delete client:', err)
+      console.error('Failed to delete property:', err)
     },
   })
 
   return {
-    deleteClient: mutate,
+    deleteProperty: mutate,
     isPending,
     isError,
     isSuccess,

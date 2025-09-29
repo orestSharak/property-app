@@ -1,24 +1,23 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { City } from '../common/types'
-import { updateCity } from '../api/cities'
+import { deleteCity } from '../../api/cities'
 
-export function useUpdateCity() {
+export function useDeleteCity() {
   const queryClient = useQueryClient()
 
   const { mutate, isPending, isError, isSuccess, error } = useMutation({
-    mutationFn: ({ id, updates }: { id: string; updates: City }) => updateCity(id, updates),
+    mutationFn: (id: string) => deleteCity(id),
 
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ['cities'] })
     },
 
     onError: (err) => {
-      console.error('Failed to update cities:', err)
+      console.error('Failed to delete city:', err)
     },
   })
 
   return {
-    updateCity: mutate,
+    deleteCity: mutate,
     isPending,
     isError,
     isSuccess,

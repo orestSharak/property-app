@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { updateProperty } from '../api/properties'
-import { Property } from '../common/types'
+import { updateProperty } from '../../api/properties'
+import { Property } from '../../common/types'
 
 export function useUpdateProperty() {
   const queryClient = useQueryClient()
@@ -8,8 +8,9 @@ export function useUpdateProperty() {
   const { mutate, isPending, isError, isSuccess, error } = useMutation({
     mutationFn: ({ id, updates }: { id: string; updates: Property }) => updateProperty(id, updates),
 
-    onSuccess: async () => {
+    onSuccess: async (_, variables) => {
       await queryClient.invalidateQueries({ queryKey: ['properties'] })
+      await queryClient.invalidateQueries({ queryKey: ['property', variables.id] })
     },
 
     onError: (err) => {

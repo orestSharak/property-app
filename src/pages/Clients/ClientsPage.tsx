@@ -9,14 +9,14 @@ import TableLayout from '../../layout/TableLayout/TableLayout'
 import { ClientFormData } from '../../common/types'
 import { ClientFromSchema } from '../../common/formSchema'
 import { AddEditClientForm } from './AddEditClientForm/AddEditClientForm'
-import { useGetClients } from '../../hooks/useGetClients'
-import { useCreateClient } from '../../hooks/useCreateClient'
+import { useGetClients } from '../../hooks/client/useGetClients'
+import { useCreateClient } from '../../hooks/client/useCreateClient'
 import { useToast } from '../../hooks/useToast'
 import { useAuth } from '../../context/AuthContext'
-import { useClient } from '../../hooks/useGetClient'
+import { useGetClient } from '../../hooks/client/useGetClient'
 import { getClientNameAndSurname } from '../../utils/utils'
-import { useUpdateClient } from '../../hooks/useUpdateClient'
-import { useDeleteClient } from '../../hooks/useDeleteClient'
+import { useUpdateClient } from '../../hooks/client/useUpdateClient'
+import { useDeleteClient } from '../../hooks/client/useDeleteClient'
 
 const ClientsPage = () => {
   const { t } = useTranslation()
@@ -34,7 +34,7 @@ const ClientsPage = () => {
   const { createClient } = useCreateClient()
   const { updateClient } = useUpdateClient()
   const { deleteClient } = useDeleteClient()
-  const { client } = useClient(selectedClientId)
+  const { client } = useGetClient(selectedClientId)
 
   const defaultFormValues = useMemo(
     () => ({
@@ -94,13 +94,18 @@ const ClientsPage = () => {
     setOpenDeleteModal(true)
   }
 
-  const preparedClientData = (data: ClientFormData, userUid: string, userEmail: string) => ({
+  const preparedClientData = (
+    data: ClientFormData,
+    userUid: string,
+    userEmail: string,
+    isEdit?: boolean,
+  ) => ({
     fullName: `${data.name} ${data.surname}`,
     city: data.city,
     address: data.address,
     email: data.email,
     phone: data.phone ?? null,
-    createdAt: Date.now(),
+    createdAt: isEdit ? client?.createdAt : Date.now(),
     userEmail: userEmail,
     userId: userUid,
   })
@@ -130,7 +135,7 @@ const ClientsPage = () => {
   }
 
   const onSubmitEdit = (data: ClientFormData) => {
-    const preparedValues = preparedClientData(data, userUid, userEmail)
+    const preparedValues = preparedClientData(data, userUid, userEmail, true)
 
     updateClient(
       { id: selectedClientId, updates: preparedValues },

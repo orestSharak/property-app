@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { Property } from '../common/types'
-import { getProperties } from '../api/properties'
-import { useAuth } from '../context/AuthContext'
+import { Property } from '../../common/types'
+import { getProperties } from '../../api/properties'
+import { useAuth } from '../../context/AuthContext'
 
 export function useGetProperties(city?: string | null) {
   const { currentUser } = useAuth()

@@ -26,29 +26,29 @@ import { ClientFromSchema } from '../../common/formSchema'
 import { TextArea } from '../../components/base/TextArea/TextArea'
 import { Button } from '../../components/base/Button/Button'
 import { AddEditClientForm } from '../Clients/AddEditClientForm/AddEditClientForm'
-import { useClient } from '../../hooks/useGetClient'
+import { useGetClient } from '../../hooks/client/useGetClient'
 import { getClientNameAndSurname } from '../../utils/utils'
-import { useUpdateClient } from '../../hooks/useUpdateClient'
-import { useDeleteClient } from '../../hooks/useDeleteClient'
+import { useUpdateClient } from '../../hooks/client/useUpdateClient'
+import { useDeleteClient } from '../../hooks/client/useDeleteClient'
 import { useToast } from '../../hooks/useToast'
 import { useAuth } from '../../context/AuthContext'
-import { useAddNote } from '../../hooks/useAddNote'
+import { useAddClientNote } from '../../hooks/client/useAddClientNote'
 
 const ClientDetailsPage = () => {
   const { t } = useTranslation()
   const { currentUser } = useAuth()
   const navigate = useNavigate()
   const { id } = useParams()
+  const { showToast } = useToast()
 
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [openEditModal, setOpenEditModal] = useState(false)
   const [note, setNote] = useState('')
-  const { showToast } = useToast()
 
-  const { client, isLoading } = useClient(id)
+  const { client, isLoading } = useGetClient(id)
   const { updateClient } = useUpdateClient()
   const { deleteClient } = useDeleteClient()
-  const { addNote, isPending: isAddingNote } = useAddNote()
+  const { addClientNote, isPending: isAddingNote } = useAddClientNote()
 
   const clientForm = useForm<ClientFormData>({
     resolver: zodResolver(ClientFromSchema),
@@ -85,7 +85,7 @@ const ClientDetailsPage = () => {
     address: data.address,
     email: data.email,
     phone: data.phone ?? null,
-    createdAt: Date.now(),
+    createdAt: client?.createdAt,
     userEmail: userEmail,
     userId: userUid,
   })
@@ -140,7 +140,7 @@ const ClientDetailsPage = () => {
   const handleNote = (text: string) => {
     if (!id || !text.trim()) return
 
-    addNote(
+    addClientNote(
       { clientId: id, noteText: text },
       {
         onSuccess: async () => {
