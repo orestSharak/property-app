@@ -44,6 +44,7 @@ export type Client = {
   id?: string
   fullName: string
   city: string
+  cityId: string
   address: string
   phone: string | null
   email: string

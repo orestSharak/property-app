@@ -17,7 +17,7 @@ import { useUpdateProperty } from '../../hooks/property/useUpdateProperty'
 import { useDeleteProperty } from '../../hooks/property/useDeleteProperty'
 import { useGetProperty } from '../../hooks/property/useGetProperty'
 import { useGetClients } from '../../hooks/client/useGetClients'
-import { useGerCities } from '../../hooks/city/useGetCities'
+import { useGetCities } from '../../hooks/city/useGetCities'
 import { getClientEmailAndPhone } from '../../utils/utils'
 
 const PropertiesPage = () => {
@@ -38,7 +38,7 @@ const PropertiesPage = () => {
   const { deleteProperty } = useDeleteProperty()
   const { property } = useGetProperty(selectedPropertyId)
   const { clients } = useGetClients()
-  const { cities } = useGerCities()
+  const { cities } = useGetCities()
 
   const defaultFormValues = useMemo(
     () => ({

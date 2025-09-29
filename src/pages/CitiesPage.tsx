@@ -3,7 +3,7 @@ import { Alert, Button, Container, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '../context/AuthContext'
 import { City } from '../common/types'
-import { useGerCities } from '../hooks/city/useGetCities'
+import { useGetCities } from '../hooks/city/useGetCities'
 import { useDeleteCity } from '../hooks/city/useDeleteCity'
 import { useCreateCity } from '../hooks/city/useCreateCity'
 import { useUpdateCity } from '../hooks/city/useUdateCity'
@@ -26,7 +26,7 @@ function CitiesPage() {
   const { currentUser } = useAuth()
   const { email: userEmail, uid: userUid } = currentUser
 
-  const { cities, isLoading, refetch } = useGerCities()
+  const { cities, isLoading, refetch } = useGetCities()
 
   useEffect(() => {
     setCitiesList(cities)

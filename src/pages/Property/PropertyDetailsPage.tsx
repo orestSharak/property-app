@@ -34,7 +34,7 @@ import { useUpdateProperty } from '../../hooks/property/useUpdateProperty'
 import { useDeleteProperty } from '../../hooks/property/useDeleteProperty'
 import { useToast } from '../../hooks/useToast'
 import { useGetClients } from '../../hooks/client/useGetClients'
-import { useGerCities } from '../../hooks/city/useGetCities'
+import { useGetCities } from '../../hooks/city/useGetCities'
 import { getClientEmailAndPhone } from '../../utils/utils'
 
 const PropertyDetailsPage = () => {
@@ -54,7 +54,7 @@ const PropertyDetailsPage = () => {
   const { addPropertyNote, isPending: isAddingNote } = useAddPropertyNote()
 
   const { clients } = useGetClients()
-  const { cities } = useGerCities()
+  const { cities } = useGetCities()
 
   const defaultFormValues = useMemo(
     () => ({

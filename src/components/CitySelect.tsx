@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useGerCities } from '../hooks/city/useGetCities'
+import { useGetCities } from '../hooks/city/useGetCities'
 
 type CitySelectProps = {
   selectedCity: string
@@ -9,7 +9,7 @@ type CitySelectProps = {
 
 export function CitySelect({ selectedCity, setSelectedCity }: CitySelectProps) {
   const { t } = useTranslation()
-  const { cities, isLoading } = useGerCities()
+  const { cities, isLoading } = useGetCities()
   const [isOpen, setIsOpen] = useState(false) // State to control dropdown visibility
   const selectRef = useRef<HTMLDivElement>(null) // Ref for detecting clicks outside
 

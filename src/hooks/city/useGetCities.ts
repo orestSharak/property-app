@@ -3,7 +3,7 @@ import { City } from '../../common/types'
 import { useAuth } from '../../context/AuthContext'
 import { getCities } from '../../api/cities'
 
-export function useGerCities() {
+export function useGetCities() {
   const { currentUser } = useAuth()
 
   const {

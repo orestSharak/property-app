@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -33,6 +33,7 @@ import { useDeleteClient } from '../../hooks/client/useDeleteClient'
 import { useToast } from '../../hooks/useToast'
 import { useAuth } from '../../context/AuthContext'
 import { useAddClientNote } from '../../hooks/client/useAddClientNote'
+import { useGetCities } from '../../hooks/city/useGetCities'
 
 const ClientDetailsPage = () => {
   const { t } = useTranslation()
@@ -48,23 +49,44 @@ const ClientDetailsPage = () => {
   const { client, isLoading } = useGetClient(id)
   const { updateClient } = useUpdateClient()
   const { deleteClient } = useDeleteClient()
+  const { cities } = useGetCities()
   const { addClientNote, isPending: isAddingNote } = useAddClientNote()
+
+  const defaultFormValues = useMemo(
+    () => ({
+      name: '',
+      surname: '',
+      city: '',
+      address: '',
+      email: '',
+      phone: '',
+    }),
+    [],
+  )
 
   const clientForm = useForm<ClientFormData>({
     resolver: zodResolver(ClientFromSchema),
-    defaultValues: {
-      name: getClientNameAndSurname(client?.fullName).name,
-      surname: getClientNameAndSurname(client?.fullName).surname,
-      city: client?.city,
-      address: client?.address,
-      email: client?.email,
-      phone: client?.phone,
-    },
+    defaultValues: defaultFormValues,
     mode: 'onChange',
   })
 
-  const { handleSubmit } = clientForm
+  const { handleSubmit, reset } = clientForm
   const { email: userEmail, uid: userUid } = currentUser
+
+  useEffect(() => {
+    if (client && id) {
+      reset({
+        name: getClientNameAndSurname(client?.fullName).name,
+        surname: getClientNameAndSurname(client?.fullName).surname,
+        city: client?.cityId,
+        address: client?.address,
+        email: client?.email,
+        phone: client?.phone,
+      })
+    } else {
+      reset(defaultFormValues)
+    }
+  }, [client, defaultFormValues, reset, id])
 
   const handleBack = () => {
     navigate(-1)
@@ -79,9 +101,19 @@ const ClientDetailsPage = () => {
     setOpenDeleteModal(true)
   }
 
+  const citiesOptions = useMemo(() => {
+    if (!cities) return []
+
+    return cities.map((city) => ({
+      value: city.id,
+      label: city.name,
+    }))
+  }, [cities])
+
   const preparedClientData = (data: ClientFormData, userUid: string, userEmail: string) => ({
     fullName: `${data.name} ${data.surname}`,
-    city: data.city,
+    city: cities?.find((city) => city?.id === data.city).name,
+    cityId: data.city,
     address: data.address,
     email: data.email,
     phone: data.phone ?? null,
@@ -195,7 +227,7 @@ const ClientDetailsPage = () => {
             <InfoRow label={t('clientDetails>city')} value={client?.city} />
             <InfoRow label={t('clientDetails>address')} value={client?.address} />
             <InfoRow label={t('clientDetails>email')} value={client?.email} />
-            <InfoRow label={t('clientDetails>phone')} value={client?.phone} />
+            {client?.phone && <InfoRow label={t('clientDetails>phone')} value={client?.phone} />}
           </Card>
         </Container>
         <Container>
@@ -307,7 +339,7 @@ const ClientDetailsPage = () => {
       >
         <form onSubmit={handleSubmit(onSubmitEdit)}>
           <FormProvider {...clientForm}>
-            <AddEditClientForm />
+            <AddEditClientForm cities={citiesOptions} />
           </FormProvider>
         </form>
       </Modal>

@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next'
 import { useGetProperties } from '../hooks/property/useGetProperties'
 import { CitySelect } from '../components/CitySelect'
 import BaseImage from '../components/BaseImage'
-import { useGerCities } from '../hooks/city/useGetCities'
+import { useGetCities } from '../hooks/city/useGetCities'
 import { defaultPosition } from '../common/constants'
 
 interface MarkerData {
@@ -61,7 +61,7 @@ export default function Dashboard() {
   const { t } = useTranslation()
 
   const { properties, refetch } = useGetProperties()
-  const { cities } = useGerCities()
+  const { cities } = useGetCities()
   const [selectedCity, setSelectedCity] = useState<string>('')
 
   useEffect(() => {

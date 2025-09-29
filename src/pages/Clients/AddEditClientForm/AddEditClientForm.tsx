@@ -4,8 +4,13 @@ import { useTranslation } from 'react-i18next'
 import { Input } from '../../../components/base/Input/Input'
 import { Wrapper } from './AddEditClientForm.styles'
 import { Select } from '../../../components/base/Select/Select'
+import { Options } from '../../../common/types'
 
-const AddEditClientForm = memo(() => {
+type AddEditClientFormProps = {
+  cities: Options[]
+}
+
+const AddEditClientForm = memo(({ cities }: AddEditClientFormProps) => {
   const { t } = useTranslation()
   const { control } = useFormContext()
 
@@ -49,13 +54,8 @@ const AddEditClientForm = memo(() => {
             label={t('propertyModal>city')}
             placeholder={t('propertyModal>selectCity')}
             error={fieldState.error?.message ? t(`propertyModal>${fieldState.error?.message}`) : ''}
-            options={[
-              { value: 'New York', label: 'New York' },
-              { value: 'Wroclaw', label: 'Wroclaw' },
-              { value: 'Los Angeles', label: 'Los Angeles' },
-              { value: 'San Francisco', label: 'San Francisco' },
-              { value: 'London', label: 'London' },
-            ]}
+            options={cities}
+            disabled={!cities.length}
             {...field}
           />
         )}
