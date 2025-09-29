@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
@@ -19,112 +19,156 @@ import EditIcon from '../../assets/icons/pencil-icon.svg'
 import DeleteIcon from '../../assets/icons/delete-icon.svg'
 import { Card } from '../../components/base/Card/Card'
 import { InfoRow } from '../../components/InfoRow/InfoRow'
-import { ClientFormData, Status } from '../../common/types'
+import { ClientFormData, PropertyDetails } from '../../common/types'
 import { Map } from '../../components/Map/Map'
 import { Modal } from '../../components/base/Modal/Modal'
 import { ClientFromSchema } from '../../common/formSchema'
 import { TextArea } from '../../components/base/TextArea/TextArea'
 import { Button } from '../../components/base/Button/Button'
 import { AddEditClientForm } from '../Clients/AddEditClientForm/AddEditClientForm'
-
-const mockClientDetails = {
-  name: 'Alessandro',
-  surname: 'Curti',
-  address: 'ul. Powstancow Slaskich 12/87',
-  city: 'Wroclaw',
-  email: 'test@test.com',
-  phone: '123122323',
-  markers: [
-    {
-      id: '-OS4v86vbW4tQue7yzdY',
-      position: '51.110829023797024, 17.031042982059372',
-      label: 'Bastion Sakwowy 26/2',
-      status: 'news' as Status,
-      clientId: '123',
-      clientFullName: 'Alessandro Curti',
-      clientEmail: 'test@test.com',
-      clientPhone: '+39 122 232 224',
-    },
-    {
-      id: '2',
-      position: '51.10672787447582, 17.034312448691953',
-      label: 'Wesola 3',
-      status: 'contract' as Status,
-      clientId: '123',
-      clientFullName: 'Alessandro Curti',
-      clientEmail: 'test@test.com',
-      clientPhone: '+39 122 232 224',
-    },
-  ],
-  notes: [
-    {
-      id: '1',
-      cratedAt: 1749244604897,
-      text: 'Curabitur faucibus rhoncus justo sed viverra. Sed maximus nibh sit amet nisl tempor placerat. Cras maximus ipsum at nibh luctus, eu feugiat neque tincidunt. Nulla facilisi. Aenean vitae porta leo. Nulla facilisi. In nunc enim, mollis eu fringilla ut, laoreet quis tortor. Fusce faucibus pharetra consequat. Proin fermentum pretium lacus vel iaculis.',
-    },
-    {
-      id: '2',
-      cratedAt: 1749313853695,
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur faucibus rhoncus justo sed viverra. Sed maximus nibh sit amet nisl tempor placerat. Cras maximus ipsum at nibh luctus, eu feugiat neque tincidunt. Nulla facilisi. Aenean vitae porta leo. Nulla facilisi. In nunc enim, mollis eu fringilla ut, laoreet quis tortor. Fusce faucibus pharetra consequat. Proin fermentum pretium lacus vel iaculis.',
-    },
-    {
-      id: '3',
-      cratedAt: 1749313853695,
-      text: 'Sed maximus nibh sit amet nisl tempor placerat. Cras maximus ipsum at nibh luctus, eu feugiat neque tincidunt. Nulla facilisi. Aenean vitae porta leo. Nulla facilisi. In nunc enim, mollis eu fringilla ut, laoreet quis tortor. Fusce faucibus pharetra consequat. Proin fermentum pretium lacus vel iaculis.',
-    },
-  ],
-}
+import { useClient } from '../../hooks/useGetClient'
+import { getClientNameAndSurname } from '../../utils/utils'
+import { useUpdateClient } from '../../hooks/useUpdateClient'
+import { useDeleteClient } from '../../hooks/useDeleteClient'
+import { useToast } from '../../hooks/useToast'
+import { useAuth } from '../../context/AuthContext'
+import { useAddNote } from '../../hooks/useAddNote'
 
 const ClientDetailsPage = () => {
   const { t } = useTranslation()
+  const { currentUser } = useAuth()
+  const navigate = useNavigate()
+  const { id } = useParams()
+
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [openEditModal, setOpenEditModal] = useState(false)
   const [note, setNote] = useState('')
-  const navigate = useNavigate()
+  const { showToast } = useToast()
+
+  const { client, isLoading } = useClient(id)
+  const { updateClient } = useUpdateClient()
+  const { deleteClient } = useDeleteClient()
+  const { addNote, isPending: isAddingNote } = useAddNote()
 
   const clientForm = useForm<ClientFormData>({
     resolver: zodResolver(ClientFromSchema),
     defaultValues: {
-      name: mockClientDetails.name,
-      surname: mockClientDetails.surname,
-      city: mockClientDetails.city,
-      address: mockClientDetails.address,
-      email: mockClientDetails.email,
-      phone: mockClientDetails.phone,
+      name: getClientNameAndSurname(client?.fullName).name,
+      surname: getClientNameAndSurname(client?.fullName).surname,
+      city: client?.city,
+      address: client?.address,
+      email: client?.email,
+      phone: client?.phone,
     },
     mode: 'onChange',
   })
 
   const { handleSubmit } = clientForm
+  const { email: userEmail, uid: userUid } = currentUser
 
   const handleBack = () => {
     navigate(-1)
   }
 
-  // delete
-  const handleDelete = () => {
-    setOpenDeleteModal(false)
-  }
-
-  // edit
+  // open edit modal
   const handleEditModal = () => {
     setOpenEditModal(true)
   }
-
-  const onSubmitEdit = (data: ClientFormData) => {
-    console.log('Editing Client:', data)
-    setOpenEditModal(false)
-  }
-
+  // open delete modal
   const handleOpenDeleteModal = () => {
     setOpenDeleteModal(true)
   }
 
-  const handleNote = (note: string) => {
-    console.log('note', note)
-    // TODO: add mutation for client notes array
+  const preparedClientData = (data: ClientFormData, userUid: string, userEmail: string) => ({
+    fullName: `${data.name} ${data.surname}`,
+    city: data.city,
+    address: data.address,
+    email: data.email,
+    phone: data.phone ?? null,
+    createdAt: Date.now(),
+    userEmail: userEmail,
+    userId: userUid,
+  })
+
+  const onSubmitEdit = (data: ClientFormData) => {
+    const preparedValues = preparedClientData(data, userUid, userEmail)
+
+    updateClient(
+      { id: id, updates: preparedValues },
+      {
+        onSuccess: async () => {
+          showToast({
+            content: t('clientModal>toast>successfullyUpdated'),
+            status: 'success',
+          })
+        },
+
+        onError: () => {
+          showToast({
+            content: t('clientModal>toast>failedUpdate'),
+            status: 'error',
+          })
+        },
+      },
+    )
+
+    setOpenEditModal(false)
+  }
+
+  const handleDelete = () => {
+    deleteClient(id, {
+      onSuccess: () => {
+        handleBack()
+
+        showToast({
+          content: t('clientModal>toast>successfullyDeleted'),
+          status: 'success',
+        })
+      },
+
+      onError: () => {
+        showToast({
+          content: t('clientModal>toast>failedDelete'),
+          status: 'error',
+        })
+      },
+    })
+
+    setOpenDeleteModal(false)
+  }
+
+  const handleNote = (text: string) => {
+    if (!id || !text.trim()) return
+
+    addNote(
+      { clientId: id, noteText: text },
+      {
+        onSuccess: async () => {
+          showToast({
+            content: t('clientModal>toast>noteAddedSuccessfully'),
+            status: 'success',
+          })
+        },
+        onError: () => {
+          showToast({
+            content: t('clientModal>toast>noteFailedToAdd'),
+            status: 'error',
+          })
+        },
+      },
+    )
     setNote('')
   }
+
+  const preparedPropertiesDetails = (property: PropertyDetails) => ({
+    clientId: client?.id,
+    clientFullName: client?.fullName,
+    clientEmail: client?.email,
+    clientPhone: client?.phone,
+    ...property,
+  })
+
+  if (isLoading) return t('clientDetails>loading')
 
   return (
     <MainWrapper>
@@ -147,22 +191,19 @@ const ClientDetailsPage = () => {
             </ButtonSection>
           </HeaderSection>
           <Card hasList>
-            <InfoRow
-              label={t('clientDetails>fullName')}
-              value={`${mockClientDetails.name} ${mockClientDetails.surname}`}
-            />
-            <InfoRow label={t('clientDetails>city')} value={mockClientDetails.city} />
-            <InfoRow label={t('clientDetails>address')} value={mockClientDetails.address} />
-            <InfoRow label={t('clientDetails>email')} value={mockClientDetails.email} />
-            <InfoRow label={t('clientDetails>phone')} value={mockClientDetails.phone} />
+            <InfoRow label={t('clientDetails>fullName')} value={client?.fullName} />
+            <InfoRow label={t('clientDetails>city')} value={client?.city} />
+            <InfoRow label={t('clientDetails>address')} value={client?.address} />
+            <InfoRow label={t('clientDetails>email')} value={client?.email} />
+            <InfoRow label={t('clientDetails>phone')} value={client?.phone} />
           </Card>
         </Container>
         <Container>
-          {!!mockClientDetails.notes.length && (
+          {!!client?.notes && (
             <>
               <Header hideCount size="sm" title={t('clientDetails>notes')} />
               <NotesWrapper>
-                {mockClientDetails.notes.map((note) => (
+                {Object.values(client?.notes)?.map((note) => (
                   <Card key={note.id} date={note.cratedAt}>
                     {note.text}
                   </Card>
@@ -179,18 +220,47 @@ const ClientDetailsPage = () => {
               label={t('clientDetails>addNote')}
               id="add-note"
             />
-            <Button disabled={!note.length} size="md" onClick={() => handleNote(note)}>
-              {t('clientDetails>add')}
+            <Button
+              disabled={!note.length || isAddingNote}
+              size="md"
+              onClick={() => handleNote(note)}
+            >
+              {isAddingNote ? t('clientDetails>adding') : t('clientDetails>add')}
             </Button>
           </TextAreaWrapper>
         </Container>
       </div>
       <Wrapper>
-        {mockClientDetails.markers?.map((marker) => (
-          <Card key={marker.id} header={marker.label} link={`/properties/${marker.id}`}>
-            <Map height={260} markers={[marker]} />
-          </Card>
-        ))}
+        {client?.properties &&
+          /*
+          --- NOTE ---
+
+          Needed to be wrapped in the  Object.values(...)
+          because Firebase database not supporting array
+          is sending object instead.
+
+          Example:
+
+            "properties": {
+               "-OS5mLauNCRxW-aeLfJv": {
+                 "id": "-OS5mLauNCRxW-aeLfJv",
+                 "position": "51.110829023797024, 17.031042982059372",
+                 "label": "Orla 23/45,
+                 "status": "contract"
+               },
+               "-OS5mLauNCRxW-aeLfJv": {
+                  "id": "-OS5mLauNCRxW-aeLfJv",
+                  "position": "51.110829023797024, 17.031042982059372",
+                  "label": "Bastion Sakwowy 26/2",
+                  "status": "news"
+              }
+             }
+           */
+          Object.values(client?.properties)?.map((property) => (
+            <Card key={property.id} header={property.label} link={`/properties/${property.id}`}>
+              <Map height={260} markers={[preparedPropertiesDetails(property)]} />
+            </Card>
+          ))}
       </Wrapper>
       {/* --- Delete Modal --- */}
       <Modal
@@ -210,7 +280,7 @@ const ClientDetailsPage = () => {
       >
         <Trans
           i18nKey="clientDetails>sureWantDelete"
-          values={{ client: `${mockClientDetails.name} ${mockClientDetails.surname}` }}
+          values={{ client: client?.fullName }}
           components={{ bold: <strong /> }}
         />
       </Modal>

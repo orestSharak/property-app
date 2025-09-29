@@ -33,7 +33,7 @@ const mockPropertyDetails = {
   city: 'Wroclaw',
   status: 'contract',
   markerDetails: {
-    id: '1',
+    id: '-OS5mLauNCRxW-aeLfJv',
     position: '51.110829023797024, 17.031042982059372',
     label: 'Bastion Sakwowy 26/2',
     status: 'news' as Status,

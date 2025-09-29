@@ -3,7 +3,7 @@ import { Client } from '../common/types'
 import { useAuth } from '../context/AuthContext'
 import { getClients } from '../api/clients'
 
-export function useGerClients() {
+export function useGetClients() {
   const { currentUser } = useAuth()
 
   const {

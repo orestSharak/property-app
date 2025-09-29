@@ -44,7 +44,7 @@ export const CardHeaderRow = styled.div<{ $hasLinkOnly?: boolean }>`
   margin-bottom: ${(p) => p.theme.spacing.xs};
   color: ${(p) => p.theme.colors.textStrong};
   font-size: ${(p) => p.theme.fontSize.md};
-  font-weight: ${(p) => p.theme.fontWeight.normal};
+  font-weight: ${(p) => p.theme.fontWeight.bold};
 `
 
 export const StyledLink = styled(Link)`
@@ -53,6 +53,8 @@ export const StyledLink = styled(Link)`
 `
 
 export const ChildWrapper = styled.div<{ $hasList?: boolean }>`
+  white-space: pre-line;
+
   ${({ $hasList }) =>
     $hasList
       ? css`

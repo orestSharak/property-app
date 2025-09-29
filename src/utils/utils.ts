@@ -88,7 +88,7 @@ export function prepareMarkers(markers: MarkerData[]): MarkerDataFull[] {
  * @returns {{ name: string, surname: string }} An object containing the name and surname.
  * If the input is invalid or empty, both fields will be an empty string.
  */
-export function getClientNameAndSurname(fullName?: string) {
+export function getClientNameAndSurname(fullName?: string): { name: string; surname: string } {
   if (typeof fullName !== 'string' || !fullName || fullName.trim() === '') {
     return { name: '', surname: '' }
   }

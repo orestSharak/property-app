@@ -3,9 +3,10 @@ import { ToastContainer } from 'react-toastify'
 
 export const StyledToastContainer = styled(ToastContainer)`
   min-height: 60px;
-  min-width: 549px;
+  min-width: 400px;
 
   .Toastify__toast {
+    width: 100%;
     padding: ${({ theme }) => `${theme.spacing.xxs} ${theme.spacing.md}`};
     border-radius: ${({ theme }) => theme.radius.sm};
     min-height: unset;

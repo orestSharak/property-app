@@ -28,6 +28,18 @@ export type City = {
   createdAt: number
 }
 
+export type Note = {
+  id?: string
+  cratedAt: number
+  text: string
+}
+
+export type PropertyDetails = {
+  id: string
+  position: string
+  label: string
+  status: Status
+}
 export type Client = {
   id?: string
   fullName: string
@@ -38,6 +50,8 @@ export type Client = {
   createdAt: number
   userEmail: string
   userId: string
+  notes?: Note[]
+  properties?: PropertyDetails[]
 }
 
 export type User = {

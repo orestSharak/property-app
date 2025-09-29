@@ -9,27 +9,32 @@ import TableLayout from '../../layout/TableLayout/TableLayout'
 import { ClientFormData } from '../../common/types'
 import { ClientFromSchema } from '../../common/formSchema'
 import { AddEditClientForm } from './AddEditClientForm/AddEditClientForm'
-import { useGerClients } from '../../hooks/useGetClients'
+import { useGetClients } from '../../hooks/useGetClients'
 import { useCreateClient } from '../../hooks/useCreateClient'
 import { useToast } from '../../hooks/useToast'
 import { useAuth } from '../../context/AuthContext'
 import { useClient } from '../../hooks/useGetClient'
 import { getClientNameAndSurname } from '../../utils/utils'
+import { useUpdateClient } from '../../hooks/useUpdateClient'
+import { useDeleteClient } from '../../hooks/useDeleteClient'
 
 const ClientsPage = () => {
   const { t } = useTranslation()
+  const { currentUser } = useAuth()
+  const navigate = useNavigate()
+  const { showToast } = useToast()
+
   const [selectedClientId, setSelectedClientId] = useState<string | null>('')
   const [addMode, setAddMode] = useState(false)
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [openAddEditModal, setOpenAddEditModal] = useState(false)
   const [globalFilter, setGlobalFilter] = useState<string>('')
 
-  const { currentUser } = useAuth()
-  const navigate = useNavigate()
-  const { clients } = useGerClients()
+  const { clients } = useGetClients()
   const { createClient } = useCreateClient()
+  const { updateClient } = useUpdateClient()
+  const { deleteClient } = useDeleteClient()
   const { client } = useClient(selectedClientId)
-  const { showToast } = useToast()
 
   const defaultFormValues = useMemo(
     () => ({
@@ -67,58 +72,53 @@ const ClientsPage = () => {
     }
   }, [client, defaultFormValues, reset, selectedClientId])
 
-  console.log('selectedClientId', selectedClientId)
-
   const counter = clients?.length
 
-  // view
+  // navigate to client details
   const handleView = (id: string) => {
     navigate(`/clients/${id}`)
   }
-  //add
+  // open add modal
   const handleOpenAddModal = () => {
     setAddMode(true)
     setOpenAddEditModal(true)
   }
-  // edit
+  // open edit modal
   const handleOpenEditModal = (id: string) => {
     setSelectedClientId(id)
     setOpenAddEditModal(true)
   }
-  // delete
-  const handleDelete = (id: string) => {
-    console.log('id', id)
-    setOpenDeleteModal(false)
-  }
-
+  // open delete modal
   const handleOpenDeleteModal = (id: string) => {
     setSelectedClientId(id)
     setOpenDeleteModal(true)
   }
 
+  const preparedClientData = (data: ClientFormData, userUid: string, userEmail: string) => ({
+    fullName: `${data.name} ${data.surname}`,
+    city: data.city,
+    address: data.address,
+    email: data.email,
+    phone: data.phone ?? null,
+    createdAt: Date.now(),
+    userEmail: userEmail,
+    userId: userUid,
+  })
+
   const onSubmitAdd = (data: ClientFormData) => {
-    const preparedValues = {
-      fullName: `${data.name} ${data.surname}`,
-      city: data.city,
-      address: data.address,
-      email: data.email,
-      phone: data.phone ?? null,
-      createdAt: Date.now(),
-      userEmail: userEmail,
-      userId: userUid,
-    }
+    const preparedValues = preparedClientData(data, userUid, userEmail)
 
     createClient(preparedValues, {
       onSuccess: () => {
         showToast({
-          content: t('success'),
+          content: t('clientModal>toast>successfullyAdded'),
           status: 'success',
         })
       },
 
       onError: () => {
         showToast({
-          content: t('error'),
+          content: t('clientModal>toast>failedAdd'),
           status: 'error',
         })
       },
@@ -130,10 +130,51 @@ const ClientsPage = () => {
   }
 
   const onSubmitEdit = (data: ClientFormData) => {
-    console.log('Editing client:', data)
+    const preparedValues = preparedClientData(data, userUid, userEmail)
+
+    updateClient(
+      { id: selectedClientId, updates: preparedValues },
+      {
+        onSuccess: () => {
+          showToast({
+            content: t('clientModal>toast>successfullyUpdated'),
+            status: 'success',
+          })
+        },
+
+        onError: () => {
+          showToast({
+            content: t('clientModal>toast>failedUpdate'),
+            status: 'error',
+          })
+        },
+      },
+    )
+
     setOpenAddEditModal(false)
     setSelectedClientId(null)
     reset()
+  }
+
+  const handleDelete = () => {
+    deleteClient(selectedClientId, {
+      onSuccess: () => {
+        showToast({
+          content: t('clientModal>toast>successfullyDeleted'),
+          status: 'success',
+        })
+      },
+
+      onError: () => {
+        showToast({
+          content: t('clientModal>toast>failedDelete'),
+          status: 'error',
+        })
+      },
+    })
+
+    setOpenDeleteModal(false)
+    setSelectedClientId(null)
   }
 
   return (
@@ -164,7 +205,7 @@ const ClientsPage = () => {
         size="sm"
         primaryButton={{
           label: t('clients>table>delete'),
-          onClick: () => selectedClientId && handleDelete(selectedClientId),
+          onClick: () => selectedClientId && handleDelete(),
           variant: 'warning',
         }}
         secondaryButton={{
@@ -187,9 +228,10 @@ const ClientsPage = () => {
         isOpen={openAddEditModal}
         onClose={() => {
           setOpenAddEditModal(false)
-          setAddMode(false)
           setSelectedClientId(null)
           reset()
+
+          addMode && setAddMode(false)
         }}
         title={addMode ? t('clients>table>addClient') : t('clients>table>editClient')}
         size="lg"
@@ -204,6 +246,7 @@ const ClientsPage = () => {
             setOpenAddEditModal(false)
             setAddMode(false)
             reset()
+
             !addMode && setSelectedClientId(null)
           },
         }}

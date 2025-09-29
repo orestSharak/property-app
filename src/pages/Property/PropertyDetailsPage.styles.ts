@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   flex: 1;
-  min-width: 370px;
+  min-width: 465px;
   max-width: 500px;
   margin-bottom: ${(p) => p.theme.spacing.xl};
 `

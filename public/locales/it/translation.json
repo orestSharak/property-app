@@ -116,7 +116,17 @@
     "email": "Email",
     "emailPlaceholder": "Inserisci email",
     "phone": "Telefono",
-    "phonePlaceholder": "Inserisci numero di telefono"
+    "phonePlaceholder": "Inserisci numero di telefono",
+    "toast": {
+      "successfullyAdded": "Il client è stato aggiunto correttamente",
+      "failedAdd": "Impossibile aggiungere il client",
+      "successfullyUpdated": "Il client è stato aggiornato correttamente",
+      "failedUpdate": "Impossibile aggiornare il client",
+      "successfullyDeleted": "Il client è stato eliminato correttamente",
+      "failedDelete": "Impossibile eliminare il client",
+      "noteAddedSuccessfully": "La nota è stata aggiunta correttamente",
+      "noteFailedToAdd": "Impossibile aggiungere una nota"
+    }
   },
   "clientDetails": {
     "title": "Dettagli del cliente",
@@ -135,7 +145,9 @@
     "phone": "Telefono",
     "addNote": "Aggiungi nota",
     "notes": "Note",
-    "add": "Aggiungi"
+    "add": "Aggiungi",
+    "adding": "Aggiunta in corso...",
+    "loading": "Caricamento in corso..."
   },
   "propertyModal": {
     "indirizzo": "Indirizzo",
