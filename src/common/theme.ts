@@ -1,5 +1,14 @@
 export const sidebarWidth = '250px'
 
+const breakpoints = {
+  xs: 0,
+  sm: 576,
+  md: 768,
+  lg: 992,
+  xl: 1200,
+  xxl: 1400,
+} as const
+
 const fontWeight = {
   hairline: '100',
   thin: '200',
@@ -53,6 +62,8 @@ const orderLevel = {
   toast: 100,
   tooltip: 999,
   modalBackdrop: 1000,
+  loginBackground: 1,
+  loginImage: 2,
 } as const
 
 const lightTokens = {
@@ -190,6 +201,7 @@ const commonValues = {
   iconSize,
   fontWeight,
   orderLevel,
+  breakpoints,
 }
 
 export const LightPalette = {

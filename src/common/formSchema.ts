@@ -46,3 +46,10 @@ export const CityFromSchema = z.object({
       message: 'wrongPositionFormat',
     }),
 })
+
+export const LoginFromSchema = z.object({
+  email: z
+    .email({ error: (issue) => (issue.input === '' ? 'isRequired' : 'invalidEmail') })
+    .min(1, 'isRequired'),
+  password: z.string().min(1, 'isRequired'),
+})

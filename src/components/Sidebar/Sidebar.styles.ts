@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { sidebarWidth } from '../../common/theme'
+import { IconButton } from '../base/IconButton/IconButton'
 
 const linkStyles = css`
   display: flex;
@@ -25,6 +26,42 @@ const linkStyles = css`
 
     color: ${(p) => p.theme.colors.surface6};
     background: ${({ theme }) => theme.colors.surface2};
+  }
+`
+
+const extraButtonStyles = css`
+  position: fixed;
+  background-color: ${({ theme }) => theme.colors.surface3};
+  border-color: ${({ theme }) => theme.colors.surface1};
+  transition: all 0.2s;
+
+  & svg {
+    transition: all 0.2s;
+    stroke: ${(p) => p.theme.colors.surface1};
+
+    path {
+      transition: all 0.2s;
+      fill: ${(p) => p.theme.colors.surface1};
+    }
+  }
+
+  &:focus,
+  &:focus-visible {
+    background-color: ${({ theme }) => theme.colors.surface2};
+  }
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.surface6};
+    box-shadow: 0 0 0 1px ${(p) => p.theme.colors.surface6};
+    background-color: ${({ theme }) => theme.colors.surface2};
+
+    & svg {
+      stroke: ${(p) => p.theme.colors.surface6};
+
+      path {
+        fill: ${(p) => p.theme.colors.surface6};
+      }
+    }
   }
 `
 
@@ -68,22 +105,23 @@ export const StyledNavLink = styled(NavLink)`
   }
 `
 
-export const LanguageToggle = styled.button`
-  position: fixed;
-  top: ${(p) => p.theme.spacing.sm};
-  left: ${(p) => p.theme.spacing.sm};
-  background: transparent;
-
-  ${linkStyles}
-  &:hover {
-    border-color: transparent;
-  }
-`
-
 export const IconWrapper = styled.div`
   margin-right: ${(p) => p.theme.spacing.sm};
 
   & svg {
     stroke: currentColor;
   }
+`
+
+export const LanguageIconButton = styled(IconButton)`
+  top: ${(p) => p.theme.spacing.lg};
+  left: ${(p) => p.theme.spacing.md};
+  ${extraButtonStyles};
+`
+
+export const StyledIconButton = styled(IconButton)`
+  position: fixed;
+  top: ${(p) => p.theme.spacing.lg};
+  left: ${(p) => `calc(${p.theme.spacing.xxxl} + ${p.theme.spacing.md})`};
+  ${extraButtonStyles};
 `

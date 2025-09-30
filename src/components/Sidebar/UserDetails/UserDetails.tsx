@@ -10,15 +10,17 @@ import {
 } from './UserDetails.styles'
 import LogOutIcon from '../../../assets/icons/log-out-icon.svg'
 import { useAuth } from '../../../context/AuthContext'
+import { useAuthMutations } from '../../../hooks/useAuthMutation'
 
 const UserDetails = () => {
-  const { logout, currentUser } = useAuth()
+  const { currentUser } = useAuth()
   const { t } = useTranslation()
+  const { logout } = useAuthMutations()
   const navigate = useNavigate()
 
   async function handleLogOut() {
     try {
-      logout()
+      await logout()
       navigate('/')
     } catch (e) {
       console.log('Log out error: ', e)

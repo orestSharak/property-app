@@ -2,17 +2,33 @@
   "app": {
     "title": "Properties management"
   },
+  "login": {
+    "title": "Welcome",
+    "subtitle": "Enter your email and password to access your account",
+    "email": "Email",
+    "emailPlaceholder": "Type email",
+    "password": "Password",
+    "passwordPlaceholder": "Type password",
+    "isRequired": "Field is required",
+    "invalidEmail": "Not valid email format. Ex: test@test.com",
+    "login": "Login",
+    "failedLoginError": "The username or password you entered is incorrect.",
+    "language": "Switch language",
+    "light": "Light",
+    "dark": "Dark"
+  },
   "sidebar": {
     "sidebar": "Sidebar",
-    "it": "IT",
-    "en": "EN",
     "logIn": "Log In",
     "logOut": "Log Out",
     "dashboard": "Dashboard",
     "properties": "Properties",
     "cities": "Cities",
     "settings": "Settings",
-    "clients": "Clients"
+    "clients": "Clients",
+    "language": "Switch language",
+    "light": "Light",
+    "dark": "Dark"
   },
   "pages": {
     "pageNotFound": "Oops! Page not found",

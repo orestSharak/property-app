@@ -1,11 +1,12 @@
-import { memo } from 'react'
+import React, { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   IconWrapper,
-  LanguageToggle,
+  LanguageIconButton,
   NavItem,
   NavList,
   SidebarContainer,
+  StyledIconButton,
   StyledNavLink,
 } from './Sidebar.styles'
 import DashboardIcon from '../../assets/icons/dashboard-icon.svg'
@@ -17,9 +18,14 @@ import SettingsIcon from '../../assets/icons/settings-icon.svg'
 import { useAuth } from '../../context/AuthContext'
 import UserDetails from './UserDetails/UserDetails'
 
+import MoonIcon from '../../assets/icons/moon-icon.svg'
+import SunIcon from '../../assets/icons/sun-icon.svg'
+import { useTheme } from '../../context/ThemeContext'
+
 const Sidebar = () => {
   const { t, i18n } = useTranslation()
   const { currentUser } = useAuth()
+  const { themeMode, toggleTheme } = useTheme()
 
   const sidebarLinks = [
     { name: t('sidebar>dashboard'), path: '/dashboard', icon: <DashboardIcon /> },
@@ -31,7 +37,6 @@ const Sidebar = () => {
 
   const handleLanguageToggle = async () => {
     const currentLang = i18n.language
-    console.log('click')
 
     if (currentLang === 'en') {
       await i18n.changeLanguage('it')
@@ -42,25 +47,20 @@ const Sidebar = () => {
     }
   }
 
-  const getButtonText = () => {
-    const currentLang = i18n.language
-
-    if (currentLang === 'en') {
-      return t('sidebar>en')
-    } else {
-      return t('sidebar>it')
-    }
-  }
-
   return (
     <SidebarContainer aria-label={t('sidebar>sidebar')}>
-      <LanguageToggle tabIndex={0} onClick={handleLanguageToggle}>
-        <IconWrapper>
-          <GlobeIcon />
-        </IconWrapper>
-        {getButtonText()}
-      </LanguageToggle>
-
+      <LanguageIconButton
+        noTooltip
+        title={t('language')}
+        icon={<GlobeIcon />}
+        onClick={handleLanguageToggle}
+      />
+      <StyledIconButton
+        noTooltip
+        icon={themeMode === 'light' ? <MoonIcon /> : <SunIcon />}
+        title={themeMode === 'dark' ? t('light') : t('dark')}
+        onClick={toggleTheme}
+      />
       <nav role="navigation" aria-label={t('sidebar>sidebar')}>
         <NavList>
           {currentUser &&

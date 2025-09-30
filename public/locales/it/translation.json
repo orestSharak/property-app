@@ -2,17 +2,33 @@
   "app": {
     "title": "Gestione immobiliare"
   },
+  "login": {
+    "title": "Benvenuto",
+    "subtitle": "Inserisci email e password per accedere al tuo account",
+    "email": "Email",
+    "emailPlaceholder": "Inserisci email",
+    "password": "Password",
+    "passwordPlaceholder": "Inserisci password",
+    "isRequired": "Il campo è obbligatorio",
+    "invalidEmail": "Formato email non valido. Es: test@test.com",
+    "login": "Accedi",
+    "failedLoginError": "Il nome utente o la password inseriti non sono corretti.",
+    "language": "Cambia lingua",
+    "light": "Chiaro",
+    "dark": "Scuro"
+  },
   "sidebar": {
     "sidebar": "Barra laterale",
-    "it": "IT",
-    "en": "EN",
     "logIn": "Accedi",
     "logOut": "Esci",
     "dashboard": "Pannello",
     "properties": "Proprietà",
     "cities": "Città",
     "settings": "Impostazioni",
-    "clients": "Clienti"
+    "clients": "Clienti",
+    "language": "Cambia lingua",
+    "light": "Chiaro",
+    "dark": "Scuro"
   },
   "pages": {
     "pageNotFound": "Ops! Pagina non trovata",

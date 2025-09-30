@@ -17,7 +17,6 @@ type ButtonProps = {
  * @param {'sm' | 'md' | 'lg'} [props.size='md'] - The size of the button.
  * @param {boolean} [props.disabled=false] - If true, the button is disabled and non-interactive.
  * @param {React.ReactNode} props.children - The content to be rendered inside the button.
- * @param {string} [props.className] - Optional CSS class for custom styling.
  * @param {ButtonHTMLAttributes<HTMLButtonElement>} rest - All other standard HTML button attributes.
  * @param {React.Ref<HTMLButtonElement>} ref - A ref to the underlying HTML button element.
  * @returns {JSX.Element} The rendered button component.
@@ -35,16 +34,9 @@ type ButtonProps = {
  * <Button variant="danger" disabled>Delete</Button>
  */
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = 'primary', size = 'md', disabled = false, children, className, ...rest }, ref) => {
+  ({ variant = 'primary', size = 'md', disabled = false, children, ...rest }, ref) => {
     return (
-      <StyledButton
-        ref={ref}
-        $variant={variant}
-        $size={size}
-        disabled={disabled}
-        className={className}
-        {...rest}
-      >
+      <StyledButton ref={ref} $variant={variant} $size={size} disabled={disabled} {...rest}>
         {children}
       </StyledButton>
     )

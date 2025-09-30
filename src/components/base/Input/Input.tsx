@@ -97,6 +97,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       disabled,
       slotEnd,
       minWidth,
+      value = '',
+      autoComplete = 'off',
       hideLabel = false,
       passwordToggleIcons = {
         show: <EyeIcon />,
@@ -131,10 +133,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         )}
         <InputContainer $hasError={!!error}>
           <StyledInput
-            autoComplete="off"
+            autoComplete={autoComplete}
             $hasSlotEnd={hasSlotEnd}
             ref={ref}
             id={id}
+            value={value || ''}
             $minWidth={minWidth}
             type={inputType}
             $hasError={!!error}

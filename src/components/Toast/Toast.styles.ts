@@ -3,7 +3,7 @@ import { ToastContainer } from 'react-toastify'
 
 export const StyledToastContainer = styled(ToastContainer)`
   min-height: 60px;
-  min-width: 400px;
+  min-width: 450px;
 
   .Toastify__toast {
     width: 100%;
