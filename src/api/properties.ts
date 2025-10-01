@@ -104,3 +104,9 @@ export async function addNoteToProperty(propertyId: string, noteText: string): P
   // ALTERNATIVE: Use set(newNoteRef, newNote) if you prefer 'set' over 'update'
   // await set(newNoteRef, newNote);
 }
+
+export async function deleteNoteFromProperty(propertyId: string, noteId: string): Promise<void> {
+  const noteRef = ref(db, `properties/${propertyId}/notes/${noteId}`)
+
+  await remove(noteRef)
+}

@@ -13,6 +13,7 @@ export const TooltipPopover = styled.div<{
   $length: number
 }>`
   max-width: 300px;
+  min-width: max-content;
   display: block;
   position: absolute;
   left: 50%;

@@ -141,7 +141,9 @@
       "successfullyDeleted": "Client has been successfully deleted",
       "failedDelete": "Failed to delete client",
       "noteAddedSuccessfully": "Note has been successfully added",
-      "noteFailedToAdd": "Failed to add a note"
+      "noteFailedToAdd": "Failed to add a note",
+      "noteDeletedSuccessfully": "Note has been successfully deleted",
+      "noteFailedToDelete": "Failed to delete a note"
     }
   },
   "clientDetails": {
@@ -154,6 +156,7 @@
     "deleteClient": "Delete client",
     "cancel": "Cancel",
     "sureWantDelete": "Are you sure you want to delete this client: <bold>{{client}}</bold>?",
+    "sureWantDeleteNote": "Are you sure you want to delete note: '<bold>{{text}}</bold>'?",
     "editClient": "Edit client",
     "clientDetails": "Client details",
     "fullName": "Full name",
@@ -163,7 +166,8 @@
     "notes": "Notes",
     "add": "Add",
     "adding": "Adding ...",
-    "loading": "Loading ..."
+    "loading": "Loading ...",
+    "deleteNote": "Delete note"
   },
   "propertyModal": {
     "address": "Address",
@@ -189,7 +193,9 @@
       "successfullyDeleted": "Property has been successfully deleted",
       "failedDelete": "Failed to delete property",
       "noteAddedSuccessfully": "Note has been successfully added",
-      "noteFailedToAdd": "Failed to add a note"
+      "noteFailedToAdd": "Failed to add a note",
+      "noteDeletedSuccessfully": "Note has been successfully deleted",
+      "noteFailedToDelete": "Failed to delete a note"
     }
   },
   "propertyDetails": {
@@ -203,6 +209,7 @@
     "deleteProperty": "Delete property",
     "cancel": "Cancel",
     "sureWantDelete": "Are you sure you want to delete property by address: <bold>{{address}}</bold>?",
+    "sureWantDeleteNote": "Are you sure you want to delete note: '<bold>{{text}}</bold>'?",
     "editProperty": "Edit property",
     "clientDetails": "Client details",
     "fullName": "Full name",
@@ -212,7 +219,8 @@
     "notes": "Notes",
     "add": "Add",
     "adding": "Adding ...",
-    "loading": "Loading ..."
+    "loading": "Loading ...",
+    "deleteNote": "Delete note"
   },
   "cities": {
     "table": {

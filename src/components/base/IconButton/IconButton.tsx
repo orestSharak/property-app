@@ -38,7 +38,7 @@ export type IconButtonProps = {
  */
 const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   (
-    { icon, title: title, color, disabled = false, size = 'sm', noTooltip = false, ...rest },
+    { icon, title: title, color, disabled = false, size = 'md', noTooltip = false, ...rest },
     ref,
   ) => {
     return (

@@ -6,16 +6,16 @@ import {
   CardHeaderRow,
   ChildWrapper,
   Date,
+  DeleteIcon,
   StyledLink,
-  Title,
   TopContainer,
   Wrapper,
 } from './Card.styles'
+import CrossIcon from '../../../assets/icons/cross-icon.svg'
 
 type CardProps = {
   header?: string
   headerId?: string
-  title?: string
   link?: string
   date?: number
   as?: keyof JSX.IntrinsicElements
@@ -23,6 +23,8 @@ type CardProps = {
   width?: number
   hasList?: boolean
   compact?: boolean
+  deleteMessage?: string
+  onDelete?: () => void
 }
 
 /**
@@ -31,7 +33,6 @@ type CardProps = {
  *
  * @param  props - The component props.
  * @param  [props.header] - The text content for the card's header.
- * @param  [props.title] - The text content for the title above the card.
  * @param  [props.headerId] - An optional ID for the header element, useful for accessibility.
  * @param  [props.link] - The URL for the "See details" link, which is displayed in the header.
  * @param  [props.date] - A Unix timestamp to display a formatted date above the card.
@@ -55,7 +56,6 @@ type CardProps = {
 const Card: FC<PropsWithChildren<CardProps>> = ({
   header,
   headerId,
-  title,
   link,
   date,
   children,
@@ -64,20 +64,24 @@ const Card: FC<PropsWithChildren<CardProps>> = ({
   width,
   hasList = false,
   compact = false,
+  deleteMessage,
+  onDelete,
 }) => {
   const { t } = useTranslation()
 
   const hasContent = !!header || !!link
-  const hasTopContent = !!title || !!date
+  const hasTopContent = !!onDelete || !!date
   const hasLinkOnly = !header && !!link
   const labelledBy = ariaLabelledBy || (headerId && header ? headerId : undefined)
 
   return (
-    <Wrapper width={width} as={as}>
+    <Wrapper width={width} as={as} $hasDelete={!!onDelete} tabIndex={onDelete ? 0 : undefined}>
       {hasTopContent && (
         <TopContainer>
-          {title && <Title>{title}</Title>}
           {date && <Date dateTime={formatTimestamp(date)}>{formatTimestamp(date)}</Date>}
+          {!!onDelete && deleteMessage && (
+            <DeleteIcon size="sm" onClick={onDelete} icon={<CrossIcon />} title={deleteMessage} />
+          )}
         </TopContainer>
       )}
       <CardContainer $hasContent={hasContent} aria-labelledby={labelledBy} $compact={compact}>

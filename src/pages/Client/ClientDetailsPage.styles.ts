@@ -39,6 +39,7 @@ export const NotesWrapper = styled.div`
   flex-direction: column;
   gap: ${(p) => p.theme.spacing.xl};
   margin-bottom: ${(p) => p.theme.spacing.xxl};
+  margin-top: ${(p) => p.theme.spacing.sm};
 `
 
 export const TextAreaWrapper = styled.div`

@@ -35,7 +35,8 @@ import { useDeleteProperty } from '../../hooks/property/useDeleteProperty'
 import { useToast } from '../../hooks/useToast'
 import { useGetClients } from '../../hooks/client/useGetClients'
 import { useGetCities } from '../../hooks/city/useGetCities'
-import { getClientEmailAndPhone } from '../../utils/utils'
+import { getClientEmailAndPhone, truncateByWords } from '../../utils/utils'
+import { useDeletePropertyNote } from '../../hooks/property/useDeletePropertyNote'
 
 const PropertyDetailsPage = () => {
   const { t } = useTranslation()
@@ -45,13 +46,16 @@ const PropertyDetailsPage = () => {
   const { showToast } = useToast()
 
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
+  const [openDeleteNoteModal, setOpenDeleteNoteModal] = useState(false)
   const [openEditModal, setOpenEditModal] = useState(false)
   const [note, setNote] = useState('')
+  const [selectedNoteId, setSelectedNoteId] = useState<string | null>(null)
 
   const { property, isLoading } = useGetProperty(id)
   const { updateProperty } = useUpdateProperty()
   const { deleteProperty } = useDeleteProperty()
   const { addPropertyNote, isPending: isAddingNote } = useAddPropertyNote()
+  const { deletePropertyNote } = useDeletePropertyNote()
 
   const { clients } = useGetClients()
   const { cities } = useGetCities()
@@ -223,6 +227,28 @@ const PropertyDetailsPage = () => {
     setNote('')
   }
 
+  const handleDeletePropertyNote = (propertyId: string, noteId: string) => {
+    setOpenDeleteNoteModal(false)
+
+    deletePropertyNote(
+      { propertyId, noteId },
+      {
+        onSuccess: async () => {
+          showToast({
+            content: t('propertyModal>toast>noteDeletedSuccessfully'),
+            status: 'success',
+          })
+        },
+        onError: () => {
+          showToast({
+            content: t('propertyModal>toast>noteFailedToDelete'),
+            status: 'error',
+          })
+        },
+      },
+    )
+  }
+
   const preparedMarkerDetails = () => ({
     id: property?.id,
     position: property?.position,
@@ -233,6 +259,10 @@ const PropertyDetailsPage = () => {
     clientEmail: property?.clientEmail,
     clientPhone: property?.clientPhone,
   })
+
+  const noteTruncatedText = selectedNoteId
+    ? Object.values(property?.notes)?.find((note) => note.id === selectedNoteId)?.text
+    : ''
 
   if (isLoading) return t('propertyDetails>loading')
 
@@ -283,7 +313,15 @@ const PropertyDetailsPage = () => {
               <Header hideCount size="sm" title={t('propertyDetails>notes')} />
               <NotesWrapper>
                 {Object.values(property?.notes)?.map((note) => (
-                  <Card key={note.id} date={note.cratedAt}>
+                  <Card
+                    key={note.id}
+                    date={note.cratedAt}
+                    deleteMessage={t('propertyDetails>deleteNote')}
+                    onDelete={() => {
+                      setSelectedNoteId(note.id)
+                      setOpenDeleteNoteModal(true)
+                    }}
+                  >
                     {note.text}
                   </Card>
                 ))}
@@ -343,6 +381,37 @@ const PropertyDetailsPage = () => {
         <Trans
           i18nKey="propertyDetails>sureWantDelete"
           values={{ address: property?.address }}
+          components={{ bold: <strong /> }}
+        />
+      </Modal>
+
+      {/* --- Delete Note Modal --- */}
+      <Modal
+        isOpen={openDeleteNoteModal}
+        onClose={() => {
+          setOpenDeleteNoteModal(false)
+          setSelectedNoteId(null)
+        }}
+        title={t('propertyDetails>deleteNote')}
+        size="sm"
+        primaryButton={{
+          label: t('propertyDetails>delete'),
+          onClick: () => handleDeletePropertyNote(id, selectedNoteId),
+          variant: 'warning',
+        }}
+        secondaryButton={{
+          label: t('propertyDetails>cancel'),
+          onClick: () => {
+            setOpenDeleteNoteModal(false)
+            setSelectedNoteId(null)
+          },
+        }}
+      >
+        <Trans
+          i18nKey="propertyDetails>sureWantDeleteNote"
+          values={{
+            text: truncateByWords(noteTruncatedText),
+          }}
           components={{ bold: <strong /> }}
         />
       </Modal>

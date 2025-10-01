@@ -32,8 +32,8 @@ const fontSize = {
 } as const
 
 const iconSize = {
-  sm: '18px',
-  md: '22px',
+  sm: '16px',
+  md: '18px',
 } as const
 
 const spacing = {

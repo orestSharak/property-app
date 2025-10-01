@@ -139,3 +139,25 @@ export function getClientEmailAndPhone(
     phone: client.phone ?? null,
   }
 }
+
+/**
+ * Truncates a string to a specified number of words and appends an ellipsis
+ * if truncation occurs.
+ *
+ * @param text
+ * @param {number} [numWords=2] The maximum number of words to keep. Defaults to 2.
+ * @returns {string} The truncated string with an ellipsis (" ..."), or the original string
+ */
+export function truncateByWords(text?: string, numWords: number = 2): string {
+  if (!text) {
+    return ''
+  }
+
+  const words = text.trim().split(/\s+/)
+
+  if (words.length <= numWords) {
+    return text
+  }
+
+  return words.slice(0, numWords).join(' ') + ' ...'
+}

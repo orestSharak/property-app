@@ -77,3 +77,9 @@ export async function addNoteToClient(clientId: string, noteText: string): Promi
   // ALTERNATIVE: Use set(newNoteRef, newNote) if you prefer 'set' over 'update'
   // await set(newNoteRef, newNote);
 }
+
+export async function deleteNoteFromClient(clientId: string, noteId: string): Promise<void> {
+  const noteRef = ref(db, `clients/${clientId}/notes/${noteId}`)
+
+  await remove(noteRef)
+}

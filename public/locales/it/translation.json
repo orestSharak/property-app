@@ -141,7 +141,9 @@
       "successfullyDeleted": "Il client è stato eliminato correttamente",
       "failedDelete": "Impossibile eliminare il client",
       "noteAddedSuccessfully": "La nota è stata aggiunta correttamente",
-      "noteFailedToAdd": "Impossibile aggiungere una nota"
+      "noteFailedToAdd": "Impossibile aggiungere una nota",
+      "noteDeletedSuccessfully": "La nota è stata eliminata correttamente",
+      "noteFailedToDelete": "Impossibile eliminare una nota"
     }
   },
   "clientDetails": {
@@ -154,6 +156,7 @@
     "deleteClient": "Elimina cliente",
     "cancel": "Annulla",
     "sureWantDelete": "Sei sicuro di voler eliminare questo cliente: <bold>{{client}}</bold>?",
+    "sureWantDeleteNote": "Sei sicuro di voler eliminare la nota: '<bold>{{text}}</bold>'?",
     "editClient": "Modifica cliente",
     "clientDetails": "Dettagli del cliente",
     "fullName": "Nome completo",
@@ -163,7 +166,8 @@
     "notes": "Note",
     "add": "Aggiungi",
     "adding": "Aggiunta in corso...",
-    "loading": "Caricamento in corso..."
+    "loading": "Caricamento in corso...",
+    "deleteNote": "Elimina nota"
   },
   "propertyModal": {
     "indirizzo": "Indirizzo",
@@ -189,7 +193,9 @@
       "successfullyDeleted": "La proprietà è stata eliminata correttamente",
       "failedDelete": "Impossibile eliminare la proprietà",
       "noteAddedSuccessfully": "La nota è stata aggiunta correttamente",
-      "noteFailedToAdd": "Impossibile aggiungere una nota"
+      "noteFailedToAdd": "Impossibile aggiungere una nota",
+      "noteDeletedSuccessfully": "La nota è stata eliminata correttamente",
+      "noteFailedToDelete": "Impossibile eliminare una nota"
     }
   },
   "propertyDetails": {
@@ -203,6 +209,7 @@
     "deleteProperty": "Elimina proprietà",
     "cancel": "Annulla",
     "sureWantDelete": "Sei sicuro di voler eliminare la proprietà all'indirizzo: <bold>{{address}}</bold>?",
+    "sureWantDeleteNote": "Sei sicuro di voler eliminare la nota: '<bold>{{text}}</bold>'?",
     "editProperty": "Modifica proprietà",
     "clientDetails": "Dati del cliente",
     "fullName": "Nome completo",
@@ -212,7 +219,8 @@
     "notes": "Note",
     "add": "Aggiungi",
     "adding": "Aggiunta in corso...",
-    "loading": "Caricamento in corso..."
+    "loading": "Caricamento in corso...",
+    "deleteNote": "Elimina nota"
   },
   "cities": {
     "table": {

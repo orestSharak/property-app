@@ -1,8 +1,38 @@
 import { Link } from 'react-router-dom'
 import styled, { css } from 'styled-components'
+import { IconButton } from '../IconButton/IconButton'
 
-export const Wrapper = styled.div<{ width?: number }>`
+export const DeleteIcon = styled(IconButton)`
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+
+  &:focus {
+    visibility: visible;
+    opacity: 1;
+  }
+`
+
+export const Wrapper = styled.div<{ width?: number; $hasDelete?: boolean }>`
   width: ${({ width }) => (width ? `${width}px` : '100%')};
+
+  ${({ $hasDelete }) =>
+    $hasDelete
+      ? `
+        &:focus,
+        &:focus-visible {
+          outline: none;
+        }
+      `
+      : ''}
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    ${DeleteIcon} {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
 `
 
 export const TopContainer = styled.div`
@@ -17,15 +47,6 @@ export const Date = styled.time`
   color: ${(p) => p.theme.colors.textNeutral};
   font-size: ${(p) => p.theme.fontSize.sm};
   font-weight: ${(p) => p.theme.fontWeight.semibold};
-  margin-left: auto;
-`
-
-export const Title = styled.h3`
-  color: ${(p) => p.theme.colors.textMain};
-  font-size: ${(p) => p.theme.fontSize.lg};
-  font-weight: ${(p) => p.theme.fontWeight.bold};
-  margin-bottom: 0;
-  margin-left: ${(p) => p.theme.spacing.xl};
 `
 
 export const CardContainer = styled.div<{ $hasContent: boolean; $compact?: boolean }>`

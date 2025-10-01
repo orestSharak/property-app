@@ -27,13 +27,14 @@ import { TextArea } from '../../components/base/TextArea/TextArea'
 import { Button } from '../../components/base/Button/Button'
 import { AddEditClientForm } from '../Clients/AddEditClientForm/AddEditClientForm'
 import { useGetClient } from '../../hooks/client/useGetClient'
-import { getClientNameAndSurname } from '../../utils/utils'
+import { getClientNameAndSurname, truncateByWords } from '../../utils/utils'
 import { useUpdateClient } from '../../hooks/client/useUpdateClient'
 import { useDeleteClient } from '../../hooks/client/useDeleteClient'
 import { useToast } from '../../hooks/useToast'
 import { useAuth } from '../../context/AuthContext'
 import { useAddClientNote } from '../../hooks/client/useAddClientNote'
 import { useGetCities } from '../../hooks/city/useGetCities'
+import { useDeleteClientNote } from '../../hooks/client/useDeleteClientNote'
 
 const ClientDetailsPage = () => {
   const { t } = useTranslation()
@@ -43,14 +44,17 @@ const ClientDetailsPage = () => {
   const { showToast } = useToast()
 
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
+  const [openDeleteNoteModal, setOpenDeleteNoteModal] = useState(false)
   const [openEditModal, setOpenEditModal] = useState(false)
   const [note, setNote] = useState('')
+  const [selectedNoteId, setSelectedNoteId] = useState<string | null>(null)
 
   const { client, isLoading } = useGetClient(id)
   const { updateClient } = useUpdateClient()
   const { deleteClient } = useDeleteClient()
   const { cities } = useGetCities()
   const { addClientNote, isPending: isAddingNote } = useAddClientNote()
+  const { deleteClientNote } = useDeleteClientNote()
 
   const defaultFormValues = useMemo(
     () => ({
@@ -196,6 +200,28 @@ const ClientDetailsPage = () => {
     setNote('')
   }
 
+  const handleDeleteClientNote = (clientId: string, noteId: string) => {
+    setOpenDeleteNoteModal(false)
+
+    deleteClientNote(
+      { clientId, noteId },
+      {
+        onSuccess: async () => {
+          showToast({
+            content: t('clientModal>toast>noteDeletedSuccessfully'),
+            status: 'success',
+          })
+        },
+        onError: () => {
+          showToast({
+            content: t('clientModal>toast>noteFailedToDelete'),
+            status: 'error',
+          })
+        },
+      },
+    )
+  }
+
   const preparedPropertiesDetails = (property: PropertyDetails) => ({
     clientId: client?.id,
     clientFullName: client?.fullName,
@@ -203,6 +229,10 @@ const ClientDetailsPage = () => {
     clientPhone: client?.phone,
     ...property,
   })
+
+  const noteTruncatedText = selectedNoteId
+    ? Object.values(client?.notes)?.find((note) => note.id === selectedNoteId)?.text
+    : ''
 
   if (isLoading) return t('clientDetails>loading')
 
@@ -240,7 +270,15 @@ const ClientDetailsPage = () => {
               <Header hideCount size="sm" title={t('clientDetails>notes')} />
               <NotesWrapper>
                 {Object.values(client?.notes)?.map((note) => (
-                  <Card key={note.id} date={note.cratedAt}>
+                  <Card
+                    deleteMessage={t('clientDetails>deleteNote')}
+                    onDelete={() => {
+                      setSelectedNoteId(note.id)
+                      setOpenDeleteNoteModal(true)
+                    }}
+                    key={note.id}
+                    date={note.cratedAt}
+                  >
                     {note.text}
                   </Card>
                 ))}
@@ -317,6 +355,37 @@ const ClientDetailsPage = () => {
         <Trans
           i18nKey="clientDetails>sureWantDelete"
           values={{ client: client?.fullName }}
+          components={{ bold: <strong /> }}
+        />
+      </Modal>
+
+      {/* --- Delete Note Modal --- */}
+      <Modal
+        isOpen={openDeleteNoteModal}
+        onClose={() => {
+          setOpenDeleteNoteModal(false)
+          setSelectedNoteId(null)
+        }}
+        title={t('clientDetails>deleteNote')}
+        size="sm"
+        primaryButton={{
+          label: t('clientDetails>delete'),
+          onClick: () => handleDeleteClientNote(id, selectedNoteId),
+          variant: 'warning',
+        }}
+        secondaryButton={{
+          label: t('clientDetails>cancel'),
+          onClick: () => {
+            setOpenDeleteNoteModal(false)
+            setSelectedNoteId(null)
+          },
+        }}
+      >
+        <Trans
+          i18nKey="clientDetails>sureWantDeleteNote"
+          values={{
+            text: truncateByWords(noteTruncatedText),
+          }}
           components={{ bold: <strong /> }}
         />
       </Modal>
