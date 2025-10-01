@@ -7,7 +7,6 @@ import { Container } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { useGetProperties } from '../hooks/property/useGetProperties'
 import { CitySelect } from '../components/CitySelect'
-import BaseImage from '../components/BaseImage'
 import { useGetCities } from '../hooks/city/useGetCities'
 import { defaultPosition } from '../common/constants'
 
@@ -76,9 +75,8 @@ export default function Dashboard() {
           lat: Number(item.position.split(',')[0]),
           lng: Number(item.position.split(',')[1]),
         },
-        text: item.name,
+        text: item?.address,
         address: item.address,
-        imageUrl: item.imageUrl,
       })),
     [properties],
   )
@@ -204,7 +202,7 @@ export default function Dashboard() {
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 10, width: 200 }}>
                     <h6>{marker.text}</h6>
                     <span>Address: {marker.address}</span>
-                    <BaseImage src={marker.imageUrl} size={200} alt={marker.text} />
+                    {/*<BaseImage src={marker.imageUrl} size={200} alt={marker.text} />*/}
                   </div>
                 </Popup>
               </Marker>
