@@ -3,7 +3,7 @@ import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
 import L, { LatLngLiteral } from 'leaflet'
 
 import 'leaflet/dist/leaflet.css'
-import { Container } from 'react-bootstrap'
+
 import { useTranslation } from 'react-i18next'
 import { useGetProperties } from '../hooks/property/useGetProperties'
 import { CitySelect } from '../components/CitySelect'
@@ -108,7 +108,7 @@ export default function Dashboard() {
   }, [selectedMarker])
 
   return (
-    <Container
+    <div
       style={{
         width: '100%',
         display: 'flex',
@@ -210,6 +210,6 @@ export default function Dashboard() {
           </MapContainer>
         )}
       </div>
-    </Container>
+    </div>
   )
 }

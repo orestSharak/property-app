@@ -2,6 +2,9 @@ import { createGlobalStyle } from 'styled-components'
 import houseIconUrl from '../assets/icons/house-icon.png'
 
 const GlobalStyle = createGlobalStyle`
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
   /*
     Josh's Custom CSS Reset
     https://www.joshwcomeau.com/css/custom-css-reset/
@@ -34,6 +37,9 @@ const GlobalStyle = createGlobalStyle`
     /* 5. Improve text rendering */
     -webkit-font-smoothing: antialiased;
     background-color: ${({ theme }) => theme.colors.surface3};
+    font-family: 'Inter', sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
   }
 
   /* 6. Improve media defaults */
