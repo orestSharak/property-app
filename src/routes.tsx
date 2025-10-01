@@ -1,15 +1,14 @@
 import React from 'react'
-
-const AuthenticatedLayout = React.lazy(() => import('./layout/AuthenticatedLayout'))
-const Dashboard = React.lazy(() => import('./pages/Dashboard'))
-const CitiesPage = React.lazy(() => import('./pages/Cities/CitiesPage'))
-const PropertiesPage = React.lazy(() => import('./pages/Properties/PropertiesPage'))
-const PropertyDetailsPage = React.lazy(() => import('./pages/Property/PropertyDetailsPage'))
-const ClientsPage = React.lazy(() => import('./pages/Clients/ClientsPage'))
-const ClientDetailsPage = React.lazy(() => import('./pages/Client/ClientDetailsPage'))
-const Settings = React.lazy(() => import('./pages/Settings'))
-const Login = React.lazy(() => import('./pages/Login/Login'))
-const PageNotFound = React.lazy(() => import('./pages/PageNotFound'))
+import AuthenticatedLayout from './layout/AuthenticatedLayout'
+import Dashboard from './pages/Dashboard'
+import CitiesPage from './pages/Cities/CitiesPage'
+import PropertiesPage from './pages/Properties/PropertiesPage'
+import PropertyDetailsPage from './pages/Property/PropertyDetailsPage'
+import ClientsPage from './pages/Clients/ClientsPage'
+import Settings from './pages/Settings'
+import Login from './pages/Login/Login'
+import PageNotFound from './pages/PageNotFound'
+import ClientDetailsPage from './pages/Client/ClientDetailsPage'
 
 export const APP_ROUTES = [
   {

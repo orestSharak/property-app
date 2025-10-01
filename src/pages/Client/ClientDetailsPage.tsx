@@ -74,6 +74,10 @@ const ClientDetailsPage = () => {
   const { email: userEmail, uid: userUid } = currentUser
 
   useEffect(() => {
+    if (!client && !isLoading) navigate('/non-existent-resource', { replace: true })
+  }, [client, navigate, isLoading])
+
+  useEffect(() => {
     if (client && id) {
       reset({
         name: getClientNameAndSurname(client?.fullName).name,

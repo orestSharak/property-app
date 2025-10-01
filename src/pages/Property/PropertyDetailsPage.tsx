@@ -78,6 +78,10 @@ const PropertyDetailsPage = () => {
   const selectedCity = watch('city')
 
   useEffect(() => {
+    if (!property && !isLoading) navigate('/non-existent-resource', { replace: true })
+  }, [property, navigate, isLoading])
+
+  useEffect(() => {
     if (selectedCity !== property?.cityId) {
       setError('position', {
         type: 'custom',
@@ -268,7 +272,7 @@ const PropertyDetailsPage = () => {
         </Container>
         <CardWrapper>
           <Card compact>
-            <Map height={260} markers={[preparedMarkerDetails()]} />
+            {property && <Map height={260} markers={[preparedMarkerDetails()]} />}
           </Card>
         </CardWrapper>
       </Wrapper>
