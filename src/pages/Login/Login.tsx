@@ -2,7 +2,6 @@ import React, { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useAuthMutations } from '../../hooks/useAuthMutation'
 import { LoginFormData } from '../../common/types'
 import { LoginFromSchema } from '../../common/formSchema'
 import { useTheme } from '../../context/ThemeContext'
@@ -23,7 +22,8 @@ import {
 import { useToast } from '../../hooks/useToast'
 import MoonIcon from '../../assets/icons/moon-icon.svg'
 import SunIcon from '../../assets/icons/sun-icon.svg'
-import GlobeIcon from '../../assets/icons/globe-icon.svg' // user: alessandro@test.com
+import GlobeIcon from '../../assets/icons/globe-icon.svg'
+import { useLogin } from '../../hooks/auth/useLogin' // user: alessandro@test.com
 
 // user: alessandro@test.com
 // pass: Alessandro1!
@@ -33,7 +33,7 @@ import GlobeIcon from '../../assets/icons/globe-icon.svg' // user: alessandro@te
 
 function Login() {
   const { t, i18n } = useTranslation()
-  const { login, isLoggingIn } = useAuthMutations()
+  const { login, isLoggingIn } = useLogin()
   const { themeMode, toggleTheme } = useTheme()
   const { showToast } = useToast()
 

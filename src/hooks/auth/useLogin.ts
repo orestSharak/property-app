@@ -1,14 +1,14 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../../context/AuthContext'
 
-export interface LoginCredentials {
+type LoginCredentials = {
   email: string
   password: string
 }
 
-export function useAuthMutations() {
-  const { login, logout } = useAuth()
+export function useLogin() {
+  const { login } = useAuth()
   const queryClient = useQueryClient()
   const navigate = useNavigate()
 
@@ -22,22 +22,9 @@ export function useAuthMutations() {
     },
   })
 
-  const logoutMutation = useMutation({
-    mutationFn: logout,
-
-    onSuccess: () => {
-      queryClient.clear()
-      navigate('/')
-    },
-  })
-
   return {
     login: loginMutation.mutateAsync,
     isLoggingIn: loginMutation.isPending,
     loginError: loginMutation.error,
-
-    logout: logoutMutation.mutateAsync,
-    isLoggingOut: logoutMutation.isPending,
-    logoutError: logoutMutation.error,
   }
 }
