@@ -13,6 +13,13 @@ export function AuthProvider({ children }: PropsWithChildren) {
   const [currentUser, setCurrentUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
 
+  async function refreshUser() {
+    if (auth.currentUser) {
+      await auth.currentUser.reload()
+      setCurrentUser(auth.currentUser)
+    }
+  }
+
   function login(email: string, password: string) {
     return auth.signInWithEmailAndPassword(email, password)
   }
@@ -32,6 +39,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
     login,
     logout,
     currentUser,
+    refreshUser,
   }
 
   return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>

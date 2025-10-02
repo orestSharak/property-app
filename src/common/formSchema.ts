@@ -53,3 +53,8 @@ export const LoginFromSchema = z.object({
     .min(1, 'isRequired'),
   password: z.string().min(1, 'isRequired'),
 })
+
+export const UserFromSchema = z.object({
+  name: z.string().min(1, 'isRequired'),
+  surname: z.string().min(1, 'isRequired'),
+})

@@ -295,5 +295,19 @@
       "hide": "Nascondi password",
       "show": "Mostra password"
     }
+  },
+  "settings": {
+    "name": "Nome",
+    "namePlaceholder": "Inserisci nome",
+    "surname": "Cognome",
+    "surnamePlaceholder": "Inserisci cognome",
+    "isRequired": "Il campo è obbligatorio",
+    "update": "Aggiorna",
+    "userSettings": "Impostazioni utente",
+    "email": "Email",
+    "toast": {
+      "successfullyUpdate": "L'utente è stato aggiornato correttamente",
+      "failedUpdate": "Impossibile aggiornare l'utente"
+    }
   }
 }

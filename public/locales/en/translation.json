@@ -295,5 +295,19 @@
       "hide": "Hide password",
       "show": "Show password"
     }
+  },
+  "settings": {
+    "name": "Name",
+    "namePlaceholder": "Type name",
+    "surname": "Surname",
+    "surnamePlaceholder": "Type surname",
+    "isRequired": "Field is required",
+    "update": "Update",
+    "userSettings": "User settings",
+    "email": "Email",
+    "toast": {
+      "successfullyUpdate": "User has been successfully updated",
+      "failedUpdate": "Failed to update user"
+    }
   }
 }

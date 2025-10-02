@@ -19,7 +19,7 @@ import {
   SubHeader,
   Wrapper,
 } from './Login.styles'
-import { useToast } from '../../hooks/useToast'
+import { useToast } from '../../hooks/toast/useToast'
 import MoonIcon from '../../assets/icons/moon-icon.svg'
 import SunIcon from '../../assets/icons/sun-icon.svg'
 import GlobeIcon from '../../assets/icons/globe-icon.svg'
