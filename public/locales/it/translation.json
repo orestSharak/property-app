@@ -298,6 +298,8 @@
     "surname": "Cognome",
     "surnamePlaceholder": "Inserisci cognome",
     "isRequired": "Il campo è obbligatorio",
+    "provideName": "Azione richiesta: imposta il tuo nome per continuare.",
+    "provideSurname": "Azione richiesta: imposta il tuo cognome per continuare.",
     "update": "Aggiorna",
     "userSettings": "Impostazioni utente",
     "email": "Email",

@@ -35,7 +35,7 @@ function Settings() {
     mode: 'onChange',
   })
 
-  const { control, handleSubmit, reset } = userForm
+  const { control, handleSubmit, reset, setError } = userForm
 
   useEffect(() => {
     if (currentUser && currentUser.displayName) {
@@ -47,6 +47,19 @@ function Settings() {
       reset(defaultFormValues)
     }
   }, [currentUser, defaultFormValues, reset])
+
+  useEffect(() => {
+    if (currentUser && !currentUser.displayName) {
+      setError('name', {
+        type: 'custom',
+        message: 'provideName',
+      })
+      setError('surname', {
+        type: 'custom',
+        message: 'provideSurname',
+      })
+    }
+  }, [currentUser, setError])
 
   const preparedUserData = (data: UserFormData) => ({
     displayName: `${data.name} ${data.surname}`,

@@ -31,6 +31,9 @@ import { useLogin } from '../../hooks/auth/useLogin' // user: alessandro@test.co
 // user: orest@test.com
 // pass: Orest1!
 
+// user: user@test.com
+// pass: User1!
+
 function Login() {
   const { t, i18n } = useTranslation()
   const { login, isLoggingIn } = useLogin()

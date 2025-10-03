@@ -7,6 +7,7 @@ import { Toast } from './components/Toast/Toast'
 import { AppProviders } from './AppProviders'
 import { AppRouter } from './components/AppRouter'
 import 'leaflet/dist/leaflet.css'
+import { NameCheckRedirect } from './components/NameCheckRedirect'
 
 function App() {
   const { t } = useTranslation()
@@ -19,9 +20,11 @@ function App() {
     <ErrorBoundary>
       <HashRouter>
         <AppProviders>
-          <GlobalStyles />
-          <Toast />
-          <AppRouter />
+          <NameCheckRedirect>
+            <GlobalStyles />
+            <Toast />
+            <AppRouter />
+          </NameCheckRedirect>
         </AppProviders>
       </HashRouter>
     </ErrorBoundary>

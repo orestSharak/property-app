@@ -298,6 +298,8 @@
     "surname": "Surname",
     "surnamePlaceholder": "Type surname",
     "isRequired": "Field is required",
+    "provideName": "Action Required: Set your name to continue.",
+    "provideSurname": "Action Required: Set your surname to continue.",
     "update": "Update",
     "userSettings": "User settings",
     "email": "Email",
