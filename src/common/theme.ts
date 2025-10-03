@@ -29,6 +29,7 @@ const fontSize = {
   xl: '1.5rem',
   xxl: '2rem',
   xxxl: '2.5rem',
+  max: '6rem',
 } as const
 
 const iconSize = {

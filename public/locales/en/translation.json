@@ -31,7 +31,10 @@
     "dark": "Dark"
   },
   "pages": {
-    "pageNotFound": "Oops! Page not found",
+    "pageNotFound": "Page not found",
+    "notFoundDescription": "Oops! The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+    "goToDashboard": "Go to Dashboard",
+    "goToLogin": "Go to Login",
     "logIn": {
       "logIn": "Log In",
       "failedLogIn": "Failed to log in"
@@ -324,5 +327,11 @@
       "news": "News",
       "contract": "Contract"
     }
+  },
+  "pageNotFound": {
+    "notFound": "Page not found",
+    "notFoundDescription": "This page does not exist or the address is incorrect. Use the button below to return to safety.",
+    "goToDashboard": "Go to Dashboard",
+    "goToLogin": "Go to Login"
   }
 }

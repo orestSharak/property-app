@@ -324,5 +324,11 @@
       "contract": "Contratto",
       "news": "Notizie"
     }
+  },
+  "pageNotFound": {
+    "notFound": "Pagina non trovata",
+    "notFoundDescription": "Oops! La pagina che stai cercando potrebbe essere stata rimossa, potrebbe aver cambiato nome o potrebbe essere temporaneamente non disponibile.",
+    "goToDashboard": "Vai alla Dashboard",
+    "goToLogin": "Vai ad Accedi"
   }
 }

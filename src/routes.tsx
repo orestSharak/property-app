@@ -7,7 +7,7 @@ import PropertyDetailsPage from './pages/Property/PropertyDetailsPage'
 import ClientsPage from './pages/Clients/ClientsPage'
 import Settings from './pages/Settings/Settings'
 import Login from './pages/Login/Login'
-import PageNotFound from './pages/PageNotFound'
+import PageNotFound from './pages/PageNotFound/PageNotFound'
 import ClientDetailsPage from './pages/Client/ClientDetailsPage'
 
 export const APP_ROUTES = [
