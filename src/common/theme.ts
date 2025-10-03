@@ -82,8 +82,8 @@ const lightTokens = {
 
   surfaceAlert: '#DB0404',
   surfaceAlertStrong: '#ba0505',
-  surfaceInfo: '#00CFFF',
-  surfacePink: '#F011D6',
+  surfaceInfo: '#00B3E6',
+  surfacePink: '#D80FC1',
 
   // On-surface colors (for text, icons)
   textPrimary: '#FEC640',
@@ -92,9 +92,9 @@ const lightTokens = {
   textNeutral: '#9E9E9E',
   textSecondary: '#6C696D',
 
-  textPink: '#F011D6',
+  textPink: '#D80FC1',
   textAlert: '#DB0404',
-  textInfo: '#00CFFF',
+  textInfo: '#00B3E6',
   textLink: '#117CEF',
 
   textOnSurface6: '#161616',
@@ -148,8 +148,8 @@ const darkTokens = {
 
   surfaceAlert: '#DB0404',
   surfaceAlertStrong: '#ba0505',
-  surfaceInfo: '#00CFFF',
-  surfacePink: '#F011D6',
+  surfaceInfo: '#00B3E6',
+  surfacePink: '#D80FC1',
 
   // On-surface colors (for text, icons)
   textPrimary: '#FEC640',
@@ -158,9 +158,9 @@ const darkTokens = {
   textNeutral: '#818181', // Neutral gray for secondary info
   textSecondary: '#9E9E9E', // Lighter secondary gray
 
-  textPink: '#F011D6',
+  textPink: '#D80FC1',
   textAlert: '#DB0404',
-  textInfo: '#00CFFF',
+  textInfo: '#00B3E6',
   textLink: '#7FCFFF', // Lighter, more vibrant link color
 
   textOnSurface6: '#161616', // Text on primary brand color remains dark
