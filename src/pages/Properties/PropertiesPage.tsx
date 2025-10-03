@@ -137,10 +137,10 @@ const PropertiesPage = () => {
     userEmail: string,
     isEdit?: boolean,
   ) => ({
-    address: data.address,
+    address: data.address.trimStart().trimEnd(),
     city: cities?.find((city) => city?.id === data.city).name,
     cityId: data.city,
-    position: data.position,
+    position: data.position.trimStart().trimEnd(),
     status: data.status as Status,
     clientFullName: clients?.find((client) => client?.id === data.client).fullName,
     clientId: data.client,

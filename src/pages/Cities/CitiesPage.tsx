@@ -85,8 +85,8 @@ const CitiesPage = () => {
     userEmail: string,
     isEdit?: boolean,
   ) => ({
-    name: data.name,
-    position: data.position,
+    name: data.name.trimStart().trimEnd(),
+    position: data.position.trimStart().trimEnd(),
     createdAt: isEdit ? city?.createdAt : Date.now(),
     userEmail: userEmail,
     userId: userUid,

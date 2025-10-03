@@ -119,12 +119,12 @@ const ClientDetailsPage = () => {
   }, [cities])
 
   const preparedClientData = (data: ClientFormData, userUid: string, userEmail: string) => ({
-    fullName: `${data.name} ${data.surname}`,
+    fullName: `${data.name.trim()} ${data.surname.trim()}`,
     city: cities?.find((city) => city?.id === data.city).name,
     cityId: data.city,
-    address: data.address,
-    email: data.email,
-    phone: data.phone ?? null,
+    address: data.address.trimStart().trimEnd(),
+    email: data.email.trimStart().trimEnd(),
+    phone: data.phone.trimStart().trimEnd() ?? null,
     createdAt: client?.createdAt,
     userEmail: userEmail,
     userId: userUid,

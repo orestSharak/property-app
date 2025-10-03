@@ -128,7 +128,7 @@ function Dashboard() {
             slotEnd={<SearchIcon />}
             placeholder={t('dashboard>search')}
             id="search"
-            value={search}
+            value={search.trimStart()}
             onChange={handleSearchChange}
             label={t('dashboard>search')}
             direction="inline"

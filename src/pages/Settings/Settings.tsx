@@ -62,7 +62,7 @@ function Settings() {
   }, [currentUser, setError])
 
   const preparedUserData = (data: UserFormData) => ({
-    displayName: `${data.name} ${data.surname}`,
+    displayName: `${data.name.trim()} ${data.surname.trim()}`,
   })
 
   const onUpdate = async (data: UserFormData) => {

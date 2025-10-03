@@ -4,7 +4,7 @@ import { z } from 'zod'
 const latLngPattern = /^\s*-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?\s*$/
 
 export const PropertyFromSchema = z.object({
-  address: z.string().min(1, 'isRequired'),
+  address: z.string().trim().min(1, 'isRequired'),
   position: z
     .string()
     .trim()
@@ -17,6 +17,7 @@ export const PropertyFromSchema = z.object({
     .min(1, 'isRequired'),
   city: z
     .string({ error: (issue) => issue.input === undefined && 'isRequired' })
+    .trim()
     .min(1, 'isRequired'),
   status: z
     .string({ error: (issue) => issue.input === undefined && 'isRequired' })
@@ -24,20 +25,21 @@ export const PropertyFromSchema = z.object({
 })
 
 export const ClientFromSchema = z.object({
-  name: z.string().min(1, 'isRequired'),
-  surname: z.string().min(1, 'isRequired'),
+  name: z.string().trim().min(1, 'isRequired'),
+  surname: z.string().trim().min(1, 'isRequired'),
   city: z
     .string({ error: (issue) => issue.input === undefined && 'isRequired' })
     .min(1, 'isRequired'),
-  address: z.string().min(1, 'isRequired'),
+  address: z.string().trim().min(1, 'isRequired'),
   email: z
     .email({ error: (issue) => (issue.input === '' ? 'isRequired' : 'invalidEmail') })
+    .trim()
     .min(1, 'isRequired'),
-  phone: z.string(),
+  phone: z.string().trim(),
 })
 
 export const CityFromSchema = z.object({
-  name: z.string().min(1, 'isRequired'),
+  name: z.string().trim().min(1, 'isRequired'),
   position: z
     .string()
     .trim()
@@ -55,6 +57,6 @@ export const LoginFromSchema = z.object({
 })
 
 export const UserFromSchema = z.object({
-  name: z.string().min(1, 'isRequired'),
-  surname: z.string().min(1, 'isRequired'),
+  name: z.string().trim().min(1, 'isRequired'),
+  surname: z.string().trim().min(1, 'isRequired'),
 })
