@@ -78,6 +78,7 @@ export const StyledLink = styled(Link)`
 
 export const ChildWrapper = styled.div<{ $hasList?: boolean }>`
   white-space: pre-line;
+  color: ${(p) => p.theme.colors.textMain};
 
   ${({ $hasList }) =>
     $hasList
@@ -87,4 +88,10 @@ export const ChildWrapper = styled.div<{ $hasList?: boolean }>`
           gap: ${(p) => p.theme.spacing.lg};
         `
       : undefined}
+`
+
+export const IconWrapper = styled.div`
+  path {
+    fill: ${(p) => p.theme.colors.iconOnSurface1};
+  }
 `

@@ -1,16 +1,16 @@
 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17Z"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M12 2V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M12 21V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M4.22 4.22L3.51 3.51" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke="" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12 2V3" stroke="" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12 21V22" stroke="" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M4.22 4.22L3.51 3.51" stroke="" stroke-width="2" stroke-linecap="round"
           stroke-linejoin="round"/>
-    <path d="M20.49 20.49L19.78 19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+    <path d="M20.49 20.49L19.78 19.78" stroke="" stroke-width="2" stroke-linecap="round"
           stroke-linejoin="round"/>
-    <path d="M2 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M21 12H22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M4.22 19.78L3.51 20.49" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+    <path d="M2 12H3" stroke="" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M21 12H22" stroke="" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M4.22 19.78L3.51 20.49" stroke="" stroke-width="2" stroke-linecap="round"
           stroke-linejoin="round"/>
-    <path d="M20.49 3.51L19.78 4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+    <path d="M20.49 3.51L19.78 4.22" stroke="" stroke-width="2" stroke-linecap="round"
           stroke-linejoin="round"/>
 </svg>

@@ -48,3 +48,8 @@ export const TextAreaWrapper = styled.div`
   align-items: flex-end;
   gap: ${(p) => p.theme.spacing.xs};
 `
+export const IconWrapper = styled.div`
+  path {
+    fill: ${(p) => p.theme.colors.iconOnSurface1};
+  }
+`

@@ -7,6 +7,7 @@ import {
   ChildWrapper,
   Date,
   DeleteIcon,
+  IconWrapper,
   StyledLink,
   TopContainer,
   Wrapper,
@@ -80,7 +81,16 @@ const Card: FC<PropsWithChildren<CardProps>> = ({
         <TopContainer>
           {date && <Date dateTime={formatTimestamp(date)}>{formatTimestamp(date)}</Date>}
           {!!onDelete && deleteMessage && (
-            <DeleteIcon size="sm" onClick={onDelete} icon={<CrossIcon />} title={deleteMessage} />
+            <DeleteIcon
+              size="sm"
+              onClick={onDelete}
+              icon={
+                <IconWrapper>
+                  <CrossIcon />
+                </IconWrapper>
+              }
+              title={deleteMessage}
+            />
           )}
         </TopContainer>
       )}

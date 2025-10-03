@@ -110,7 +110,11 @@ export const IconContainer = styled.span<{ $open?: boolean; $disabled?: boolean 
     transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     transform: rotate(${({ $open }) => ($open ? '180deg' : '0deg')});
     display: block;
-    opacity: ${({ $disabled }) => ($disabled ? 0.2 : 0.4)};
+    opacity: ${({ $disabled }) => ($disabled ? 0.4 : 1)};
+  }
+
+  path {
+    fill: ${(p) => p.theme.colors.iconOnSurface1};
   }
 `
 

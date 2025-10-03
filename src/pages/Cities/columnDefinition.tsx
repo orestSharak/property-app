@@ -34,6 +34,6 @@ export const columnDefinition: (
       />
     ),
     enableSorting: false,
-    size: 1,
+    size: 0.5,
   }),
 ]

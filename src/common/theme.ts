@@ -79,7 +79,6 @@ const lightTokens = {
   surface6Light: '#ffdf94',
   surface7: '#FAFAFA',
   surface8: '#f6f6f6',
-  surface9: '#fdfdfd',
 
   surfaceAlert: '#DB0404',
   surfaceAlertStrong: '#ba0505',
@@ -101,13 +100,12 @@ const lightTokens = {
   textOnSurface6: '#161616',
   textOnSurface3: '#D9D9D9',
   textOnSurface4: '#545454',
-  textOnSurface7: '#818181',
   textOnSurface2: '#ffffff',
   textOnSurface1: '#000000',
   textOnSurfaceAlert: '#ffffff',
 
-  iconOnSurface3: '#D9D9D9',
-  iconOnSurface4: '#797979',
+  iconOnSurface1: '#000000',
+  iconOnSurface3: '#ffffff',
 
   // Border colors
   borderPrimary: '#D9D9D9',
@@ -138,14 +136,15 @@ const lightTokens = {
 
 const darkTokens = {
   // Surface colors (for backgrounds)
-  surface1: '#161616', // Dark background
-  surface2: '#D9D9D9', // Lighter accent surface
-  surface3: '#F1F1F1', // Lightest surface for contrast
-  surface4: '#FAFAFA', // White-like surface
-  surface5: '#545454', // Gray surface
-  surface6: '#FEC640', // Primary brand color
-  surface6Light: '#ffdf94',
-  surface7: '#222222', // Darker background for depth
+  surface1: '#161616', // Primary dark background
+  surface2: '#333333', // Revised: Professional, elevated dark gray for button/input backgrounds
+  surface3: '#000000',
+  surface4: '#1F1F1F',
+  surface5: '#222222',
+  surface6: '#FEC640',
+  surface6Light: '#D4A737',
+  surface7: '#0a0a0a',
+  surface8: '#111111',
 
   surfaceAlert: '#DB0404',
   surfaceAlertStrong: '#ba0505',
@@ -154,47 +153,50 @@ const darkTokens = {
 
   // On-surface colors (for text, icons)
   textPrimary: '#FEC640',
-  textMain: '#D9D9D9', // Main text is now a light gray for readability
-  textStrong: '#ffffff', // Strong text is now pure white for maximum contrast
-  textNeutral: '#818181', // Neutral gray for secondary info
-  textSecondary: '#9E9E9E', // Lighter secondary gray
+  textMain: '#D9D9D9',
+  textStrong: '#ffffff',
+  textNeutral: '#9E9E9E',
+  textSecondary: '#A9A9A9',
 
   textPink: '#D80FC1',
-  textAlert: '#DB0404',
-  textInfo: '#00B3E6',
-  textLink: '#7FCFFF', // Lighter, more vibrant link color
+  textAlert: '#FF6F6F',
+  textInfo: '#66D9FF',
+  textLink: '#40A8FF',
 
-  textOnSurface6: '#161616', // Text on primary brand color remains dark
-  textOnSurface3: '#161616',
-  textOnSurface4: '#161616',
-  textOnSurface7: '#D9D9D9',
-  textOnSurface2: '#161616',
-  textOnSurface1: '#D9D9D9', // Text on dark background is now light
+  textOnSurface6: '#161616',
+  textOnSurface3: '#D9D9D9',
+  textOnSurface4: '#A9A9A9',
+  textOnSurface2: '#ffffff', // Light text on new dark surface2 (#333333)
+  textOnSurface1: '#ffffff',
   textOnSurfaceAlert: '#ffffff',
 
-  iconOnSurface3: '#161616',
-  iconOnSurface4: '#161616',
+  iconOnSurface1: '#ffffff',
+  iconOnSurface3: '#ffffff',
 
   // Border colors
-  borderPrimary: '#545454', // Darker border
-  borderSecondary: '#363636', // Even darker border
-  borderStrong: '#D9D9D9', // Lighter border for separation
-  borderIntense: '#ffffff', // Pure white for intense borders
+  borderPrimary: '#444444',
+  borderSecondary: '#333333',
+  borderStrong: '#666666',
+  borderIntense: '#ffffff',
   borderAlert: '#DB0404',
 
   // Box shadows
-  boxShadowAlert: '#680202', // Darker, more subtle shadow
-  boxShadowInfo: '#00475b', // Darker, more subtle shadow
+  boxShadowAlert: '#600e0e',
+  boxShadowInfo: '#003a57',
+
+  // Toast
+  toastSuccess: '#38A88D',
+  toastError: '#de3030',
+  toastInfo: '#7799ff',
 
   // Other tokens
-  separator: '#545454',
-  disabled: '#333333', // Darker disabled state
-  boxShadow1: `0 4px 24px rgba(0, 0, 0, 0.4)`, // Shadow becomes a bit more pronounced
-  boxShadow2: `0 6px 20px rgba(0, 0, 0, 0.3)`,
-  boxShadow3: `0 4px 20px rgba(0, 0, 0, 0.35)`,
-  boxShadow4: `0 4px 6px rgba(0, 0, 0, 0.05)`,
-  gradientShadow: `linear-gradient(to top, rgba(200, 200, 200, 0.7) 0%, rgba(100, 100, 100, 0.85) 100%
-);`,
+  separator: '#333333',
+  disabled: '#333333',
+  boxShadow1: `0 4px 12px rgba(0, 0, 0, 0.5)`,
+  boxShadow2: `0 6px 12px rgba(0, 0, 0, 0.7)`,
+  boxShadow3: `0 4px 10px rgba(0, 0, 0, 0.45)`,
+  boxShadow4: `0 0 1px 0 rgba(255, 255, 255, 0.15)`,
+  gradientShadow: `rgba(0, 0, 0, 0.8)`,
 } as const
 const commonValues = {
   spacing,

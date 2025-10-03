@@ -8,6 +8,7 @@ import { useGetCities } from '../../hooks/city/useGetCities'
 
 import {
   Container,
+  IconWrapper,
   InputSection,
   MapContainer,
   NoResult,
@@ -125,7 +126,11 @@ function Dashboard() {
             hint={!cities?.length ? t('dashboard>addCityFirst') : undefined}
           />
           <Input
-            slotEnd={<SearchIcon />}
+            slotEnd={
+              <IconWrapper>
+                <SearchIcon />
+              </IconWrapper>
+            }
             placeholder={t('dashboard>search')}
             id="search"
             value={search.trimStart()}

@@ -7,6 +7,7 @@ import {
   ButtonSection,
   Container,
   HeaderSection,
+  IconWrapper,
   MainWrapper,
   NotesWrapper,
   TextAreaWrapper,
@@ -241,16 +242,32 @@ const ClientDetailsPage = () => {
       <div>
         <Container>
           <HeaderSection>
-            <IconButton icon={<ArrowIcon />} title={t('clientDetails>back')} onClick={handleBack} />
+            <IconButton
+              icon={
+                <IconWrapper>
+                  <ArrowIcon />
+                </IconWrapper>
+              }
+              title={t('clientDetails>back')}
+              onClick={handleBack}
+            />
             <Header hideCount title={t('clientDetails>title')} />
             <ButtonSection>
               <IconButton
-                icon={<EditIcon />}
+                icon={
+                  <IconWrapper>
+                    <EditIcon />
+                  </IconWrapper>
+                }
                 title={t('clientDetails>edit')}
                 onClick={handleEditModal}
               />
               <IconButton
-                icon={<DeleteIcon />}
+                icon={
+                  <IconWrapper>
+                    <DeleteIcon />
+                  </IconWrapper>
+                }
                 title={t('clientDetails>delete')}
                 onClick={handleOpenDeleteModal}
               />

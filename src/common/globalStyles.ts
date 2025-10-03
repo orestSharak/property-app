@@ -138,6 +138,8 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     min-width: 280px;
+    background: ${(p) => p.theme.colors.surface1};
+    border-radius: ${(p) => p.theme.radius.md};
   }
 
   /* Example: override close button */

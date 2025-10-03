@@ -117,6 +117,12 @@ export const LanguageIconButton = styled(IconButton)`
   top: ${(p) => p.theme.spacing.lg};
   left: ${(p) => p.theme.spacing.md};
   ${extraButtonStyles};
+
+  & svg {
+    path {
+      fill: ${(p) => p.theme.colors.iconOnSurface3};
+    }
+  }
 `
 
 export const StyledIconButton = styled(IconButton)`
@@ -124,4 +130,12 @@ export const StyledIconButton = styled(IconButton)`
   top: ${(p) => p.theme.spacing.lg};
   left: ${(p) => `calc(${p.theme.spacing.xxxl} + ${p.theme.spacing.md})`};
   ${extraButtonStyles};
+
+  & svg {
+    stroke: ${(p) => p.theme.colors.iconOnSurface3};
+
+    path {
+      fill: ${(p) => p.theme.colors.iconOnSurface3};
+    }
+  }
 `

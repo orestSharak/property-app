@@ -99,10 +99,24 @@ export const LanguageIconButton = styled(IconButton)`
   position: fixed;
   top: ${(p) => p.theme.spacing.lg};
   left: ${(p) => p.theme.spacing.md};
+
+  & svg {
+    path {
+      fill: ${(p) => p.theme.colors.iconOnSurface1};
+    }
+  }
 `
 
 export const StyledIconButton = styled(IconButton)`
   position: fixed;
   top: ${(p) => p.theme.spacing.lg};
   left: ${(p) => `calc(${p.theme.spacing.xxxl} + ${p.theme.spacing.md})`};
+
+  & svg {
+    stroke: ${(p) => p.theme.colors.iconOnSurface1};
+
+    path {
+      fill: ${(p) => p.theme.colors.iconOnSurface1};
+    }
+  }
 `

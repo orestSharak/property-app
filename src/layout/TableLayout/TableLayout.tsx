@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ColumnDef } from '@tanstack/react-table'
-import { TopContainer, TopSection, Wrapper } from './TableLayout.styles'
+import { IconWrapper, TopContainer, TopSection, Wrapper } from './TableLayout.styles'
 import { Header } from '../../components/Header/Header'
 import { Input } from '../../components/base/Input/Input'
 import SearchIcon from '../../assets/icons/search-icon.svg'
@@ -40,7 +40,11 @@ const TableLayout = ({
             label={t('layout>table>search')}
             hideLabel
             value={globalFilter}
-            slotEnd={<SearchIcon />}
+            slotEnd={
+              <IconWrapper>
+                <SearchIcon />
+              </IconWrapper>
+            }
             placeholder={t('layout>table>search')}
             onChange={(e) => setGlobalFilter(e.target.value)}
           />

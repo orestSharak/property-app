@@ -13,6 +13,7 @@ import SearchIcon from '../../assets/icons/search-icon.svg'
 import { HeaderCell } from './HeaderCell/HeaderCell'
 import {
   HeaderRow,
+  IconWrapper,
   NoDataContainer,
   NoDataText,
   ScrollableTableBody,
@@ -95,7 +96,9 @@ export default function Table({ data, columns, globalFilter, setGlobalFilter }: 
             <TableRow $isOdd={false} role="row">
               <TableDataCell size={1}>
                 <NoDataContainer>
-                  <SearchIcon />
+                  <IconWrapper>
+                    <SearchIcon />
+                  </IconWrapper>
                   <NoDataText>{t('table>noResult')}</NoDataText>
                 </NoDataContainer>
               </TableDataCell>

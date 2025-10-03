@@ -81,3 +81,8 @@ export const NoDataText = styled.h4`
   font-weight: ${(p) => p.theme.fontWeight.medium};
   color: ${(p) => p.theme.colors.textSecondary};
 `
+export const IconWrapper = styled.div`
+  path {
+    fill: ${(p) => p.theme.colors.iconOnSurface1};
+  }
+`

@@ -21,7 +21,6 @@ export const SpinnerContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: white;
 `
 
 export const AnimatedCircle = styled.div`

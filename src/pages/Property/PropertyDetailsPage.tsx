@@ -8,6 +8,7 @@ import {
   CardWrapper,
   Container,
   HeaderSection,
+  IconWrapper,
   MainWrapper,
   NotesWrapper,
   TextAreaWrapper,
@@ -272,19 +273,31 @@ const PropertyDetailsPage = () => {
         <Container>
           <HeaderSection>
             <IconButton
-              icon={<ArrowIcon />}
+              icon={
+                <IconWrapper>
+                  <ArrowIcon />
+                </IconWrapper>
+              }
               title={t('propertyDetails>back')}
               onClick={handleBack}
             />
             <Header hideCount title={t('propertyDetails>title')} />
             <ButtonSection>
               <IconButton
-                icon={<EditIcon />}
+                icon={
+                  <IconWrapper>
+                    <EditIcon />
+                  </IconWrapper>
+                }
                 title={t('propertyDetails>edit')}
                 onClick={handleEditModal}
               />
               <IconButton
-                icon={<DeleteIcon />}
+                icon={
+                  <IconWrapper>
+                    <DeleteIcon />
+                  </IconWrapper>
+                }
                 title={t('propertyDetails>delete')}
                 onClick={handleOpenDeleteModal}
               />

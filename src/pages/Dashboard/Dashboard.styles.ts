@@ -41,3 +41,9 @@ export const NoResult = styled.p`
   font-size: ${(p) => p.theme.fontSize.md};
   font-weight: ${(p) => p.theme.fontWeight.medium};
 `
+
+export const IconWrapper = styled.div`
+  path {
+    fill: ${(p) => p.theme.colors.iconOnSurface1};
+  }
+`

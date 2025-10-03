@@ -18,3 +18,8 @@ export const TopSection = styled.div`
   justify-content: flex-end;
   gap: ${(p) => p.theme.spacing.xl};
 `
+export const IconWrapper = styled.div`
+  path {
+    fill: ${(p) => p.theme.colors.iconOnSurface1};
+  }
+`

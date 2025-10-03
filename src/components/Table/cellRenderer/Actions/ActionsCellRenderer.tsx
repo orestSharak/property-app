@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Wrapper } from './ActionsCellRenderer.styles'
+import { IconWrapper, Wrapper } from './ActionsCellRenderer.styles'
 import { EMPTY_VALUE } from '../../../../common/constants'
 import { IconButton } from '../../../base/IconButton/IconButton'
 import EditIcon from '../../../../assets/icons/pencil-icon.svg'
@@ -28,22 +28,28 @@ const ActionsCellRenderer = ({
   return (
     <Wrapper>
       {!noView && handleView && (
-        <IconButton
-          icon={<ViewIcon />}
-          title={t('table>cellRenderer>actions>view')}
-          onClick={() => handleView(id)}
-        />
+        <IconWrapper>
+          <IconButton
+            icon={<ViewIcon />}
+            title={t('table>cellRenderer>actions>view')}
+            onClick={() => handleView(id)}
+          />
+        </IconWrapper>
       )}
-      <IconButton
-        icon={<EditIcon />}
-        title={t('table>cellRenderer>actions>edit')}
-        onClick={() => handleEdit(id)}
-      />
-      <IconButton
-        icon={<DeleteIcon />}
-        title={t('table>cellRenderer>actions>delete')}
-        onClick={() => handleDelete(id)}
-      />
+      <IconWrapper>
+        <IconButton
+          icon={<EditIcon />}
+          title={t('table>cellRenderer>actions>edit')}
+          onClick={() => handleEdit(id)}
+        />
+      </IconWrapper>
+      <IconWrapper>
+        <IconButton
+          icon={<DeleteIcon />}
+          title={t('table>cellRenderer>actions>delete')}
+          onClick={() => handleDelete(id)}
+        />
+      </IconWrapper>
     </Wrapper>
   )
 }

@@ -17,8 +17,8 @@ export const TooltipPopover = styled.div<{
   display: block;
   position: absolute;
   left: 50%;
-  background: ${(p) => p.theme.colors.surface3};
-  color: ${(p) => p.theme.colors.textOnSurface3};
+  background: ${(p) => p.theme.colors.surface2};
+  color: ${(p) => p.theme.colors.textOnSurface2};
   font-size: ${(p) => p.theme.fontSize.sm};
   font-weight: ${(p) => p.theme.fontWeight.semibold};
   border-radius: ${(p) => p.theme.radius.sm};
@@ -71,7 +71,7 @@ export const TooltipArrow = styled.div<{ $placement: TooltipPlacement }>`
     height: ${(p) => p.theme.spacing.sm};
     top: ${({ $placement, theme }) =>
       $placement === 'top' ? `-${theme.spacing.xs}` : theme.spacing.xs};
-    background: ${(p) => p.theme.colors.surface3};
+    background: ${(p) => p.theme.colors.surface2};
     box-shadow: ${(p) => p.theme.colors.boxShadow2};
     transform: rotate(45deg);
     margin: 0 auto;
