@@ -49,10 +49,6 @@
       "updateProperty": "Aggiorna proprietà",
       "addProperty": "Aggiungi proprietà",
       "propertyHasNotAdded": "La proprietà non è stata aggiunta"
-    },
-    "dashboard": {
-      "listOfProperties": "Elenco delle proprietà:",
-      "noProperties": "Nessuna proprietà"
     }
   },
   "table": {
@@ -308,6 +304,23 @@
     "toast": {
       "successfullyUpdate": "L'utente è stato aggiornato correttamente",
       "failedUpdate": "Impossibile aggiornare l'utente"
+    }
+  },
+  "dashboard": {
+    "title": "Pannello",
+    "numberOfProperties": "Numero di proprietà",
+    "city": "Città",
+    "selectCity": "Seleziona città",
+    "search": "Cerca",
+    "noResults": "Nessun risultato",
+    "all": "Tutto",
+    "addCityFirst": "Aggiungi prima una città",
+    "propertyItem": {
+      "name": "Nome:",
+      "phone": "Telefono:",
+      "seeMore": "Vedi di più",
+      "contract": "Contratto",
+      "news": "Notizie"
     }
   }
 }

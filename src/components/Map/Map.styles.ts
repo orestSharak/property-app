@@ -23,11 +23,11 @@ export const LeafletStyle = createGlobalStyle<{ themeMode: string }>`
       `}
 `
 
-export const Container = styled(MapContainer)<{ height: number }>`
+export const Container = styled(MapContainer)<{ height: string }>`
   border: 1px solid ${(p) => p.theme.colors.borderPrimary};
   border-radius: ${(p) => p.theme.radius.lg};
   width: 100%;
-  height: ${({ height }) => `${height}px`};
+  height: ${({ height }) => height};
 
   &:focus {
     outline: none;

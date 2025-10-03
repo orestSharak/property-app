@@ -3,8 +3,6 @@ import houseIconUrl from '../assets/icons/house-icon.png'
 
 const GlobalStyle = createGlobalStyle`
 
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-
   /*
     Josh's Custom CSS Reset
     https://www.joshwcomeau.com/css/custom-css-reset/
@@ -92,9 +90,13 @@ const GlobalStyle = createGlobalStyle`
     transition: all 0.2s;
   }
 
+
+  .house-marker-active,
   .house-marker:hover {
     width: 48px !important;
     height: 48px !important;
+    box-shadow: 0 0 0 4px ${(p) => p.theme.colors.boxShadowInfo};
+    outline: none;
   }
 
   .marker-color-news {

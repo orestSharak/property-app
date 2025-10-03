@@ -71,6 +71,9 @@ export const CardHeaderRow = styled.div<{ $hasLinkOnly?: boolean }>`
 export const StyledLink = styled(Link)`
   width: 120px;
   text-align: right;
+  color: ${(p) => p.theme.colors.textLink};
+  font-size: ${(p) => p.theme.fontSize.sm};
+  font-weight: ${(p) => p.theme.fontWeight.medium};
 `
 
 export const ChildWrapper = styled.div<{ $hasList?: boolean }>`

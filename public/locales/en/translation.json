@@ -49,10 +49,6 @@
       "updateProperty": "Update property",
       "addProperty": "Add property",
       "propertyHasNotAdded": "Property has not been added"
-    },
-    "dashboard": {
-      "listOfProperties": "List of properties:",
-      "noProperties": "No properties"
     }
   },
   "table": {
@@ -308,6 +304,23 @@
     "toast": {
       "successfullyUpdate": "User has been successfully updated",
       "failedUpdate": "Failed to update user"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "numberOfProperties": "Number of properties",
+    "city": "City",
+    "selectCity": "Select city",
+    "search": "Search",
+    "noResults": "No results",
+    "all": "All",
+    "addCityFirst": "Please add a city first",
+    "propertyItem": {
+      "name": "Name:",
+      "phone": "Phone:",
+      "seeMore": "See more",
+      "news": "News",
+      "contract": "Contract"
     }
   }
 }

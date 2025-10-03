@@ -293,16 +293,18 @@ const PropertyDetailsPage = () => {
           <Card hasList>
             <InfoRow label={t('propertyDetails>address')} value={property?.address} />
             <InfoRow label={t('propertyDetails>city')} value={property?.city} />
-            <InfoRow
-              label={t('propertyDetails>status')}
-              value={property?.status}
-              valueVariant={property?.status as Status}
-            />
+            {property?.status !== 'default' && (
+              <InfoRow
+                label={t('propertyDetails>status')}
+                value={property?.status}
+                valueVariant={property?.status as Status}
+              />
+            )}
           </Card>
         </Container>
         <CardWrapper>
           <Card compact>
-            {property && <Map height={260} markers={[preparedMarkerDetails()]} />}
+            {property && <Map height={'260px'} markers={[preparedMarkerDetails()]} />}
           </Card>
         </CardWrapper>
       </Wrapper>

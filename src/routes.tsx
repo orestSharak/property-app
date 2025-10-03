@@ -1,6 +1,6 @@
 import React from 'react'
 import AuthenticatedLayout from './layout/AuthenticatedLayout'
-import Dashboard from './pages/Dashboard'
+import Dashboard from './pages/Dashboard/Dashboard'
 import CitiesPage from './pages/Cities/CitiesPage'
 import PropertiesPage from './pages/Properties/PropertiesPage'
 import PropertyDetailsPage from './pages/Property/PropertyDetailsPage'
