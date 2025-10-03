@@ -332,7 +332,7 @@ const ClientDetailsPage = () => {
            */
           Object.values(client?.properties)?.map((property) => (
             <Card key={property.id} header={property.label} link={`/properties/${property.id}`}>
-              <Map height={'260px'} markers={[preparedPropertiesDetails(property)]} />
+              <Map zoom={16} height={'260px'} markers={[preparedPropertiesDetails(property)]} />
             </Card>
           ))}
       </Wrapper>

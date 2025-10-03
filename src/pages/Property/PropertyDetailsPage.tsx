@@ -304,7 +304,7 @@ const PropertyDetailsPage = () => {
         </Container>
         <CardWrapper>
           <Card compact>
-            {property && <Map height={'260px'} markers={[preparedMarkerDetails()]} />}
+            {property && <Map zoom={16} height={'260px'} markers={[preparedMarkerDetails()]} />}
           </Card>
         </CardWrapper>
       </Wrapper>

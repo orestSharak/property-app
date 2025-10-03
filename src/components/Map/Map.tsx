@@ -15,6 +15,7 @@ type MapProps = {
   showPopup?: boolean
   citySet?: boolean
   hoveredPropertyId?: string | null
+  zoom?: number
 }
 
 /**
@@ -52,6 +53,7 @@ export const Map = ({
   markers,
   showPopup = false,
   citySet = true,
+  zoom = 13,
   hoveredPropertyId,
 }: MapProps) => {
   const { themeMode } = useTheme()
@@ -59,7 +61,7 @@ export const Map = ({
   const [activeMarker, setActiveMarker] = useState(null)
 
   const normalizedMarkers = prepareMarkers(markers)
-  const getZoom = useMemo(() => (citySet ? 13 : 6), [citySet])
+  const getZoom = useMemo(() => (citySet ? zoom : 6), [citySet, zoom])
 
   const getDynamicMarkerIcon = (key: string, status: Status, id?: string) => {
     let iconClassName = `house-marker marker-color-${status}`
