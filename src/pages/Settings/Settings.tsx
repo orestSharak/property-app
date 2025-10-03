@@ -35,7 +35,13 @@ function Settings() {
     mode: 'onChange',
   })
 
-  const { control, handleSubmit, reset, setError } = userForm
+  const {
+    control,
+    handleSubmit,
+    reset,
+    setError,
+    formState: { isDirty },
+  } = userForm
 
   useEffect(() => {
     if (currentUser && currentUser.displayName) {
@@ -127,7 +133,9 @@ function Settings() {
               />
             )}
           />
-          <StyledButton onClick={handleSubmit(onUpdate)}>{t('settings>update')}</StyledButton>
+          <StyledButton disabled={!isDirty} onClick={handleSubmit(onUpdate)}>
+            {t('settings>update')}
+          </StyledButton>
         </StyledForm>
       </Card>
     </>

@@ -70,8 +70,6 @@ export default function Table({ data, columns, globalFilter, setGlobalFilter }: 
           </HeaderRow>
         ))}
       </thead>
-
-      {/* BODY CONTENT IS WRAPPED IN THE SCROLLABLE CONTAINER */}
       <ScrollableTableBody>
         <TableBody>
           {table.getRowModel().rows.length > 0 ? (
@@ -91,8 +89,6 @@ export default function Table({ data, columns, globalFilter, setGlobalFilter }: 
               </TableRow>
             ))
           ) : (
-            // This 'No Data' row needs a full span cell to look correct
-            // NOTE: Using the first column's size to span.
             <TableRow $isOdd={false} role="row">
               <TableDataCell size={1}>
                 <NoDataContainer>

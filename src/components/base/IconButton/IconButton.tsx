@@ -2,6 +2,7 @@ import React, { ButtonHTMLAttributes, forwardRef, ReactNode } from 'react'
 import { Tooltip } from '../Tooltip/Tooltip'
 import { Size } from './IconButton.types'
 import { StyledIconButton } from './IconButton.styles'
+import { TooltipPlacement } from '../Tooltip/Tooltip.types'
 
 export type IconButtonProps = {
   icon: ReactNode
@@ -11,6 +12,7 @@ export type IconButtonProps = {
   disabled?: boolean
   className?: string
   noTooltip?: boolean
+  tooltipPlacement?: TooltipPlacement
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
 /**
@@ -38,7 +40,16 @@ export type IconButtonProps = {
  */
 const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   (
-    { icon, title: title, color, disabled = false, size = 'md', noTooltip = false, ...rest },
+    {
+      icon,
+      title: title,
+      color,
+      disabled = false,
+      size = 'md',
+      noTooltip = false,
+      tooltipPlacement = 'top',
+      ...rest
+    },
     ref,
   ) => {
     return (
@@ -58,7 +69,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
             {icon}
           </StyledIconButton>
         ) : (
-          <Tooltip id={'icon-button-tooltip'} content={title} placement="top">
+          <Tooltip id={'icon-button-tooltip'} content={title} placement={tooltipPlacement}>
             <StyledIconButton
               ref={ref}
               type="button"

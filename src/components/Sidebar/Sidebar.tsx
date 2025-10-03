@@ -51,14 +51,14 @@ const Sidebar = () => {
     <SidebarContainer aria-label={t('sidebar>sidebar')}>
       <LanguageIconButton
         noTooltip
-        title={t('language')}
+        title={t('sidebar>language')}
         icon={<GlobeIcon />}
         onClick={handleLanguageToggle}
       />
       <StyledIconButton
         noTooltip
         icon={themeMode === 'light' ? <MoonIcon /> : <SunIcon />}
-        title={themeMode === 'dark' ? t('light') : t('dark')}
+        title={themeMode === 'dark' ? t('sidebar>light') : t('sidebar>dark')}
         onClick={toggleTheme}
       />
       <nav role="navigation" aria-label={t('sidebar>sidebar')}>

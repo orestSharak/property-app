@@ -30,30 +30,6 @@
     "light": "Light",
     "dark": "Dark"
   },
-  "pages": {
-    "pageNotFound": "Page not found",
-    "notFoundDescription": "Oops! The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
-    "goToDashboard": "Go to Dashboard",
-    "goToLogin": "Go to Login",
-    "logIn": {
-      "logIn": "Log In",
-      "failedLogIn": "Failed to log in"
-    },
-    "cities": {
-      "listOfCities": "List of cities:",
-      "cityHasNotAdded": "City has not been added",
-      "noCities": "No cities",
-      "updateCity": "Update city",
-      "addCity": "Add city"
-    },
-    "properties": {
-      "listOfProperties": "List of properties:",
-      "noProperties": "No properties",
-      "updateProperty": "Update property",
-      "addProperty": "Add property",
-      "propertyHasNotAdded": "Property has not been added"
-    }
-  },
   "table": {
     "name": "Name",
     "actions": "Actions",
@@ -270,12 +246,6 @@
     "selectCity": "Select a city:",
     "loadingCities": "Loading cities...",
     "noCities": "No cities"
-  },
-  "actions": {
-    "update": "Update",
-    "delete": "Delete",
-    "cancel": "Cancel",
-    "add": "Add"
   },
   "card": {
     "seeDetails": "See details"
