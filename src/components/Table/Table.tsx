@@ -15,6 +15,7 @@ import {
   HeaderRow,
   NoDataContainer,
   NoDataText,
+  ScrollableTableBody,
   StyledTable,
   TableBody,
   TableDataCell,
@@ -58,6 +59,7 @@ export default function Table({ data, columns, globalFilter, setGlobalFilter }: 
 
   return (
     <StyledTable role="table" aria-label={'Client table'}>
+      {/* HEADER REMAINS OUTSIDE THE SCROLLABLE WRAPPER */}
       <thead role="rowgroup">
         {table.getHeaderGroups().map((headerGroup) => (
           <HeaderRow key={headerGroup.id} role="row">
@@ -67,34 +69,40 @@ export default function Table({ data, columns, globalFilter, setGlobalFilter }: 
           </HeaderRow>
         ))}
       </thead>
-      <TableBody>
-        {table.getRowModel().rows.length > 0 ? (
-          table.getRowModel().rows.map((row, index) => (
-            <TableRow key={row.id} $isOdd={index % 2 !== 0} role="row">
-              {row.getVisibleCells().map((cell) => (
-                <TableDataCell
-                  tabIndex={0}
-                  key={cell.id}
-                  size={cell.column.columnDef.size as number}
-                  role="cell"
-                  onKeyDown={handleKeyDown}
-                >
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </TableDataCell>
-              ))}
+
+      {/* BODY CONTENT IS WRAPPED IN THE SCROLLABLE CONTAINER */}
+      <ScrollableTableBody>
+        <TableBody>
+          {table.getRowModel().rows.length > 0 ? (
+            table.getRowModel().rows.map((row, index) => (
+              <TableRow key={row.id} $isOdd={index % 2 !== 0} role="row">
+                {row.getVisibleCells().map((cell) => (
+                  <TableDataCell
+                    tabIndex={0}
+                    key={cell.id}
+                    size={cell.column.columnDef.size as number}
+                    role="cell"
+                    onKeyDown={handleKeyDown}
+                  >
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </TableDataCell>
+                ))}
+              </TableRow>
+            ))
+          ) : (
+            // This 'No Data' row needs a full span cell to look correct
+            // NOTE: Using the first column's size to span.
+            <TableRow $isOdd={false} role="row">
+              <TableDataCell size={1}>
+                <NoDataContainer>
+                  <SearchIcon />
+                  <NoDataText>{t('table>noResult')}</NoDataText>
+                </NoDataContainer>
+              </TableDataCell>
             </TableRow>
-          ))
-        ) : (
-          <TableRow $isOdd={false} role="row">
-            <TableDataCell>
-              <NoDataContainer>
-                <SearchIcon />
-                <NoDataText>{t('table>noResult')}</NoDataText>
-              </NoDataContainer>
-            </TableDataCell>
-          </TableRow>
-        )}
-      </TableBody>
+          )}
+        </TableBody>
+      </ScrollableTableBody>
     </StyledTable>
   )
 }

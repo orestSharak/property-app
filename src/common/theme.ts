@@ -59,12 +59,13 @@ const radius = {
 } as const
 
 const orderLevel = {
+  loginBackground: 1,
+  loginImage: 2,
+  tableHeader: 10,
   selectDropdown: 20,
   toast: 100,
   tooltip: 999,
   modalBackdrop: 1000,
-  loginBackground: 1,
-  loginImage: 2,
 } as const
 
 const lightTokens = {
