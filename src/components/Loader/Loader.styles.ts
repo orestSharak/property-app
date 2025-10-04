@@ -3,16 +3,13 @@ import styled, { keyframes } from 'styled-components'
 // no theme props in purpose
 const colorCycle = keyframes`
   0% {
-    background-color: black;
-  }
-  33% {
     background-color: #F011D6;
   }
-  66% {
+  50% {
     background-color: #00CFFF;
   }
   100% {
-    background-color: black;
+    background-color: #F011D6;
   }
 `
 
@@ -21,6 +18,7 @@ export const SpinnerContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  background-color: transparent;
 `
 
 export const AnimatedCircle = styled.div`
