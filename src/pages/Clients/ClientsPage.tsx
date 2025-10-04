@@ -43,10 +43,7 @@ const ClientsPage = () => {
   const propertyExistInClient =
     (properties && Object.values(properties)?.some((item) => item.clientId === selectedClientId)) ||
     false
-  console.log(
-    'test',
-    Object.values(properties)?.some((item) => item.clientId === selectedClientId),
-  )
+
   const defaultFormValues = useMemo(
     () => ({
       name: '',

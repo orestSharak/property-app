@@ -132,6 +132,7 @@
     "deleteClient": "Elimina cliente",
     "cancel": "Annulla",
     "sureWantDelete": "Sei sicuro di voler eliminare questo cliente: <bold>{{client}}</bold>?",
+    "canNotDeleteClient": "Non puoi eliminare questo client (<bold>{{client}}</bold>) perché è attualmente associato a una o più proprietà.",
     "sureWantDeleteNote": "Sei sicuro di voler eliminare la nota: '<bold>{{text}}</bold>'?",
     "editClient": "Modifica cliente",
     "clientDetails": "Dettagli del cliente",

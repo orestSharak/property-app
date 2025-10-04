@@ -36,6 +36,7 @@ import { useAuth } from '../../context/AuthContext'
 import { useAddClientNote } from '../../hooks/client/useAddClientNote'
 import { useGetCities } from '../../hooks/city/useGetCities'
 import { useDeleteClientNote } from '../../hooks/client/useDeleteClientNote'
+import { useGetProperties } from '../../hooks/property/useGetProperties'
 
 const ClientDetailsPage = () => {
   const { t } = useTranslation()
@@ -56,6 +57,10 @@ const ClientDetailsPage = () => {
   const { cities } = useGetCities()
   const { addClientNote, isPending: isAddingNote } = useAddClientNote()
   const { deleteClientNote } = useDeleteClientNote()
+  const { properties } = useGetProperties()
+
+  const propertyExistInClient =
+    (properties && Object.values(properties)?.some((item) => item.clientId === id)) || false
 
   const defaultFormValues = useMemo(
     () => ({
@@ -366,17 +371,26 @@ const ClientDetailsPage = () => {
           label: t('clientDetails>delete'),
           onClick: handleDelete,
           variant: 'warning',
+          disabled: propertyExistInClient,
         }}
         secondaryButton={{
           label: t('clientDetails>cancel'),
           onClick: () => setOpenDeleteModal(false),
         }}
       >
-        <Trans
-          i18nKey="clientDetails>sureWantDelete"
-          values={{ client: client?.fullName }}
-          components={{ bold: <strong /> }}
-        />
+        {propertyExistInClient ? (
+          <Trans
+            i18nKey="clientDetails>canNotDeleteClient"
+            values={{ client: client?.fullName }}
+            components={{ bold: <strong /> }}
+          />
+        ) : (
+          <Trans
+            i18nKey="clientDetails>sureWantDelete"
+            values={{ client: client?.fullName }}
+            components={{ bold: <strong /> }}
+          />
+        )}
       </Modal>
 
       {/* --- Delete Note Modal --- */}
