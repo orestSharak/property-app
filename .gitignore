@@ -24,3 +24,21 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# --------------------------------------------------
+# Firebase & Cloud Functions Specific
+# --------------------------------------------------
+
+# 1. Firebase CLI Cache and Runtime Data
+# Includes .firebase/ and the caches within (e.g., hosting.ZGlzdDAa.cache)
+.firebase/
+
+# 2. Functions Dependencies
+/functions/node_modules
+
+# 3. Functions Logs
+/functions/npm-debug.log*
+
+# 4. Global CLI Logs
+firebase-debug.log
+firebase-debug.*.log
