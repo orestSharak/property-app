@@ -45,7 +45,7 @@ export const columnDefinition: (
   columnHelper.accessor('email', {
     id: 'email',
     header: t('clients>table>email'),
-    size: 1.5,
+    size: 2,
     cell: (info) => <TextCellRenderer title={info.getValue()} />,
   }),
   columnHelper.accessor('id', {
@@ -60,6 +60,6 @@ export const columnDefinition: (
       />
     ),
     enableSorting: false,
-    size: 1.5,
+    size: 1,
   }),
 ]
