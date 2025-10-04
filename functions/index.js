@@ -3,7 +3,7 @@ admin.initializeApp()
 const db = admin.database()
 
 // Import modular functions for Realtime Database triggers (Gen 2 syntax)
-const { onValueCreated, onValueUpdated } = require('firebase-functions/v2/database')
+const { onValueCreated, onValueUpdated, onValueDeleted } = require('firebase-functions/v2/database')
 
 // Define the required settings for the functions
 const functionConfig = {
@@ -191,6 +191,45 @@ exports.syncClientUpdates = onValueUpdated(
       await db.ref().update(multiPathUpdates)
       console.log(
         `Successfully synced client updates for client ${clientId} across multiple locations.`,
+      )
+    }
+
+    return null
+  },
+)
+
+exports.syncDeletedPropertyCleanup = onValueDeleted(
+  {
+    ...functionConfig,
+    ref: '/properties/{propertyId}',
+  },
+  async (event) => {
+    const deletedPropertyData = event.data.val()
+    const propertyId = event.params.propertyId
+
+    const clientId = deletedPropertyData?.clientId
+    const cityId = deletedPropertyData?.cityId
+
+    if (!clientId || !cityId) {
+      console.log(`Deleted property ${propertyId} missing client or city ID. Skipping cleanup.`)
+      return null
+    }
+
+    const updates = {}
+
+    // 1. Remove the property from the related client's properties list
+    const clientPropertyPath = `/clients/${clientId}/properties/${propertyId}`
+    updates[clientPropertyPath] = null
+
+    // 2. Remove the property from the related city's properties list
+    const cityPropertyPath = `/cities/${cityId}/properties/${propertyId}`
+    updates[cityPropertyPath] = null
+
+    // Apply both deletions in a single multi-path update
+    if (Object.keys(updates).length > 0) {
+      await db.ref().update(updates)
+      console.log(
+        `Cleanup complete for deleted property ${propertyId}. Removed from client ${clientId} and city ${cityId}.`,
       )
     }
 
