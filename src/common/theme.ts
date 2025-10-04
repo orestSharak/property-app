@@ -113,6 +113,7 @@ const lightTokens = {
   borderStrong: '#222222',
   borderIntense: '#000000',
   borderAlert: '#DB0404',
+  borderExtraButton: '#ffffff',
 
   // Box shadows
   boxShadowAlert: '#ffd6d4',
@@ -179,6 +180,7 @@ const darkTokens = {
   borderStrong: '#666666',
   borderIntense: '#ffffff',
   borderAlert: '#DB0404',
+  borderExtraButton: '#ffffff',
 
   // Box shadows
   boxShadowAlert: '#600e0e',

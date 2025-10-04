@@ -118,6 +118,8 @@ export const LanguageIconButton = styled(IconButton)`
   left: ${(p) => p.theme.spacing.md};
   ${extraButtonStyles};
 
+  border-color: ${({ theme }) => theme.colors.borderExtraButton};
+
   & svg {
     path {
       fill: ${(p) => p.theme.colors.iconOnSurface3};
@@ -130,6 +132,8 @@ export const StyledIconButton = styled(IconButton)`
   top: ${(p) => p.theme.spacing.lg};
   left: ${(p) => `calc(${p.theme.spacing.xxxl} + ${p.theme.spacing.md})`};
   ${extraButtonStyles};
+
+  border-color: ${({ theme }) => theme.colors.borderExtraButton};
 
   & svg {
     stroke: ${(p) => p.theme.colors.iconOnSurface3};

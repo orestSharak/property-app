@@ -9,6 +9,7 @@ import {
   ErrorText,
   HintText,
   IconContainer,
+  IconWrapper,
   InputContainer,
   InputWrap,
   Label,
@@ -101,8 +102,16 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       autoComplete = 'off',
       hideLabel = false,
       passwordToggleIcons = {
-        show: <EyeIcon />,
-        hide: <EyeIconHide />,
+        show: (
+          <IconWrapper>
+            <EyeIcon />
+          </IconWrapper>
+        ),
+        hide: (
+          <IconWrapper>
+            <EyeIconHide />
+          </IconWrapper>
+        ),
       },
       ...rest
     },

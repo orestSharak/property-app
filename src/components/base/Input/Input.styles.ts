@@ -131,3 +131,9 @@ export const StyledInput = styled.input<{
     cursor: not-allowed;
   }
 `
+
+export const IconWrapper = styled.div`
+  path {
+    fill: ${(p) => p.theme.colors.iconOnSurface1};
+  }
+`
