@@ -38,6 +38,7 @@ import { useGetClients } from '../../hooks/client/useGetClients'
 import { useGetCities } from '../../hooks/city/useGetCities'
 import { getClientEmailAndPhone, truncateByWords } from '../../utils/utils'
 import { useDeletePropertyNote } from '../../hooks/property/useDeletePropertyNote'
+import Loader from '../../components/Loader/Loader'
 
 const PropertyDetailsPage = () => {
   const { t } = useTranslation()
@@ -265,7 +266,7 @@ const PropertyDetailsPage = () => {
     ? Object.values(property?.notes)?.find((note) => note.id === selectedNoteId)?.text
     : ''
 
-  if (isLoading) return t('propertyDetails>loading')
+  if (isLoading) return <Loader />
 
   return (
     <MainWrapper>

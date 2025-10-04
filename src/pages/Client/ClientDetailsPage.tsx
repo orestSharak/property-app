@@ -37,6 +37,7 @@ import { useAddClientNote } from '../../hooks/client/useAddClientNote'
 import { useGetCities } from '../../hooks/city/useGetCities'
 import { useDeleteClientNote } from '../../hooks/client/useDeleteClientNote'
 import { useGetProperties } from '../../hooks/property/useGetProperties'
+import Loader from '../../components/Loader/Loader'
 
 const ClientDetailsPage = () => {
   const { t } = useTranslation()
@@ -240,7 +241,7 @@ const ClientDetailsPage = () => {
     ? Object.values(client?.notes)?.find((note) => note.id === selectedNoteId)?.text
     : ''
 
-  if (isLoading) return t('clientDetails>loading')
+  if (isLoading) return <Loader />
 
   return (
     <MainWrapper>
