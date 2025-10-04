@@ -243,6 +243,7 @@ const ClientDetailsPage = () => {
         <Container>
           <HeaderSection>
             <IconButton
+              noTooltip
               icon={
                 <IconWrapper>
                   <ArrowIcon />
@@ -254,6 +255,7 @@ const ClientDetailsPage = () => {
             <Header hideCount title={t('clientDetails>title')} />
             <ButtonSection>
               <IconButton
+                noTooltip
                 icon={
                   <IconWrapper>
                     <EditIcon />
@@ -263,6 +265,7 @@ const ClientDetailsPage = () => {
                 onClick={handleEditModal}
               />
               <IconButton
+                noTooltip
                 icon={
                   <IconWrapper>
                     <DeleteIcon />

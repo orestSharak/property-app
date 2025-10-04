@@ -273,6 +273,7 @@ const PropertyDetailsPage = () => {
         <Container>
           <HeaderSection>
             <IconButton
+              noTooltip
               icon={
                 <IconWrapper>
                   <ArrowIcon />
@@ -284,6 +285,7 @@ const PropertyDetailsPage = () => {
             <Header hideCount title={t('propertyDetails>title')} />
             <ButtonSection>
               <IconButton
+                noTooltip
                 icon={
                   <IconWrapper>
                     <EditIcon />
@@ -293,6 +295,7 @@ const PropertyDetailsPage = () => {
                 onClick={handleEditModal}
               />
               <IconButton
+                noTooltip
                 icon={
                   <IconWrapper>
                     <DeleteIcon />

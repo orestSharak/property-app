@@ -30,7 +30,7 @@ const ActionsCellRenderer = ({
       {!noView && handleView && (
         <IconWrapper>
           <IconButton
-            tooltipPlacement="left"
+            noTooltip
             icon={<ViewIcon />}
             title={t('table>cellRenderer>actions>view')}
             onClick={() => handleView(id)}
@@ -39,7 +39,7 @@ const ActionsCellRenderer = ({
       )}
       <IconWrapper>
         <IconButton
-          tooltipPlacement="left"
+          noTooltip
           icon={<EditIcon />}
           title={t('table>cellRenderer>actions>edit')}
           onClick={() => handleEdit(id)}
@@ -47,7 +47,7 @@ const ActionsCellRenderer = ({
       </IconWrapper>
       <IconWrapper>
         <IconButton
-          tooltipPlacement="left"
+          noTooltip
           icon={<DeleteIcon />}
           title={t('table>cellRenderer>actions>delete')}
           onClick={() => handleDelete(id)}
