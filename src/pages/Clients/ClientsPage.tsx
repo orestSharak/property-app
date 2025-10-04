@@ -18,6 +18,7 @@ import { getClientNameAndSurname } from '../../utils/utils'
 import { useUpdateClient } from '../../hooks/client/useUpdateClient'
 import { useDeleteClient } from '../../hooks/client/useDeleteClient'
 import { useGetCities } from '../../hooks/city/useGetCities'
+import { useGetProperties } from '../../hooks/property/useGetProperties'
 
 const ClientsPage = () => {
   const { t } = useTranslation()
@@ -37,7 +38,15 @@ const ClientsPage = () => {
   const { deleteClient } = useDeleteClient()
   const { client } = useGetClient(selectedClientId)
   const { cities } = useGetCities()
+  const { properties } = useGetProperties()
 
+  const propertyExistInClient =
+    (properties && Object.values(properties)?.some((item) => item.clientId === selectedClientId)) ||
+    false
+  console.log(
+    'test',
+    Object.values(properties)?.some((item) => item.clientId === selectedClientId),
+  )
   const defaultFormValues = useMemo(
     () => ({
       name: '',
@@ -224,6 +233,7 @@ const ClientsPage = () => {
           label: t('clients>table>delete'),
           onClick: () => selectedClientId && handleDelete(),
           variant: 'warning',
+          disabled: propertyExistInClient,
         }}
         secondaryButton={{
           label: t('clients>table>cancel'),
@@ -233,11 +243,19 @@ const ClientsPage = () => {
           },
         }}
       >
-        <Trans
-          i18nKey="clients>table>sureWantDelete"
-          values={{ client: client?.fullName }}
-          components={{ bold: <strong /> }}
-        />
+        {propertyExistInClient ? (
+          <Trans
+            i18nKey="clients>table>canNotDeleteClient"
+            values={{ client: client?.fullName }}
+            components={{ bold: <strong /> }}
+          />
+        ) : (
+          <Trans
+            i18nKey="clients>table>sureWantDelete"
+            values={{ client: client?.fullName }}
+            components={{ bold: <strong /> }}
+          />
+        )}
       </Modal>
 
       {/* --- Add/Edit Modal --- */}

@@ -9,12 +9,6 @@ export const StyledTable = styled.table`
   flex-direction: column;
 `
 
-export const ScrollableTableBody = styled.div`
-  overflow-y: auto;
-  max-height: calc(100vh - 221px);
-  background-color: ${(p) => p.theme.colors.surface1};
-`
-
 export const HeaderRow = styled.tr`
   background-color: ${(p) => p.theme.colors.surface7};
   border-bottom: 1px solid ${(p) => p.theme.colors.borderPrimary};
@@ -43,6 +37,9 @@ export const TableRow = styled.tr<{ $isOdd: boolean }>`
 export const TableBody = styled.tbody`
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  max-height: calc(100vh - 221px);
+  background-color: ${(p) => p.theme.colors.surface1};
 `
 
 export const TableDataCell = styled.td<{ size?: number }>`

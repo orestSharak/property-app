@@ -16,7 +16,6 @@ import {
   IconWrapper,
   NoDataContainer,
   NoDataText,
-  ScrollableTableBody,
   StyledTable,
   TableBody,
   TableDataCell,
@@ -70,38 +69,36 @@ export default function Table({ data, columns, globalFilter, setGlobalFilter }: 
           </HeaderRow>
         ))}
       </thead>
-      <ScrollableTableBody>
-        <TableBody>
-          {table.getRowModel().rows.length > 0 ? (
-            table.getRowModel().rows.map((row, index) => (
-              <TableRow key={row.id} $isOdd={index % 2 !== 0} role="row">
-                {row.getVisibleCells().map((cell) => (
-                  <TableDataCell
-                    tabIndex={0}
-                    key={cell.id}
-                    size={cell.column.columnDef.size as number}
-                    role="cell"
-                    onKeyDown={handleKeyDown}
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableDataCell>
-                ))}
-              </TableRow>
-            ))
-          ) : (
-            <TableRow $isOdd={false} role="row">
-              <TableDataCell size={1}>
-                <NoDataContainer>
-                  <IconWrapper>
-                    <SearchIcon />
-                  </IconWrapper>
-                  <NoDataText>{t('table>noResult')}</NoDataText>
-                </NoDataContainer>
-              </TableDataCell>
+      <TableBody>
+        {table.getRowModel().rows.length > 0 ? (
+          table.getRowModel().rows.map((row, index) => (
+            <TableRow key={row.id} $isOdd={index % 2 !== 0} role="row">
+              {row.getVisibleCells().map((cell) => (
+                <TableDataCell
+                  tabIndex={0}
+                  key={cell.id}
+                  size={cell.column.columnDef.size as number}
+                  role="cell"
+                  onKeyDown={handleKeyDown}
+                >
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </TableDataCell>
+              ))}
             </TableRow>
-          )}
-        </TableBody>
-      </ScrollableTableBody>
+          ))
+        ) : (
+          <TableRow $isOdd={false} role="row">
+            <TableDataCell size={1}>
+              <NoDataContainer>
+                <IconWrapper>
+                  <SearchIcon />
+                </IconWrapper>
+                <NoDataText>{t('table>noResult')}</NoDataText>
+              </NoDataContainer>
+            </TableDataCell>
+          </TableRow>
+        )}
+      </TableBody>
     </StyledTable>
   )
 }

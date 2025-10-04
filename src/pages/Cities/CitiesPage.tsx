@@ -15,6 +15,7 @@ import { useUpdateCity } from '../../hooks/city/useUdateCity'
 import { useDeleteCity } from '../../hooks/city/useDeleteCity'
 import { useGetCity } from '../../hooks/city/useGetCity'
 import { useGetCities } from '../../hooks/city/useGetCities'
+import { useGetProperties } from '../../hooks/property/useGetProperties'
 
 const CitiesPage = () => {
   const { t } = useTranslation()
@@ -32,6 +33,11 @@ const CitiesPage = () => {
   const { updateCity } = useUpdateCity()
   const { deleteCity } = useDeleteCity()
   const { city } = useGetCity(selectedCityId)
+  const { properties } = useGetProperties()
+
+  const propertyExistInCity =
+    (properties && Object.values(properties)?.some((item) => item.cityId === selectedCityId)) ||
+    false
 
   const defaultFormValues = useMemo(
     () => ({
@@ -189,6 +195,7 @@ const CitiesPage = () => {
           label: t('cities>table>delete'),
           onClick: () => selectedCityId && handleDelete(),
           variant: 'warning',
+          disabled: propertyExistInCity,
         }}
         secondaryButton={{
           label: t('cities>table>cancel'),
@@ -198,11 +205,19 @@ const CitiesPage = () => {
           },
         }}
       >
-        <Trans
-          i18nKey="cities>table>sureWantDelete"
-          values={{ city: city?.name }}
-          components={{ bold: <strong /> }}
-        />
+        {propertyExistInCity ? (
+          <Trans
+            i18nKey="cities>table>canNotDeleteCity"
+            values={{ city: city?.name }}
+            components={{ bold: <strong /> }}
+          />
+        ) : (
+          <Trans
+            i18nKey="cities>table>sureWantDelete"
+            values={{ city: city?.name }}
+            components={{ bold: <strong /> }}
+          />
+        )}
       </Modal>
 
       {/* --- Add/Edit Modal --- */}
