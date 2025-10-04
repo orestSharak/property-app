@@ -36,6 +36,8 @@ dist-ssr
 # 2. Functions Dependencies
 /functions/node_modules
 
+/functions/.env
+
 # 3. Functions Logs
 /functions/npm-debug.log*
 

@@ -25,15 +25,6 @@ import SunIcon from '../../assets/icons/sun-icon.svg'
 import GlobeIcon from '../../assets/icons/globe-icon.svg'
 import { useLogin } from '../../hooks/auth/useLogin' // user: alessandro@test.com
 
-// user: alessandro@test.com
-// pass: Alessandro1!
-
-// user: orest@test.com
-// pass: Orest1!
-
-// user: user@test.com
-// pass: User1!
-
 function Login() {
   const { t, i18n } = useTranslation()
   const { login, isLoggingIn } = useLogin()

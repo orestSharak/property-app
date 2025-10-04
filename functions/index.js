@@ -5,10 +5,11 @@ const db = admin.database()
 // Import modular functions for Realtime Database triggers (Gen 2 syntax)
 const { onValueCreated, onValueUpdated, onValueDeleted } = require('firebase-functions/v2/database')
 
+const RTDB_INSTANCE = process.env.RTDB_INSTANCE_NAME
 // Define the required settings for the functions
 const functionConfig = {
   // CRITICAL FIX: The full instance name from the database URL
-  instance: 'map-markers-ed36e-default-rtdb',
+  instance: RTDB_INSTANCE,
   region: 'europe-west1',
 }
 
