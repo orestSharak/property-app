@@ -46,6 +46,7 @@ export const StyledTextArea = styled.textarea<{
   min-height: 130px;
   width: 100%;
   min-width: 300px;
+  max-width: 500px;
   height: 40px;
   padding: ${({ theme }) => theme.spacing.sm};
   border: 1px solid
