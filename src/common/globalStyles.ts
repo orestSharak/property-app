@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import houseIconUrl from '../assets/icons/house-icon.png'
+import houseIconUrl from '../assets/house-icon.png'
 
 const GlobalStyle = createGlobalStyle`
 

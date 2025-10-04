@@ -37,11 +37,11 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     if (this.state.hasError) {
       return (
         <div style={{ padding: 32, textAlign: 'center' }}>
-          <h1>Something went wrong.</h1>
+          <h1 style={{ color: 'white' }}>Something went wrong</h1>
           {this.props.fallback ? (
             this.props.fallback
           ) : (
-            <details style={{ whiteSpace: 'pre-wrap', color: 'gray' }}>
+            <details style={{ whiteSpace: 'pre-wrap', color: '#D9D9D9' }}>
               {this.state.error && this.state.error.toString()}
               <br />
               {this.state.errorInfo?.componentStack}

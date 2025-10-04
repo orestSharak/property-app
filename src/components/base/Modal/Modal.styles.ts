@@ -113,7 +113,6 @@ export const ModalBody = styled.div<{ $size: ModalSize }>`
   overflow-y: auto;
   color: ${(p) => p.theme.colors.textMain};
   font-size: ${(p) => p.theme.fontSize.md};
-  font-style: normal;
   font-weight: ${(p) => p.theme.fontWeight.normal};
   white-space: pre-line;
   max-width: ${({ $size }) => ($size === 'sm' ? `520px` : undefined)};

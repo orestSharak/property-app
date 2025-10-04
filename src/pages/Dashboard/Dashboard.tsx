@@ -26,7 +26,7 @@ import SearchIcon from '../../assets/icons/search-icon.svg'
 import PropertyItem from './PropertyItem/PropertyItem'
 import { EMPTY_VALUE } from '../../common/constants'
 
-import { useDebounce } from '../../hooks/useDebounce'
+import { useDebounce } from '../../hooks/helpers/useDebounce'
 
 const preparedMarker = (property: Property[] | null) => {
   if (!property) return []
