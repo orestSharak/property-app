@@ -1,5 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next'
-import React, { memo, useEffect, useMemo, useState } from 'react'
+import React, { memo, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -32,6 +32,7 @@ const PropertiesPage = () => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [openAddEditModal, setOpenAddEditModal] = useState(false)
   const [globalFilter, setGlobalFilter] = useState<string>('')
+  const inputRef = useRef<HTMLInputElement | null>(null)
 
   const { properties } = useGetProperties()
   const { createProperty } = useCreateProperty()
@@ -98,6 +99,7 @@ const PropertiesPage = () => {
     if (searchCityName) {
       setGlobalFilter(searchCityName)
       setSearchParams({}, { replace: true })
+      inputRef.current?.focus()
     }
   }, [searchCityName, setSearchParams])
 
@@ -236,6 +238,7 @@ const PropertiesPage = () => {
   return (
     <>
       <TableLayout
+        searchRef={inputRef}
         title={t('properties>table>title')}
         count={counter}
         globalFilter={globalFilter}

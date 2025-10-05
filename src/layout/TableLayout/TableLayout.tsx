@@ -16,6 +16,7 @@ type TableLayoutProps = {
   handleOpenAdd: () => void
   data: any[]
   columnDefinition: ColumnDef<any, any>[]
+  searchRef?: React.Ref<HTMLInputElement | null>
 }
 
 const TableLayout = ({
@@ -26,6 +27,7 @@ const TableLayout = ({
   handleOpenAdd,
   data,
   columnDefinition,
+  searchRef = null,
 }: TableLayoutProps) => {
   const { t } = useTranslation()
 
@@ -37,6 +39,7 @@ const TableLayout = ({
           <Input
             minWidth={390}
             id="seacrh"
+            ref={searchRef}
             label={t('layout>table>search')}
             hideLabel
             value={globalFilter}
