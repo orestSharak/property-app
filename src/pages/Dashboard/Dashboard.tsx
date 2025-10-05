@@ -88,7 +88,6 @@ function Dashboard() {
           property.clientEmail,
           property.clientPhone || '',
           property.status,
-          property.city,
         ]
 
         return searchableFields.some((field) => field.toLowerCase().includes(lowerCaseSearch))
