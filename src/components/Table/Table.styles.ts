@@ -50,6 +50,7 @@ export const TableDataCell = styled.td<{ size?: number }>`
   font-size: ${(p) => p.theme.fontSize.md};
   color: ${(p) => p.theme.colors.textMain};
   white-space: pre-line;
+  min-width: 150px;
 
   &:focus,
   &:focus-visible {

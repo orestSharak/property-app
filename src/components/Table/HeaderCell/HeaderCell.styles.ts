@@ -11,6 +11,7 @@ export const TableHeaderCell = styled.th<{ $canSort: boolean; size?: number }>`
   padding: ${(p) => `${p.theme.spacing.sm} ${p.theme.spacing.md}`};
   transition: all 0.2s;
   white-space: pre-line;
+  min-width: 150px;
 
   &:hover {
     color: ${(p) => p.theme.colors.textSecondary};

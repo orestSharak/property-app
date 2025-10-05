@@ -14,6 +14,8 @@ const getStatusColor = ($status, theme) => {
 export const Text = styled.span<{ $status?: Status }>`
   font-weight: ${(p) => p.theme.fontWeight.medium};
   font-size: ${(p) => p.theme.fontSize.md};
+  word-break: break-all;
+  white-space: pre-line;
 
   ${({ $status, theme }) => {
     const color = getStatusColor($status, theme)
