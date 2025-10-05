@@ -24,12 +24,6 @@ export const columnDefinition: (
     size: 2,
     cell: (info) => <TextCellRenderer title={info.getValue()} />,
   }),
-  columnHelper.accessor('city', {
-    id: 'city',
-    header: t('clients>table>city'),
-    size: 1.5,
-    cell: (info) => <TextCellRenderer title={info.getValue()} />,
-  }),
   columnHelper.accessor('address', {
     id: 'address',
     header: t('clients>table>address'),

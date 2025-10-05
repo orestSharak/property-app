@@ -34,7 +34,6 @@ import { useDeleteClient } from '../../hooks/client/useDeleteClient'
 import { useToast } from '../../hooks/toast/useToast'
 import { useAuth } from '../../context/AuthContext'
 import { useAddClientNote } from '../../hooks/client/useAddClientNote'
-import { useGetCities } from '../../hooks/city/useGetCities'
 import { useDeleteClientNote } from '../../hooks/client/useDeleteClientNote'
 import { useGetProperties } from '../../hooks/property/useGetProperties'
 import Loader from '../../components/Loader/Loader'
@@ -55,7 +54,6 @@ const ClientDetailsPage = () => {
   const { client, isLoading } = useGetClient(id)
   const { updateClient } = useUpdateClient()
   const { deleteClient } = useDeleteClient()
-  const { cities } = useGetCities()
   const { addClientNote, isPending: isAddingNote } = useAddClientNote()
   const { deleteClientNote } = useDeleteClientNote()
   const { properties } = useGetProperties()
@@ -67,7 +65,6 @@ const ClientDetailsPage = () => {
     () => ({
       name: '',
       surname: '',
-      city: '',
       address: '',
       email: '',
       phone: '',
@@ -93,7 +90,6 @@ const ClientDetailsPage = () => {
       reset({
         name: getClientNameAndSurname(client?.fullName).name,
         surname: getClientNameAndSurname(client?.fullName).surname,
-        city: client?.cityId,
         address: client?.address,
         email: client?.email,
         phone: client?.phone,
@@ -116,19 +112,8 @@ const ClientDetailsPage = () => {
     setOpenDeleteModal(true)
   }
 
-  const citiesOptions = useMemo(() => {
-    if (!cities) return []
-
-    return cities.map((city) => ({
-      value: city.id,
-      label: city.name,
-    }))
-  }, [cities])
-
   const preparedClientData = (data: ClientFormData, userUid: string, userEmail: string) => ({
     fullName: `${data.name.trim()} ${data.surname.trim()}`,
-    city: cities?.find((city) => city?.id === data.city).name,
-    cityId: data.city,
     address: data.address.trimStart().trimEnd(),
     email: data.email.trimStart().trimEnd(),
     phone: data.phone.trimStart().trimEnd() ?? null,
@@ -284,7 +269,6 @@ const ClientDetailsPage = () => {
           </HeaderSection>
           <Card hasList>
             <InfoRow label={t('clientDetails>fullName')} value={client?.fullName} />
-            <InfoRow label={t('clientDetails>city')} value={client?.city} />
             <InfoRow label={t('clientDetails>address')} value={client?.address} />
             <InfoRow label={t('clientDetails>email')} value={client?.email} />
             {client?.phone && <InfoRow label={t('clientDetails>phone')} value={client?.phone} />}
@@ -447,7 +431,7 @@ const ClientDetailsPage = () => {
       >
         <form onSubmit={handleSubmit(onSubmitEdit)}>
           <FormProvider {...clientForm}>
-            <AddEditClientForm cities={citiesOptions} />
+            <AddEditClientForm />
           </FormProvider>
         </form>
       </Modal>

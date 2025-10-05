@@ -17,7 +17,6 @@ import { useGetClient } from '../../hooks/client/useGetClient'
 import { getClientNameAndSurname } from '../../utils/utils'
 import { useUpdateClient } from '../../hooks/client/useUpdateClient'
 import { useDeleteClient } from '../../hooks/client/useDeleteClient'
-import { useGetCities } from '../../hooks/city/useGetCities'
 import { useGetProperties } from '../../hooks/property/useGetProperties'
 
 const ClientsPage = () => {
@@ -37,7 +36,6 @@ const ClientsPage = () => {
   const { updateClient } = useUpdateClient()
   const { deleteClient } = useDeleteClient()
   const { client } = useGetClient(selectedClientId)
-  const { cities } = useGetCities()
   const { properties } = useGetProperties()
 
   const propertyExistInClient =
@@ -48,7 +46,6 @@ const ClientsPage = () => {
     () => ({
       name: '',
       surname: '',
-      city: '',
       address: '',
       email: '',
       phone: '',
@@ -70,7 +67,6 @@ const ClientsPage = () => {
       reset({
         name: getClientNameAndSurname(client?.fullName).name,
         surname: getClientNameAndSurname(client?.fullName).surname,
-        city: client?.cityId,
         address: client?.address,
         email: client?.email,
         phone: client?.phone,
@@ -102,15 +98,6 @@ const ClientsPage = () => {
     setOpenDeleteModal(true)
   }
 
-  const citiesOptions = useMemo(() => {
-    if (!cities) return []
-
-    return cities.map((city) => ({
-      value: city.id,
-      label: city.name,
-    }))
-  }, [cities])
-
   const preparedClientData = (
     data: ClientFormData,
     userUid: string,
@@ -118,8 +105,6 @@ const ClientsPage = () => {
     isEdit?: boolean,
   ) => ({
     fullName: `${data.name.trim()} ${data.surname.trim()}`,
-    city: cities?.find((city) => city?.id === data.city).name,
-    cityId: data.city,
     address: data.address.trimStart().trimEnd(),
     email: data.email.trimStart().trimEnd(),
     phone: data.phone.trimStart().trimEnd() ?? null,
@@ -285,7 +270,7 @@ const ClientsPage = () => {
       >
         <form onSubmit={handleSubmit(addMode ? onSubmitAdd : onSubmitEdit)}>
           <FormProvider {...clientForm}>
-            <AddEditClientForm cities={citiesOptions} />
+            <AddEditClientForm />
           </FormProvider>
         </form>
       </Modal>
