@@ -2,6 +2,19 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Status } from '../../../common/types'
 
+const getStatusColor = ($status, theme) => {
+  switch ($status) {
+    case 'news':
+      return theme.colors.textPink
+    case 'contract':
+      return theme.colors.textInfo
+    case 'default':
+      return theme.colors.textStrong
+    default:
+      return theme.colors.textStrong
+  }
+}
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -66,10 +79,12 @@ export const AddressTitle = styled.span`
 
 export const StatusWrapper = styled.span<{ $status?: Status }>`
   margin-left: auto;
-  color: ${({ $status, theme }) =>
-    $status === 'news' ? theme.colors.textPink : theme.colors.textInfo};
-  font-size: ${(p) => p.theme.fontSize.sm};
+  font-size: ${(p) => p.theme.fontSize.xs};
   font-weight: ${(p) => p.theme.fontWeight.medium};
+  padding: ${(p) => `${p.theme.spacing.xxs} ${p.theme.spacing.xs}`};
+  border-radius: ${(p) => p.theme.radius.sm};
+  border: 1px solid ${({ $status, theme }) => getStatusColor($status, theme)};
+  color: ${({ $status, theme }) => getStatusColor($status, theme)};
 `
 
 export const IconWrapper = styled.div<{ $status?: Status }>`
