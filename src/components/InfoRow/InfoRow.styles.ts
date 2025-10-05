@@ -1,6 +1,16 @@
 import styled from 'styled-components'
 import { Status } from '../../common/types'
 
+const getStatusColor = ($status, theme) => {
+  if ($status === 'news') {
+    return theme.colors.textPink
+  }
+  if ($status === 'contract') {
+    return theme.colors.textInfo
+  }
+  return theme.colors.textMain
+}
+
 export const Container = styled.div`
   display: flex;
   align-items: baseline;
@@ -16,18 +26,26 @@ export const Label = styled.span`
 `
 
 export const Value = styled.span<{ $variant: Status }>`
-  color: ${({ theme, $variant }) => {
-    switch ($variant) {
-      case 'news':
-        return theme.colors.textPink
-      case 'contract':
-        return theme.colors.textInfo
-      case 'default':
-      default:
-        return theme.colors.textMain
-    }
-  }};
   font-size: ${(p) => p.theme.fontSize.md};
   font-weight: ${(p) => p.theme.fontWeight.normal};
   white-space: pre-line;
+
+  ${({ $variant, theme }) => {
+    const color = getStatusColor($variant, theme)
+    const shouldApplyBorder = $variant === 'news' || $variant === 'contract'
+
+    return `
+      color: ${color};
+      
+      ${
+        shouldApplyBorder
+          ? `
+          border: 1px solid ${color};
+          border-radius: ${theme.radius.sm};
+          padding: ${theme.spacing.xxs} ${theme.spacing.xs};
+        `
+          : ''
+      }
+    `
+  }}
 `
