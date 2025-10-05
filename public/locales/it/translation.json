@@ -203,6 +203,7 @@
     "table": {
       "title": "Città",
       "name": "Nome",
+      "numberOfProperties": "N. di Proprietà",
       "actions": "Azioni",
       "delete": "Elimina",
       "deleteCity": "Elimina città",

@@ -202,6 +202,7 @@
   "cities": {
     "table": {
       "title": "Cities",
+      "numberOfProperties": "No. of Properties",
       "name": "Name",
       "actions": "Actions",
       "delete": "Delete",

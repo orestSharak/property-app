@@ -9,18 +9,30 @@ const columnHelper = createColumnHelper<City>()
 
 export const columnDefinition: (
   t: TFunction,
+  handleView: (id: string) => void,
   handleEdit: (id: string) => void,
   handleDelete: (id: string) => void,
 ) => ColumnDef<City, any>[] = (
   t: TFunction,
+  handleView: (id: string) => void,
   handleEdit: (id: string) => void,
   handleDelete: (id: string) => void,
 ) => [
   columnHelper.accessor('name', {
     id: 'name',
     header: t('cities>table>name'),
-    size: 7,
+    size: 6,
     cell: (info) => <TextCellRenderer title={info.getValue()} />,
+  }),
+
+  columnHelper.accessor('properties', {
+    id: 'properties',
+    header: t('cities>table>numberOfProperties'),
+    size: 1,
+    cell: (info) => {
+      const count = String(Object.values(info.getValue())?.length)
+      return <TextCellRenderer title={count} />
+    },
   }),
 
   columnHelper.accessor('id', {
@@ -29,11 +41,12 @@ export const columnDefinition: (
     cell: (info) => (
       <ActionsCellRenderer
         id={info.getValue()}
+        handleView={handleView}
         handleEdit={handleEdit}
         handleDelete={handleDelete}
       />
     ),
     enableSorting: false,
-    size: 0.5,
+    size: 1,
   }),
 ]

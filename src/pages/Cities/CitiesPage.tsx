@@ -2,6 +2,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { memo, useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useNavigate } from 'react-router-dom'
 import { columnDefinition } from './columnDefinition'
 import { Modal } from '../../components/base/Modal/Modal'
 import TableLayout from '../../layout/TableLayout/TableLayout'
@@ -20,6 +21,7 @@ import { useGetProperties } from '../../hooks/property/useGetProperties'
 const CitiesPage = () => {
   const { t } = useTranslation()
   const { currentUser } = useAuth()
+  const navigate = useNavigate()
   const { showToast } = useToast()
 
   const [selectedCityId, setSelectedCityId] = useState<string | null>('')
@@ -83,6 +85,12 @@ const CitiesPage = () => {
   const handleOpenDeleteModal = (id: string) => {
     setSelectedCityId(id)
     setOpenDeleteModal(true)
+  }
+
+  // handle navigate to Properties page with search param
+  const handleNavigateWithSearch = (id: string) => {
+    const cityName = Object.values(cities)?.find((city) => city.id === id)?.name || ''
+    navigate(`/properties?search=${cityName}`)
   }
 
   const preparedCityData = (
@@ -179,7 +187,12 @@ const CitiesPage = () => {
         setGlobalFilter={setGlobalFilter}
         handleOpenAdd={handleOpenAddModal}
         data={cities}
-        columnDefinition={columnDefinition(t, handleOpenEditModal, handleOpenDeleteModal)}
+        columnDefinition={columnDefinition(
+          t,
+          handleNavigateWithSearch,
+          handleOpenEditModal,
+          handleOpenDeleteModal,
+        )}
       />
 
       {/* --- Delete Modal --- */}

@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 import React, { memo, useEffect, useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useGetProperties } from '../../hooks/property/useGetProperties'
@@ -24,9 +24,10 @@ const PropertiesPage = () => {
   const { t } = useTranslation()
   const { currentUser } = useAuth()
   const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams()
   const { showToast } = useToast()
 
-  const [selectedPropertyId, setSelectedPropertyId] = useState<string | null>('')
+  const [selectedPropertyId, setSelectedPropertyId] = useState<string | null>(null)
   const [addMode, setAddMode] = useState(false)
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [openAddEditModal, setOpenAddEditModal] = useState(false)
@@ -90,6 +91,15 @@ const PropertiesPage = () => {
       reset(defaultFormValues)
     }
   }, [cities, clients, defaultFormValues, property, reset, selectedPropertyId])
+
+  const searchCityName = searchParams.get('search')
+
+  useEffect(() => {
+    if (searchCityName) {
+      setGlobalFilter(searchCityName)
+      setSearchParams({}, { replace: true })
+    }
+  }, [searchCityName, setSearchParams])
 
   const counter = properties?.length
 
