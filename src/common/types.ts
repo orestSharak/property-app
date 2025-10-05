@@ -32,7 +32,7 @@ export type City = {
   userId: string
   position: string
   createdAt: number
-  properties: Property[]
+  properties?: Property[]
 }
 
 export type Note = {
