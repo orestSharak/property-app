@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Gestione immobiliare"
+    "title": "Gestione proprietà"
   },
   "login": {
     "title": "Benvenuto",
@@ -9,19 +9,19 @@
     "emailPlaceholder": "Inserisci email",
     "password": "Password",
     "passwordPlaceholder": "Inserisci password",
-    "isRequired": "Il campo è obbligatorio",
+    "isRequired": "Campo obbligatorio",
     "invalidEmail": "Formato email non valido. Es: test@test.com",
     "login": "Accedi",
-    "failedLoginError": "Il nome utente o la password inseriti non sono corretti.",
+    "failedLoginError": "L'email o la password inserita non sono corrette.",
     "language": "Cambia lingua",
     "light": "Chiaro",
     "dark": "Scuro"
   },
   "sidebar": {
-    "sidebar": "Barra laterale",
+    "sidebar": "Menu Laterale",
     "logIn": "Accedi",
     "logOut": "Esci",
-    "dashboard": "Pannello",
+    "dashboard": "Dashboard",
     "properties": "Proprietà",
     "cities": "Città",
     "settings": "Impostazioni",
@@ -43,7 +43,7 @@
       },
       "text": {
         "contract": "Contratto",
-        "news": "Notizie"
+        "news": "Novità"
       }
     }
   },
@@ -58,14 +58,14 @@
       "title": "Proprietà",
       "city": "Città",
       "address": "Indirizzo",
-      "clientFullName": "Nome completo del client",
-      "clientEmail": "Email del cliente",
-      "phoneOfClient": "Telefono del cliente",
+      "clientFullName": "Nome completo cliente",
+      "clientEmail": "Email cliente",
+      "phoneOfClient": "Telefono cliente",
       "status": "Stato",
       "actions": "Azioni",
       "delete": "Elimina",
       "cancel": "Annulla",
-      "sureWantDelete": "Sei sicuro di voler eliminare la proprietà tramite l'indirizzo: <bold>{{address}}</bold>?",
+      "sureWantDelete": "Sei sicuro di voler eliminare la proprietà all'indirizzo: <bold>{{address}}</bold>?",
       "edit": "Modifica",
       "add": "Aggiungi",
       "loading": "Caricamento in corso...",
@@ -85,8 +85,8 @@
       "delete": "Elimina",
       "deleteClient": "Elimina cliente",
       "cancel": "Annulla",
-      "sureWantDelete": "Sei sicuro di voler eliminare la proprietà tramite l'indirizzo: <bold>{{address}}</bold>?",
-      "canNotDeleteClient": "Non puoi eliminare questo client (<bold>{{client}}</bold>) perché è attualmente associato a una o più proprietà.",
+      "sureWantDelete": "Sei sicuro di voler eliminare questo cliente: <bold>{{client}}</bold>?",
+      "canNotDeleteClient": "Non puoi eliminare questo cliente (<bold>{{client}}</bold>) perché è attualmente associato a una o più proprietà.",
       "edit": "Modifica",
       "add": "Aggiungi",
       "addClient": "Aggiungi cliente",
@@ -101,7 +101,7 @@
     "surnamePlaceholder": "Inserisci cognome",
     "address": "Indirizzo",
     "addressPlaceholder": "Inserisci indirizzo",
-    "isRequired": "Il campo è obbligatorio",
+    "isRequired": "Campo obbligatorio",
     "invalidEmail": "Formato email non valido. Es: test@test.com",
     "city": "Città",
     "selectCity": "Seleziona città",
@@ -110,20 +110,20 @@
     "phone": "Telefono",
     "phonePlaceholder": "Inserisci numero di telefono",
     "toast": {
-      "successfullyAdded": "Il client è stato aggiunto correttamente",
-      "failedAdd": "Impossibile aggiungere il client",
-      "successfullyUpdated": "Il client è stato aggiornato correttamente",
-      "failedUpdate": "Impossibile aggiornare il client",
-      "successfullyDeleted": "Il client è stato eliminato correttamente",
-      "failedDelete": "Impossibile eliminare il client",
-      "noteAddedSuccessfully": "La nota è stata aggiunta correttamente",
-      "noteFailedToAdd": "Impossibile aggiungere una nota",
-      "noteDeletedSuccessfully": "La nota è stata eliminata correttamente",
-      "noteFailedToDelete": "Impossibile eliminare una nota"
+      "successfullyAdded": "Cliente aggiunto con successo",
+      "failedAdd": "Impossibile aggiungere il cliente",
+      "successfullyUpdated": "Cliente aggiornato con successo",
+      "failedUpdate": "Impossibile aggiornare il cliente",
+      "successfullyDeleted": "Cliente eliminato con successo",
+      "failedDelete": "Impossibile eliminare il cliente",
+      "noteAddedSuccessfully": "Nota aggiunta con successo",
+      "noteFailedToAdd": "Impossibile aggiungere la nota",
+      "noteDeletedSuccessfully": "Nota eliminata con successo",
+      "noteFailedToDelete": "Impossibile eliminare la nota"
     }
   },
   "clientDetails": {
-    "title": "Dettagli del cliente",
+    "title": "Dettagli Cliente",
     "back": "Indietro",
     "edit": "Modifica",
     "delete": "Elimina",
@@ -132,26 +132,26 @@
     "deleteClient": "Elimina cliente",
     "cancel": "Annulla",
     "sureWantDelete": "Sei sicuro di voler eliminare questo cliente: <bold>{{client}}</bold>?",
-    "canNotDeleteClient": "Non puoi eliminare questo client (<bold>{{client}}</bold>) perché è attualmente associato a una o più proprietà.",
+    "canNotDeleteClient": "Non puoi eliminare questo cliente (<bold>{{client}}</bold>) perché è attualmente associato a una o più proprietà.",
     "sureWantDeleteNote": "Sei sicuro di voler eliminare la nota: '<bold>{{text}}</bold>'?",
     "editClient": "Modifica cliente",
-    "clientDetails": "Dettagli del cliente",
+    "clientDetails": "Dettagli cliente",
     "fullName": "Nome completo",
     "email": "Email",
     "phone": "Telefono",
     "addNote": "Aggiungi nota",
     "notes": "Note",
     "add": "Aggiungi",
-    "adding": "Aggiunta in corso...",
-    "loading": "Caricamento in corso...",
+    "adding": "Aggiungendo...",
+    "loading": "Caricamento...",
     "deleteNote": "Elimina nota"
   },
   "propertyModal": {
-    "indirizzo": "Indirizzo",
-    "addressPlaceholder": "Digita l'indirizzo",
+    "address": "Indirizzo",
+    "addressPlaceholder": "Inserisci indirizzo",
+    "positionDetails": "Dettagli posizione",
     "positionPlaceholder": "Incolla coordinate",
-    "positionDetails": "Dettagli della posizione",
-    "isRequired": "Il campo è obbligatorio",
+    "isRequired": "Campo obbligatorio",
     "wrongPositionFormat": "Formato errato. Esempio: 51.12199, 17.04582",
     "city": "Città",
     "selectCity": "Seleziona città",
@@ -160,23 +160,23 @@
     "status": "Stato",
     "selectStatus": "Seleziona stato",
     "contract": "Contratto",
-    "news": "Notizie",
+    "news": "Novità",
     "positionError": "È stata selezionata una nuova città, modifica la posizione",
     "toast": {
-      "successfullyAdded": "La proprietà è stata aggiunta correttamente",
+      "successfullyAdded": "Proprietà aggiunta con successo",
       "failedAdd": "Impossibile aggiungere la proprietà",
-      "successfullyUpdated": "La proprietà è stata aggiornata correttamente",
+      "successfullyUpdated": "Proprietà aggiornata con successo",
       "failedUpdate": "Impossibile aggiornare la proprietà",
-      "successfullyDeleted": "La proprietà è stata eliminata correttamente",
+      "successfullyDeleted": "Proprietà eliminata con successo",
       "failedDelete": "Impossibile eliminare la proprietà",
-      "noteAddedSuccessfully": "La nota è stata aggiunta correttamente",
-      "noteFailedToAdd": "Impossibile aggiungere una nota",
-      "noteDeletedSuccessfully": "La nota è stata eliminata correttamente",
-      "noteFailedToDelete": "Impossibile eliminare una nota"
+      "noteAddedSuccessfully": "Nota aggiunta con successo",
+      "noteFailedToAdd": "Impossibile aggiungere la nota",
+      "noteDeletedSuccessfully": "Nota eliminata con successo",
+      "noteFailedToDelete": "Impossibile eliminare la nota"
     }
   },
   "propertyDetails": {
-    "title": "Dettagli della proprietà",
+    "title": "Dettagli Proprietà",
     "back": "Indietro",
     "edit": "Modifica",
     "delete": "Elimina",
@@ -188,15 +188,15 @@
     "sureWantDelete": "Sei sicuro di voler eliminare la proprietà all'indirizzo: <bold>{{address}}</bold>?",
     "sureWantDeleteNote": "Sei sicuro di voler eliminare la nota: '<bold>{{text}}</bold>'?",
     "editProperty": "Modifica proprietà",
-    "clientDetails": "Dati del cliente",
+    "clientDetails": "Dettagli cliente",
     "fullName": "Nome completo",
     "email": "Email",
     "phone": "Telefono",
     "addNote": "Aggiungi nota",
     "notes": "Note",
     "add": "Aggiungi",
-    "adding": "Aggiunta in corso...",
-    "loading": "Caricamento in corso...",
+    "adding": "Aggiungendo...",
+    "loading": "Caricamento...",
     "deleteNote": "Elimina nota"
   },
   "cities": {
@@ -208,7 +208,7 @@
       "deleteCity": "Elimina città",
       "cancel": "Annulla",
       "sureWantDelete": "Sei sicuro di voler eliminare questa città: <bold>{{city}}</bold>?",
-      "canNotDeleteCity": "Non puoi eliminare questa città (<bold>{{city}}</bold>) perché attualmente le sono assegnate delle proprietà.",
+      "canNotDeleteCity": "Non puoi eliminare questa città (<bold>{{city}}</bold>) perché ci sono proprietà attualmente assegnate ad essa.",
       "edit": "Modifica",
       "add": "Aggiungi",
       "addCity": "Aggiungi città",
@@ -217,23 +217,23 @@
   },
   "cityModal": {
     "name": "Nome",
-    "namePlaceholder": "Digita nome",
+    "namePlaceholder": "Inserisci nome",
     "positionDetails": "Dettagli posizione",
     "positionPlaceholder": "Incolla coordinate",
     "isRequired": "Campo obbligatorio",
     "wrongPositionFormat": "Formato errato. Esempio: 51.12199, 17.04582",
     "toast": {
-      "successfullyAdded": "Città aggiunta correttamente",
-      "failedAdd": "Impossibile aggiungere città",
-      "successfullyUpdated": "Città aggiornata correttamente",
-      "failedUpdate": "Impossibile aggiornare città",
-      "successfullyDeleted": "Città eliminata correttamente",
-      "failedDelete": "Impossibile eliminare città"
+      "successfullyAdded": "Città aggiunta con successo",
+      "failedAdd": "Impossibile aggiungere la città",
+      "successfullyUpdated": "Città aggiornata con successo",
+      "failedUpdate": "Impossibile aggiornare la città",
+      "successfullyDeleted": "Città eliminata con successo",
+      "failedDelete": "Impossibile eliminare la città"
     }
   },
   "infoRow": {
     "contract": "Contratto",
-    "news": "Notizie"
+    "news": "Novità"
   },
   "form": {
     "email": "Email",
@@ -251,15 +251,15 @@
     "noCities": "Nessuna città"
   },
   "card": {
-    "seeDetails": "Vedi i dettagli"
+    "seeDetails": "Vedi dettagli"
   },
   "modal": {
     "closeModal": "Chiudi modale"
   },
   "popup": {
     "client": "Cliente",
-    "clientEmail": "E-mail del cliente",
-    "clientPhone": "Telefono del cliente",
+    "clientEmail": "Email cliente",
+    "clientPhone": "Telefono cliente",
     "status": "Stato"
   },
   "input": {
@@ -273,38 +273,38 @@
     "namePlaceholder": "Inserisci nome",
     "surname": "Cognome",
     "surnamePlaceholder": "Inserisci cognome",
-    "isRequired": "Il campo è obbligatorio",
+    "isRequired": "Campo obbligatorio",
     "provideName": "Azione richiesta: imposta il tuo nome per continuare.",
     "provideSurname": "Azione richiesta: imposta il tuo cognome per continuare.",
     "update": "Aggiorna",
     "userSettings": "Impostazioni utente",
     "email": "Email",
     "toast": {
-      "successfullyUpdate": "L'utente è stato aggiornato correttamente",
+      "successfullyUpdate": "Utente aggiornato con successo",
       "failedUpdate": "Impossibile aggiornare l'utente"
     }
   },
   "dashboard": {
-    "title": "Pannello",
+    "title": "Dashboard",
     "numberOfProperties": "Numero di proprietà",
     "city": "Città",
     "selectCity": "Seleziona città",
     "search": "Cerca",
     "noResults": "Nessun risultato",
-    "all": "Tutto",
+    "all": "Tutte",
     "addCityFirst": "Aggiungi prima una città",
     "propertyItem": {
       "name": "Nome:",
       "phone": "Telefono:",
       "seeMore": "Vedi di più",
-      "contract": "Contratto",
-      "news": "Notizie"
+      "news": "Novità",
+      "contract": "Contratto"
     }
   },
   "pageNotFound": {
     "notFound": "Pagina non trovata",
-    "notFoundDescription": "Oops! La pagina che stai cercando potrebbe essere stata rimossa, potrebbe aver cambiato nome o potrebbe essere temporaneamente non disponibile.",
+    "notFoundDescription": "Questa pagina non esiste o l'indirizzo non è corretto. Utilizza il pulsante qui sotto per tornare alla sicurezza.",
     "goToDashboard": "Vai alla Dashboard",
-    "goToLogin": "Vai ad Accedi"
+    "goToLogin": "Vai al Login"
   }
 }
