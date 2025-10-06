@@ -151,7 +151,7 @@ const darkTokens = {
   surfaceAlert: '#DB0404',
   surfaceAlertStrong: '#ba0505',
   surfaceInfo: '#00B3E6',
-  surfacePink: '#D80FC1',
+  surfacePink: '#ff66cc',
 
   // On-surface colors (for text, icons)
   textPrimary: '#FEC640',
@@ -160,7 +160,7 @@ const darkTokens = {
   textNeutral: '#9E9E9E',
   textSecondary: '#A9A9A9',
 
-  textPink: '#D80FC1',
+  textPink: '#ff66cc',
   textAlert: '#FF6F6F',
   textInfo: '#66D9FF',
   textInfo2: '#0074A5',
