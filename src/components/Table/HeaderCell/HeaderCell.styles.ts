@@ -4,7 +4,7 @@ export const TableHeaderCell = styled.th<{ $canSort: boolean; size?: number }>`
   flex: ${({ size }) => (size ? size : '1 0 180px')};
   text-align: left;
   cursor: ${({ $canSort }) => ($canSort ? 'pointer' : 'default')};
-  color: ${(p) => p.theme.colors.textNeutral};
+  color: ${(p) => p.theme.colors.textSecondary};
   font-weight: ${(p) => p.theme.fontWeight.semibold};
   font-size: ${(p) => p.theme.fontSize.sm};
   position: relative;
@@ -14,7 +14,7 @@ export const TableHeaderCell = styled.th<{ $canSort: boolean; size?: number }>`
   min-width: 150px;
 
   &:hover {
-    color: ${(p) => p.theme.colors.textSecondary};
+    color: ${(p) => p.theme.colors.textMain};
   }
 
   &:focus,
@@ -35,7 +35,7 @@ export const TableHeaderCell = styled.th<{ $canSort: boolean; size?: number }>`
     right: 0;
     content: '|';
     font-size: ${(p) => p.theme.fontSize.md};
-    color: ${(p) => p.theme.colors.surface5};
+    color: ${(p) => p.theme.colors.textOnSurface3};
   }
 `
 export const SortIndicator = styled.span`

@@ -47,6 +47,8 @@ const Sidebar = () => {
     }
   }
 
+  const visibleLinks = currentUser ? sidebarLinks : []
+
   return (
     <SidebarContainer aria-label={t('sidebar>sidebar')}>
       <LanguageIconButton
@@ -62,17 +64,18 @@ const Sidebar = () => {
         onClick={toggleTheme}
       />
       <nav role="navigation" aria-label={t('sidebar>sidebar')}>
-        <NavList>
-          {currentUser &&
-            sidebarLinks.map(({ name, path, icon }) => (
-              <NavItem key={path} role="none">
+        {visibleLinks.length > 0 && (
+          <NavList>
+            {visibleLinks.map(({ name, path, icon }) => (
+              <NavItem key={path}>
                 <StyledNavLink to={path} className={({ isActive }) => (isActive ? 'active' : '')}>
                   <IconWrapper>{icon}</IconWrapper>
                   {name}
                 </StyledNavLink>
               </NavItem>
             ))}
-        </NavList>
+          </NavList>
+        )}
       </nav>
 
       {currentUser && <UserDetails />}

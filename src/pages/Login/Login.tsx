@@ -23,7 +23,7 @@ import { useToast } from '../../hooks/toast/useToast'
 import MoonIcon from '../../assets/icons/moon-icon.svg'
 import SunIcon from '../../assets/icons/sun-icon.svg'
 import GlobeIcon from '../../assets/icons/globe-icon.svg'
-import { useLogin } from '../../hooks/auth/useLogin' // user: alessandro@test.com
+import { useLogin } from '../../hooks/auth/useLogin'
 
 function Login() {
   const { t, i18n } = useTranslation()

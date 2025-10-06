@@ -7,7 +7,7 @@ const getStatusColor = ($status, theme) => {
     case 'news':
       return theme.colors.textPink
     case 'contract':
-      return theme.colors.textInfo
+      return theme.colors.textInfo2
     case 'default':
       return theme.colors.textStrong
     default:
