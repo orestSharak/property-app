@@ -201,6 +201,8 @@
       "title": "Città",
       "name": "Nome",
       "numberOfProperties": "N. di Proprietà",
+      "numberOfContracts": "N. di Contratti",
+      "numberOfNews": "N. di Notizie",
       "actions": "Azioni",
       "delete": "Elimina",
       "deleteCity": "Elimina città",

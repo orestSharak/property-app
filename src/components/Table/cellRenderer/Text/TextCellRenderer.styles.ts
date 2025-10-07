@@ -11,7 +11,7 @@ const getStatusColor = ($status, theme) => {
   return theme.colors.textMain
 }
 
-export const Text = styled.span<{ $status?: Status }>`
+export const Text = styled.span<{ $status?: Status; $isNews?: boolean; $isContract?: boolean }>`
   font-weight: ${(p) => p.theme.fontWeight.medium};
   font-size: ${(p) => p.theme.fontSize.md};
   word-break: break-all;
@@ -34,5 +34,17 @@ export const Text = styled.span<{ $status?: Status }>`
           : ''
       }
     `
+  }}
+
+  ${({ $isNews, $isContract, theme }) => {
+    if ($isNews || $isContract) {
+      return `
+      color: ${$isNews ? theme.colors.textPink : theme.colors.textInfo};
+      border: 1px solid ${$isNews ? theme.colors.textPink : theme.colors.textInfo};
+      border-radius: ${theme.radius.sm};
+      padding: ${theme.spacing.xxs} ${theme.spacing.xs};
+    `
+    }
+    return ''
   }}
 `

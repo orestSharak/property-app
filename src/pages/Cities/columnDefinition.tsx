@@ -1,7 +1,7 @@
 import { ColumnDef, createColumnHelper } from '@tanstack/react-table'
 import React from 'react'
 import { TFunction } from 'i18next'
-import { City } from '../../common/types'
+import { City, Property } from '../../common/types'
 import TextCellRenderer from '../../components/Table/cellRenderer/Text/TextCellRenderer'
 import ActionsCellRenderer from '../../components/Table/cellRenderer/Actions/ActionsCellRenderer'
 
@@ -21,7 +21,7 @@ export const columnDefinition: (
   columnHelper.accessor('name', {
     id: 'name',
     header: t('cities>table>name'),
-    size: 6,
+    size: 3,
     cell: (info) => <TextCellRenderer title={info.getValue()} />,
   }),
 
@@ -32,6 +32,31 @@ export const columnDefinition: (
     cell: (info) => {
       const count = String(Object.values(info.getValue())?.length)
       return <TextCellRenderer title={count} />
+    },
+  }),
+
+  columnHelper.accessor('properties', {
+    id: 'contract',
+    header: t('cities>table>numberOfContracts'),
+    size: 1,
+    cell: (info) => {
+      const contractsCount = String(
+        Object.values(info.getValue())?.filter((item: Property) => item.status === 'contract')
+          ?.length,
+      )
+      return <TextCellRenderer isContract title={contractsCount} />
+    },
+  }),
+
+  columnHelper.accessor('properties', {
+    id: 'news',
+    header: t('cities>table>numberOfNews'),
+    size: 1,
+    cell: (info) => {
+      const newsCount = String(
+        Object.values(info.getValue())?.filter((item: Property) => item.status === 'news')?.length,
+      )
+      return <TextCellRenderer isNews title={newsCount} />
     },
   }),
 

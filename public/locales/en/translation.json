@@ -200,6 +200,8 @@
     "table": {
       "title": "Cities",
       "numberOfProperties": "No. of Properties",
+      "numberOfContracts": "No. of Contracts",
+      "numberOfNews": "No. of News",
       "name": "Name",
       "actions": "Actions",
       "delete": "Delete",
