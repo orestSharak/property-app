@@ -8,6 +8,7 @@ type HeaderProps = {
   size?: Size
   hideCount?: boolean
   marginBottom?: number
+  mobileCentered?: boolean
 }
 
 /**
@@ -24,9 +25,16 @@ type HeaderProps = {
  * // A header with a title and a count
  * <Header title="Cities" count={12} />
  */
-function _Header({ title, count = 0, size = 'lg', hideCount, marginBottom }: HeaderProps) {
+function _Header({
+  title,
+  count = 0,
+  size = 'lg',
+  hideCount,
+  marginBottom,
+  mobileCentered = false,
+}: HeaderProps) {
   return (
-    <Container>
+    <Container $mobileCentered={mobileCentered}>
       <Title $size={size} $marginBottom={marginBottom}>
         {title}
       </Title>

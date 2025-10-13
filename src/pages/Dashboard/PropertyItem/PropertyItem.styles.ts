@@ -32,6 +32,10 @@ export const Container = styled.div`
     box-shadow: 0 0 0 2px ${(p) => p.theme.colors.boxShadowInfo};
     outline: none;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    min-width: 300px;
+  }
 `
 
 export const ClientSection = styled.div`
@@ -39,6 +43,7 @@ export const ClientSection = styled.div`
   align-items: center;
   gap: ${(p) => p.theme.spacing.xs};
   width: 100%;
+  flex-wrap: wrap;
 `
 
 export const ClientContent = styled.div`

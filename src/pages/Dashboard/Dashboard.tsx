@@ -27,6 +27,7 @@ import PropertyItem from './PropertyItem/PropertyItem'
 import { EMPTY_VALUE } from '../../common/constants'
 
 import { useDebounce } from '../../hooks/helpers/useDebounce'
+import { useMediaQuery } from '../../hooks/helpers/useMediaQuery'
 
 const preparedMarker = (property: Property[] | null) => {
   if (!property) return []
@@ -51,6 +52,7 @@ const preparedCityOptions = (cities: City[], t: TFunction) => {
 
 function Dashboard() {
   const { t } = useTranslation()
+  const isMobile = useMediaQuery()
 
   const { properties } = useGetProperties()
   const { cities } = useGetCities()
@@ -112,7 +114,7 @@ function Dashboard() {
   return (
     <Wrapper>
       <Container>
-        <Header title={t('dashboard>title')} hideCount />
+        <Header mobileCentered title={t('dashboard>title')} hideCount />
         <InputSection>
           <Select
             id="city"
@@ -169,7 +171,7 @@ function Dashboard() {
       <MapContainer>
         {markersToDisplay.length > 0 && (
           <Map
-            height={'calc(100vh - 108px)'}
+            height={isMobile ? 'calc(100vh - 510px)' : 'calc(100vh - 108px)'}
             showPopup
             markers={markersToDisplay}
             citySet={!!selectedCityId || !!search}

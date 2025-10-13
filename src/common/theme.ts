@@ -65,7 +65,8 @@ const orderLevel = {
   selectDropdown: 20,
   toast: 100,
   tooltip: 999,
-  modalBackdrop: 1000,
+  modalBackdrop: 1001,
+  menuButton: 999,
 } as const
 
 const lightTokens = {

@@ -1,12 +1,18 @@
 import React, { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ColumnDef } from '@tanstack/react-table'
-import { IconWrapper, TopContainer, TopSection, Wrapper } from './TableLayout.styles'
+import {
+  IconWrapper,
+  StyledButton,
+  StyledInput,
+  TopContainer,
+  TopSection,
+  Wrapper,
+} from './TableLayout.styles'
 import { Header } from '../../components/Header/Header'
-import { Input } from '../../components/base/Input/Input'
 import SearchIcon from '../../assets/icons/search-icon.svg'
-import { Button } from '../../components/base/Button/Button'
 import Table from '../../components/Table/Table'
+import { useMediaQuery } from '../../hooks/helpers/useMediaQuery'
 
 type TableLayoutProps = {
   title: string
@@ -30,14 +36,14 @@ const TableLayout = ({
   searchRef = null,
 }: TableLayoutProps) => {
   const { t } = useTranslation()
+  const isMobile = useMediaQuery()
 
   return (
     <Wrapper>
       <TopContainer>
-        <Header title={title} count={count} />
+        <Header mobileCentered title={title} count={count} />
         <TopSection>
-          <Input
-            minWidth={390}
+          <StyledInput
             id="seacrh"
             ref={searchRef}
             label={t('layout>table>search')}
@@ -51,9 +57,14 @@ const TableLayout = ({
             placeholder={t('layout>table>search')}
             onChange={(e) => setGlobalFilter(e.target.value)}
           />
-          <Button variant="primary" size="sm" onClick={handleOpenAdd}>
-            {t('layout>table>add')}
-          </Button>
+          <StyledButton
+            variant="primary"
+            size="sm"
+            onClick={handleOpenAdd}
+            aria-label={t('layout>table>add')}
+          >
+            {isMobile ? '+' : t('layout>table>add')}
+          </StyledButton>
         </TopSection>
       </TopContainer>
       <Table

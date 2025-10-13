@@ -142,6 +142,10 @@ const GlobalStyle = createGlobalStyle`
     max-width: 350px;
     background: ${(p) => p.theme.colors.surface1};
     border-radius: ${(p) => p.theme.radius.md};
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+      max-width: 250px;
+    }
   }
 
   /* Example: override close button */

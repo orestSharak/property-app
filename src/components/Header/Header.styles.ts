@@ -1,11 +1,15 @@
 import styled from 'styled-components'
 import { Size } from './Heasder.types'
 
-export const Container = styled.header`
+export const Container = styled.header<{ $mobileCentered?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 1rem;
+  gap: ${(p) => p.theme.spacing.md};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    align-self: ${({ $mobileCentered }) => ($mobileCentered ? 'center' : 'flex-start')};
+  }
 `
 
 export const Title = styled.h1<{ $size: Size; $marginBottom?: number }>`

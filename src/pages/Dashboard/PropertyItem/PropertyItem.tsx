@@ -1,5 +1,6 @@
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import { Status } from '../../../common/types'
 import {
   AddressSection,
@@ -13,6 +14,7 @@ import {
   StatusWrapper,
 } from './PropertyItem.styles'
 import HouseIcon from '../../../assets/icons/house-icon-raw.svg'
+import { useMediaQuery } from '../../../hooks/helpers/useMediaQuery'
 
 type PropertyItemProps = {
   id: string
@@ -36,9 +38,19 @@ function PropertyItem({
   onMouseLeaveOrBlur,
 }: PropertyItemProps) {
   const { t } = useTranslation()
+  const isMobile = useMediaQuery()
+  const navigate = useNavigate()
 
   const handleActivate = () => {
     onMouseEnterOrFocus(id)
+  }
+
+  const handleNavigate = () => {
+    if (isMobile) {
+      navigate(`/properties/${id}`)
+    } else {
+      return
+    }
   }
 
   const handleDeactivate = onMouseLeaveOrBlur
@@ -50,6 +62,7 @@ function PropertyItem({
       onMouseLeave={handleDeactivate}
       onFocus={handleActivate}
       onBlur={handleDeactivate}
+      onClick={handleNavigate}
     >
       <AddressSection>
         <IconWrapper $status={status}>
@@ -71,7 +84,11 @@ function PropertyItem({
             <ClientText>{clientPhone}</ClientText>
           </ClientContent>
         )}
-        <PropertyLink to={`/properties/${id}`}>{t('dashboard>propertyItem>seeMore')}</PropertyLink>
+        {!isMobile && (
+          <PropertyLink to={`/properties/${id}`}>
+            {t('dashboard>propertyItem>seeMore')}
+          </PropertyLink>
+        )}
       </ClientSection>
     </Container>
   )

@@ -1,7 +1,16 @@
-import styled, { css } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { sidebarWidth } from '../../common/theme'
 import { IconButton } from '../base/IconButton/IconButton'
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`
 
 const linkStyles = css`
   display: flex;
@@ -65,7 +74,7 @@ const extraButtonStyles = css`
   }
 `
 
-export const SidebarContainer = styled.aside`
+export const SidebarContainer = styled.aside<{ $open: boolean }>`
   width: ${sidebarWidth};
   min-height: 100vh;
   display: flex;
@@ -76,6 +85,58 @@ export const SidebarContainer = styled.aside`
   position: fixed;
   top: 0;
   left: 0;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    left: ${({ $open }) => ($open ? '0' : '-100%')};
+    border-radius: ${(p) => p.theme.radius.md};
+  }
+`
+
+export const StyledBackdrop = styled.div<{ $open: boolean }>`
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: ${(p) => p.theme.orderLevel.modalBackdrop};
+    display: ${({ $open }) => ($open ? 'block' : 'none')};
+    background: ${(p) => p.theme.colors.gradientShadow};
+    animation: ${fadeIn} 0.2s ease-in;
+  }
+`
+
+export const MenuButton = styled.button`
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: ${(p) => p.theme.spacing.lg};
+    left: ${(p) => p.theme.spacing.md};
+    padding: ${(p) => p.theme.spacing.xs};
+    border-radius: ${(p) => p.theme.radius.round};
+    z-index: ${(p) => p.theme.orderLevel.menuButton};
+    background: ${(p) => p.theme.colors.surface1};
+    border: none;
+    cursor: pointer;
+
+    &:focus {
+      border-color: ${(p) => p.theme.colors.boxShadowInfo};
+      background: ${({ theme }) => theme.colors.surface1};
+      box-shadow: 0 0 0 2px ${(p) => p.theme.colors.boxShadowInfo};
+      outline: none;
+    }
+
+    & svg {
+      width: ${(p) => p.theme.spacing.xxl};
+      height: ${(p) => p.theme.spacing.xxl};
+
+      path {
+        fill: ${(p) => p.theme.colors.iconOnSurface1};
+      }
+    }
+  }
 `
 
 export const NavList = styled.ul`

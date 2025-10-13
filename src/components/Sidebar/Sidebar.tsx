@@ -1,11 +1,13 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   IconWrapper,
   LanguageIconButton,
+  MenuButton,
   NavItem,
   NavList,
   SidebarContainer,
+  StyledBackdrop,
   StyledIconButton,
   StyledNavLink,
 } from './Sidebar.styles'
@@ -20,12 +22,39 @@ import UserDetails from './UserDetails/UserDetails'
 
 import MoonIcon from '../../assets/icons/moon-icon.svg'
 import SunIcon from '../../assets/icons/sun-icon.svg'
+import MenuIcon from '../../assets/icons/menu-icon.svg'
 import { useTheme } from '../../context/ThemeContext'
 
 const Sidebar = () => {
   const { t, i18n } = useTranslation()
+  const [openMenu, setOpenMenu] = useState(false)
+
   const { currentUser } = useAuth()
   const { themeMode, toggleTheme } = useTheme()
+
+  const sidebarRef = useRef<HTMLElement>(null)
+
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      setOpenMenu(false)
+    }
+  }, [])
+
+  const handleSidebarClick = useCallback((event: React.MouseEvent) => {
+    event.stopPropagation()
+  }, [])
+
+  useEffect(() => {
+    if (openMenu) {
+      document.body.style.overflow = 'hidden'
+      document.addEventListener('keydown', handleKeyDown)
+    }
+
+    return () => {
+      document.body.style.overflow = ''
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [handleKeyDown, openMenu])
 
   const sidebarLinks = [
     { name: t('sidebar>dashboard'), path: '/dashboard', icon: <DashboardIcon /> },
@@ -47,39 +76,58 @@ const Sidebar = () => {
     }
   }
 
+  const handleOpenMenu = () => {
+    setOpenMenu((prevOpenMenu) => !prevOpenMenu)
+  }
+
   const visibleLinks = currentUser ? sidebarLinks : []
 
   return (
-    <SidebarContainer aria-label={t('sidebar>sidebar')}>
-      <LanguageIconButton
-        noTooltip
-        title={t('sidebar>language')}
-        icon={<GlobeIcon />}
-        onClick={handleLanguageToggle}
-      />
-      <StyledIconButton
-        noTooltip
-        icon={themeMode === 'light' ? <MoonIcon /> : <SunIcon />}
-        title={themeMode === 'dark' ? t('sidebar>light') : t('sidebar>dark')}
-        onClick={toggleTheme}
-      />
-      <nav role="navigation" aria-label={t('sidebar>sidebar')}>
-        {visibleLinks.length > 0 && (
-          <NavList>
-            {visibleLinks.map(({ name, path, icon }) => (
-              <NavItem key={path}>
-                <StyledNavLink to={path} className={({ isActive }) => (isActive ? 'active' : '')}>
-                  <IconWrapper>{icon}</IconWrapper>
-                  {name}
-                </StyledNavLink>
-              </NavItem>
-            ))}
-          </NavList>
-        )}
-      </nav>
+    <>
+      <MenuButton onClick={handleOpenMenu}>
+        <MenuIcon />
+      </MenuButton>
+      <StyledBackdrop $open={openMenu} onClick={handleOpenMenu}>
+        <SidebarContainer
+          onClick={handleSidebarClick}
+          $open={openMenu}
+          aria-label={t('sidebar>sidebar')}
+          ref={sidebarRef}
+        >
+          <LanguageIconButton
+            noTooltip
+            title={t('sidebar>language')}
+            icon={<GlobeIcon />}
+            onClick={handleLanguageToggle}
+          />
+          <StyledIconButton
+            noTooltip
+            icon={themeMode === 'light' ? <MoonIcon /> : <SunIcon />}
+            title={themeMode === 'dark' ? t('sidebar>light') : t('sidebar>dark')}
+            onClick={toggleTheme}
+          />
+          <nav role="navigation" aria-label={t('sidebar>sidebar')}>
+            {visibleLinks.length > 0 && (
+              <NavList>
+                {visibleLinks.map(({ name, path, icon }) => (
+                  <NavItem key={path} onClick={handleOpenMenu}>
+                    <StyledNavLink
+                      to={path}
+                      className={({ isActive }) => (isActive ? 'active' : '')}
+                    >
+                      <IconWrapper>{icon}</IconWrapper>
+                      {name}
+                    </StyledNavLink>
+                  </NavItem>
+                ))}
+              </NavList>
+            )}
+          </nav>
 
-      {currentUser && <UserDetails />}
-    </SidebarContainer>
+          {currentUser && <UserDetails />}
+        </SidebarContainer>
+      </StyledBackdrop>
+    </>
   )
 }
 
