@@ -27,6 +27,7 @@ import { useTheme } from '../../context/ThemeContext'
 
 const Sidebar = () => {
   const { t, i18n } = useTranslation()
+
   const [openMenu, setOpenMenu] = useState(false)
 
   const { currentUser } = useAuth()

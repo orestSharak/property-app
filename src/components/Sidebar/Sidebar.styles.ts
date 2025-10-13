@@ -36,6 +36,10 @@ const linkStyles = css`
     color: ${(p) => p.theme.colors.surface6};
     background: ${({ theme }) => theme.colors.surface2};
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    font-size: ${(p) => p.theme.fontSize.lg};
+  }
 `
 
 const extraButtonStyles = css`
@@ -87,6 +91,7 @@ export const SidebarContainer = styled.aside<{ $open: boolean }>`
   left: 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    width: calc(100vw - 100px);
     left: ${({ $open }) => ($open ? '0' : '-100%')};
     border-radius: ${(p) => p.theme.radius.md};
   }
@@ -171,6 +176,11 @@ export const IconWrapper = styled.div`
 
   & svg {
     stroke: currentColor;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+      width: ${(p) => p.theme.spacing.xl};
+      height: ${(p) => p.theme.spacing.xl};
+    }
   }
 `
 
@@ -185,6 +195,11 @@ export const LanguageIconButton = styled(IconButton)`
     path {
       fill: ${(p) => p.theme.colors.iconOnSurface3};
     }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+      width: ${(p) => p.theme.spacing.xl};
+      height: ${(p) => p.theme.spacing.xl};
+    }
   }
 `
 
@@ -196,11 +211,20 @@ export const StyledIconButton = styled(IconButton)`
 
   border-color: ${({ theme }) => theme.colors.borderExtraButton};
 
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    left: ${(p) => `calc(${p.theme.spacing.xxxl} + ${p.theme.spacing.lg})`};
+  }
+
   & svg {
     stroke: ${(p) => p.theme.colors.iconOnSurface3};
 
     path {
       fill: ${(p) => p.theme.colors.iconOnSurface3};
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+      width: ${(p) => p.theme.spacing.xl};
+      height: ${(p) => p.theme.spacing.xl};
     }
   }
 `
