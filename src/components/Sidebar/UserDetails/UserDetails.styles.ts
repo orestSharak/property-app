@@ -9,6 +9,10 @@ export const UserSectionContainer = styled.div`
   justify-content: space-between;
   gap: ${(p) => p.theme.spacing.xs};
   margin-top: auto;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    margin-top: ${(p) => p.theme.spacing.max};
+  }
 `
 
 export const UserInfo = styled.div`

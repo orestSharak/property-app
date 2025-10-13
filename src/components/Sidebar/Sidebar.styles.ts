@@ -93,7 +93,7 @@ export const SidebarContainer = styled.aside<{ $open: boolean }>`
   @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
     width: calc(100vw - 100px);
     left: ${({ $open }) => ($open ? '0' : '-100%')};
-    border-radius: ${(p) => p.theme.radius.md};
+    border-radius: ${(p) => p.theme.radius.lg};
   }
 `
 
