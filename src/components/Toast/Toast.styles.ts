@@ -57,4 +57,8 @@ export const StyledToastContainer = styled(ToastContainer)`
       border-radius: ${({ theme }) => theme.radius.round};
     }
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
+    min-width: ${({ theme }) => `calc(100vw - ${theme.spacing.xxxl})`};
+  }
 `
