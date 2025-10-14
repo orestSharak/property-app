@@ -11,6 +11,7 @@ import {
   IconWrapper,
   MainWrapper,
   NotesWrapper,
+  OrderWrapper,
   TextAreaWrapper,
   Wrapper,
 } from './PropertyDetailsPage.styles'
@@ -39,6 +40,7 @@ import { useGetCities } from '../../hooks/city/useGetCities'
 import { getClientEmailAndPhone, truncateByWords } from '../../utils/utils'
 import { useDeletePropertyNote } from '../../hooks/property/useDeletePropertyNote'
 import Loader from '../../components/Loader/Loader'
+import { useMediaQuery } from '../../hooks/helpers/useMediaQuery'
 
 const PropertyDetailsPage = () => {
   const { t } = useTranslation()
@@ -46,6 +48,7 @@ const PropertyDetailsPage = () => {
   const navigate = useNavigate()
   const { id } = useParams()
   const { showToast } = useToast()
+  const isMobile = useMediaQuery()
 
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [openDeleteNoteModal, setOpenDeleteNoteModal] = useState(false)
@@ -273,17 +276,19 @@ const PropertyDetailsPage = () => {
       <Wrapper>
         <Container>
           <HeaderSection>
-            <IconButton
-              noTooltip
-              icon={
-                <IconWrapper>
-                  <ArrowIcon />
-                </IconWrapper>
-              }
-              title={t('propertyDetails>back')}
-              onClick={handleBack}
-            />
-            <Header hideCount title={t('propertyDetails>title')} />
+            {!isMobile && (
+              <IconButton
+                noTooltip
+                icon={
+                  <IconWrapper>
+                    <ArrowIcon />
+                  </IconWrapper>
+                }
+                title={t('propertyDetails>back')}
+                onClick={handleBack}
+              />
+            )}
+            <Header size="md" hideCount title={t('propertyDetails>title')} />
             <ButtonSection>
               <IconButton
                 noTooltip
@@ -326,45 +331,47 @@ const PropertyDetailsPage = () => {
         </CardWrapper>
       </Wrapper>
       <Wrapper>
-        <Container>
-          {!!property?.notes && (
-            <>
-              <Header hideCount size="sm" title={t('propertyDetails>notes')} />
-              <NotesWrapper>
-                {Object.values(property?.notes)?.map((note) => (
-                  <Card
-                    key={note.id}
-                    date={note.cratedAt}
-                    deleteMessage={t('propertyDetails>deleteNote')}
-                    onDelete={() => {
-                      setSelectedNoteId(note.id)
-                      setOpenDeleteNoteModal(true)
-                    }}
-                  >
-                    {note.text}
-                  </Card>
-                ))}
-              </NotesWrapper>
-            </>
-          )}
-          <Header marginBottom={6} hideCount size="sm" title={t('propertyDetails>addNote')} />
-          <TextAreaWrapper>
-            <TextArea
-              value={note}
-              onChange={(e) => setNote(e.target.value)}
-              hideLabel
-              label={t('propertyDetails>addNote')}
-              id="add-note"
-            />
-            <Button
-              disabled={!note.length || isAddingNote}
-              size="md"
-              onClick={() => handleNote(note)}
-            >
-              {isAddingNote ? t('propertyDetails>adding') : t('propertyDetails>add')}
-            </Button>
-          </TextAreaWrapper>
-        </Container>
+        <OrderWrapper>
+          <Container>
+            {!!property?.notes && (
+              <>
+                <Header hideCount size="sm" title={t('propertyDetails>notes')} />
+                <NotesWrapper>
+                  {Object.values(property?.notes)?.map((note) => (
+                    <Card
+                      key={note.id}
+                      date={note.cratedAt}
+                      deleteMessage={t('propertyDetails>deleteNote')}
+                      onDelete={() => {
+                        setSelectedNoteId(note.id)
+                        setOpenDeleteNoteModal(true)
+                      }}
+                    >
+                      {note.text}
+                    </Card>
+                  ))}
+                </NotesWrapper>
+              </>
+            )}
+            <Header marginBottom={6} hideCount size="sm" title={t('propertyDetails>addNote')} />
+            <TextAreaWrapper>
+              <TextArea
+                value={note}
+                onChange={(e) => setNote(e.target.value)}
+                hideLabel
+                label={t('propertyDetails>addNote')}
+                id="add-note"
+              />
+              <Button
+                disabled={!note.length || isAddingNote}
+                size={isMobile ? 'xl' : 'md'}
+                onClick={() => handleNote(note)}
+              >
+                {isAddingNote ? t('propertyDetails>adding') : t('propertyDetails>add')}
+              </Button>
+            </TextAreaWrapper>
+          </Container>
+        </OrderWrapper>
         <CardWrapper>
           <Header
             marginBottom={12}
@@ -372,7 +379,7 @@ const PropertyDetailsPage = () => {
             size="sm"
             title={t('propertyDetails>clientDetails')}
           />
-          <Card width={465} hasList>
+          <Card width={isMobile ? undefined : 465} hasList>
             <InfoRow label={t('propertyDetails>fullName')} value={property?.clientFullName} />
             <InfoRow label={t('propertyDetails>email')} value={property?.clientEmail} />
             {property?.clientPhone && (

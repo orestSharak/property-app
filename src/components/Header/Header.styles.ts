@@ -14,7 +14,17 @@ export const Container = styled.header<{ $mobileCentered?: boolean }>`
 
 export const Title = styled.h1<{ $size: Size; $marginBottom?: number }>`
   color: ${(p) => p.theme.colors.textStrong};
-  font-size: ${({ $size, theme }) => ($size === 'lg' ? theme.fontSize.xl : theme.fontSize.lg)};
+  font-size: ${({ $size, theme }) => {
+    switch ($size) {
+      case 'lg':
+        return theme.fontSize.xl
+      case 'md':
+        return theme.fontSize.lg
+      case 'sm':
+      default:
+        return theme.fontSize.md
+    }
+  }};
   font-weight: ${({ $size, theme }) =>
     $size === 'lg' ? theme.fontWeight.semibold : theme.fontWeight.bold};
   margin: ${({ $marginBottom }) => ($marginBottom ? `0 0 ${$marginBottom}px 0` : 0)};
