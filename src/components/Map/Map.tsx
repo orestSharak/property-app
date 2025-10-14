@@ -86,6 +86,8 @@ export const Map = ({
         center={[normalizedMarkers[0].position.lat, normalizedMarkers[0].position.lng]}
         zoom={getZoom}
         zoomControl={false}
+        scrollWheelZoom={false}
+        touchZoom={true}
       >
         <TileLayer url={MAP_LIGHT_PALETTE_URL} />
         <MapMover
