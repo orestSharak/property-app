@@ -17,6 +17,7 @@ import {
   NoDataContainer,
   NoDataText,
   StyledTable,
+  StyledTableHead,
   TableBody,
   TableDataCell,
   TableRow,
@@ -60,7 +61,7 @@ export default function Table({ data, columns, globalFilter, setGlobalFilter }: 
   return (
     <StyledTable role="table" aria-label={'Client table'}>
       {/* HEADER REMAINS OUTSIDE THE SCROLLABLE WRAPPER */}
-      <thead role="rowgroup">
+      <StyledTableHead role="rowgroup">
         {table.getHeaderGroups().map((headerGroup) => (
           <HeaderRow key={headerGroup.id} role="row">
             {headerGroup.headers.map((header) => (
@@ -68,7 +69,7 @@ export default function Table({ data, columns, globalFilter, setGlobalFilter }: 
             ))}
           </HeaderRow>
         ))}
-      </thead>
+      </StyledTableHead>
       <TableBody>
         {table.getRowModel().rows.length > 0 ? (
           table.getRowModel().rows.map((row, index) => (

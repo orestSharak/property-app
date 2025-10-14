@@ -5,8 +5,12 @@ export const StyledTable = styled.table`
   border-radius: ${(p) => p.theme.radius.md};
   box-shadow: ${(p) => p.theme.colors.boxShadow4};
   display: flex;
-  overflow: hidden;
+  overflow: scroll;
   flex-direction: column;
+`
+
+export const StyledTableHead = styled.thead`
+  min-width: fit-content;
 `
 
 export const HeaderRow = styled.tr`
@@ -38,6 +42,8 @@ export const TableBody = styled.tbody`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  overflow-x: hidden;
+  min-width: fit-content;
   max-height: calc(100vh - 221px);
   background-color: ${(p) => p.theme.colors.surface1};
 `
