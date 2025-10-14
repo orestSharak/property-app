@@ -10,7 +10,7 @@ export const StyledMain = styled.main`
   padding: ${(p) => p.theme.spacing.max} ${(p) => p.theme.spacing.xxl} 0
     ${(p) => p.theme.spacing.xxl};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
     margin: ${(p) => `${p.theme.spacing.sm} ${p.theme.spacing.sm} 0 ${p.theme.spacing.sm}`};
     padding: ${(p) => p.theme.spacing.sm};
   }

@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   display: flex;
   gap: ${(p) => p.theme.spacing.md};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
     flex-direction: column;
   }
 `
@@ -17,7 +17,7 @@ export const Container = styled.div`
   overflow: auto;
   padding: ${(p) => p.theme.spacing.xxxs};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
     min-width: 100%;
   }
 `
@@ -43,7 +43,7 @@ export const PropertyWrapper = styled.div`
   overflow: auto;
   height: calc(100vh - 366px);
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
     height: auto;
     padding: ${(p) => `${p.theme.spacing.xxxs} ${p.theme.spacing.xxxs} ${p.theme.spacing.lg} ${p.theme.spacing.xxxs}`};;
     flex-direction: row;

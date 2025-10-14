@@ -33,7 +33,7 @@ export const Container = styled.div`
     outline: none;
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
     min-width: 300px;
   }
 `

@@ -7,7 +7,7 @@ export const Container = styled.header<{ $mobileCentered?: boolean }>`
   justify-content: flex-start;
   gap: ${(p) => p.theme.spacing.md};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
     align-self: ${({ $mobileCentered }) => ($mobileCentered ? 'center' : 'flex-start')};
   }
 `

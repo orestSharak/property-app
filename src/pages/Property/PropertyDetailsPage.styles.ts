@@ -5,7 +5,7 @@ export const MainWrapper = styled.div`
   flex-direction: column;
   gap: ${(p) => p.theme.spacing.xxxl};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
     gap: ${(p) => p.theme.spacing.xxl};
   }
 `
@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
   flex-wrap: wrap;
   gap: ${(p) => p.theme.spacing.max};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
     gap: ${(p) => p.theme.spacing.xl};
   }
 `
@@ -28,7 +28,7 @@ export const Container = styled.div`
   max-width: 500px;
   margin-bottom: ${(p) => p.theme.spacing.xl};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
     min-width: 100%;
     max-width: 100%;
     margin-bottom: 0;
@@ -41,7 +41,7 @@ export const HeaderSection = styled.div`
   gap: ${(p) => p.theme.spacing.md};
   margin-bottom: ${(p) => p.theme.spacing.xl};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
     margin-left: ${(p) => `calc(${p.theme.spacing.xxxl} + ${p.theme.spacing.xs})`};
     margin-top: ${(p) => p.theme.spacing.xs};
   }
@@ -57,13 +57,13 @@ export const CardWrapper = styled.div`
   flex: 1;
   min-width: 370px;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
     min-width: 100%;
     order: 1;
   }
 `
 export const OrderWrapper = styled.div`
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
     order: 2;
     min-width: 100%;
   }
@@ -82,7 +82,7 @@ export const TextAreaWrapper = styled.div`
   align-items: flex-end;
   gap: ${(p) => p.theme.spacing.xs};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
     margin-bottom: ${(p) => p.theme.spacing.xs};
   }
 `

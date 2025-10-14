@@ -10,7 +10,7 @@ export const UserSectionContainer = styled.div`
   gap: ${(p) => p.theme.spacing.xs};
   margin-top: auto;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
     margin-top: ${(p) => p.theme.spacing.max};
   }
 `
@@ -31,7 +31,7 @@ export const UserName = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
     font-size: ${(p) => p.theme.fontSize.lg};
   }
 `
@@ -44,7 +44,7 @@ export const UserEmail = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
     font-size: ${(p) => p.theme.fontSize.md};
   }
 `

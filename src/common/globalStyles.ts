@@ -143,7 +143,7 @@ const GlobalStyle = createGlobalStyle`
     background: ${(p) => p.theme.colors.surface1};
     border-radius: ${(p) => p.theme.radius.md};
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
       max-width: 250px;
     }
   }
