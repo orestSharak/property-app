@@ -37,7 +37,7 @@ const modalSizeStyles = (size: ModalSize, theme: AppTheme) => {
         @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
           margin-left: 0;
           width: calc(100vw - (${theme.spacing.sm} + ${theme.spacing.sm}));
-          height: 80vh;
+          height: 75vh;
           right: 0;
           margin-bottom: ${theme.spacing.sm};
         }
@@ -67,6 +67,7 @@ export const StyledBackdrop = styled.div`
     width: 100%;
     height: 100%;
     align-items: flex-end;
+    border-radius: 0;
   }
 `
 
