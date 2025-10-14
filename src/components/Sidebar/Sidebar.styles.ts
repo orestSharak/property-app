@@ -112,6 +112,8 @@ export const StyledBackdrop = styled.div<{ $open: boolean }>`
 `
 
 export const MenuButton = styled.button`
+  display: none;
+
   @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
     display: flex;
     align-items: center;

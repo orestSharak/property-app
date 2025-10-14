@@ -130,6 +130,10 @@ export const StyledInput = styled.input<{
     color: ${(p) => p.theme.colors.textNeutral};
     cursor: not-allowed;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
+    min-width: ${({ $minWidth }) => ($minWidth ? `${$minWidth}px` : '100%')};
+  }
 `
 
 export const IconWrapper = styled.div`

@@ -11,6 +11,7 @@ import {
   StyledBackdrop,
   StyledModal,
 } from './Modal.styles'
+import { useMediaQuery } from '../../../hooks/helpers/useMediaQuery'
 
 export type ModalProps = {
   isOpen: boolean
@@ -34,6 +35,8 @@ export type ModalProps = {
 const Modal = forwardRef<HTMLDivElement, ModalProps>(
   ({ isOpen, onClose, title, size = 'sm', children, primaryButton, secondaryButton }, ref) => {
     const { t } = useTranslation()
+    const isMobile = useMediaQuery()
+
     const modalRef = useRef<HTMLDivElement>(null)
     const headerRef = useRef<HTMLButtonElement>(null)
 
@@ -104,14 +107,18 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
           {(primaryButton || secondaryButton) && (
             <ModalFooter>
               {secondaryButton && (
-                <Button variant="outline" size="lg" onClick={secondaryButton.onClick}>
+                <Button
+                  variant="outline"
+                  size={isMobile ? 'sm' : 'lg'}
+                  onClick={secondaryButton.onClick}
+                >
                   {secondaryButton.label}
                 </Button>
               )}
               {primaryButton && (
                 <Button
                   variant={primaryButton.variant || 'primary'}
-                  size="lg"
+                  size={isMobile ? 'sm' : 'lg'}
                   onClick={primaryButton.onClick}
                   disabled={primaryButton.disabled}
                 >

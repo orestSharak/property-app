@@ -19,6 +19,11 @@ const modalSizeStyles = (size: ModalSize, theme: AppTheme) => {
         min-height: 280px;
         border-radius: ${theme.radius.md};
         animation: ${fadeIn} 0.2s ease-out;
+
+        @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
+          width: calc(100vw - (${theme.spacing.sm} + ${theme.spacing.sm}));
+          margin-bottom: ${theme.spacing.sm};
+        }
       `
     case 'lg':
       return css`
@@ -28,6 +33,14 @@ const modalSizeStyles = (size: ModalSize, theme: AppTheme) => {
         margin-left: auto;
         right: ${theme.spacing.xxs};
         animation: ${fadeIn} 0.2s ease-out;
+
+        @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
+          margin-left: 0;
+          width: calc(100vw - (${theme.spacing.sm} + ${theme.spacing.sm}));
+          height: 80vh;
+          right: 0;
+          margin-bottom: ${theme.spacing.sm};
+        }
       `
     default:
       return css``
@@ -47,6 +60,14 @@ export const StyledBackdrop = styled.div`
   justify-content: center;
   background: ${(p) => p.theme.colors.gradientShadow};
   animation: ${fadeIn} 0.2s ease-out;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: flex-end;
+  }
 `
 
 export const StyledModal = styled.div<{ $size: ModalSize }>`
@@ -125,4 +146,8 @@ export const ModalFooter = styled.footer`
   gap: ${(p) => p.theme.spacing.sm};
   padding: ${(p) => `${p.theme.spacing.md} ${p.theme.spacing.xl}`};
   border-top: 1px solid ${(p) => p.theme.colors.borderPrimary};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
+    justify-content: center;
+  }
 `
