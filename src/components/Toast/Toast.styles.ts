@@ -59,6 +59,6 @@ export const StyledToastContainer = styled(ToastContainer)`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
-    min-width: ${({ theme }) => `calc(100vw - ${theme.spacing.xxxl})`};
+    min-width: 100vw;
   }
 `
