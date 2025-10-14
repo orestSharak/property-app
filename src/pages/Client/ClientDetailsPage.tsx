@@ -10,6 +10,7 @@ import {
   IconWrapper,
   MainWrapper,
   NotesWrapper,
+  StyledWrapper,
   TextAreaWrapper,
   Wrapper,
 } from './ClientDetailsPage.styles'
@@ -37,6 +38,7 @@ import { useAddClientNote } from '../../hooks/client/useAddClientNote'
 import { useDeleteClientNote } from '../../hooks/client/useDeleteClientNote'
 import { useGetProperties } from '../../hooks/property/useGetProperties'
 import Loader from '../../components/Loader/Loader'
+import { useMediaQuery } from '../../hooks/helpers/useMediaQuery'
 
 const ClientDetailsPage = () => {
   const { t } = useTranslation()
@@ -44,6 +46,7 @@ const ClientDetailsPage = () => {
   const navigate = useNavigate()
   const { id } = useParams()
   const { showToast } = useToast()
+  const isMobile = useMediaQuery()
 
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [openDeleteNoteModal, setOpenDeleteNoteModal] = useState(false)
@@ -230,20 +233,22 @@ const ClientDetailsPage = () => {
 
   return (
     <MainWrapper>
-      <div>
+      <StyledWrapper>
         <Container>
           <HeaderSection>
-            <IconButton
-              noTooltip
-              icon={
-                <IconWrapper>
-                  <ArrowIcon />
-                </IconWrapper>
-              }
-              title={t('clientDetails>back')}
-              onClick={handleBack}
-            />
-            <Header hideCount title={t('clientDetails>title')} />
+            {!isMobile && (
+              <IconButton
+                noTooltip
+                icon={
+                  <IconWrapper>
+                    <ArrowIcon />
+                  </IconWrapper>
+                }
+                title={t('clientDetails>back')}
+                onClick={handleBack}
+              />
+            )}
+            <Header size={isMobile ? 'md' : 'lg'} hideCount title={t('clientDetails>title')} />
             <ButtonSection>
               <IconButton
                 noTooltip
@@ -306,14 +311,14 @@ const ClientDetailsPage = () => {
             />
             <Button
               disabled={!note.length || isAddingNote}
-              size="md"
+              size={isMobile ? 'xl' : 'md'}
               onClick={() => handleNote(note)}
             >
               {isAddingNote ? t('clientDetails>adding') : t('clientDetails>add')}
             </Button>
           </TextAreaWrapper>
         </Container>
-      </div>
+      </StyledWrapper>
       <Wrapper>
         {client?.properties &&
           /*

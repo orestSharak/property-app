@@ -288,7 +288,7 @@ const PropertyDetailsPage = () => {
                 onClick={handleBack}
               />
             )}
-            <Header size="md" hideCount title={t('propertyDetails>title')} />
+            <Header size={isMobile ? 'md' : 'lg'} hideCount title={t('propertyDetails>title')} />
             <ButtonSection>
               <IconButton
                 noTooltip

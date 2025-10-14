@@ -75,4 +75,9 @@ export const StyledTextArea = styled.textarea<{
     color: ${(p) => p.theme.colors.textNeutral};
     cursor: not-allowed;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    min-width: 100%;
+    max-width: 100%;
+  }
 `

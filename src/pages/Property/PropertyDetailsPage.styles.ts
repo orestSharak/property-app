@@ -65,6 +65,7 @@ export const CardWrapper = styled.div`
 export const OrderWrapper = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
     order: 2;
+    min-width: 100%;
   }
 `
 
