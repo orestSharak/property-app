@@ -11,8 +11,9 @@ import { getClientNameAndSurname } from '../../utils/utils'
 import { useToast } from '../../hooks/toast/useToast'
 import { Input } from '../../components/base/Input/Input'
 import { Card } from '../../components/base/Card/Card'
-import { StyledButton, StyledForm } from './Settings.styles'
+import { StyledButton, StyledForm, StyledHeaderWrapper } from './Settings.styles'
 import { Header } from '../../components/Header/Header'
+import { useMediaQuery } from '../../hooks/helpers/useMediaQuery'
 
 function Settings() {
   const { t } = useTranslation()
@@ -20,6 +21,7 @@ function Settings() {
   const { updateUser } = useUpdateUser()
   const { showToast } = useToast()
   const navigate = useNavigate()
+  const isMobile = useMediaQuery()
 
   const defaultFormValues = useMemo(
     () => ({
@@ -95,10 +97,13 @@ function Settings() {
 
   return (
     <>
-      <Header marginBottom={24} title={t('settings>userSettings')} hideCount />
-      <Card width={500}>
+      <StyledHeaderWrapper>
+        <Header marginBottom={24} title={t('settings>userSettings')} hideCount />
+      </StyledHeaderWrapper>
+      <Card width={isMobile ? undefined : 500}>
         <StyledForm onSubmit={handleSubmit(onUpdate)}>
           <Input
+            minWidth={isMobile ? 200 : undefined}
             value={currentUser?.email}
             id="email"
             disabled
@@ -110,6 +115,7 @@ function Settings() {
             name="name"
             render={({ field, fieldState }) => (
               <Input
+                minWidth={isMobile ? 200 : undefined}
                 placeholder={t('settings>namePlaceholder')}
                 id="name"
                 label={t('settings>name')}
@@ -124,6 +130,7 @@ function Settings() {
             name="surname"
             render={({ field, fieldState }) => (
               <Input
+                minWidth={isMobile ? 200 : undefined}
                 placeholder={t('settings>surnamePlaceholder')}
                 id="surname"
                 label={t('settings>surname')}

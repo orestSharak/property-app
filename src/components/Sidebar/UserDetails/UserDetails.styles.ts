@@ -30,6 +30,10 @@ export const UserName = styled.span`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    font-size: ${(p) => p.theme.fontSize.lg};
+  }
 `
 
 export const UserEmail = styled.span`
@@ -39,6 +43,10 @@ export const UserEmail = styled.span`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    font-size: ${(p) => p.theme.fontSize.md};
+  }
 `
 
 export const AuthActionButton = styled.button`
