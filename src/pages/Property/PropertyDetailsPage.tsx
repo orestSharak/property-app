@@ -171,14 +171,14 @@ const PropertyDetailsPage = () => {
       {
         onSuccess: async () => {
           showToast({
-            content: t('clientModal>toast>successfullyUpdated'),
+            content: t('propertyModal>toast>successfullyUpdated'),
             status: 'success',
           })
         },
 
         onError: () => {
           showToast({
-            content: t('clientModal>toast>failedUpdate'),
+            content: t('propertyModal>toast>failedUpdate'),
             status: 'error',
           })
         },
