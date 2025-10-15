@@ -29,6 +29,10 @@ export const StyledForm = styled.form`
   flex-direction: column;
   gap: ${(p) => p.theme.spacing.md};
   padding: ${(p) => p.theme.spacing.md};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
+    min-width: 100vw;
+  }
 `
 
 export const HeaderWrapper = styled.div`
@@ -52,6 +56,10 @@ export const SubHeader = styled.span`
 
 export const StyledButton = styled(Button)`
   margin-top: ${(p) => p.theme.spacing.sm};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
+    margin-top: ${(p) => p.theme.spacing.lg};
+  }
 `
 
 export const MapSection = styled.div<{ $themeMode: string }>`
@@ -104,6 +112,11 @@ export const LanguageIconButton = styled(IconButton)`
     path {
       fill: ${(p) => p.theme.colors.iconOnSurface1};
     }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
+      width: ${(p) => p.theme.spacing.xl};
+      height: ${(p) => p.theme.spacing.xl};
+    }
   }
 `
 
@@ -112,11 +125,20 @@ export const StyledIconButton = styled(IconButton)`
   top: ${(p) => p.theme.spacing.lg};
   left: ${(p) => `calc(${p.theme.spacing.xxxl} + ${p.theme.spacing.md})`};
 
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
+    left: ${(p) => `calc(${p.theme.spacing.xxxl} + ${p.theme.spacing.lg})`};
+  }
+
   & svg {
     stroke: ${(p) => p.theme.colors.iconOnSurface1};
 
     path {
       fill: ${(p) => p.theme.colors.iconOnSurface1};
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
+      width: ${(p) => p.theme.spacing.xl};
+      height: ${(p) => p.theme.spacing.xl};
     }
   }
 `
