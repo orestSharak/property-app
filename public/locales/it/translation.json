@@ -20,6 +20,7 @@
   "sidebar": {
     "sidebar": "Menu Laterale",
     "userProfile": "Profilo utente",
+    "openMenu": "Apri menu principale",
     "logIn": "Accedi",
     "logOut": "Esci",
     "dashboard": "Dashboard",

@@ -85,7 +85,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <MenuButton onClick={handleOpenMenu}>
+      <MenuButton onClick={handleOpenMenu} aria-label={t('sidebar>openMenu')}>
         <MenuIcon />
       </MenuButton>
       <StyledBackdrop $open={openMenu} onClick={handleOpenMenu}>
