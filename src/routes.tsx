@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import AuthenticatedLayout from './layout/AuthenticatedLayout'
-import Dashboard from './pages/Dashboard/Dashboard'
-import CitiesPage from './pages/Cities/CitiesPage'
-import PropertiesPage from './pages/Properties/PropertiesPage'
-import PropertyDetailsPage from './pages/Property/PropertyDetailsPage'
-import ClientsPage from './pages/Clients/ClientsPage'
-import Settings from './pages/Settings/Settings'
-import Login from './pages/Login/Login'
+
 import PageNotFound from './pages/PageNotFound/PageNotFound'
-import ClientDetailsPage from './pages/Client/ClientDetailsPage'
+
+import Loader from './components/Loader/Loader'
+
+const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'))
+const CitiesPage = lazy(() => import('./pages/Cities/CitiesPage'))
+const PropertiesPage = lazy(() => import('./pages/Properties/PropertiesPage'))
+const PropertyDetailsPage = lazy(() => import('./pages/Property/PropertyDetailsPage'))
+const ClientsPage = lazy(() => import('./pages/Clients/ClientsPage'))
+const ClientDetailsPage = lazy(() => import('./pages/Client/ClientDetailsPage'))
+const Settings = lazy(() => import('./pages/Settings/Settings'))
+const Login = lazy(() => import('./pages/Login/Login'))
 
 export const APP_ROUTES = [
   {
@@ -19,13 +23,62 @@ export const APP_ROUTES = [
         index: true,
         element: <Dashboard />,
       },
-      { path: 'dashboard', element: <Dashboard /> },
-      { path: 'cities', element: <CitiesPage /> },
-      { path: 'properties', element: <PropertiesPage /> },
-      { path: 'properties/:id', element: <PropertyDetailsPage /> },
-      { path: 'clients', element: <ClientsPage /> },
-      { path: 'clients/:id', element: <ClientDetailsPage /> },
-      { path: 'settings', element: <Settings /> },
+      {
+        path: 'dashboard',
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Dashboard />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'cities',
+        element: (
+          <Suspense fallback={<Loader />}>
+            <CitiesPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'properties',
+        element: (
+          <Suspense fallback={<Loader />}>
+            <PropertiesPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'properties/:id',
+        element: (
+          <Suspense fallback={<Loader />}>
+            <PropertyDetailsPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'clients',
+        element: (
+          <Suspense fallback={<Loader />}>
+            <ClientsPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'clients/:id',
+        element: (
+          <Suspense fallback={<Loader />}>
+            <ClientDetailsPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'settings',
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Settings />
+          </Suspense>
+        ),
+      },
     ],
   },
   {
