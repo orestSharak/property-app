@@ -19,6 +19,7 @@
   },
   "sidebar": {
     "sidebar": "Menu Laterale",
+    "userProfile": "Profilo utente",
     "logIn": "Accedi",
     "logOut": "Esci",
     "dashboard": "Dashboard",
@@ -31,6 +32,7 @@
     "dark": "Scuro"
   },
   "table": {
+    "title": "Tabella di gestione",
     "name": "Nome",
     "actions": "Azioni",
     "address": "Indirizzo",

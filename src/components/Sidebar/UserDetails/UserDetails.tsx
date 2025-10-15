@@ -28,7 +28,7 @@ const UserDetails = () => {
   }
 
   return (
-    <UserSectionContainer aria-label="User Profile and Authentication">
+    <UserSectionContainer aria-label={t('sidebar>userProfile')}>
       <UserInfo>
         <UserName>{currentUser?.displayName}</UserName>
         <UserEmail>{currentUser?.email}</UserEmail>

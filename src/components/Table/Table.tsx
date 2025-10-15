@@ -59,8 +59,7 @@ export default function Table({ data, columns, globalFilter, setGlobalFilter }: 
   }
 
   return (
-    <StyledTable role="table" aria-label={'Client table'}>
-      {/* HEADER REMAINS OUTSIDE THE SCROLLABLE WRAPPER */}
+    <StyledTable role="table" aria-label={t('table>title')}>
       <StyledTableHead role="rowgroup">
         {table.getHeaderGroups().map((headerGroup) => (
           <HeaderRow key={headerGroup.id} role="row">

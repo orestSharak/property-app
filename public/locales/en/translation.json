@@ -19,6 +19,7 @@
   },
   "sidebar": {
     "sidebar": "Sidebar",
+    "userProfile": "User profile",
     "logIn": "Log In",
     "logOut": "Log Out",
     "dashboard": "Dashboard",
@@ -31,6 +32,7 @@
     "dark": "Dark"
   },
   "table": {
+    "title": "Management table",
     "name": "Name",
     "actions": "Actions",
     "address": "Address",
