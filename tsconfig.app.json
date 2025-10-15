@@ -5,7 +5,9 @@
     "target": "ESNext",
     "moduleResolution": "Node",
     "types": ["vite/client"],
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "include": ["src", "node_modules/vitest/globals.d.ts", "./styled.d.ts"]
 }

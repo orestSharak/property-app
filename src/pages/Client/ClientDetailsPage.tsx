@@ -14,6 +14,7 @@ import {
   TextAreaWrapper,
   Wrapper,
 } from './ClientDetailsPage.styles'
+import 'leaflet/dist/leaflet.css'
 import { Header } from '../../components/Header/Header'
 import { IconButton } from '../../components/base/IconButton/IconButton'
 import ArrowIcon from '../../assets/icons/arrow-left-icon.svg'
