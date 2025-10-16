@@ -1,7 +1,6 @@
 import React, { memo, useMemo, useState } from 'react'
 
 import { useTranslation } from 'react-i18next'
-import 'leaflet/dist/leaflet.css'
 
 import { TFunction } from 'i18next'
 import { useGetProperties } from '../../hooks/property/useGetProperties'

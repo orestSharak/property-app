@@ -7,6 +7,7 @@ import { Toast } from './components/Toast/Toast'
 import { AppProviders } from './AppProviders'
 import { AppRouter } from './components/AppRouter'
 import { NameCheckRedirect } from './components/NameCheckRedirect'
+import 'leaflet/dist/leaflet.css'
 
 function App() {
   const { t } = useTranslation()
