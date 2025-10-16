@@ -102,6 +102,7 @@ function Dashboard() {
 
   const handleCityChange = (cityId: string) => {
     setSelectedCityId(cityId)
+    setSearch('')
   }
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
