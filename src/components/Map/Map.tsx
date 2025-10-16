@@ -1,5 +1,5 @@
 import { Marker, TileLayer, ZoomControl } from 'react-leaflet'
-import L from 'leaflet'
+import L, { LatLngExpression, LatLngLiteral } from 'leaflet'
 import React, { useMemo, useState } from 'react'
 import { Container, LeafletStyle } from './Map.styles'
 import { prepareMarkers } from '../../utils/utils'
@@ -61,6 +61,22 @@ export const Map = ({
   const [activeMarker, setActiveMarker] = useState(null)
 
   const normalizedMarkers = prepareMarkers(markers)
+
+  const normalizedActiveMarker = activeMarker
+    ? normalizedMarkers.filter((item) => item.id === activeMarker?.id)
+    : null
+
+  const preparedContainerCenter: LatLngExpression = activeMarker
+    ? [normalizedActiveMarker[0].position.lat, normalizedActiveMarker[0].position.lng]
+    : [normalizedMarkers[0].position.lat, normalizedMarkers[0].position.lng]
+
+  const preparedMapMoverPosition: LatLngLiteral | null = normalizedActiveMarker
+    ? {
+        lat: normalizedActiveMarker[0].position.lat,
+        lng: normalizedActiveMarker[0].position.lng,
+      }
+    : null
+
   const getZoom = useMemo(() => (citySet ? zoom : 6), [citySet, zoom])
 
   const getDynamicMarkerIcon = (key: string, status: Status, id?: string) => {
@@ -83,24 +99,14 @@ export const Map = ({
       <LeafletStyle themeMode={themeMode} />
       <Container
         height={height}
-        center={[normalizedMarkers[0].position.lat, normalizedMarkers[0].position.lng]}
+        center={preparedContainerCenter}
         zoom={getZoom}
         zoomControl={false}
         scrollWheelZoom={false}
         touchZoom={true}
       >
         <TileLayer url={MAP_LIGHT_PALETTE_URL} />
-        <MapMover
-          position={
-            normalizedMarkers
-              ? {
-                  lat: normalizedMarkers[0].position.lat,
-                  lng: normalizedMarkers[0].position.lng,
-                }
-              : null
-          }
-          zoom={getZoom}
-        />
+        <MapMover position={preparedMapMoverPosition} zoom={getZoom} />
         <ZoomControl position="bottomright" />
         {normalizedMarkers?.map((marker) => {
           return (
