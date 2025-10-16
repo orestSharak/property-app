@@ -30,7 +30,7 @@ export const columnDefinition: (
     header: t('cities>table>numberOfProperties'),
     size: 1,
     cell: (info) => {
-      const count = String(Object.values(info.getValue())?.length)
+      const count = info.getValue() ? String(Object.values(info.getValue())?.length) : ''
       return <TextCellRenderer title={count} />
     },
   }),
@@ -40,10 +40,12 @@ export const columnDefinition: (
     header: t('cities>table>numberOfContracts'),
     size: 1,
     cell: (info) => {
-      const contractsCount = String(
-        Object.values(info.getValue())?.filter((item: Property) => item.status === 'contract')
-          ?.length,
-      )
+      const contractsCount = info.getValue()
+        ? String(
+            Object.values(info.getValue())?.filter((item: Property) => item.status === 'contract')
+              ?.length,
+          )
+        : ''
       return <TextCellRenderer isContract title={contractsCount} />
     },
   }),
@@ -53,9 +55,12 @@ export const columnDefinition: (
     header: t('cities>table>numberOfNews'),
     size: 1,
     cell: (info) => {
-      const newsCount = String(
-        Object.values(info.getValue())?.filter((item: Property) => item.status === 'news')?.length,
-      )
+      const newsCount = info.getValue()
+        ? String(
+            Object.values(info.getValue())?.filter((item: Property) => item.status === 'news')
+              ?.length,
+          )
+        : ''
       return <TextCellRenderer isNews title={newsCount} />
     },
   }),
