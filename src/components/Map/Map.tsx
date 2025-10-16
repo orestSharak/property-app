@@ -1,6 +1,6 @@
 import { Marker, TileLayer, ZoomControl } from 'react-leaflet'
-import L from 'leaflet'
-import React, { useMemo, useState } from 'react'
+import L, { LatLngLiteral } from 'leaflet'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Container, LeafletStyle } from './Map.styles'
 import { prepareMarkers } from '../../utils/utils'
 import { MAP_LIGHT_PALETTE_URL } from '../../common/constants'
@@ -61,8 +61,29 @@ export const Map = ({
   const [activeMarker, setActiveMarker] = useState(null)
 
   const normalizedMarkers = prepareMarkers(markers)
+  const normalizedActiveMarker = normalizedMarkers?.filter(
+    (marker) => marker.id === activeMarker?.id,
+  )
 
-  const getZoom = useMemo(() => (citySet ? zoom : 6), [citySet, zoom])
+  useEffect(() => {
+    if (activeMarker && hoveredPropertyId && hoveredPropertyId !== activeMarker?.id) {
+      setActiveMarker(null)
+    }
+  }, [activeMarker, hoveredPropertyId])
+
+  const preparedMapMoverPosition: LatLngLiteral | null = normalizedActiveMarker.length
+    ? {
+        lat: normalizedActiveMarker[0].position.lat,
+        lng: normalizedActiveMarker[0].position.lng,
+      }
+    : normalizedMarkers
+      ? {
+          lat: normalizedMarkers[0].position.lat,
+          lng: normalizedMarkers[0].position.lng,
+        }
+      : null
+
+  const getZoom = useMemo(() => (citySet ? zoom : 5), [citySet, zoom])
 
   const getDynamicMarkerIcon = (key: string, status: Status, id?: string) => {
     let iconClassName = `house-marker marker-color-${status}`
@@ -87,21 +108,10 @@ export const Map = ({
         center={[normalizedMarkers[0].position.lat, normalizedMarkers[0].position.lng]}
         zoom={getZoom}
         zoomControl={false}
-        scrollWheelZoom={false}
         touchZoom={true}
       >
         <TileLayer url={MAP_LIGHT_PALETTE_URL} />
-        <MapMover
-          position={
-            normalizedMarkers
-              ? {
-                  lat: normalizedMarkers[0].position.lat,
-                  lng: normalizedMarkers[0].position.lng,
-                }
-              : null
-          }
-          zoom={getZoom}
-        />
+        <MapMover position={preparedMapMoverPosition} zoom={getZoom} />
         <ZoomControl position="bottomright" />
         {normalizedMarkers?.map((marker) => {
           return (
