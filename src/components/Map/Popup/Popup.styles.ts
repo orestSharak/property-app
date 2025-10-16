@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Popup } from 'react-leaflet'
+import { Link } from 'react-router-dom'
 
 export const StyledPopup = styled(Popup)`
   background-color: ${(p) => p.theme.colors.surface1};
@@ -29,4 +30,10 @@ export const PopupBody = styled.div`
   gap: ${(p) => p.theme.spacing.sm};
   padding: ${(p) => p.theme.spacing.lg};
   overflow-y: auto;
+`
+export const PropertyLink = styled(Link)`
+  color: ${(p) => p.theme.colors.textLink};
+  font-size: ${(p) => p.theme.fontSize.sm};
+  font-weight: ${(p) => p.theme.fontWeight.medium};
+  margin-left: ${(p) => p.theme.spacing.sm};
 `

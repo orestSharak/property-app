@@ -263,7 +263,8 @@
     "client": "Cliente",
     "clientEmail": "Email cliente",
     "clientPhone": "Telefono cliente",
-    "status": "Stato"
+    "status": "Stato",
+    "seeMore": "Vedi di più"
   },
   "input": {
     "passwordToggle": {

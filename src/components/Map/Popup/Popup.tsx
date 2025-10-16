@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { PopupBody, PopupHeader, PopupTitle, StyledPopup } from './Popup.styles'
+import { PopupBody, PopupHeader, PopupTitle, PropertyLink, StyledPopup } from './Popup.styles'
 import { MarkerDataFull } from '../../../common/types'
 import { InfoRow } from '../../InfoRow/InfoRow'
 
@@ -36,7 +36,10 @@ export const Popup = ({ marker }: PopupProps) => {
   return (
     <StyledPopup ref={popupRef} aria-modal="true" aria-labelledby={`popup-title-${marker.id}`}>
       <PopupHeader>
-        <PopupTitle id={`popup-title-${marker.id}`}>{marker.label}</PopupTitle>
+        <PopupTitle id={`popup-title-${marker.id}`}>
+          {marker.label}
+          <PropertyLink to={`/properties/${marker.id}`}>{t('popup>seeMore')}</PropertyLink>
+        </PopupTitle>
       </PopupHeader>
       <PopupBody>
         <InfoRow label={t('popup>client')} value={marker.clientFullName} />
