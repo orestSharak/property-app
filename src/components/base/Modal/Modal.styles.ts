@@ -52,7 +52,7 @@ export const StyledBackdrop = styled.div`
   top: ${(p) => p.theme.spacing.sm};
   left: ${sidebarWidth};
   width: ${(p) => `calc(100% - ${p.theme.spacing.xs} - ${sidebarWidth})`};
-  height: ${(p) => `calc(100% - ${p.theme.spacing.md})`};
+  height: ${(p) => `calc(100% - ${p.theme.spacing.xl} + ${p.theme.spacing.xxxs})`};
   z-index: ${(p) => p.theme.orderLevel.modalBackdrop};
   border-radius: ${(p) => p.theme.radius.lg};
   display: flex;
