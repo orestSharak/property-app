@@ -9,6 +9,7 @@ export const ExternalLinkWrapper = styled.a`
   font-size: ${(p) => p.theme.fontSize.sm};
   font-weight: ${(p) => p.theme.fontWeight.medium};
   padding: ${(p) => p.theme.spacing.xxxs};
+  word-break: break-all;
 
   &:focus {
     border-color: ${(p) => p.theme.colors.boxShadowInfo};
