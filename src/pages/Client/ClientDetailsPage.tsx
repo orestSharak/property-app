@@ -202,6 +202,7 @@ const ClientDetailsPage = () => {
       { clientId, noteId },
       {
         onSuccess: async () => {
+          setSelectedNoteId(null)
           showToast({
             content: t('clientModal>toast>noteDeletedSuccessfully'),
             status: 'success',

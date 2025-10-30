@@ -239,6 +239,7 @@ const PropertyDetailsPage = () => {
       { propertyId, noteId },
       {
         onSuccess: async () => {
+          setSelectedNoteId(null)
           showToast({
             content: t('propertyModal>toast>noteDeletedSuccessfully'),
             status: 'success',
