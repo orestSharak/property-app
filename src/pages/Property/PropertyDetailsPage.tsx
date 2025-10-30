@@ -157,6 +157,8 @@ const PropertyDetailsPage = () => {
     clientId: data.client,
     clientEmail: getClientEmailAndPhone(clients, data.client).email,
     clientPhone: getClientEmailAndPhone(clients, data.client).phone,
+    clientAdditionalPhoneOne: getClientEmailAndPhone(clients, data.client).additionalPhoneOne,
+    clientAdditionalPhoneTwo: getClientEmailAndPhone(clients, data.client).additionalPhoneTwo,
     createdAt: property?.createdAt,
     userEmail: userEmail,
     userId: userUid,
@@ -264,6 +266,8 @@ const PropertyDetailsPage = () => {
     clientFullName: property?.clientFullName,
     clientEmail: property?.clientEmail,
     clientPhone: property?.clientPhone,
+    clientAdditionalPhoneOne: property?.clientAdditionalPhoneOne,
+    clientAdditionalPhoneTwo: property?.clientAdditionalPhoneTwo,
   })
 
   const noteTruncatedText = selectedNoteId
@@ -330,7 +334,7 @@ const PropertyDetailsPage = () => {
             {property && (
               <Map
                 zoom={16}
-                height={isMobile ? '260px' : '470px'}
+                height={isMobile ? '260px' : '415px'}
                 markers={[preparedMarkerDetails()]}
               />
             )}

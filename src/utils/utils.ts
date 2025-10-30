@@ -125,11 +125,18 @@ export function getClientEmailAndPhone(
     id?: string
     email: string
     phone?: string | null
+    additionalPhoneOne?: string | null
+    additionalPhoneTwo?: string | null
   }[],
   selectedClient?: string,
-): { email: string; phone: string | null } {
+): {
+  email: string
+  phone: string | null
+  additionalPhoneOne: string | null
+  additionalPhoneTwo?: string | null
+} {
   if (!clients || !selectedClient) {
-    return { email: '', phone: null }
+    return { email: '', phone: null, additionalPhoneOne: null, additionalPhoneTwo: null }
   }
 
   const client = clients.find((client) => client?.id === selectedClient)
@@ -137,6 +144,8 @@ export function getClientEmailAndPhone(
   return {
     email: client.email,
     phone: client.phone ?? null,
+    additionalPhoneOne: client.additionalPhoneOne ?? null,
+    additionalPhoneTwo: client.additionalPhoneTwo ?? null,
   }
 }
 

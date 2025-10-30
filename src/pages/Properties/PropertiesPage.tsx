@@ -158,6 +158,8 @@ const PropertiesPage = () => {
     clientId: data.client,
     clientEmail: getClientEmailAndPhone(clients, selectedClient).email,
     clientPhone: getClientEmailAndPhone(clients, selectedClient).phone,
+    clientAdditionalPhoneOne: getClientEmailAndPhone(clients, selectedClient).additionalPhoneOne,
+    clientAdditionalPhoneTwo: getClientEmailAndPhone(clients, selectedClient).additionalPhoneTwo,
     createdAt: isEdit ? property?.createdAt : Date.now(),
     userEmail: userEmail,
     userId: userUid,
