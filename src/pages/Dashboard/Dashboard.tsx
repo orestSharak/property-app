@@ -39,6 +39,8 @@ const preparedMarker = (property: Property[] | null) => {
     clientFullName: marker?.clientFullName,
     clientEmail: marker?.clientEmail,
     clientPhone: marker?.clientPhone,
+    clientAdditionalPhoneOne: marker?.clientAdditionalPhoneOne,
+    clientAdditionalPhoneTwo: marker?.clientAdditionalPhoneTwo,
     status: marker?.status,
   }))
 }
@@ -89,6 +91,8 @@ function Dashboard() {
           property.clientFullName,
           property.clientEmail,
           property.clientPhone || '',
+          property.clientAdditionalPhoneOne || '',
+          property.clientAdditionalPhoneTwo || '',
           property.status,
           property.city,
         ]
@@ -158,6 +162,8 @@ function Dashboard() {
                 address={property?.address}
                 clientFullName={property?.clientFullName}
                 clientPhone={property?.clientPhone}
+                clientAdditionalPhoneOne={property?.clientAdditionalPhoneOne}
+                clientAdditionalPhoneTwo={property?.clientAdditionalPhoneTwo}
                 status={property?.status}
                 city={property?.city}
                 onMouseEnterOrFocus={handleMouseEnterOrFocus}

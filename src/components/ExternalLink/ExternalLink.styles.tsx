@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+export const ExternalLinkContainer = styled.div<{ $hasList: boolean }>`
+  margin-bottom: ${({ $hasList, theme }) => ($hasList ? theme.spacing.xxs : '0')};
+`
+
 export const ExternalLinkWrapper = styled.a`
   color: ${(p) => p.theme.colors.textLink};
   font-size: ${(p) => p.theme.fontSize.sm};

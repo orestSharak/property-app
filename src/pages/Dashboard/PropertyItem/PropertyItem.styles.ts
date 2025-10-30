@@ -42,8 +42,12 @@ export const ClientSection = styled.div`
   display: flex;
   align-items: center;
   gap: ${(p) => p.theme.spacing.xs};
-  width: 100%;
+  max-width: 450px;
   flex-wrap: wrap;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
+    max-width: 100%;
+  }
 `
 
 export const ClientContent = styled.div`

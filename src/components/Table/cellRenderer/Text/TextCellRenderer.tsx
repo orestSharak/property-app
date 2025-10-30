@@ -6,7 +6,7 @@ import { EMPTY_VALUE } from '../../../../common/constants'
 import { ExternalLink } from '../../../ExternalLink/ExternalLink'
 
 type TextCellRendererProps = {
-  title?: string
+  title?: string | string[]
   isStatus?: boolean
   isNews?: boolean
   isContract?: boolean
@@ -23,6 +23,7 @@ const TextCellRenderer = ({
   isEmail = false,
 }: TextCellRendererProps) => {
   const { t } = useTranslation()
+
   if (!title || title === '0') return EMPTY_VALUE
 
   if (isEmail || isPhone) return <ExternalLink isEmail={isEmail} isPhone={isPhone} value={title} />

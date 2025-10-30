@@ -20,7 +20,9 @@ type PropertyItemProps = {
   id: string
   address: string
   clientFullName: string
-  clientPhone: string
+  clientPhone?: string
+  clientAdditionalPhoneOne?: string
+  clientAdditionalPhoneTwo?: string
   status: Status
   city: string
   onMouseEnterOrFocus: (id: string) => void
@@ -32,6 +34,8 @@ function PropertyItem({
   address,
   clientFullName,
   clientPhone,
+  clientAdditionalPhoneOne,
+  clientAdditionalPhoneTwo,
   status,
   city,
   onMouseEnterOrFocus,
@@ -82,6 +86,18 @@ function PropertyItem({
           <ClientContent>
             <ClientText $isLabel>{t('dashboard>propertyItem>phone')}</ClientText>
             <ClientText>{clientPhone}</ClientText>
+          </ClientContent>
+        )}
+        {clientAdditionalPhoneOne && (
+          <ClientContent>
+            <ClientText $isLabel>{t('dashboard>propertyItem>additionalPhoneOne')}</ClientText>
+            <ClientText>{clientAdditionalPhoneOne}</ClientText>
+          </ClientContent>
+        )}
+        {clientAdditionalPhoneTwo && (
+          <ClientContent>
+            <ClientText $isLabel>{t('dashboard>propertyItem>additionalPhoneTwo')}</ClientText>
+            <ClientText>{clientAdditionalPhoneTwo}</ClientText>
           </ClientContent>
         )}
         {!isMobile && (

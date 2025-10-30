@@ -108,8 +108,8 @@
     "email": "Email",
     "emailPlaceholder": "Type email",
     "phone": "Phone",
-    "additionalPhoneOne": "Additional phone 1",
-    "additionalPhoneTwo": "Additional phone 2",
+    "additionalPhoneOne": "Addt'l phone 1",
+    "additionalPhoneTwo": "Addt'l phone 2",
     "phonePlaceholder": "Type phone number",
     "toast": {
       "successfullyAdded": "Client has been successfully added",
@@ -308,6 +308,8 @@
     "propertyItem": {
       "name": "Name:",
       "phone": "Phone:",
+      "additionalPhoneOne": "Addt'l phone 1:",
+      "additionalPhoneTwo": "Addt'l phone 2:",
       "seeMore": "See more",
       "news": "News",
       "contract": "Contract"

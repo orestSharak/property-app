@@ -30,12 +30,25 @@ export const columnDefinition: (
     size: 2.5,
     cell: (info) => <TextCellRenderer title={info.getValue()} />,
   }),
-  columnHelper.accessor('phone', {
-    id: 'phone',
-    header: t('clients>table>phone'),
-    size: 1.5,
-    cell: (info) => <TextCellRenderer isPhone title={info.getValue()} />,
-  }),
+  columnHelper.accessor(
+    (row) => ({
+      phone: row.phone,
+      additionalPhoneOne: row.additionalPhoneOne,
+      additionalPhoneTwo: row.additionalPhoneTwo,
+    }),
+    {
+      id: 'phone',
+      header: t('clients>table>phone'),
+      size: 1.5,
+      cell: (info) => {
+        const { phone, additionalPhoneOne, additionalPhoneTwo } = info.getValue()
+        const cleanedPhoneList = [phone, additionalPhoneOne, additionalPhoneTwo].filter(Boolean)
+        const hasData = cleanedPhoneList.length > 0
+
+        return <TextCellRenderer isPhone title={hasData ? cleanedPhoneList : ''} />
+      },
+    },
+  ),
   columnHelper.accessor('email', {
     id: 'email',
     header: t('clients>table>email'),

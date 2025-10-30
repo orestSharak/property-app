@@ -36,12 +36,25 @@ export const columnDefinition: (
     size: 2,
     cell: (info) => <TextCellRenderer title={info.getValue()} />,
   }),
-  columnHelper.accessor('clientPhone', {
-    id: 'clientPhoneNumber',
-    header: t('properties>table>phoneOfClient'),
-    size: 2,
-    cell: (info) => <TextCellRenderer isPhone title={info.getValue()} />,
-  }),
+  columnHelper.accessor(
+    (row) => ({
+      phone: row.clientPhone,
+      additionalPhoneOne: row.clientAdditionalPhoneOne,
+      additionalPhoneTwo: row.clientAdditionalPhoneTwo,
+    }),
+    {
+      id: 'clientPhoneNumber',
+      header: t('properties>table>phoneOfClient'),
+      size: 2,
+      cell: (info) => {
+        const { phone, additionalPhoneOne, additionalPhoneTwo } = info.getValue()
+        const cleanedPhoneList = [phone, additionalPhoneOne, additionalPhoneTwo].filter(Boolean)
+        const hasData = cleanedPhoneList.length > 0
+
+        return <TextCellRenderer isPhone title={hasData ? cleanedPhoneList : ''} />
+      },
+    },
+  ),
   columnHelper.accessor('clientEmail', {
     id: 'clientEmail',
     header: t('properties>table>clientEmail'),

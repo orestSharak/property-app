@@ -295,6 +295,16 @@ exports.syncClientUpdates = onValueUpdated(
       needsUpdate = true
     }
 
+    if (beforeData.additionalPhoneOne !== afterData.additionalPhoneOne) {
+      clientUpdates.clientAdditionalPhoneOne = afterData.additionalPhoneOne
+      needsUpdate = true
+    }
+
+    if (beforeData.additionalPhoneTwo !== afterData.additionalPhoneTwo) {
+      clientUpdates.clientAdditionalPhoneTwo = afterData.additionalPhoneTwo
+      needsUpdate = true
+    }
+
     if (!needsUpdate) {
       return null
     }
