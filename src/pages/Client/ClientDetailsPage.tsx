@@ -366,12 +366,17 @@ const ClientDetailsPage = () => {
                   "id": "-OS5mLauNCRxW-aeLfJv",
                   "position": "51.110829023797024, 17.031042982059372",
                   "label": "Bastion Sakwowy 26/2",
-                  "status": "news"
+                  "status": "news",
+                  "city": "Wroclaw"
               }
              }
            */
           Object.values(client?.properties)?.map((property) => (
-            <Card key={property.id} header={property.label} link={`/properties/${property.id}`}>
+            <Card
+              key={property.id}
+              header={property?.city ? `${property?.city}, ${property.label}` : property.label}
+              link={`/properties/${property.id}`}
+            >
               <Map
                 zoom={16}
                 height={isMobile ? '260px' : '415px'}

@@ -48,6 +48,7 @@ export type PropertyDetails = {
   position: string
   label: string
   status: Status
+  city: string
 }
 export type Client = {
   id?: string

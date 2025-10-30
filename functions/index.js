@@ -42,6 +42,7 @@ exports.syncNewPropertyToClientAndCity = onValueCreated(
       label: propertyData.address,
       position: propertyData.position,
       status: propertyData.status || 'default',
+      city: propertyData.city,
     }
 
     // 1. Update the related client's properties list
@@ -134,6 +135,7 @@ exports.syncPropertyUpdates = onValueUpdated(
       label: afterData.address,
       position: afterData.position,
       status: afterData.status || 'default',
+      city: afterData.city,
     }
 
     // Nested data for the city's properties list (includes client denormalized details)
