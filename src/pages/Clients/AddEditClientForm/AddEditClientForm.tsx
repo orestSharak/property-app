@@ -80,6 +80,34 @@ const AddEditClientForm = memo(() => {
           />
         )}
       />
+      <Controller
+        control={control}
+        name="additionalPhoneOne"
+        render={({ field, fieldState }) => (
+          <Input
+            placeholder={t('clientModal>phonePlaceholder')}
+            id="additionalPhoneOne"
+            label={t('clientModal>additionalPhoneOne')}
+            error={fieldState.error?.message ? t(`clientModal>${fieldState.error?.message}`) : ''}
+            direction="inline"
+            {...field}
+          />
+        )}
+      />
+      <Controller
+        control={control}
+        name="additionalPhoneTwo"
+        render={({ field, fieldState }) => (
+          <Input
+            placeholder={t('clientModal>phonePlaceholder')}
+            id="additionalPhoneTwo"
+            label={t('clientModal>additionalPhoneTwo')}
+            error={fieldState.error?.message ? t(`clientModal>${fieldState.error?.message}`) : ''}
+            direction="inline"
+            {...field}
+          />
+        )}
+      />
     </Wrapper>
   )
 })

@@ -71,6 +71,8 @@ const ClientDetailsPage = () => {
       address: '',
       email: '',
       phone: '',
+      additionalPhoneOne: '',
+      additionalPhoneTwo: '',
     }),
     [],
   )
@@ -96,6 +98,8 @@ const ClientDetailsPage = () => {
         address: client?.address,
         email: client?.email,
         phone: client?.phone,
+        additionalPhoneOne: client?.additionalPhoneOne,
+        additionalPhoneTwo: client?.additionalPhoneTwo,
       })
     } else {
       reset(defaultFormValues)
@@ -120,6 +124,8 @@ const ClientDetailsPage = () => {
     address: data.address.trimStart().trimEnd(),
     email: data.email.trimStart().trimEnd(),
     phone: data.phone.trimStart().trimEnd() ?? null,
+    additionalPhoneOne: data.additionalPhoneOne.trimStart().trimEnd() ?? null,
+    additionalPhoneTwo: data.additionalPhoneTwo.trimStart().trimEnd() ?? null,
     createdAt: client?.createdAt,
     userEmail: userEmail,
     userId: userUid,
@@ -223,6 +229,8 @@ const ClientDetailsPage = () => {
     clientFullName: client?.fullName,
     clientEmail: client?.email,
     clientPhone: client?.phone,
+    clientAdditionalPhoneOne: client?.additionalPhoneOne,
+    clientAdditionalPhoneTwo: client?.additionalPhoneTwo,
     ...property,
   })
 
@@ -279,6 +287,20 @@ const ClientDetailsPage = () => {
             <InfoRow isEmail label={t('clientDetails>email')} value={client?.email} />
             {client?.phone && (
               <InfoRow isPhone label={t('clientDetails>phone')} value={client?.phone} />
+            )}
+            {client?.additionalPhoneOne && (
+              <InfoRow
+                isPhone
+                label={t('clientDetails>additionalPhoneOne')}
+                value={client?.additionalPhoneOne}
+              />
+            )}
+            {client?.additionalPhoneTwo && (
+              <InfoRow
+                isPhone
+                label={t('clientDetails>additionalPhoneTwo')}
+                value={client?.additionalPhoneTwo}
+              />
             )}
           </Card>
         </Container>

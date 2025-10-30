@@ -43,9 +43,23 @@ export const Popup = ({ marker }: PopupProps) => {
       </PopupHeader>
       <PopupBody>
         <InfoRow label={t('popup>client')} value={marker.clientFullName} />
-        <InfoRow label={t('popup>clientEmail')} value={marker.clientEmail} />
+        <InfoRow isEmail label={t('popup>clientEmail')} value={marker.clientEmail} />
         {marker.clientPhone && (
-          <InfoRow label={t('popup>clientPhone')} value={marker.clientPhone} />
+          <InfoRow isPhone label={t('popup>clientPhone')} value={marker.clientPhone} />
+        )}
+        {marker.clientAdditionalPhoneOne && (
+          <InfoRow
+            isPhone
+            label={t('popup>clientAdditionalPhoneOne')}
+            value={marker.clientAdditionalPhoneOne}
+          />
+        )}
+        {marker.clientAdditionalPhoneTwo && (
+          <InfoRow
+            isPhone
+            label={t('popup>clientAdditionalPhoneTwo')}
+            value={marker.clientAdditionalPhoneTwo}
+          />
         )}
         {!isDefaultStatus && (
           <InfoRow label={t('popup>status')} value={marker.status} valueVariant={marker.status} />

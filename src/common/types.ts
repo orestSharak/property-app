@@ -21,6 +21,8 @@ export type Property = {
   clientFullName: string
   clientEmail: string
   clientPhone?: string
+  clientAdditionalPhoneOne?: string
+  clientAdditionalPhoneTwo?: string
   status: Status
   notes?: Note[]
 }
@@ -52,6 +54,8 @@ export type Client = {
   fullName: string
   address: string
   phone: string | null
+  additionalPhoneOne: string | null
+  additionalPhoneTwo: string | null
   email: string
   createdAt: number
   userEmail: string
@@ -76,6 +80,8 @@ export type MarkerData = {
   clientFullName: string
   clientEmail: string
   clientPhone?: string
+  clientAdditionalPhoneOne?: string
+  clientAdditionalPhoneTwo?: string
   status: Status
 }
 

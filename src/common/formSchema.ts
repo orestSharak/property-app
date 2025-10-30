@@ -33,6 +33,8 @@ export const ClientFromSchema = z.object({
     .trim()
     .min(1, 'isRequired'),
   phone: z.string().trim(),
+  additionalPhoneOne: z.string().trim(),
+  additionalPhoneTwo: z.string().trim(),
 })
 
 export const CityFromSchema = z.object({

@@ -392,6 +392,20 @@ const PropertyDetailsPage = () => {
             {property?.clientPhone && (
               <InfoRow isPhone label={t('propertyDetails>phone')} value={property?.clientPhone} />
             )}
+            {property?.clientAdditionalPhoneOne && (
+              <InfoRow
+                isPhone
+                label={t('propertyDetails>additionalPhoneOne')}
+                value={property?.clientAdditionalPhoneOne}
+              />
+            )}
+            {property?.clientAdditionalPhoneTwo && (
+              <InfoRow
+                isPhone
+                label={t('propertyDetails>additionalPhoneTwo')}
+                value={property?.clientAdditionalPhoneTwo}
+              />
+            )}
           </Card>
         </CardWrapper>
       </Wrapper>

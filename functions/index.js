@@ -56,6 +56,8 @@ exports.syncNewPropertyToClientAndCity = onValueCreated(
       clientId: propertyData.clientId,
       clientEmail: propertyData.clientEmail,
       clientPhone: propertyData.clientPhone || '',
+      clientAdditionalPhoneOne: propertyData.clientAdditionalPhoneOne || '',
+      clientAdditionalPhoneTwo: propertyData.clientAdditionalPhoneTwo || '',
     }
     const cityRef = db.ref(`/cities/${propertyData.cityId}/properties/${propertyId}`)
     await cityRef.set(cityPropertyData)
@@ -101,6 +103,8 @@ exports.syncPropertyUpdates = onValueUpdated(
       'clientFullName',
       'clientEmail',
       'clientPhone',
+      'clientAdditionalPhoneOne',
+      'clientAdditionalPhoneTwo',
     ]
 
     // --- 1. Determine if any relevant field changed ---
@@ -139,6 +143,8 @@ exports.syncPropertyUpdates = onValueUpdated(
       clientId: newClientId,
       clientEmail: afterData.clientEmail,
       clientPhone: afterData.clientPhone || '',
+      clientAdditionalPhoneOne: afterData.clientAdditionalPhoneOne || '',
+      clientAdditionalPhoneTwo: afterData.clientAdditionalPhoneTwo || '',
     }
 
     // Update/Create the property record for the NEW client

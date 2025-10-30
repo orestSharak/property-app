@@ -49,6 +49,8 @@ const ClientsPage = () => {
       address: '',
       email: '',
       phone: '',
+      additionalPhoneOne: '',
+      additionalPhoneTwo: '',
     }),
     [],
   )
@@ -70,6 +72,8 @@ const ClientsPage = () => {
         address: client?.address,
         email: client?.email,
         phone: client?.phone,
+        additionalPhoneOne: client?.additionalPhoneOne,
+        additionalPhoneTwo: client?.additionalPhoneTwo,
       })
     } else {
       reset(defaultFormValues)
@@ -108,6 +112,8 @@ const ClientsPage = () => {
     address: data.address.trimStart().trimEnd(),
     email: data.email.trimStart().trimEnd(),
     phone: data.phone.trimStart().trimEnd() ?? null,
+    additionalPhoneOne: data.phone.trimStart().trimEnd() ?? null,
+    additionalPhoneTwo: data.phone.trimStart().trimEnd() ?? null,
     createdAt: isEdit ? client?.createdAt : Date.now(),
     userEmail: userEmail,
     userId: userUid,
