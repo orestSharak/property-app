@@ -40,13 +40,13 @@ export const columnDefinition: (
     id: 'clientPhoneNumber',
     header: t('properties>table>phoneOfClient'),
     size: 2,
-    cell: (info) => <TextCellRenderer title={info.getValue()} />,
+    cell: (info) => <TextCellRenderer isPhone title={info.getValue()} />,
   }),
   columnHelper.accessor('clientEmail', {
     id: 'clientEmail',
     header: t('properties>table>clientEmail'),
     size: 2.5,
-    cell: (info) => <TextCellRenderer title={info.getValue()} />,
+    cell: (info) => <TextCellRenderer isEmail title={info.getValue()} />,
   }),
   columnHelper.accessor('status', {
     id: 'status',

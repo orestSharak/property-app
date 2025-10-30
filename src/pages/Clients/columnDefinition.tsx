@@ -34,13 +34,13 @@ export const columnDefinition: (
     id: 'phone',
     header: t('clients>table>phone'),
     size: 1.5,
-    cell: (info) => <TextCellRenderer title={info.getValue()} />,
+    cell: (info) => <TextCellRenderer isPhone title={info.getValue()} />,
   }),
   columnHelper.accessor('email', {
     id: 'email',
     header: t('clients>table>email'),
     size: 2,
-    cell: (info) => <TextCellRenderer title={info.getValue()} />,
+    cell: (info) => <TextCellRenderer isEmail title={info.getValue()} />,
   }),
   columnHelper.accessor('id', {
     id: 'id',

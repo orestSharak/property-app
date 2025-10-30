@@ -3,11 +3,14 @@ import { useTranslation } from 'react-i18next'
 import { Container, Label, Value } from './InfoRow.styles'
 import { Status } from '../../common/types'
 import { EMPTY_VALUE } from '../../common/constants'
+import { ExternalLink } from '../ExternalLink/ExternalLink'
 
 type InfoRowProps = {
   label: string
   value: string
   valueVariant?: Status
+  isPhone?: boolean
+  isEmail?: boolean
 }
 
 /**
@@ -32,14 +35,16 @@ type InfoRowProps = {
 const InfoRow = memo((props: InfoRowProps) => {
   const { t } = useTranslation()
 
-  const { label, value, valueVariant } = props
+  const { label, value, valueVariant, isPhone, isEmail } = props
 
   const getValue = useCallback(() => {
+    if (isPhone) return <ExternalLink isPhone value={value} />
+    if (isEmail) return <ExternalLink isEmail value={value} />
     if (!valueVariant) return value
     if (value !== 'default') return t(`infoRow>${value}`)
 
     return EMPTY_VALUE
-  }, [valueVariant, value, t])
+  }, [isPhone, value, isEmail, valueVariant, t])
 
   return (
     <Container>

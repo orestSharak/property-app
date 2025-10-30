@@ -276,8 +276,10 @@ const ClientDetailsPage = () => {
           <Card hasList>
             <InfoRow label={t('clientDetails>fullName')} value={client?.fullName} />
             <InfoRow label={t('clientDetails>address')} value={client?.address} />
-            <InfoRow label={t('clientDetails>email')} value={client?.email} />
-            {client?.phone && <InfoRow label={t('clientDetails>phone')} value={client?.phone} />}
+            <InfoRow isEmail label={t('clientDetails>email')} value={client?.email} />
+            {client?.phone && (
+              <InfoRow isPhone label={t('clientDetails>phone')} value={client?.phone} />
+            )}
           </Card>
         </Container>
         <Container>

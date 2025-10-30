@@ -388,9 +388,9 @@ const PropertyDetailsPage = () => {
           />
           <Card width={isMobile ? undefined : 465} hasList>
             <InfoRow label={t('propertyDetails>fullName')} value={property?.clientFullName} />
-            <InfoRow label={t('propertyDetails>email')} value={property?.clientEmail} />
+            <InfoRow isEmail label={t('propertyDetails>email')} value={property?.clientEmail} />
             {property?.clientPhone && (
-              <InfoRow label={t('propertyDetails>phone')} value={property?.clientPhone} />
+              <InfoRow isPhone label={t('propertyDetails>phone')} value={property?.clientPhone} />
             )}
           </Card>
         </CardWrapper>
