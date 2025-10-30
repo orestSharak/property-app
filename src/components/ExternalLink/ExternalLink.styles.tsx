@@ -10,10 +10,34 @@ export const ExternalLinkWrapper = styled.a`
   font-weight: ${(p) => p.theme.fontWeight.medium};
   padding: ${(p) => p.theme.spacing.xxxs};
   word-break: break-all;
+  transition: all 0.3s ease-in;
+  text-decoration: none;
+  position: relative;
+
+  &:before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: '';
+    width: 0;
+    height: 1px;
+    background: ${(p) => p.theme.colors.borderLink};
+    transition: all 0.3s ease-in-out;
+  }
+
+  &:hover {
+    &:before {
+      width: 100%;
+    }
+  }
 
   &:focus {
     border-color: ${(p) => p.theme.colors.boxShadowInfo};
     box-shadow: 0 0 0 2px ${(p) => p.theme.colors.boxShadowInfo};
     outline: none;
+
+    &:before {
+      width: 100%;
+    }
   }
 `
