@@ -310,5 +310,11 @@
     "notFoundDescription": "This page does not exist or the address is incorrect. Use the button below to return to safety.",
     "goToDashboard": "Go to Dashboard",
     "goToLogin": "Go to Login"
+  },
+  "map": {
+    "showFullScreen": "Show fullscreen mode",
+    "exitFullScreen": "Exit fullscreen mode",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out"
   }
 }

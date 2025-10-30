@@ -1,6 +1,7 @@
 import { Marker, TileLayer, ZoomControl } from 'react-leaflet'
 import L, { LatLngLiteral } from 'leaflet'
 import React, { useEffect, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Container, LeafletStyle } from './Map.styles'
 import { prepareMarkers } from '../../utils/utils'
 import { MAP_LIGHT_PALETTE_URL } from '../../common/constants'
@@ -8,6 +9,9 @@ import { useTheme } from '../../context/ThemeContext'
 import { Popup } from './Popup/Popup'
 import { MarkerData, Status } from '../../common/types'
 import { MapMover } from './MapMover/MapMover'
+
+import 'leaflet.fullscreen/Control.FullScreen.css'
+import 'leaflet.fullscreen'
 
 type MapProps = {
   height?: string
@@ -56,9 +60,12 @@ export const Map = ({
   zoom = 13,
   hoveredPropertyId,
 }: MapProps) => {
+  const { t, i18n } = useTranslation()
   const { themeMode } = useTheme()
 
   const [activeMarker, setActiveMarker] = useState(null)
+
+  const languageKey = i18n.language
 
   const normalizedMarkers = prepareMarkers(markers)
   const normalizedActiveMarker = normalizedMarkers?.filter(
@@ -104,15 +111,27 @@ export const Map = ({
     <>
       <LeafletStyle themeMode={themeMode} />
       <Container
+        key={languageKey}
         height={height}
         center={[normalizedMarkers[0].position.lat, normalizedMarkers[0].position.lng]}
         zoom={getZoom}
         zoomControl={false}
         touchZoom={true}
+        fullscreenControl={true}
+        fullscreenControlOptions={{
+          position: 'bottomright',
+          title: t('map>showFullScreen'),
+          titleCancel: t('map>exitFullScreen'),
+        }}
       >
         <TileLayer url={MAP_LIGHT_PALETTE_URL} />
         <MapMover position={preparedMapMoverPosition} zoom={getZoom} />
-        <ZoomControl position="bottomright" />
+        <ZoomControl
+          key={`zoom-${languageKey}`}
+          position="bottomright"
+          zoomInTitle={t('map>zoomIn')}
+          zoomOutTitle={t('map>zoomOut')}
+        />
         {normalizedMarkers?.map((marker) => {
           return (
             <Marker

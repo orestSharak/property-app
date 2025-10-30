@@ -113,7 +113,8 @@ const GlobalStyle = createGlobalStyle`
 
   .house-marker:focus,
   .leaflet-control-zoom-in:focus,
-  .leaflet-control-zoom-out:focus {
+  .leaflet-control-zoom-out:focus,
+  .leaflet-control-zoom-fullscreen:focus {
     box-shadow: 0 0 0 4px ${(p) => p.theme.colors.boxShadowInfo};
     outline: none;
   }

@@ -9,6 +9,7 @@ export const LeafletStyle = createGlobalStyle<{ themeMode: string }>`
           .leaflet-layer,
           .leaflet-control-zoom-in,
           .leaflet-control-zoom-out,
+          .leaflet-control-zoom-fullscreen,
           .leaflet-control-attribution {
             filter: brightness(0.7) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
           }
@@ -17,6 +18,7 @@ export const LeafletStyle = createGlobalStyle<{ themeMode: string }>`
           .leaflet-layer,
           .leaflet-control-zoom-in,
           .leaflet-control-zoom-out,
+           .leaflet-control-zoom-fullscreen,
           .leaflet-control-attribution {
             filter: none;
           }

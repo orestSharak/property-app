@@ -310,5 +310,11 @@
     "notFoundDescription": "Questa pagina non esiste o l'indirizzo non è corretto. Utilizza il pulsante qui sotto per tornare alla sicurezza.",
     "goToDashboard": "Vai alla Dashboard",
     "goToLogin": "Vai al Login"
+  },
+  "map": {
+    "showFullScreen": "Visualizza a schermo intero",
+    "exitFullScreen": "Esci dalla modalità schermo intero",
+    "zoomIn": "Ingrandisci",
+    "zoomOut": "Rimpicciolisci"
   }
 }
