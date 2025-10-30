@@ -10,8 +10,9 @@ export const ExternalLinkWrapper = styled.a`
   font-weight: ${(p) => p.theme.fontWeight.medium};
   padding: ${(p) => p.theme.spacing.xxxs};
   word-break: break-all;
-  transition: all 0.3s ease-in;
   text-decoration: none;
+
+  transition: all 0.3s ease-in;
   position: relative;
 
   &:before {

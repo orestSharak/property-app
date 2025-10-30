@@ -269,8 +269,8 @@
     "client": "Client",
     "clientEmail": "Client email",
     "clientPhone": "Client phone",
-    "clientAdditionalPhoneOne": "Client additional phone 1",
-    "clientAdditionalPhoneTwo": "Client additional phone 2",
+    "clientAdditionalPhoneOne": "Addt'l phone 1",
+    "clientAdditionalPhoneTwo": "Addt'l phone 2",
     "status": "Status",
     "seeMore": "See more"
   },

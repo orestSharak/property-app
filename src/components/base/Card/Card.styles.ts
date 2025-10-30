@@ -69,11 +69,32 @@ export const CardHeaderRow = styled.div<{ $hasLinkOnly?: boolean }>`
 `
 
 export const StyledLink = styled(Link)`
-  width: 120px;
   text-align: right;
   color: ${(p) => p.theme.colors.textLink};
   font-size: ${(p) => p.theme.fontSize.sm};
   font-weight: ${(p) => p.theme.fontWeight.medium};
+
+  text-decoration: none;
+
+  transition: all 0.3s ease-in;
+  position: relative;
+
+  &:before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: '';
+    width: 0;
+    height: 1px;
+    background: ${(p) => p.theme.colors.borderLink};
+    transition: all 0.3s ease-in-out;
+  }
+
+  &:hover {
+    &:before {
+      width: 100%;
+    }
+  }
 
   &:focus {
     border-color: ${(p) => p.theme.colors.boxShadowInfo};

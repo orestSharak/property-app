@@ -120,4 +120,25 @@ export const PropertyLink = styled(Link)`
   font-size: ${(p) => p.theme.fontSize.sm};
   font-weight: ${(p) => p.theme.fontWeight.medium};
   margin-left: auto;
+  text-decoration: none;
+
+  transition: all 0.3s ease-in;
+  position: relative;
+
+  &:before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: '';
+    width: 0;
+    height: 1px;
+    background: ${(p) => p.theme.colors.borderLink};
+    transition: all 0.3s ease-in-out;
+  }
+
+  &:hover {
+    &:before {
+      width: 100%;
+    }
+  }
 `
