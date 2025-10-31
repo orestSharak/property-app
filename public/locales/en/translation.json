@@ -155,6 +155,9 @@
     "addressPlaceholder": "Type address",
     "positionDetails": "Position details",
     "positionPlaceholder": "Paste coordinates",
+    "urlPlaceholder": "Paste external url",
+    "url": "External url",
+    "invalidUrl": "Invalid URL",
     "isRequired": "Field is required",
     "wrongPositionFormat": "Wrong format. Example: 51.12199, 17.04582",
     "city": "City",
@@ -187,6 +190,7 @@
     "address": "Address",
     "city": "City",
     "status": "Status",
+    "url": "External url",
     "deleteProperty": "Delete property",
     "cancel": "Cancel",
     "sureWantDelete": "Are you sure you want to delete property by address: <bold>{{address}}</bold>?",
@@ -326,5 +330,14 @@
     "exitFullScreen": "Exit fullscreen mode",
     "zoomIn": "Zoom in",
     "zoomOut": "Zoom out"
+  },
+  "externalLink": {
+    "copy": "Copt to clipboard"
+  },
+  "hooks": {
+    "toast": {
+      "successfullyCopied": "Copied to clipboard",
+      "failedCopy": "Failed copy to clipboard"
+    }
   }
 }

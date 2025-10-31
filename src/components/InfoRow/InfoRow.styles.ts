@@ -29,6 +29,7 @@ export const Value = styled.span<{ $variant: Status }>`
   font-size: ${(p) => p.theme.fontSize.md};
   font-weight: ${(p) => p.theme.fontWeight.normal};
   white-space: pre-line;
+  word-break: break-all;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
     word-break: break-word;

@@ -15,6 +15,7 @@ export type Property = {
   userEmail: string
   userId: string
   position: string
+  url?: string
   city: string
   cityId: string
   clientId: string

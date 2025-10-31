@@ -1,10 +1,18 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-export const ExternalLinkContainer = styled.div<{ $hasList: boolean }>`
+export const ExternalLinkContainer = styled.div<{ $hasList: boolean; $link?: boolean }>`
   margin-bottom: ${({ $hasList, theme }) => ($hasList ? theme.spacing.xxs : '0')};
+
+  ${({ $link }) =>
+    $link &&
+    css`
+      display: flex;
+      align-items: baseline;
+      gap: ${(p) => p.theme.spacing.lg};
+    `}
 `
 
-export const ExternalLinkWrapper = styled.a`
+export const ExternalLinkWrapper = styled.a<{ $link?: boolean; $isMobile: boolean }>`
   color: ${(p) => p.theme.colors.textLink};
   font-size: ${(p) => p.theme.fontSize.sm};
   font-weight: ${(p) => p.theme.fontWeight.medium};
@@ -40,5 +48,22 @@ export const ExternalLinkWrapper = styled.a`
     &:before {
       width: 100%;
     }
+  }
+
+  ${({ $link, $isMobile }) =>
+    $link &&
+    css`
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+      width: ${$isMobile ? '170px' : '290px'};
+    `}
+`
+
+export const IconWrapper = styled.div`
+  path {
+    fill: none;
+    stroke: ${(p) => p.theme.colors.iconOnSurface1};
   }
 `

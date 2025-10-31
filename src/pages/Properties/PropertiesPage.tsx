@@ -49,6 +49,7 @@ const PropertiesPage = () => {
       client: '',
       city: '',
       status: 'default',
+      url: undefined,
     }),
     [],
   )
@@ -87,6 +88,7 @@ const PropertiesPage = () => {
         client: property?.clientId,
         city: property?.cityId,
         status: property?.status,
+        url: property?.url,
       })
     } else {
       reset(defaultFormValues)
@@ -154,6 +156,7 @@ const PropertiesPage = () => {
     cityId: data.city,
     position: data.position.trimStart().trimEnd(),
     status: data.status as Status,
+    url: data.url,
     clientFullName: clients?.find((client) => client?.id === data.client).fullName,
     clientId: data.client,
     clientEmail: getClientEmailAndPhone(clients, selectedClient).email,

@@ -99,6 +99,20 @@ const AddEditPropertyForm = memo(({ cities, clients }: AddEditPropertyFormProps)
           />
         )}
       />
+      <Controller
+        control={control}
+        name="url"
+        render={({ field, fieldState }) => (
+          <Input
+            placeholder={t('propertyModal>urlPlaceholder')}
+            id="url"
+            label={t('propertyModal>url')}
+            error={fieldState.error?.message ? t(`propertyModal>${fieldState.error?.message}`) : ''}
+            direction="inline"
+            {...field}
+          />
+        )}
+      />
     </Wrapper>
   )
 })

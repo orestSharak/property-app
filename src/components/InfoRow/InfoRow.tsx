@@ -11,6 +11,7 @@ type InfoRowProps = {
   valueVariant?: Status
   isPhone?: boolean
   isEmail?: boolean
+  isLink?: boolean
 }
 
 /**
@@ -35,16 +36,17 @@ type InfoRowProps = {
 const InfoRow = memo((props: InfoRowProps) => {
   const { t } = useTranslation()
 
-  const { label, value, valueVariant, isPhone, isEmail } = props
+  const { label, value, valueVariant, isPhone, isEmail, isLink } = props
 
   const getValue = useCallback(() => {
     if (isPhone) return <ExternalLink isPhone value={value} />
     if (isEmail) return <ExternalLink isEmail value={value} />
+    if (isLink) return <ExternalLink isLink value={value} />
     if (!valueVariant) return value
     if (value !== 'default') return t(`infoRow>${value}`)
 
     return EMPTY_VALUE
-  }, [isPhone, value, isEmail, valueVariant, t])
+  }, [isPhone, value, isEmail, isLink, valueVariant, t])
 
   return (
     <Container>

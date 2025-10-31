@@ -22,6 +22,26 @@ export const PropertyFromSchema = z.object({
   status: z
     .string({ error: (issue) => issue.input === undefined && 'isRequired' })
     .min(1, 'isRequired'),
+  url: z
+    .string()
+    .optional()
+    .refine(
+      (val) => {
+        if (val === undefined || val === '') {
+          return true
+        }
+
+        try {
+          new URL(val)
+          return true
+        } catch (e) {
+          return false
+        }
+      },
+      {
+        message: 'invalidUrl',
+      },
+    ),
 })
 
 export const ClientFromSchema = z.object({

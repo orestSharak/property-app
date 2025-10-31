@@ -155,6 +155,9 @@
     "addressPlaceholder": "Inserisci indirizzo",
     "positionDetails": "Dettagli posizione",
     "positionPlaceholder": "Incolla coordinate",
+    "urlPlaceholder": "Incolla URL esterno",
+    "url": "URL esterno",
+    "invalidUrl": "URL non corretto",
     "isRequired": "Campo obbligatorio",
     "wrongPositionFormat": "Formato errato. Esempio: 51.12199, 17.04582",
     "city": "Città",
@@ -187,6 +190,7 @@
     "address": "Indirizzo",
     "city": "Città",
     "status": "Stato",
+    "url": "URL esterno",
     "deleteProperty": "Elimina proprietà",
     "cancel": "Annulla",
     "sureWantDelete": "Sei sicuro di voler eliminare la proprietà all'indirizzo: <bold>{{address}}</bold>?",
@@ -326,5 +330,14 @@
     "exitFullScreen": "Esci dalla modalità schermo intero",
     "zoomIn": "Ingrandisci",
     "zoomOut": "Rimpicciolisci"
+  },
+  "externalLink": {
+    "copy": "Copia negli appunti"
+  },
+  "hooks": {
+    "toast": {
+      "successfullyCopied": "Copiato negli appunti",
+      "failedCopy": "Copia negli appunti fallita"
+    }
   }
 }

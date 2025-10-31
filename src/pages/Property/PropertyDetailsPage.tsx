@@ -72,6 +72,7 @@ const PropertyDetailsPage = () => {
       client: '',
       city: '',
       status: 'default',
+      url: undefined,
     }),
     [],
   )
@@ -109,6 +110,7 @@ const PropertyDetailsPage = () => {
         client: property?.clientId,
         city: property?.cityId,
         status: property?.status,
+        url: property?.url,
       })
     } else {
       reset(defaultFormValues)
@@ -153,6 +155,7 @@ const PropertyDetailsPage = () => {
     cityId: data.city,
     position: data.position.trimStart().trimEnd(),
     status: data.status as Status,
+    url: data.url,
     clientFullName: clients?.find((client) => client?.id === data.client).fullName,
     clientId: data.client,
     clientEmail: getClientEmailAndPhone(clients, data.client).email,
@@ -263,6 +266,7 @@ const PropertyDetailsPage = () => {
     label: property?.address,
     status: property?.status,
     clientId: property?.clientId,
+    url: property?.url,
     clientFullName: property?.clientFullName,
     clientEmail: property?.clientEmail,
     clientPhone: property?.clientPhone,
@@ -326,6 +330,9 @@ const PropertyDetailsPage = () => {
                 value={property?.status}
                 valueVariant={property?.status as Status}
               />
+            )}
+            {property?.url && (
+              <InfoRow isLink label={t('propertyDetails>url')} value={property?.url} />
             )}
           </Card>
         </Container>
