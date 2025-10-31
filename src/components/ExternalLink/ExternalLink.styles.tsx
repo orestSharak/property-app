@@ -12,16 +12,20 @@ export const ExternalLinkContainer = styled.div<{ $hasList: boolean; $link?: boo
     `}
 `
 
-export const ExternalLinkWrapper = styled.a<{ $link?: boolean; $isMobile: boolean }>`
+export const ExternalLinkWrapper = styled.a<{
+  $link?: boolean
+  $isMobile: boolean
+  $breakWord: boolean
+}>`
   color: ${(p) => p.theme.colors.textLink};
   font-size: ${(p) => p.theme.fontSize.sm};
   font-weight: ${(p) => p.theme.fontWeight.medium};
   padding: ${(p) => p.theme.spacing.xxxs};
-  word-break: break-all;
   text-decoration: none;
 
   transition: all 0.3s ease-in;
   position: relative;
+  word-break: ${({ $breakWord }) => ($breakWord ? 'break-word' : 'unset')};
 
   &:before {
     position: absolute;
@@ -57,7 +61,7 @@ export const ExternalLinkWrapper = styled.a<{ $link?: boolean; $isMobile: boolea
       overflow: hidden;
       text-overflow: ellipsis;
       display: block;
-      width: ${$isMobile ? '135px' : '290px'};
+      width: ${$isMobile ? '135px' : '260px'};
     `}
 `
 

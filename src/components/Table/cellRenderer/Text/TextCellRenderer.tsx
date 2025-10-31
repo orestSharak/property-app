@@ -26,7 +26,8 @@ const TextCellRenderer = ({
 
   if (!title || title === '0') return EMPTY_VALUE
 
-  if (isEmail || isPhone) return <ExternalLink isEmail={isEmail} isPhone={isPhone} value={title} />
+  if (isEmail || isPhone)
+    return <ExternalLink breakWord isEmail={isEmail} isPhone={isPhone} value={title} />
 
   const status = isStatus ? (title as Status) : undefined
   const statusTitle = status === 'default' ? EMPTY_VALUE : t(`table>cellRenderer>text>${status}`)

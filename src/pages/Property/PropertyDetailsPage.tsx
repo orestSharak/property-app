@@ -37,10 +37,11 @@ import { useDeleteProperty } from '../../hooks/property/useDeleteProperty'
 import { useToast } from '../../hooks/toast/useToast'
 import { useGetClients } from '../../hooks/client/useGetClients'
 import { useGetCities } from '../../hooks/city/useGetCities'
-import { getClientEmailAndPhone, truncateByWords } from '../../utils/utils'
+import { formatCoordinatesForApi, getClientEmailAndPhone, truncateByWords } from '../../utils/utils'
 import { useDeletePropertyNote } from '../../hooks/property/useDeletePropertyNote'
 import Loader from '../../components/Loader/Loader'
 import { useMediaQuery } from '../../hooks/helpers/useMediaQuery'
+import { useGetExternalPropertyDetails } from '../../hooks/property/useGetExternalPropertyDetails'
 
 const PropertyDetailsPage = () => {
   const { t } = useTranslation()
@@ -61,6 +62,11 @@ const PropertyDetailsPage = () => {
   const { deleteProperty } = useDeleteProperty()
   const { addPropertyNote, isPending: isAddingNote } = useAddPropertyNote()
   const { deletePropertyNote } = useDeletePropertyNote()
+  const {
+    externalProperty,
+    isLoading: isLoadingExternalDetails,
+    isFetching: isFetchingExternalDetails,
+  } = useGetExternalPropertyDetails(formatCoordinatesForApi(property?.position))
 
   const { clients } = useGetClients()
   const { cities } = useGetCities()
@@ -155,7 +161,7 @@ const PropertyDetailsPage = () => {
     cityId: data.city,
     position: data.position.trimStart().trimEnd(),
     status: data.status as Status,
-    url: data.url,
+    url: data.url ?? null,
     clientFullName: clients?.find((client) => client?.id === data.client).fullName,
     clientId: data.client,
     clientEmail: getClientEmailAndPhone(clients, data.client).email,
@@ -334,13 +340,41 @@ const PropertyDetailsPage = () => {
             {property?.url && (
               <InfoRow isLink label={t('propertyDetails>url')} value={property?.url} />
             )}
+            {isLoadingExternalDetails || isFetchingExternalDetails ? (
+              <Loader height="100%" />
+            ) : (
+              <>
+                {externalProperty?.DENOM && (
+                  <InfoRow label={t('propertyDetails>region')} value={externalProperty?.DENOM} />
+                )}
+                {externalProperty?.SEZIONE && !!externalProperty?.SEZIONE.trim() && (
+                  <InfoRow label={t('propertyDetails>section')} value={externalProperty?.SEZIONE} />
+                )}
+                {externalProperty?.FOGLIO && (
+                  <InfoRow label={t('propertyDetails>page')} value={externalProperty?.FOGLIO} />
+                )}
+                {externalProperty?.NUM_PART && (
+                  <InfoRow label={t('propertyDetails>part')} value={externalProperty?.NUM_PART} />
+                )}
+                {externalProperty?.COMUNI && (
+                  <InfoRow
+                    label={t('propertyDetails>info')}
+                    value={
+                      Array.isArray(externalProperty.COMUNI)
+                        ? externalProperty?.COMUNI.join(', ')
+                        : externalProperty.COMUNI
+                    }
+                  />
+                )}
+              </>
+            )}
           </Card>
         </Container>
         <CardWrapper>
           <Card compact>
             {property && (
               <Map
-                zoom={16}
+                zoom={18}
                 height={isMobile ? '260px' : '415px'}
                 markers={[preparedMarkerDetails()]}
               />

@@ -145,6 +145,7 @@ function Dashboard() {
             onChange={handleSearchChange}
             label={t('dashboard>search')}
             direction="inline"
+            disabled={!cities?.length}
             hideLabel
           />
         </InputSection>

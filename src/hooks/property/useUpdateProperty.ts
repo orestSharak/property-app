@@ -11,6 +11,7 @@ export function useUpdateProperty() {
     onSuccess: async (_, variables) => {
       await queryClient.invalidateQueries({ queryKey: ['properties'] })
       await queryClient.invalidateQueries({ queryKey: ['property', variables.id] })
+      await queryClient.invalidateQueries({ queryKey: ['externalProperty'] })
     },
 
     onError: (err) => {

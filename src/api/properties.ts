@@ -11,7 +11,8 @@ import {
 } from 'firebase/database'
 
 import { db } from '../firebase'
-import { Note, Property } from '../common/types'
+import { ExternalProperty, Note, Property } from '../common/types'
+import { EXTERNAL_PROPERTY_DETAILS_API } from '../common/constants'
 
 export async function getProperties(userId: string, city?: string | null): Promise<Property[]> {
   const propertiesRef = ref(db, 'properties')
@@ -109,4 +110,27 @@ export async function deleteNoteFromProperty(propertyId: string, noteId: string)
   const noteRef = ref(db, `properties/${propertyId}/notes/${noteId}`)
 
   await remove(noteRef)
+}
+
+export async function getExternalPropertyDetails(
+  coordinates: string,
+): Promise<ExternalProperty | null> {
+  if (!coordinates) {
+    return null
+  }
+
+  const fullUrl = `${EXTERNAL_PROPERTY_DETAILS_API}${coordinates}`
+
+  try {
+    const response = await fetch(fullUrl)
+
+    if (!response.ok) {
+      console.error(`HTTP error! status: ${response.status}`)
+    }
+
+    return await response.json()
+  } catch (error) {
+    console.error('Error fetching external property details:', error)
+    return null
+  }
 }

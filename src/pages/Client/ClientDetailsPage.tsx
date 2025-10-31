@@ -378,7 +378,7 @@ const ClientDetailsPage = () => {
               link={`/properties/${property.id}`}
             >
               <Map
-                zoom={16}
+                zoom={18}
                 height={isMobile ? '260px' : '415px'}
                 markers={[preparedPropertiesDetails(property)]}
               />

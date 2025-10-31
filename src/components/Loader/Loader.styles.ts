@@ -4,20 +4,25 @@ import styled, { keyframes } from 'styled-components'
 const colorCycle = keyframes`
   0% {
     background-color: #F011D6;
+    transform: scale(0.8,0.8);
   }
+  
   50% {
     background-color: #00CFFF;
+    transform: scale(1,1);
   }
+  
   100% {
     background-color: #F011D6;
+    transform: scale(0.8,0.8);
   }
 `
 
-export const SpinnerContainer = styled.div`
+export const SpinnerContainer = styled.div<{ $height?: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: ${({ $height }) => ($height ? $height : '100vh')};
   background-color: transparent;
 `
 
@@ -29,7 +34,7 @@ export const AnimatedCircle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: ${colorCycle} 0.5s infinite alternate;
+  animation: ${colorCycle} 0.8s infinite alternate;
 `
 
 export const AnimatedHouseSVG = styled.svg`

@@ -207,7 +207,12 @@
     "add": "Add",
     "adding": "Adding ...",
     "loading": "Loading ...",
-    "deleteNote": "Delete note"
+    "deleteNote": "Delete note",
+    "region": "Region",
+    "section": "Section",
+    "page": "Page",
+    "part": "Part",
+    "info": "Basic information"
   },
   "cities": {
     "table": {

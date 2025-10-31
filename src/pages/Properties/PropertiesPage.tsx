@@ -156,7 +156,7 @@ const PropertiesPage = () => {
     cityId: data.city,
     position: data.position.trimStart().trimEnd(),
     status: data.status as Status,
-    url: data.url,
+    url: data.url ?? null,
     clientFullName: clients?.find((client) => client?.id === data.client).fullName,
     clientId: data.client,
     clientEmail: getClientEmailAndPhone(clients, selectedClient).email,

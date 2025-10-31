@@ -170,3 +170,27 @@ export function truncateByWords(text?: string, numWords: number = 2): string {
 
   return words.slice(0, numWords).join(' ') + ' ...'
 }
+
+/**
+ * Takes a coordinate string in 'latitude, longitude' format
+ * and converts it to the required API query parameter format:
+ * '&lon=longitude&lat=latitude'.
+ *
+ * @param coordsString The input string (e.g., '44.825937, 7.302985')
+ * @returns The formatted API string (e.g., '&lon=7.302985&lat=44.825937')
+ */
+export function formatCoordinatesForApi(coordsString?: string): string {
+  if (!coordsString) return ''
+
+  const parts = coordsString.trim().split(',')
+
+  if (parts.length !== 2) {
+    console.error('Invalid coordinate string format. Expected "lat, lon".')
+    return ''
+  }
+
+  const latitude = parts[0].trim()
+  const longitude = parts[1].trim()
+
+  return `&lon=${longitude}&lat=${latitude}`
+}

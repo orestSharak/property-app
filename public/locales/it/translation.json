@@ -207,7 +207,12 @@
     "add": "Aggiungi",
     "adding": "Aggiungendo...",
     "loading": "Caricamento...",
-    "deleteNote": "Elimina nota"
+    "deleteNote": "Elimina nota",
+    "region": "Regione",
+    "section": "Sezione",
+    "page": "Foglio",
+    "part": "Particella",
+    "info": "informazioni di base"
   },
   "cities": {
     "table": {

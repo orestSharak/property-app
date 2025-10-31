@@ -1,7 +1,11 @@
 import { AnimatedCircle, AnimatedHouseSVG, SpinnerContainer } from './Loader.styles'
 
-const Loader = () => (
-  <SpinnerContainer>
+type LoaderProps = {
+  height?: string
+}
+
+const Loader = ({ height = undefined }: LoaderProps) => (
+  <SpinnerContainer $height={height}>
     <AnimatedCircle>
       <AnimatedHouseSVG
         xmlns="http://www.w3.org/2000/svg"

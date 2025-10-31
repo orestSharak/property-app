@@ -8,6 +8,14 @@ import {
   UserFromSchema,
 } from './formSchema'
 
+export type ExternalProperty = {
+  DENOM: string | null
+  SEZIONE: string | null
+  FOGLIO: string | null
+  NUM_PART: string | null
+  COMUNI: string[] | string | null
+}
+
 export type Property = {
   id?: string
   address: string
@@ -15,7 +23,7 @@ export type Property = {
   userEmail: string
   userId: string
   position: string
-  url?: string
+  url?: string | null
   city: string
   cityId: string
   clientId: string
