@@ -57,7 +57,7 @@ export const ExternalLinkWrapper = styled.a<{ $link?: boolean; $isMobile: boolea
       overflow: hidden;
       text-overflow: ellipsis;
       display: block;
-      width: ${$isMobile ? '170px' : '290px'};
+      width: ${$isMobile ? '135px' : '290px'};
     `}
 `
 
