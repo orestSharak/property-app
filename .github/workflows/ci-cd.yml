@@ -3,7 +3,7 @@ name: CI Pipeline (Build, Test, Lint)
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
 # Defines the Continuous Integration (CI) job
