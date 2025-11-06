@@ -1,6 +1,7 @@
 name: Manual Deployment
 
 on:
+  # Manual trigger with deployment options
   workflow_dispatch:
     inputs:
       target:
@@ -13,57 +14,79 @@ on:
           - functions
           - all
 
-# --- JOB 1: FIND ARTIFACT INFO ---
 jobs:
-  get-artifact-info:
-    name: 🔎 Get Latest CI Artifact Info
-    runs-on: ubuntu-latest
-    # We only need the run_id now, but we'll keep the output structure clean.
-    outputs:
-      run_id: ${{ steps.find_run.outputs.run_id }}
-
-    steps:
-      - name: Find Latest Successful CI Run ID
-        uses: actions/github-script@v6
-        id: find_run
-        with:
-          script: |
-            const { data: runs } = await github.rest.actions.listWorkflowRuns({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'ci-cd.yml',
-              status: 'success',
-              branch: context.ref.replace('refs/heads/', ''),
-            });
-
-            if (!runs.workflow_runs.length) {
-              core.setFailed("No successful CI runs found. Deployment aborted.");
-              return;
-            }
-
-            const latestRunId = runs.workflow_runs[0].id;
-            core.setOutput('run_id', latestRunId);
-
-  # --- JOB 2: DEPLOY (Uses Info from Job 1) ---
   deploy:
     name: 🚀 Deploy to Firebase
-    needs: get-artifact-info
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # --- Corrected Artifact Download Step ---
-      - name: Download Build Artifact
-        uses: actions/download-artifact@v4
+      # --- Critical Fix: Find, Download, and Extract Artifact using Script ---
+      - name: Download Build Artifact from CI
+        uses: actions/github-script@v6
         with:
-          # Use the RUN ID from the previous job's output
-          run-id: ${{ needs.get-artifact-info.outputs.run_id }}
-          # Use the ARTIFACT NAME (mandatory for v4)
-          name: vite-build-artifact
-          # Download directly to the root, ensuring 'dist' is at the top level
-          path: .
+          script: |
+            const { owner, repo } = context.repo;
+            const workflow_id = 'ci-cd.yml'; // Name of your CI workflow file
+            const artifact_name = 'vite-build-artifact';
+            const { execSync } = require('child_process');
+            const fs = require('fs');
+
+            core.info(`Searching for artifact: ${artifact_name} from successful run of ${workflow_id}`);
+
+            // 1. Find the latest successful run of the CI workflow
+            const { data: runs } = await github.rest.actions.listWorkflowRuns({
+              owner,
+              repo,
+              workflow_id,
+              status: 'success',
+              branch: context.ref.replace('refs/heads/', ''),
+            });
+
+            if (!runs.workflow_runs.length) {
+              core.setFailed(`No successful CI runs found for workflow: ${workflow_id}. Deployment aborted.`);
+              return;
+            }
+
+            const latestRunId = runs.workflow_runs[0].id;
+            core.info(`Found latest successful run ID: ${latestRunId}`);
+
+            // 2. Find the artifact ID within that run
+            const { data: artifacts } = await github.rest.actions.listWorkflowRunArtifacts({
+              owner,
+              repo,
+              run_id: latestRunId,
+            });
+
+            const artifact = artifacts.artifacts.find(a => a.name === artifact_name);
+
+            if (!artifact) {
+              core.setFailed(`Artifact "${artifact_name}" not found in run ${latestRunId}. Deployment aborted.`);
+              return;
+            }
+
+            // 3. Download the artifact ZIP file
+            core.info(`Downloading artifact ID: ${artifact.id}`);
+            const download = await github.rest.actions.downloadArtifact({
+              owner,
+              repo,
+              artifact_id: artifact.id,
+              archive_format: 'zip',
+            });
+
+            // 4. Save the zip file
+            const zipPath = `${artifact_name}.zip`;
+            fs.writeFileSync(zipPath, Buffer.from(download.data));
+
+            // 5. Unzip the file directly into the current directory ('.')
+            // This ensures the 'dist' folder is at the root for Firebase.
+            execSync(`unzip -o ${zipPath} -d .`);
+            core.info('Artifact unzipped successfully. "dist" folder should now be available.');
+
+            // 6. Clean up the zip file
+            execSync(`rm -f ${zipPath}`);
 
       - name: Setup Node.js Environment
         uses: actions/setup-node@v4
