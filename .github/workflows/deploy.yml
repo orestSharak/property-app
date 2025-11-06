@@ -23,6 +23,8 @@ jobs:
         uses: actions/checkout@v4
 
       # --- Download and Extract Artifact (Robust Method) ---
+      # This script finds the artifact from the latest successful CI run,
+      # downloads it, and extracts its contents (the 'dist' folder) directly to the root.
       - name: Download Build Artifact from CI
         uses: actions/github-script@v6
         with:
@@ -32,8 +34,6 @@ jobs:
             const artifact_name = 'vite-build-artifact';
             const { execSync } = require('child_process');
             const fs = require('fs');
-
-            core.info('Starting artifact download process...');
 
             // 1. Find the latest successful run ID
             const { data: runs } = await github.rest.actions.listWorkflowRuns({
@@ -49,7 +49,7 @@ jobs:
             const artifact = artifacts.artifacts.find(a => a.name === artifact_name);
             if (!artifact) { core.setFailed(`Artifact "${artifact_name}" not found. Aborting.`); return; }
 
-            // 3. Download, save, and unzip the file
+            // 3. Download, save, and unzip the file directly to root
             const download = await github.rest.actions.downloadArtifact({
               owner, repo, artifact_id: artifact.id, archive_format: 'zip',
             });
@@ -58,27 +58,7 @@ jobs:
             fs.writeFileSync(zipPath, Buffer.from(download.data));
             execSync(`unzip -o ${zipPath} -d .`);
             execSync(`rm -f ${zipPath}`);
-            core.info('Artifact downloaded and unzipped successfully.');
-
-      # --- FIX STEP: Ensure 'dist' is at Root ---
-      - name: Ensure 'dist' is at Root
-        run: |
-          # This assumes the unzipped files are placed inside a folder named after the artifact: vite-build-artifact/
-          if [ -d "./vite-build-artifact/dist" ]; then
-            echo "FIX: Found nested build folder structure. Moving content to workspace root."
-            mv ./vite-build-artifact/* .
-            rmdir ./vite-build-artifact
-          fi
-
-          # Final check: Output directory structure for debugging
-          echo "Workspace Directory Structure:"
-          ls -F
-
-          if [ ! -d "dist" ]; then
-            echo "CRITICAL ERROR: The 'dist' folder is still not found in the workspace root."
-            exit 1
-          fi
-          echo "'dist' folder is correctly placed and ready for deployment."
+            core.info('Artifact downloaded, extracted, and "dist" folder is ready.');
 
       - name: Setup Node.js Environment
         uses: actions/setup-node@v4
