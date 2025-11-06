@@ -28,7 +28,6 @@ jobs:
       - name: Run Prettier Check
         run: npm run check:format
 
-
   build-test-security:
     name: Build, Test, and Lint (CI)
     needs: format-check
