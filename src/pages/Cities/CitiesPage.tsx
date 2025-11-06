@@ -87,7 +87,7 @@ const CitiesPage = () => {
     setOpenDeleteModal(true)
   }
 
-  // handle navigate to Properties page with search param
+  // handle navigate to Properties page with search param in the url
   const handleNavigateWithSearch = (id: string) => {
     const cityName = Object.values(cities)?.find((city) => city.id === id)?.name || ''
     navigate(`/properties?search=${cityName}`)
