@@ -1,0 +1,74 @@
+name: Manual Deployment
+
+on:
+  # Manual trigger with deployment options
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Deployment Target'
+        type: choice
+        required: true
+        default: 'hosting'
+        options:
+          - hosting
+          - functions
+          - all
+
+jobs:
+  deployment-gate:
+    name: Check CI Artifact
+    runs-on: ubuntu-latest
+
+    steps:
+      # This step implicitly ensures a build artifact exists from a prior successful CI run.
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: vite-build-artifact
+
+  deploy:
+    name: Deploy to Firebase
+    needs: deployment-gate # Ensures the artifact check passed
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: vite-build-artifact
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies and Firebase CLI
+        run: |
+          npm ci
+          npm install -g firebase-tools
+
+      - name: Construct Deployment Command
+        id: deploy_command
+        run: |
+          DEPLOY_TARGETS=""
+          case "${{ github.event.inputs.target }}" in
+            "hosting")
+              DEPLOY_TARGETS="hosting"
+              ;;
+            "functions")
+              DEPLOY_TARGETS="functions"
+              ;;
+            "all")
+              DEPLOY_TARGETS="hosting,functions"
+              ;;
+          esac
+          echo "command=firebase deploy --only $DEPLOY_TARGETS" >> $GITHUB_OUTPUT
+
+      - name: Run Firebase Deployment
+        run: ${{ steps.deploy_command.outputs.command }} --token ${{ secrets.FIREBASE_TOKEN }}
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

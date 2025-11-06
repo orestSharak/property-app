@@ -93,3 +93,9 @@ jobs:
 
       - name: Build Production Artifacts
         run: npm run build
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vite-build-artifact
+          path: dist
