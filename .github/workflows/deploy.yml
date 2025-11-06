@@ -23,6 +23,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # --- Download and Extract Artifact ---
       - name: Download Build Artifact from CI
         uses: actions/github-script@v6
         id: download_ci_artifact
@@ -32,13 +33,13 @@ jobs:
             const workflow_id = 'ci-cd.yml'; // Name of your CI workflow file
             const artifact_name = 'vite-build-artifact';
 
-            // 1. Find the latest successful run of the CI workflow
+            // Find the latest successful run of the CI workflow
             const { data: runs } = await github.rest.actions.listWorkflowRuns({
               owner,
               repo,
               workflow_id,
               status: 'success',
-              branch: context.ref.replace('refs/heads/', ''), // Use current branch for safety
+              branch: context.ref.replace('refs/heads/', ''),
             });
 
             if (!runs.workflow_runs.length) {
@@ -48,7 +49,7 @@ jobs:
 
             const latestRunId = runs.workflow_runs[0].id;
 
-            // 2. Find the artifact ID within that run
+            // Find the artifact ID within that run
             const { data: artifacts } = await github.rest.actions.listWorkflowRunArtifacts({
               owner,
               repo,
@@ -62,7 +63,7 @@ jobs:
               return;
             }
 
-            // 3. Download the artifact using the found ID
+            // Download and save the zip file
             const download = await github.rest.actions.downloadArtifact({
               owner,
               repo,
@@ -70,13 +71,23 @@ jobs:
               archive_format: 'zip',
             });
 
-            // Save the zip file
             const fs = require('fs');
             fs.writeFileSync(`${artifact_name}.zip`, Buffer.from(download.data));
 
-            // Unzip the file
+            // Unzip the file to the current directory
             const { execSync } = require('child_process');
             execSync(`unzip -o ${artifact_name}.zip -d .`);
+
+      # The downloaded artifact contents are often placed in a subfolder
+      # named after the artifact. We must move them to the root.
+      - name: Move Build Files to Root
+        run: |
+          # Move 'dist' and any other folders/files from the artifact sub-folder to the workspace root
+          # This command moves all contents from the artifact folder to the current directory ('.')
+          mv vite-build-artifact/* .
+          # Clean up the empty artifact folder and the zip file
+          rm -rf vite-build-artifact
+          rm -f vite-build-artifact.zip
 
       - name: Setup Node.js Environment
         uses: actions/setup-node@v4
@@ -85,6 +96,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies and Firebase CLI
+        # Functions often need node modules installed at the root for proper deployment
         run: |
           npm ci
           npm install -g firebase-tools
