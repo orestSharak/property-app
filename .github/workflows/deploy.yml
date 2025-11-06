@@ -16,7 +16,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to Firebase
+    name: 🚀 Deploy to Firebase
     runs-on: ubuntu-latest
 
     steps:
@@ -72,22 +72,17 @@ jobs:
             });
 
             const fs = require('fs');
+            const { execSync } = require('child_process');
+
+            // 1. Save the zip file
             fs.writeFileSync(`${artifact_name}.zip`, Buffer.from(download.data));
 
-            // Unzip the file to the current directory
-            const { execSync } = require('child_process');
+            // 2. Unzip the file directly into the current directory ('.' = workspace root)
+            // This is crucial to place the 'dist' folder where Firebase needs it.
             execSync(`unzip -o ${artifact_name}.zip -d .`);
 
-      # The downloaded artifact contents are often placed in a subfolder
-      # named after the artifact. We must move them to the root.
-      - name: Move Build Files to Root
-        run: |
-          # Move 'dist' and any other folders/files from the artifact sub-folder to the workspace root
-          # This command moves all contents from the artifact folder to the current directory ('.')
-          mv vite-build-artifact/* .
-          # Clean up the empty artifact folder and the zip file
-          rm -rf vite-build-artifact
-          rm -f vite-build-artifact.zip
+            // 3. Clean up the zip file
+            execSync(`rm -f ${artifact_name}.zip`);
 
       - name: Setup Node.js Environment
         uses: actions/setup-node@v4
