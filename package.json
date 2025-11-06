@@ -11,7 +11,7 @@
     "lint": "eslint src --ext .ts,.tsx,.js,.jsx",
     "format": "prettier --write .",
     "check:format": "prettier --check .",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
