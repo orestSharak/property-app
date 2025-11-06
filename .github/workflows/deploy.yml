@@ -15,30 +15,68 @@ on:
           - all
 
 jobs:
-  deployment-gate:
-    name: Check CI Artifact
-    runs-on: ubuntu-latest
-
-    steps:
-      # This step implicitly ensures a build artifact exists from a prior successful CI run.
-      - name: Download Build Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: vite-build-artifact
-
   deploy:
     name: Deploy to Firebase
-    needs: deployment-gate # Ensures the artifact check passed
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Download Build Artifact
-        uses: actions/download-artifact@v4
+      - name: Download Build Artifact from CI
+        uses: actions/github-script@v6
+        id: download_ci_artifact
         with:
-          name: vite-build-artifact
+          script: |
+            const { owner, repo } = context.repo;
+            const workflow_id = 'ci-cd.yml'; // Name of your CI workflow file
+            const artifact_name = 'vite-build-artifact';
+
+            // 1. Find the latest successful run of the CI workflow
+            const { data: runs } = await github.rest.actions.listWorkflowRuns({
+              owner,
+              repo,
+              workflow_id,
+              status: 'success',
+              branch: context.ref.replace('refs/heads/', ''), // Use current branch for safety
+            });
+
+            if (!runs.workflow_runs.length) {
+              core.setFailed(`No successful CI runs found for workflow: ${workflow_id}`);
+              return;
+            }
+
+            const latestRunId = runs.workflow_runs[0].id;
+
+            // 2. Find the artifact ID within that run
+            const { data: artifacts } = await github.rest.actions.listWorkflowRunArtifacts({
+              owner,
+              repo,
+              run_id: latestRunId,
+            });
+
+            const artifact = artifacts.artifacts.find(a => a.name === artifact_name);
+
+            if (!artifact) {
+              core.setFailed(`Artifact "${artifact_name}" not found in run ${latestRunId}.`);
+              return;
+            }
+
+            // 3. Download the artifact using the found ID
+            const download = await github.rest.actions.downloadArtifact({
+              owner,
+              repo,
+              artifact_id: artifact.id,
+              archive_format: 'zip',
+            });
+
+            // Save the zip file
+            const fs = require('fs');
+            fs.writeFileSync(`${artifact_name}.zip`, Buffer.from(download.data));
+
+            // Unzip the file
+            const { execSync } = require('child_process');
+            execSync(`unzip -o ${artifact_name}.zip -d .`);
 
       - name: Setup Node.js Environment
         uses: actions/setup-node@v4
