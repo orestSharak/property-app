@@ -1,4 +1,4 @@
-name: CI Pipeline (Build, Test, Lint)
+name: CI Pipeline (Formatted, Tested, Built)
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   format-check:
-    name: Code Formatting Check
+    name: Format Check
     runs-on: ubuntu-latest
 
     steps:
@@ -28,8 +28,8 @@ jobs:
       - name: Run Prettier Check
         run: npm run check:format
 
-  build-test-security:
-    name: Build, Test, and Lint (CI)
+  lint-and-security:
+    name: Lint & Security
     needs: format-check
     runs-on: ubuntu-latest
 
@@ -49,14 +49,47 @@ jobs:
       - name: Run Linter
         run: npm run lint
 
-      - name: Run Tests
-        run: npm run test
-
-      - name: Run Prettier Check
-        run: npm run format -- --check
-
       - name: Run Security Audit
         run: npm audit --audit-level=high
+
+  test:
+    name: Run Tests
+    needs: lint-and-security
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Tests (Vitest)
+        run: npm run test
+
+  build:
+    name: Build Artifacts
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
 
       - name: Build Production Artifacts
         run: npm run build
