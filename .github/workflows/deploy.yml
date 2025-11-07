@@ -1,7 +1,6 @@
 name: Manual Deployment (Hosting and Functions)
 
 on:
-  # Manual trigger allows selecting branch and target
   workflow_dispatch:
     inputs:
       branch:
@@ -43,9 +42,15 @@ jobs:
       - name: Build Hosting Artifacts
         if: ${{ github.event.inputs.target == 'hosting' || github.event.inputs.target == 'all' }}
         run: npm ci && npm run build
+        env:
+          VITE_FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY_SECRET }}
+          VITE_FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN_SECRET }}
+          VITE_FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID_SECRET }}
+          VITE_FIREBASE_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET_SECRET }}
+          VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.FIREBASE_MESSAGING_SENDER_ID_SECRET }}
+          VITE_FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID_SECRET }}
 
       # --- FUNCTIONS SETUP (Required for Functions Deploy) ---
-      # Need to install dependencies *inside* the functions directory.
       - name: Install Functions Dependencies
         if: ${{ github.event.inputs.target == 'functions' || github.event.inputs.target == 'all' }}
         run: npm ci
@@ -62,7 +67,6 @@ jobs:
           projectId: map-markers-ed36e
 
       # 2. DEPLOY FUNCTIONS (Runs if target includes functions)
-      # We must use the CLI token method for Functions as the hosting action is hosting-specific.
       - name: Deploy Functions
         if: ${{ github.event.inputs.target == 'functions' || github.event.inputs.target == 'all' }}
         run: |
