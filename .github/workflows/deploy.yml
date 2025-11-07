@@ -1,0 +1,62 @@
+name: Manual Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Deployment Target'
+        type: choice
+        required: true
+        default: 'hosting'
+        options:
+          - hosting
+          - functions
+          - all
+
+jobs:
+  deploy:
+    name: Deploy to Firebase
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # --- Download Artifact (No Change: Still required to get built files) ---
+      - name: Download Built Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: vite-build-artifact
+          path: dist # Download the 'dist' folder to the workspace root
+
+      # --- Setup Node for Functions Deployment ---
+      - name: Setup Node.js Environment & Install Dependencies
+        # Only needed to ensure node is ready for the functions deploy/build steps
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci # Install root dependencies (required if deploying functions)
+
+      # --- STEP 1: Deploy Hosting (Runs if target is 'hosting' or 'all') ---
+      - name: Deploy Hosting
+        if: ${{ github.event.inputs.target == 'hosting' || github.event.inputs.target == 'all' }}
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          # Use the specific Service Account name found in your generated YAML
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MAP_MARKERS_ED36E }}
+          projectId: map-markers-ed36e
+          channelId: live # Deploy directly to the live channel
+          # The action will look for the 'dist' folder based on firebase.json
+
+      # --- STEP 2: Deploy Functions (Runs if target is 'functions' or 'all') ---
+      # This step requires the firebase CLI to be present (handled by the action environment)
+      - name: Deploy Functions
+        if: ${{ github.event.inputs.target == 'functions' || github.event.inputs.target == 'all' }}
+        # We use a standard run command here since the action-hosting-deploy primarily targets Hosting.
+        run: firebase deploy --only functions --token ${{ secrets.FIREBASE_TOKEN }}
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+      - name: Deployment Complete Summary
+        run: 'echo "Manual deployment completed for target: ${{ github.event.inputs.target }}"'
