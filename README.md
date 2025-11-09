@@ -27,18 +27,33 @@ Experience the application's functionality directly!
 
 ## ⚙️ Technical Stack
 
-This project was built using a modern and robust stack to ensure a fast, scalable, and maintainable application.
+This project was built using a modern and robust stack to ensure a fast, scalable, and maintainable application,
+emphasizing code quality, strong typing, and superior user experience.
 
 ### Core Technologies
 
-- **Frontend:** **React** with **Vite** for a fast, component-based user interface and rapid compilation.
+- **Frontend Framework:** **React** with **Vite** for a fast, component-based user interface and rapid compilation.
 - **Backend & Database:** **Firebase** (Firestore & Authentication) for serverless management, real-time data
   synchronization, and user sign-in.
 - **Serverless Logic:** **Firebase Functions** utilized for executing complex, centralized CRUD operations and managing
   cross-instance database changes efficiently.
-- **Testing:** **Vitest** for running comprehensive unit tests and functional tests.
 - **DevOps (CI/CD):** **GitHub Actions** utilized for automated Continuous Integration and Continuous Deployment
   pipelines.
+- **Testing:** **Vitest** for running comprehensive unit tests and functional tests.
+
+### Code Quality & UI/UX Libraries
+
+- **Language & Typing:** The entire codebase is implemented in **TypeScript**, ensuring full type safety, reducing
+  runtime errors, and improving long-term maintainability.
+- **Design System:** A **custom-built Design System** was created for the application, establishing a unified library of
+  all basic components (buttons, inputs, modals, etc.) to ensure visual consistency and development efficiency.
+- **Styling:** **Styled-Components** were used for component-level styling, facilitating dynamic theming and
+  encapsulated CSS.
+- **Forms & Validation:** Implemented **React Hook Form** for efficient form handling, coupled with **Zod** for robust,
+  TypeScript-first schema validation.
+- **Mapping:** **Leaflet** integrated for dynamic and interactive map rendering to display property locations.
+- **Localization:** **i18next** is used to manage and deliver the multi-language capabilities of the platform (English
+  and Italian).
 
 ---
 
