@@ -138,7 +138,7 @@ const GlobalStyle = createGlobalStyle`
   .leaflet-popup-content {
     margin: 0;
     padding: 0;
-    width: 100% !important;
+    width: max-content;
     min-width: 280px;
     max-width: 350px;
     background: ${(p) => p.theme.colors.surface1};
