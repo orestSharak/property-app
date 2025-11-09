@@ -1,0 +1,17 @@
+// ==============================================================================
+// FIREBASE CLI PROJECT CONFIGURATION
+//
+// This file is used by the Firebase CLI (Command Line Interface) to determine
+// which project to target when running commands like 'firebase deploy'.
+//
+// You should rename this file to '.firebaserc' and replace the value
+// with your specific Firebase Project ID.
+//
+// IMPORTANT: Replace the empty string below with your
+// project ID (e.g., "default": "your-project-ewe23r")
+// ==============================================================================
+
+{
+  "projects": {
+    "default": ""
+  },
