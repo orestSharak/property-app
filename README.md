@@ -2,6 +2,7 @@
 
 A **centralized, end-to-end Property Lifecycle Management (PLM) solution** designed to consolidate and automate the
 tracking, updating, and coordination of your entire **property portfolio** across various regions and client accounts.
+
 This platform delivers a **single source of verified truth** for all assets, ensuring maximum operational efficiency, \*
 \*preventing data fragmentation**, and providing the comprehensive control necessary to manage complex property flows
 with **confidence and full regulatory adherence\*\*.
