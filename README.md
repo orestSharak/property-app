@@ -107,8 +107,7 @@ The commitment to best practices and performance is validated by testing scores:
 
 ## ✨ Core Functionality: CRUD Management
 
-The application provides robust tools for complete lifecycle management of key resources: **Cities**, **Clients**,
-and \*
+The application provides robust tools for complete lifecycle management of key resources: **Cities**, **Clients**, and \*
 \*Properties\*\*. All data is managed through secure and validated forms, ensuring data integrity.
 
 ### 1. Full Lifecycle Management (CRUD)
