@@ -55,9 +55,9 @@ The platform offers a refined user experience, designed for both aesthetic appea
   experience across all screen sizes, including **mobile phones** and **tablets**.
 
 <div style="text-align: center;">
-  <img src="assets/readme/dashboard-mobile.png" alt="Mobile Dashboard Example" width="280"/>
-  <img src="assets/readme/mobile-menu.png" alt="Mobile Menu Example" width="280"/>
-  <img src="assets/readme/mobile-modal.png" alt="Mobile Modal Example" width="280"/>
+  <img src="assets/readme/dashboard-mobile.png" alt="Mobile Dashboard Example" width="200"/>
+  <img src="assets/readme/mobile-menu.png" alt="Mobile Menu Example" width="200"/>
+  <img src="assets/readme/mobile-modal.png" alt="Mobile Modal Example" width="200"/>
 </div>
 
 ### Quality Metrics
@@ -84,7 +84,8 @@ The commitment to best practices and performance is validated by testing scores:
 
 ## ✨ Core Functionality: CRUD Management
 
-The application provides robust tools for complete lifecycle management of key resources: **Cities**, **Clients**, and \*
+The application provides robust tools for complete lifecycle management of key resources: **Cities**, **Clients**,
+and \*
 \*Properties\*\*. All data is managed through secure and validated forms, ensuring data integrity.
 
 ### 1. Full Lifecycle Management (CRUD)
