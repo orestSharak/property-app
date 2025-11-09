@@ -37,16 +37,23 @@ emphasizing code quality, strong typing, and superior user experience.
   synchronization, and user sign-in.
 - **Serverless Logic:** **Firebase Functions** utilized for executing complex, centralized CRUD operations and managing
   cross-instance database changes efficiently.
-- **DevOps (CI/CD):** **GitHub Actions** utilized for automated Continuous Integration and Continuous Deployment
-  pipelines.
 - **Testing:** **Vitest** for running comprehensive unit tests and functional tests.
+- **DevOps (CI/CD):** **GitHub Actions** utilized for automated Continuous Integration and Continuous Deployment
+  pipelines. **Critical API keys and environment variables** required for deployment to Firebase Hosting and Functions
+  are secured via **GitHub Secrets**, ensuring stability and preventing the exposure of sensitive credentials in the
+  codebase.
+- **Code Quality Enforcement:** **Husky** pre-commit hooks are configured to automatically run code formatting and
+  linting checks before every commit, ensuring consistent code style and preventing common errors from entering the
+  repository.
 
-### Code Quality & UI/UX Libraries
+### Design, Code Quality & UI/UX Libraries
 
+- **Design Process:** The application's UI/UX was planned using **Figma**, where a **custom design** was created in
+  close collaboration with a dedicated UX team to optimize user flows and accessibility.
 - **Language & Typing:** The entire codebase is implemented in **TypeScript**, ensuring full type safety, reducing
   runtime errors, and improving long-term maintainability.
 - **Design System:** A **custom-built Design System** was created for the application, establishing a unified library of
-  all basic components (buttons, inputs, modals, etc.) to ensure visual consistency and development efficiency.
+  all basic components (buttons, inputs, navigation, etc.) to ensure visual consistency and development efficiency.
 - **Styling:** **Styled-Components** were used for component-level styling, facilitating dynamic theming and
   encapsulated CSS.
 - **Forms & Validation:** Implemented **React Hook Form** for efficient form handling, coupled with **Zod** for robust,
