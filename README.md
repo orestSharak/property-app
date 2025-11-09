@@ -15,7 +15,7 @@ Experience the application's functionality directly!
 
 ![Login Screen - Property Management](assets/readme/readme-login.png)
 
-- **Live Demo Link:** <a href="https://map-markers-ed36e.web.app" target="_blank">map-markers-ed36e.web.app</a>
+- **Live Demo Link:** [https://map-markers-ed36e.web.app](https://map-markers-ed36e.web.app)
 
 ### Test Credentials
 
