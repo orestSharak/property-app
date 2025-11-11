@@ -43,6 +43,9 @@ emphasizing code quality, strong typing, and superior user experience.
   pipelines. **Critical API keys and environment variables** required for deployment to Firebase Hosting and Functions
   are secured via **GitHub Secrets**, ensuring stability and preventing the exposure of sensitive credentials in the
   codebase.
+
+  [![Manual Deployment (Hosting and Functions)](https://github.com/orestSharak/property-app/actions/workflows/deploy.yml/badge.svg)](https://github.com/orestSharak/property-app/actions/workflows/deploy.yml)
+
 - **Code Quality Enforcement:** **Husky** pre-commit hooks are configured to automatically run code formatting and
   linting checks before every commit, ensuring consistent code style and preventing common errors from entering the
   repository.
