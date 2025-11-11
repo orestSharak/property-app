@@ -1,4 +1,4 @@
-name: CI Pipeline (Formatted, Tested, Built)
+name: CI Pipeline (Formatted, Tested)
 
 on:
   push:
@@ -24,9 +24,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
+
+      - name: Cache Node Modules
+        id: cache-npm
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
 
       - name: Install Dependencies
+        if: steps.cache-npm.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Run Prettier Check
@@ -45,9 +54,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
+
+      - name: Cache Node Modules
+        id: cache-npm-lint
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
 
       - name: Install Dependencies
+        if: steps.cache-npm-lint.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Run Linter
@@ -69,9 +87,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
+
+      - name: Cache Node Modules
+        id: cache-npm-test
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
 
       - name: Install Dependencies
+        if: steps.cache-npm-test.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Run Tests (Vitest)
