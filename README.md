@@ -45,7 +45,7 @@ emphasizing code quality, strong typing, and superior user experience.
   codebase.
 
   [![Manual Deployment (Hosting and Functions)](https://github.com/orestSharak/property-app/actions/workflows/deploy.yml/badge.svg)](https://github.com/orestSharak/property-app/actions/workflows/deploy.yml)
-  
+
 - **Code Quality Enforcement:** **Husky** pre-commit hooks are configured to automatically run code formatting and
   linting checks before every commit, ensuring consistent code style and preventing common errors from entering the
   repository.
